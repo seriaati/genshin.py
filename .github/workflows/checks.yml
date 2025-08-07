@@ -109,7 +109,7 @@ jobs:
           uv run coverage lcov -o lcov.info
 
       - name: Upload coverage to qlty cloud
-        uses: qltysh/qlty-action/coverage@v1
+        uses: qltysh/qlty-action/coverage@v2
         with:
           token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
           files: lcov.info
