@@ -106,9 +106,9 @@ async for wish in client.wish_history(authkey="..."):
 
 #### PC
 
-- Genshin Impact: <https://stardb.gg/en/wish-import>
+- Genshin Impact: <https://stardb.gg/en/genshin/wish-import>
 - Honkai Star Rail: <https://stardb.gg/en/warp-import>
-- Zenless Zone Zero: <https://stardb.gg/en/signal-import>
+- Zenless Zone Zero: <https://stardb.gg/en/zzz/signal-import>
 
 Future games can also be found on the same website.
 
