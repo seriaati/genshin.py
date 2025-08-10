@@ -11,7 +11,7 @@ import genshin
 @pytest.fixture(scope="session")
 def honkai_cookies() -> typing.Mapping[str, str]:
     if not os.environ.get("HONKAI_COOKIES"):
-        pytest.exit("No Honkai cookies set", 1)
+        pytest.skip("No Honkai cookies set")
 
     return genshin.client.manager.parse_cookie(os.environ["HONKAI_COOKIES"])
 
@@ -19,7 +19,7 @@ def honkai_cookies() -> typing.Mapping[str, str]:
 @pytest.fixture(scope="session")
 def zzz_cookies() -> typing.Mapping[str, str]:
     if not os.environ.get("ZZZ_COOKIES"):
-        pytest.exit("No ZZZ cookies set", 1)
+        pytest.skip("No ZZZ cookies set")
 
     return genshin.client.manager.parse_cookie(os.environ["ZZZ_COOKIES"])
 
@@ -27,7 +27,7 @@ def zzz_cookies() -> typing.Mapping[str, str]:
 @pytest.fixture(scope="session")
 def hsr_cookies() -> typing.Mapping[str, str]:
     if not os.environ.get("HSR_COOKIES"):
-        pytest.exit("No HSR cookies set", 1)
+        pytest.skip("No HSR cookies set")
 
     return genshin.client.manager.parse_cookie(os.environ["HSR_COOKIES"])
 
@@ -35,7 +35,7 @@ def hsr_cookies() -> typing.Mapping[str, str]:
 @pytest.fixture(scope="session")
 def cookies() -> typing.Mapping[str, str]:
     if not os.environ.get("GENSHIN_COOKIES"):
-        pytest.exit("No Genshin cookies set", 1)
+        pytest.skip("No Genshin cookies set")
 
     return genshin.client.manager.parse_cookie(os.environ["GENSHIN_COOKIES"])
 
