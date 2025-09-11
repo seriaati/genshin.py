@@ -59,6 +59,7 @@ class Stats(APIModel):
     electroculi: int = Aliased("electroculus_number")
     hydroculi: int = Aliased("hydroculus_number")
     pyroculi: int = Aliased("pyroculus_number")
+    lunoculi: int = Aliased("moonoculus_number")
     common_chests: int = Aliased("common_chest_number")
     exquisite_chests: int = Aliased("exquisite_chest_number")
     precious_chests: int = Aliased("precious_chest_number")
