@@ -209,7 +209,10 @@ class CalculatorConsumable(APIModel, Unique):
     id: int
     name: str
     icon: str
+    rarity: int = Aliased("level")
     amount: int = Aliased("num", default=1)
+    lacking: int = Aliased("lack_num", default=0)
+    wiki_url: str
 
 
 class CalculatorArtifactResult(APIModel):
@@ -241,12 +244,23 @@ class CalculatorResult(APIModel):
                 id=x[0].id,
                 name=x[0].name,
                 icon=x[0].icon,
+                wiki_url=x[0].wiki_url,
+                rarity=x[0].rarity,
+                lacking=x[0].lacking,
                 amount=sum(i.amount for i in x),
             )
             for x in grouped.values()
         ]
 
         return total
+
+
+class CalculatorBatchResult(APIModel):
+    """Batch calculation result."""
+
+    characters: list[CalculatorResult] = Aliased("items")
+    available_materials: list[CalculatorConsumable] = Aliased("available_material")
+    all_materials: list[CalculatorConsumable] = Aliased("overall_consume")
 
 
 class CalculatorFurnishingResults(APIModel):

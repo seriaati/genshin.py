@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import asyncio
-import logging
 import typing
 import warnings
 
@@ -20,9 +19,6 @@ from genshin.utility import deprecation
 from .calculator import Calculator, FurnishingCalculator
 
 __all__ = ["CalculatorClient"]
-
-
-_LOGGER = logging.getLogger(__name__)
 
 
 class CalculatorClient(base.BaseClient):
@@ -53,8 +49,7 @@ class CalculatorClient(base.BaseClient):
             data = dict(data or {})
             data["lang"] = lang or self.lang
 
-        if self.region == types.Region.CHINESE:
-            headers["referer"] = str(routes.CALCULATOR_REFERER_URL.get_url())
+        headers["referer"] = str(routes.CALCULATOR_REFERER_URL.get_url(self.region))
         update_task = asyncio.create_task(utility.update_characters_any(lang or self.lang, lenient=True))
 
         data = await self.request(url, method=method, params=params, data=data, headers=headers, **kwargs)
@@ -73,7 +68,7 @@ class CalculatorClient(base.BaseClient):
         lang: typing.Optional[str] = None,
     ) -> models.CalculatorResult:
         """Calculate the results of a builder."""
-        data = await self.request_calculator("compute", lang=lang, data=data)
+        data = await self.request_calculator("batch_compute", lang=lang, data=data)
         return models.CalculatorResult(**data)
 
     async def _execute_furnishings_calculator(
@@ -119,7 +114,7 @@ class CalculatorClient(base.BaseClient):
 
             filters = dict(keywords=query, **filters)
 
-        payload: dict[str, typing.Any] = dict(page=1, size=69420, is_all=is_all, **filters)
+        payload: dict[str, typing.Any] = dict(page=1, size=200, **filters)
 
         if sync:
             uid = uid or await self._get_uid(types.Game.GENSHIN)
