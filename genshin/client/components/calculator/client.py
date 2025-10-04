@@ -263,25 +263,6 @@ class CalculatorClient(base.BaseClient):
         )
         return models.CalculatorCharacterDetails(**data)
 
-    async def get_character_talents(
-        self,
-        character: types.IDOr[genshin_models.BaseCharacter],
-        *,
-        lang: typing.Optional[str] = None,
-    ) -> typing.Sequence[models.CalculatorTalent]:
-        """Get the talents of a character.
-
-        This only gets the talent names, not their levels.
-        Use `get_character_details` for precise information.
-        """
-        data = await self.request_calculator(
-            "avatar/skill_list",
-            method="GET",
-            lang=lang,
-            params=dict(avatar_id=int(character)),
-        )
-        return [models.CalculatorTalent(**i) for i in data["list"]]
-
     async def get_complete_artifact_set(
         self,
         artifact: types.IDOr[typing.Union[genshin_models.Artifact, genshin_models.CalculatorArtifact]],

@@ -61,14 +61,6 @@ class CalculatorState:
         return await self.client.get_character_details(self.character_id)
 
     @_cache
-    async def get_character_talents(self) -> typing.Sequence[models.CalculatorTalent]:
-        """Get talent ids."""
-        if self.character_id is None:
-            raise TypeError("No specified character.")
-
-        return await self.client.get_character_talents(self.character_id)
-
-    @_cache
     async def get_artifact_ids(self, artifact_id: int) -> typing.Sequence[int]:
         """Get artifact ids."""
         others = await self.client.get_complete_artifact_set(artifact_id)
@@ -221,12 +213,8 @@ class CurrentTalentResolver(TalentResolver):
         super().__init__()
 
     async def __call__(self, state: CalculatorState) -> typing.Sequence[typing.Mapping[str, typing.Any]]:
-        if self.current:
-            talents = await state.get_character_talents()
-        else:
-            details = await state.get_character_details()
-            talents = details.talents
-            self.current = 0
+        details = await state.get_character_details()
+        talents = details.talents
 
         if talents[2].type == "dash":
             ordered = (talents[0], talents[1], talents[3])
@@ -235,7 +223,7 @@ class CurrentTalentResolver(TalentResolver):
 
         for talent, name in zip(ordered, ("attack", "skill", "burst")):
             if target := self.talents[name]:
-                self.add_talent(talent.group_id, talent.level or self.current, target)
+                self.add_talent(talent.group_id, self.current if self.current is not None else talent.level, target)
 
         return self.data
 
