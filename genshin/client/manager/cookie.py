@@ -261,21 +261,18 @@ def extract_auth_cookies(cookie_string: str) -> typing.Dict[str, str]:
     cookies_dict = {}
 
     # Parse cookie string into dictionary
-    for cookie_part in cookie_string.split(';'):
-        if '=' in cookie_part:
-            key, value = cookie_part.strip().split('=', 1)
+    for cookie_part in cookie_string.split(";"):
+        if "=" in cookie_part:
+            key, value = cookie_part.strip().split("=", 1)
             cookies_dict[key.strip()] = value.strip()
 
     # Extract ltuid (prioritize v2 version)
-    ltuid = cookies_dict.get('ltuid_v2') or cookies_dict.get('ltuid')
+    ltuid = cookies_dict.get("ltuid_v2") or cookies_dict.get("ltuid")
 
     # Extract ltoken (prioritize v2 version)
-    ltoken = cookies_dict.get('ltoken_v2') or cookies_dict.get('ltoken')
+    ltoken = cookies_dict.get("ltoken_v2") or cookies_dict.get("ltoken")
 
     if not ltuid or not ltoken:
         raise ValueError(f"Missing required cookies. Found: {list(cookies_dict.keys())}")
 
-    return {
-        'ltuid': ltuid,
-        'ltoken': ltoken
-    }
+    return {"ltuid": ltuid, "ltoken": ltoken}

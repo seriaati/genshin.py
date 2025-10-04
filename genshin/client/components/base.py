@@ -348,12 +348,12 @@ class BaseClient(abc.ABC):
 
     async def _authenticate_with_credentials(self) -> None:
         """Authenticate using credentials if they are pending."""
-        if not hasattr(self, '_pending_credentials') or self._pending_credentials is None:
+        if not hasattr(self, "_pending_credentials") or self._pending_credentials is None:
             return
 
         credentials = self._pending_credentials
-        account = credentials.get('account')
-        password = credentials.get('password')
+        account = credentials.get("account")
+        password = credentials.get("password")
 
         if not account or not password:
             raise ValueError("Credentials must contain 'account' and 'password' keys")
@@ -364,7 +364,7 @@ class BaseClient(abc.ABC):
 
         # Perform login using the credentials
         # We need to cast self to AuthClient to access login methods
-        auth_client = typing.cast('genshin.client.components.auth.client.AuthClient', self)
+        auth_client = typing.cast("genshin.client.components.auth.client.AuthClient", self)
 
         try:
             result = await auth_client.os_login_with_password(account, password)
@@ -372,16 +372,13 @@ class BaseClient(abc.ABC):
 
             # Convert cookies to string format for parsing
             base_cookies: http.cookies.BaseCookie[str] = http.cookies.BaseCookie(completed_cookies)
-            cookie_string = base_cookies.output(header='', sep=';')
+            cookie_string = base_cookies.output(header="", sep=";")
 
             # Extract ltuid and ltoken
             auth_cookies = extract_auth_cookies(cookie_string)
 
             # Create the final cookies dict for authentication
-            final_cookies = {
-                "ltuid_v2": auth_cookies['ltuid'],
-                "ltoken_v2": auth_cookies['ltoken']
-            }
+            final_cookies = {"ltuid_v2": auth_cookies["ltuid"], "ltoken_v2": auth_cookies["ltoken"]}
 
             # Update the cookie manager with the authenticated cookies
             self.cookie_manager = managers.BaseCookieManager.from_cookies(final_cookies)
