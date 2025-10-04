@@ -51,6 +51,7 @@ class BaseClient(abc.ABC):
         "_hoyolab_id",
         "_accounts",
         "custom_headers",
+        "_pending_credentials",
     )
 
     USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"  # noqa: E501
@@ -73,6 +74,7 @@ class BaseClient(abc.ABC):
         self,
         cookies: typing.Optional[managers.AnyCookieOrHeader] = None,
         *,
+        credentials: typing.Optional[typing.Dict[str, str]] = None,
         authkey: typing.Optional[str] = None,
         lang: types.Lang = "en-us",
         region: types.Region = types.Region.OVERSEAS,
@@ -86,6 +88,13 @@ class BaseClient(abc.ABC):
         cache: typing.Optional[client_cache.BaseCache] = None,
         debug: bool = False,
     ) -> None:
+        # Validate that both cookies and credentials are not provided simultaneously
+        if cookies is not None and credentials is not None:
+            raise ValueError("Cannot provide both 'cookies' and 'credentials'. Use one or the other.")
+
+        # Store credentials for later async authentication
+        self._pending_credentials = credentials
+
         self.cookie_manager = managers.BaseCookieManager.from_cookies(cookies)
         self.cache = cache or client_cache.StaticCache()
 
@@ -337,6 +346,52 @@ class BaseClient(abc.ABC):
         else:
             self.logger.debug("%s %s", method, url)
 
+    async def _authenticate_with_credentials(self) -> None:
+        """Authenticate using credentials if they are pending."""
+        if not hasattr(self, '_pending_credentials') or self._pending_credentials is None:
+            return
+
+        credentials = self._pending_credentials
+        account = credentials.get('account')
+        password = credentials.get('password')
+
+        if not account or not password:
+            raise ValueError("Credentials must contain 'account' and 'password' keys")
+
+        # Import here to avoid circular imports
+        import http.cookies
+        from genshin.client.manager.cookie import complete_cookies, extract_auth_cookies
+
+        # Perform login using the credentials
+        # We need to cast self to AuthClient to access login methods
+        auth_client = typing.cast('genshin.client.components.auth.client.AuthClient', self)
+
+        try:
+            result = await auth_client.os_login_with_password(account, password)
+            completed_cookies = await complete_cookies(result.model_dump())
+
+            # Convert cookies to string format for parsing
+            base_cookies: http.cookies.BaseCookie[str] = http.cookies.BaseCookie(completed_cookies)
+            cookie_string = base_cookies.output(header='', sep=';')
+
+            # Extract ltuid and ltoken
+            auth_cookies = extract_auth_cookies(cookie_string)
+
+            # Create the final cookies dict for authentication
+            final_cookies = {
+                "ltuid_v2": auth_cookies['ltuid'],
+                "ltoken_v2": auth_cookies['ltoken']
+            }
+
+            # Update the cookie manager with the authenticated cookies
+            self.cookie_manager = managers.BaseCookieManager.from_cookies(final_cookies)
+
+            # Clear pending credentials to avoid re-authentication
+            self._pending_credentials = None
+
+        except Exception as e:
+            raise ValueError(f"Failed to authenticate with credentials: {e}") from e
+
     async def request(
         self,
         url: aiohttp.typedefs.StrOrURL,
@@ -358,6 +413,9 @@ class BaseClient(abc.ABC):
             value = await self.cache.get_static(static_cache)
             if value is not None:
                 return value
+
+        # Authenticate with credentials if pending
+        await self._authenticate_with_credentials()
 
         # actual request
 

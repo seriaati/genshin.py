@@ -1,5 +1,36 @@
 # Authentication
 
+genshin.py supports multiple authentication methods to suit different use cases and preferences.
+
+## Account Credentials (Recommended)
+
+The simplest way to authenticate is using your HoYoLAB account credentials (email and password). This method automatically handles cookie extraction and management, making it much more convenient than manually copying cookies from your browser.
+
+### Setting credentials
+
+```py
+# set as an __init__ parameter
+client = genshin.Client(credentials={"account": "your_email@example.com", "password": "your_password"})
+
+# or with additional parameters
+client = genshin.Client(
+    credentials={"account": "your_email@example.com", "password": "your_password"},
+    uid=123456789,
+    lang="en-us"
+)
+```
+
+**Benefits of using credentials:**
+- No need to manually extract cookies from your browser
+- Automatic cookie refreshing and management
+- Simpler setup and maintenance
+- Works with the same account you use for HoYoLAB
+
+**Important notes:**
+- Credentials are only used for initial authentication and are cleared after successful login
+- The extracted cookies are automatically formatted to work with all API endpoints
+- Cannot be used simultaneously with cookie authentication (mutually exclusive)
+
 ## Cookies
 
 Cookies are the default form of authentication over the majority of Mihoyo APIs. These are used in web events and hoyolab utilities such as the Battle Chronicle.
@@ -33,11 +64,13 @@ client.set_cookies("ltuid=...; ltoken=...") # cookie header
 4. Go to `Application`, `Cookies`, `https://www.hoyolab.com`.
 5. Copy `ltuid` and `ltoken`.
 
-#### Using username and password
+#### Using username and password (CLI)
 
 1. Run `python -m genshin login -a <account> -p <password>`.
 2. Press the `Login` button and solve a captcha.
 3. Copy cookies.
+
+**Note:** The CLI method above extracts cookies manually. For programmatic use, consider using the credentials authentication method described above instead.
 
 ### Setting cookies automatically
 
@@ -133,3 +166,17 @@ client.authkey = genshin.utility.get_authkey()
 client = genshin.Client()
 client.set_authkey()
 ```
+
+## Authentication Method Comparison
+
+| Method | Ease of Use | Security | Use Case |
+|--------|-------------|----------|----------|
+| **Credentials** | ⭐⭐⭐ Very Easy | ⭐⭐⭐ High | Recommended for most users and applications |
+| **Cookies** | ⭐⭐ Moderate | ⭐⭐ Medium | Manual control, shared accounts, specific cookie requirements |
+| **Authkey** | ⭐ Complex | ⭐⭐⭐ Very High | Read-only operations, wish history, transaction logs |
+
+**Choose credentials if:** You want the simplest setup and don't need special cookie handling.
+
+**Choose cookies if:** You need manual control over authentication, are using shared accounts, or have specific cookie requirements.
+
+**Choose authkey if:** You only need read-only access to wish history or transaction logs.

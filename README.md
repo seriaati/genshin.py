@@ -31,6 +31,7 @@ Key features:
 - Requests are significantly faster thanks to proper usage of asyncio.
 - Chinese and English names returned by the API are renamed to simpler English fields.
 - Supports the majority of the popular endpoints.
+- Simple authentication with either cookies or account credentials.
 - Cleanly integrates with frameworks like FastAPI out of the box.
 
 > Note: This library is a successor to [genshinstats](https://github.com/seriaati/genshinstats) - an unofficial wrapper for the Genshin Impact api.
@@ -58,9 +59,35 @@ pip install git+https://github.com/seriaati/genshin.py
 
 A new release is made every 2 weeks.
 
-## Example
+## Examples
 
-A very simple example of how genshin.py would be used:
+### Simple Authentication with Credentials
+
+The easiest way to authenticate is using your HoYoLAB account credentials:
+
+```py
+import asyncio
+import genshin
+
+async def main():
+    # Authenticate with email and password - no need to extract cookies!
+    client = genshin.Client(
+        credentials={
+            "account": "your_email@example.com",
+            "password": "your_password"
+        },
+        uid=710785423
+    )
+
+    user = await client.get_genshin_user()
+    print(f"User has a total of {user.stats.characters} characters")
+
+asyncio.run(main())
+```
+
+### Traditional Cookie Authentication
+
+You can still use cookies if you prefer:
 
 ```py
 import asyncio

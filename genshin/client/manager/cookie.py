@@ -40,6 +40,7 @@ from genshin.utility import ds as ds_utility
 __all__ = [
     "cn_fetch_cookie_token_with_stoken_v2",
     "complete_cookies",
+    "extract_auth_cookies",
     "fetch_cookie_token_info",
     "fetch_cookie_token_with_game_token",
     "fetch_cookie_with_cookie",
@@ -241,3 +242,40 @@ async def fetch_stoken_with_game_token(*, game_token: str, account_id: int) -> S
         errors.raise_for_retcode(data)
 
     return StokenResult(**data["data"])
+
+
+def extract_auth_cookies(cookie_string: str) -> typing.Dict[str, str]:
+    """Extract ltuid and ltoken from cookie string, supporting both regular and v2 versions.
+
+    Args:
+        cookie_string: Cookie string containing authentication cookies
+
+    Returns:
+        Dictionary with 'ltuid' and 'ltoken' keys extracted from the cookies
+
+    Example:
+        >>> cookies = "ltuid_v2=144128027; ltoken_v2=v2_CAISDGM...; account_id=144128027"
+        >>> extract_auth_cookies(cookies)
+        {'ltuid': '144128027', 'ltoken': 'v2_CAISDGM...'}
+    """
+    cookies_dict = {}
+
+    # Parse cookie string into dictionary
+    for cookie_part in cookie_string.split(';'):
+        if '=' in cookie_part:
+            key, value = cookie_part.strip().split('=', 1)
+            cookies_dict[key.strip()] = value.strip()
+
+    # Extract ltuid (prioritize v2 version)
+    ltuid = cookies_dict.get('ltuid_v2') or cookies_dict.get('ltuid')
+
+    # Extract ltoken (prioritize v2 version)
+    ltoken = cookies_dict.get('ltoken_v2') or cookies_dict.get('ltoken')
+
+    if not ltuid or not ltoken:
+        raise ValueError(f"Missing required cookies. Found: {list(cookies_dict.keys())}")
+
+    return {
+        'ltuid': ltuid,
+        'ltoken': ltoken
+    }
