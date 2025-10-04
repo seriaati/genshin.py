@@ -16,7 +16,7 @@ from genshin.client.components import base
 from genshin.models.genshin import calculator as models
 from genshin.utility import deprecation
 
-from .calculator import Calculator, FurnishingCalculator
+from .calculator import BatchCalculator, Calculator, FurnishingCalculator
 
 __all__ = ["CalculatorClient"]
 
@@ -33,6 +33,7 @@ class CalculatorClient(base.BaseClient):
         params: typing.Optional[typing.Mapping[str, typing.Any]] = None,
         data: typing.Optional[typing.Mapping[str, typing.Any]] = None,
         headers: typing.Optional[aiohttp.typedefs.LooseHeaders] = None,
+        api_version: int = 1,
         **kwargs: typing.Any,
     ) -> typing.Mapping[str, typing.Any]:
         """Make a request towards the calculator endpoint."""
@@ -40,7 +41,7 @@ class CalculatorClient(base.BaseClient):
         headers = base.parse_loose_headers(headers)
 
         base_url = routes.CALCULATOR_URL.get_url(self.region)
-        url = base_url / endpoint
+        url = base_url / f"v{api_version}" / endpoint
 
         if method == "GET":
             params["lang"] = lang or self.lang
@@ -68,8 +69,18 @@ class CalculatorClient(base.BaseClient):
         lang: typing.Optional[str] = None,
     ) -> models.CalculatorResult:
         """Calculate the results of a builder."""
-        data = await self.request_calculator("batch_compute", lang=lang, data=data)
-        return models.CalculatorResult(**data)
+        api_data = await self.request_calculator("compute", lang=lang, data=data, api_version=2)
+        return models.CalculatorResult(**api_data)
+
+    async def _execute_batch_calculator(
+        self,
+        data: typing.Sequence[typing.Mapping[str, typing.Any]],
+        *,
+        lang: typing.Optional[str] = None,
+    ) -> models.CalculatorBatchResult:
+        """Calculate the results of a batch builder."""
+        api_data = await self.request_calculator("batch_compute", lang=lang, data={"items": data}, api_version=3)
+        return models.CalculatorBatchResult(**api_data)
 
     async def _execute_furnishings_calculator(
         self,
@@ -84,6 +95,10 @@ class CalculatorClient(base.BaseClient):
     def calculator(self, *, lang: typing.Optional[str] = None) -> Calculator:
         """Create a calculator builder object."""
         return Calculator(self, lang=lang)
+
+    def batch_calculator(self, *, lang: typing.Optional[str] = None) -> BatchCalculator:
+        """Create a batch calculator builder object."""
+        return BatchCalculator(self, lang=lang)
 
     def furnishings_calculator(self, *, lang: typing.Optional[str] = None) -> FurnishingCalculator:
         """Create a calculator builder object."""

@@ -179,34 +179,6 @@ class ArtifactSetResolver(ArtifactResolver):
         return self.data
 
 
-class CurrentArtifactResolver(ArtifactResolver):
-    artifacts: typing.Sequence[typing.Optional[int]]
-
-    def __init__(
-        self,
-        target: typing.Optional[int] = None,
-        *,
-        flower: typing.Optional[int] = None,
-        feather: typing.Optional[int] = None,
-        sands: typing.Optional[int] = None,
-        goblet: typing.Optional[int] = None,
-        circlet: typing.Optional[int] = None,
-    ) -> None:
-        if target:
-            self.artifacts = (target,) * 5
-        else:
-            self.artifacts = (flower, feather, sands, goblet, circlet)
-
-    async def __call__(self, state: CalculatorState) -> typing.Sequence[typing.Mapping[str, typing.Any]]:
-        details = await state.get_character_details()
-
-        for artifact in details.artifacts:
-            if target := self.artifacts[artifact.pos - 1]:
-                self.add_artifact(artifact.id, artifact.level, target)
-
-        return self.data
-
-
 class TalentResolver(CalculatorResolver[typing.Sequence[typing.Mapping[str, typing.Any]]]):
     data: list[typing.Mapping[str, typing.Any]]
 
@@ -336,27 +308,6 @@ class Calculator:
         self.weapon = CurrentWeaponResolver(target)
         return self
 
-    def with_current_artifacts(
-        self,
-        target: typing.Optional[int] = None,
-        *,
-        flower: typing.Optional[int] = None,
-        feather: typing.Optional[int] = None,
-        sands: typing.Optional[int] = None,
-        goblet: typing.Optional[int] = None,
-        circlet: typing.Optional[int] = None,
-    ) -> Calculator:
-        """Add all artifacts of the selected character."""
-        self.artifacts = CurrentArtifactResolver(
-            target,
-            flower=flower,
-            feather=feather,
-            sands=sands,
-            goblet=goblet,
-            circlet=circlet,
-        )
-        return self
-
     def with_current_talents(
         self,
         target: typing.Optional[int] = None,
@@ -399,6 +350,37 @@ class Calculator:
         return await self.client._execute_calculator(await self.build(), lang=self.lang)
 
     def __await__(self) -> typing.Generator[typing.Any, None, models.CalculatorResult]:
+        return self.calculate().__await__()
+
+
+class BatchCalculator:
+    """Builder for the genshin impact batch enhancement calculator."""
+
+    client: Client
+    lang: typing.Optional[str]
+
+    characters: list[Calculator]
+
+    def __init__(self, client: Client, *, lang: typing.Optional[str] = None) -> None:
+        self.client = client
+        self.lang = lang
+
+        self.characters = []
+
+    def add_character(self, builder: Calculator) -> BatchCalculator:
+        """Add a character."""
+        self.characters.append(builder)
+        return self
+
+    async def build(self) -> typing.Sequence[typing.Mapping[str, typing.Any]]:
+        """Build the calculator object."""
+        return [await character.build() for character in self.characters]
+
+    async def calculate(self) -> models.CalculatorBatchResult:
+        """Execute the calculator."""
+        return await self.client._execute_batch_calculator(await self.build(), lang=self.lang)
+
+    def __await__(self) -> typing.Generator[typing.Any, None, models.CalculatorBatchResult]:
         return self.calculate().__await__()
 
 

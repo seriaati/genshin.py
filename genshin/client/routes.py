@@ -185,8 +185,8 @@ DETAIL_LEDGER_URL = GameRoute(
 )
 
 CALCULATOR_URL = InternationalRoute(
-    overseas="https://sg-public-api.hoyolab.com/event/e20200928calculate/v1/",
-    chinese="https://api-takumi.mihoyo.com/event/e20200928calculate/v1/",
+    overseas="https://sg-public-api.hoyolab.com/event/e20200928calculate/",
+    chinese="https://api-takumi.mihoyo.com/event/e20200928calculate/",
 )
 CALCULATOR_REFERER_URL = InternationalRoute(
     overseas="https://act.hoyolab.com/",

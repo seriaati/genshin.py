@@ -61,6 +61,7 @@ class MaterialSource(str, enum.Enum):
     MONSTER = "MT_MONSTER"
     WORLD = "MT_WORLD"
     DOMAIN = "MT_DUNGEON"
+    WEEKLY_BOSS = "MT_WEEKLY_DUNGEON"
 
 
 class PartialCalculatorCharacter(APIModel):
@@ -240,7 +241,7 @@ class CalculatorArtifactResult(APIModel):
     """Calculation result for a specific artifact."""
 
     artifact_id: int = Aliased("reliquary_id")
-    list: typing.Sequence[CalculatorConsumable] = Aliased("id_consume_list")
+    materials: typing.Sequence[CalculatorConsumable] = Aliased("consume_list")
 
 
 class CalculatorTalentInfo(APIModel):
@@ -255,7 +256,7 @@ class CalculatorTalentResult(APIModel):
     """Calculation result for a specific talent."""
 
     info: CalculatorTalentInfo = Aliased("skill_info")
-    list: typing.Sequence[CalculatorConsumable] = Aliased("id_consume_list")
+    materials: typing.Sequence[CalculatorConsumable] = Aliased("consume_list")
 
 
 class CalculatorMonster(APIModel):
@@ -289,7 +290,7 @@ class RemainingMaterialDetail(APIModel):
     material_source: MaterialSource
 
     monster: typing.Optional[CalculatorMonster] = None
-    """Monster info, present if material_source is MT_MONSTER."""
+    """Monster info, present if material_source is MT_MONSTER or MT_WEEKLY_DUNGEON."""
     map_url: typing.Optional[str] = None
     """URL to interactive map, present if material_source is MT_WORLD."""
     domain: typing.Optional[CalculatorDomain] = Aliased("dungeon_calendar", default=None)
@@ -316,8 +317,8 @@ class CalculatorResult(APIModel):
 
     @property
     def total(self) -> typing.Sequence[CalculatorConsumable]:
-        talents = [i for t in self.talents for i in t.list]
-        artifacts = [i for a in self.artifacts for i in a.list]
+        talents = [i for t in self.talents for i in t.materials]
+        artifacts = [i for a in self.artifacts for i in a.materials]
         combined = self.character + self.weapon + talents + artifacts
 
         grouped: dict[int, list[CalculatorConsumable]] = collections.defaultdict(list)
