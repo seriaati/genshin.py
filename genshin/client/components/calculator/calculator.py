@@ -171,6 +171,36 @@ class ArtifactSetResolver(ArtifactResolver):
         return self.data
 
 
+class CurrentArtifactResolver(ArtifactResolver):
+    artifacts: typing.Sequence[typing.Optional[int]]
+
+    def __init__(
+        self,
+        target: typing.Optional[int] = None,
+        *,
+        flower: typing.Optional[int] = None,
+        feather: typing.Optional[int] = None,
+        sands: typing.Optional[int] = None,
+        goblet: typing.Optional[int] = None,
+        circlet: typing.Optional[int] = None,
+    ) -> None:
+        if target:
+            self.artifacts = (target,) * 5
+        else:
+            self.artifacts = (flower, feather, sands, goblet, circlet)
+
+        super().__init__()
+
+    async def __call__(self, state: CalculatorState) -> typing.Sequence[typing.Mapping[str, typing.Any]]:
+        details = await state.get_character_details()
+
+        for artifact in details.artifacts:
+            if target := self.artifacts[artifact.pos - 1]:
+                self.add_artifact(artifact.id, artifact.level, target)
+
+        return self.data
+
+
 class TalentResolver(CalculatorResolver[typing.Sequence[typing.Mapping[str, typing.Any]]]):
     data: list[typing.Mapping[str, typing.Any]]
 
@@ -294,6 +324,27 @@ class Calculator:
     def with_current_weapon(self, target: int) -> Calculator:
         """Set the weapon of the selected character."""
         self.weapon = CurrentWeaponResolver(target)
+        return self
+
+    def with_current_artifacts(
+        self,
+        target: typing.Optional[int] = None,
+        *,
+        flower: typing.Optional[int] = None,
+        feather: typing.Optional[int] = None,
+        sands: typing.Optional[int] = None,
+        goblet: typing.Optional[int] = None,
+        circlet: typing.Optional[int] = None,
+    ) -> Calculator:
+        """Add all artifacts of the selected character."""
+        self.artifacts = CurrentArtifactResolver(
+            target,
+            flower=flower,
+            feather=feather,
+            sands=sands,
+            goblet=goblet,
+            circlet=circlet,
+        )
         return self
 
     def with_current_talents(
