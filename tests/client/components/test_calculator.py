@@ -23,6 +23,13 @@ async def test_calculator_weapons(client: genshin.Client):
     assert weapon.level == 0
 
 
+async def test_calculator_weapons_rarity(client: genshin.Client):
+    weapons = await client.get_calculator_weapons(rarities=[5, 4])
+
+    assert all(weapon.rarity in [4, 5] for weapon in weapons)
+    assert len(weapons) >= 50
+
+
 async def test_calculator_artifacts(client: genshin.Client):
     artifacts = await client.get_calculator_artifacts()
     assert len(artifacts) >= 69
