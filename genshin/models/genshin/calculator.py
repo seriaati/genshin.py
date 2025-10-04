@@ -241,7 +241,7 @@ class CalculatorArtifactResult(APIModel):
     """Calculation result for a specific artifact."""
 
     artifact_id: int = Aliased("reliquary_id")
-    materials: typing.Sequence[CalculatorConsumable] = Aliased("consume_list")
+    materials: typing.Sequence[CalculatorConsumable] = Aliased("id_consume_list")
 
 
 class CalculatorTalentInfo(APIModel):
