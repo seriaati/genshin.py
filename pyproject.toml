@@ -59,6 +59,8 @@ typecheck = ["mypy>=1.11.2", "pyright>=1.1.382.post0", "types-click>=7.1.8"]
 docs = [
     "mkdocs-material>=9.5.38",
     "pdoc3>=0.11.1",
+    "mkdocstrings[python]>=0.29.1",
+    "griffe-pydantic>=1.1.7",
 ]
 
 [project.urls]
