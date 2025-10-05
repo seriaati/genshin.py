@@ -115,6 +115,7 @@ nav:
           - reference/clients/wiki.md
       - Models:
           - reference/models/test.md
+          - reference/models/test_in_model.md
           - Auth:
               - reference/models/auth/cookie.md
               - reference/models/auth/geetest.md
