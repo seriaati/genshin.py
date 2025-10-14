@@ -1,0 +1,7 @@
+pull_request_rules:
+  - name: automatic merge for pre-commit ci updates
+    conditions:
+      - author=pre-commit-ci[bot]
+    actions:
+      merge:
+        method: squash
