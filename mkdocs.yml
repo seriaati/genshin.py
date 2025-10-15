@@ -56,11 +56,11 @@ plugins:
             docstring_style: google
             show_root_toc_entry: false
             show_symbol_type_heading: true
-            show_source: false
+            show_source: true
             show_bases: false
             extensions:
               - griffe_pydantic:
-                  schema: true
+                  schema: false
 markdown_extensions:
   - admonition
   - tables
@@ -114,8 +114,6 @@ nav:
           - reference/clients/transaction.md
           - reference/clients/wiki.md
       - Models:
-          - reference/models/test.md
-          - reference/models/test_in_model.md
           - Auth:
               - reference/models/auth/cookie.md
               - reference/models/auth/geetest.md
