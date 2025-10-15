@@ -222,3 +222,6 @@ SERVER_TIMEZONE_OFFSETS: typing.Final[dict[int, typing.Tuple[str, ...]]] = {
     -5: ("os_usa", "prod_official_usa", "prod_gf_us"),
     1: ("os_euro", "prod_official_eur", "prod_gf_eu"),
 }
+
+CODE_SUPPORTED_GAMES = {types.Game.GENSHIN, types.Game.ZZZ, types.Game.STARRAIL, types.Game.TOT}
+"""Games that support redeeming codes."""

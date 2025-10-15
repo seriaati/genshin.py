@@ -2,6 +2,7 @@
 
 import asyncio
 import json
+import time
 import typing
 import uuid
 import warnings
@@ -9,11 +10,11 @@ import warnings
 import yarl
 
 from genshin import types, utility
+from genshin import constants
 from genshin.client import cache as client_cache
 from genshin.client import routes
 from genshin.client.components import base
 from genshin.client.manager import managers
-from genshin.constants import WEB_EVENT_GAME_IDS
 from genshin.models import hoyolab as models
 
 __all__ = ["HoyolabClient"]
@@ -235,7 +236,7 @@ class HoyolabClient(base.BaseClient):
 
             game = self.default_game
 
-        if game not in {types.Game.GENSHIN, types.Game.ZZZ, types.Game.STARRAIL, types.Game.TOT}:
+        if game not in constants.CODE_SUPPORTED_GAMES:
             raise ValueError(f"{game} does not support code redemption.")
 
         uid = uid or await self._get_uid(game)
@@ -246,17 +247,48 @@ class HoyolabClient(base.BaseClient):
             warnings.warn(f"Failed to recognize server for game {game!r} and uid {uid!r}, fetching from API now.")
             region = await self._get_server_region(uid, game)
 
-        await self.request(
-            routes.CODE_URL.get_url(self.region, game),
-            params=dict(
-                uid=uid,
-                region=region,
+        post_request_games = {types.Game.ZZZ, types.Game.STARRAIL}
+        game_origins = {
+            types.Game.GENSHIN: "https://genshin.hoyoverse.com",
+            types.Game.ZZZ: "https://zenless.hoyoverse.com",
+            types.Game.STARRAIL: "https://hsr.hoyoverse.com",
+            types.Game.TOT: "https://tot.hoyoverse.com",
+        }
+        headers = {
+            "Origin": game_origins[game],
+            "Referer": f"{game_origins[game]}/",
+        }
+
+        if game in post_request_games:
+            data = dict(
                 cdkey=code,
+                device_uuid=str(uuid.uuid4()),
                 game_biz=utility.get_prod_game_biz(self.region, game),
                 lang=utility.create_short_lang_code(lang or self.lang),
-            ),
-            method="POST" if game is types.Game.STARRAIL else "GET",
-        )
+                platform="4",
+                region=region,
+                t=int(time.time()),
+                uid=uid,
+            )
+            await self.request(
+                routes.CODE_URL.get_url(self.region, game),
+                data=data,
+                method="POST",
+                headers=headers,
+            )
+        else:
+            await self.request(
+                routes.CODE_URL.get_url(self.region, game),
+                params=dict(
+                    uid=uid,
+                    region=region,
+                    lang=utility.create_short_lang_code(lang or self.lang),
+                    cdkey=code,
+                    game_biz=utility.get_prod_game_biz(self.region, game),
+                ),
+                method="GET",
+                headers=headers,
+            )
 
     @managers.no_multi
     async def check_in_community(self) -> None:
@@ -506,7 +538,7 @@ class HoyolabClient(base.BaseClient):
 
         data = await self.request_bbs(
             "community/community_contribution/wapi/event/list",
-            params=dict(gids=WEB_EVENT_GAME_IDS[game], size=size, offset=offset or ""),
+            params=dict(gids=constants.WEB_EVENT_GAME_IDS[game], size=size, offset=offset or ""),
             lang=lang,
         )
         return [models.WebEvent(**i) for i in data["list"]]

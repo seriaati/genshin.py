@@ -223,10 +223,10 @@ REWARD_URL = GameRoute(
 
 CODE_URL = GameRoute(
     overseas=dict(
-        genshin="https://sg-hk4e-api.hoyoverse.com/common/apicdkey/api/webExchangeCdkey",
-        hkrpg="https://sg-hkrpg-api.hoyoverse.com/common/apicdkey/api/webExchangeCdkeyRisk",
-        nap="https://public-operation-nap.hoyoverse.com/common/apicdkey/api/webExchangeCdkey",
-        tot="https://sg-public-api.hoyoverse.com/common/apicdkey/api/webExchangeCdkey",
+        genshin="https://public-operation-hk4e.hoyoverse.com/common/apicdkey/api/webExchangeCdkey",
+        hkrpg="https://public-operation-hkrpg.hoyoverse.com/common/apicdkey/api/webExchangeCdkeyRisk",
+        nap="https://public-operation-nap.hoyoverse.com/common/apicdkey/api/webExchangeCdkeyRisk",
+        tot="https://public-operation-common.hoyoverse.com/common/apicdkey/api/webExchangeCdkey",
     ),
     chinese=dict(),
 )
