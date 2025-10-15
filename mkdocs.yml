@@ -14,8 +14,8 @@ theme:
       toggle:
         icon: material/brightness-auto
         name: Switch to light mode
-      primary: blue gray
-      accent: blue gray
+      primary: blue grey
+      accent: blue grey
 
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
@@ -23,8 +23,8 @@ theme:
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
-      primary: blue gray
-      accent: blue gray
+      primary: blue grey
+      accent: blue grey
 
     # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
@@ -32,12 +32,11 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to system preference
-      primary: blue gray
-      accent: blue gray
+      primary: blue grey
+      accent: blue grey
   features:
     - navigation.tabs
     - navigation.instant
-    - navigation.expand
     - content.code.copy
     - content.code.annotate
   language: en
@@ -56,8 +55,11 @@ plugins:
             docstring_style: google
             show_root_toc_entry: false
             show_symbol_type_heading: true
-            show_source: true
+            show_if_no_docstring: true
+            show_source: false
             show_bases: false
+            filters:
+              - "!^__"
             extensions:
               - griffe_pydantic:
                   schema: false
@@ -174,3 +176,4 @@ nav:
               - reference/models/hoyolab/private.md
               - reference/models/hoyolab/record.md
               - reference/models/hoyolab/web_event.md
+      - reference/utility.md
