@@ -956,14 +956,14 @@ wheels = [
 
 [[package]]
 name = "griffe-pydantic"
-version = "1.1.7"
+version = "1.1.8"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "griffe" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/08/d7/b5b74da7cd07bb7807609efc171508acf8a804bb190f190ff7d7dee710e4/griffe_pydantic-1.1.7.tar.gz", hash = "sha256:76328423a557f50391d77aaf27c82c86647e996e09ce1db3b098fadb8f312e40", size = 43148, upload-time = "2025-09-05T16:11:38.944Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/99/52/b05f582287f887f58a1738183d6dd0e799842b83f6f60d65c77ba90cee31/griffe_pydantic-1.1.8.tar.gz", hash = "sha256:72cde69c74c70f3dc0385a7a5243c736cd6bf6fcf8a41cae497383defe107041", size = 43425, upload-time = "2025-10-14T09:12:37.693Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7a/bd/63e56c639e7a2f60955bbfd061a232a7c744f105f60b6ea4621d6d079beb/griffe_pydantic-1.1.7-py3-none-any.whl", hash = "sha256:516d6dbb6a6587bd0f70c2d23f1dc1b6e2e06eff7d9d37c2db9f0f60ea527af8", size = 12673, upload-time = "2025-09-05T16:11:37.542Z" },
+    { url = "https://files.pythonhosted.org/packages/78/e3/94b2e39d841a1c07b586903177d3ee802c8ae87567449a541d14028eb657/griffe_pydantic-1.1.8-py3-none-any.whl", hash = "sha256:22212c94216e03bf43d30ff3bc79cd53fb973ae2fe81d8b7510242232a1e6764", size = 12852, upload-time = "2025-10-14T09:12:36.23Z" },
 ]
 
 [[package]]
