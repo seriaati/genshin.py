@@ -79,7 +79,7 @@ jobs:
           mv .coverage .coverage.${{ matrix.python-version }}
 
       - name: Upload coverage artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: coverage-${{ matrix.python-version }}
           path: .coverage.${{ matrix.python-version }}
@@ -100,7 +100,7 @@ jobs:
         uses: astral-sh/setup-uv@v7
 
       - name: Download coverage
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           pattern: coverage-*
           merge-multiple: true
