@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>genshin.models.zzz.chronicle.events API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>genshin.models.zzz.chronicle.events</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="genshin.models.zzz.chronicle.events.ZZZCharacterGachaEvent"><code class="flex name class">
+<span>class <span class="ident">ZZZCharacterGachaEvent</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ZZZCharacterGachaEvent(ZZZGachaEvent):
+    &#34;&#34;&#34;ZZZ gacha event for characters.&#34;&#34;&#34;
+
+    characters: typing.Sequence[ZZZGachaEventCharacter] = Aliased(&#34;avatar_list&#34;)</code></pre>
+</details>
+<div class="desc"><p>ZZZ gacha event for characters.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.zzz.chronicle.events.ZZZGachaEvent" href="#genshin.models.zzz.chronicle.events.ZZZGachaEvent">ZZZGachaEvent</a></li>
+<li><a title="genshin.models.model.APIModel" href="../../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.events.ZZZCharacterGachaEvent.characters"><code class="name">var <span class="ident">characters</span> : Sequence[<a title="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter">ZZZGachaEventCharacter</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZCharacterGachaEvent.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="genshin.models.zzz.chronicle.events.ZZZGachaEvent" href="#genshin.models.zzz.chronicle.events.ZZZGachaEvent">ZZZGachaEvent</a></b></code>:
+<ul class="hlist">
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEvent.version" href="#genshin.models.zzz.chronicle.events.ZZZGachaEvent.version">version</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZEvent"><code class="flex name class">
+<span>class <span class="ident">ZZZEvent</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ZZZEvent(APIModel):
+    &#34;&#34;&#34;ZZZ event calendar event.&#34;&#34;&#34;
+
+    id: int = Aliased(&#34;activity_id&#34;)
+    status: typing.Union[ZZZEventStatus, str] = Aliased(&#34;state&#34;)
+    name: str
+
+    obtained_monochromes: int = Aliased(&#34;monochrome_got_cnt&#34;)
+    max_monochromes: int = Aliased(&#34;monochrome_cnt&#34;)
+
+    start: UnixDateTime = Aliased(&#34;start_ts&#34;)
+    end: UnixDateTime = Aliased(&#34;end_ts&#34;)
+
+    seconds_until_start: int = Aliased(&#34;left_start_ts&#34;)
+    seconds_until_end: int = Aliased(&#34;left_end_ts&#34;)
+
+    @pydantic.field_validator(&#34;status&#34;, mode=&#34;before&#34;)
+    def __validate_status(cls, v: str) -&gt; typing.Union[ZZZEventStatus, str]:
+        return prevent_enum_error(v, ZZZEventStatus)</code></pre>
+</details>
+<div class="desc"><p>ZZZ event calendar event.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.events.ZZZEvent.end"><code class="name">var <span class="ident">end</span> : datetime.datetime</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZEvent.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZEvent.max_monochromes"><code class="name">var <span class="ident">max_monochromes</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZEvent.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZEvent.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZEvent.obtained_monochromes"><code class="name">var <span class="ident">obtained_monochromes</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZEvent.seconds_until_end"><code class="name">var <span class="ident">seconds_until_end</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZEvent.seconds_until_start"><code class="name">var <span class="ident">seconds_until_start</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZEvent.start"><code class="name">var <span class="ident">start</span> : datetime.datetime</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZEvent.status"><code class="name">var <span class="ident">status</span> : <a title="genshin.models.zzz.chronicle.events.ZZZEventStatus" href="#genshin.models.zzz.chronicle.events.ZZZEventStatus">ZZZEventStatus</a> | str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZEventStatus"><code class="flex name class">
+<span>class <span class="ident">ZZZEventStatus</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ZZZEventStatus(Enum):
+    &#34;&#34;&#34;ZZZ event status enum.&#34;&#34;&#34;
+
+    IN_PROGRESS = &#34;STATE_IN_PROGRESS&#34;
+    COMPLETED = &#34;STATE_COMPLETED&#34;
+    NOT_STARTED = &#34;STATE_NOT_START&#34;</code></pre>
+</details>
+<div class="desc"><p>ZZZ event status enum.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.events.ZZZEventStatus.COMPLETED"><code class="name">var <span class="ident">COMPLETED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZEventStatus.IN_PROGRESS"><code class="name">var <span class="ident">IN_PROGRESS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZEventStatus.NOT_STARTED"><code class="name">var <span class="ident">NOT_STARTED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaCalendar"><code class="flex name class">
+<span>class <span class="ident">ZZZGachaCalendar</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ZZZGachaCalendar(APIModel):
+    &#34;&#34;&#34;ZZZ gacha calendar model.&#34;&#34;&#34;
+
+    characters: typing.Sequence[ZZZCharacterGachaEvent] = Aliased(&#34;avatar_gacha_schedule_list&#34;)
+    weapons: typing.Sequence[ZZZWeaponGachaEvent] = Aliased(&#34;weapon_gacha_schedule_list&#34;)</code></pre>
+</details>
+<div class="desc"><p>ZZZ gacha calendar model.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaCalendar.characters"><code class="name">var <span class="ident">characters</span> : Sequence[<a title="genshin.models.zzz.chronicle.events.ZZZCharacterGachaEvent" href="#genshin.models.zzz.chronicle.events.ZZZCharacterGachaEvent">ZZZCharacterGachaEvent</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaCalendar.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaCalendar.weapons"><code class="name">var <span class="ident">weapons</span> : Sequence[<a title="genshin.models.zzz.chronicle.events.ZZZWeaponGachaEvent" href="#genshin.models.zzz.chronicle.events.ZZZWeaponGachaEvent">ZZZWeaponGachaEvent</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEvent"><code class="flex name class">
+<span>class <span class="ident">ZZZGachaEvent</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ZZZGachaEvent(APIModel):
+    &#34;&#34;&#34;ZZZ gacha event model.&#34;&#34;&#34;
+
+    type: typing.Union[ZZZGachaEventType, str] = Aliased(&#34;gacha_type&#34;)
+    status: typing.Union[ZZZGachaEventStatus, str] = Aliased(&#34;gacha_state&#34;)
+    version: str
+    &#34;&#34;&#34;Like 2.4, 2.5.&#34;&#34;&#34;
+
+    start: UnixDateTime = Aliased(&#34;start_ts&#34;)
+    end: UnixDateTime = Aliased(&#34;end_ts&#34;)
+
+    seconds_until_start: int = Aliased(&#34;left_start_ts&#34;)
+    seconds_until_end: int = Aliased(&#34;left_end_ts&#34;)
+
+    # No clue what these are
+    sup_lock_show: bool
+    insurance_id: int
+
+    @pydantic.field_validator(&#34;type&#34;, mode=&#34;before&#34;)
+    def __validate_type(cls, v: str) -&gt; typing.Union[ZZZGachaEventType, str]:
+        return prevent_enum_error(v, ZZZGachaEventType)
+
+    @pydantic.field_validator(&#34;status&#34;, mode=&#34;before&#34;)
+    def __validate_status(cls, v: str) -&gt; typing.Union[ZZZGachaEventStatus, str]:
+        return prevent_enum_error(v, ZZZGachaEventStatus)</code></pre>
+</details>
+<div class="desc"><p>ZZZ gacha event model.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="genshin.models.zzz.chronicle.events.ZZZCharacterGachaEvent" href="#genshin.models.zzz.chronicle.events.ZZZCharacterGachaEvent">ZZZCharacterGachaEvent</a></li>
+<li><a title="genshin.models.zzz.chronicle.events.ZZZWeaponGachaEvent" href="#genshin.models.zzz.chronicle.events.ZZZWeaponGachaEvent">ZZZWeaponGachaEvent</a></li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEvent.end"><code class="name">var <span class="ident">end</span> : datetime.datetime</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEvent.insurance_id"><code class="name">var <span class="ident">insurance_id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEvent.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEvent.seconds_until_end"><code class="name">var <span class="ident">seconds_until_end</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEvent.seconds_until_start"><code class="name">var <span class="ident">seconds_until_start</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEvent.start"><code class="name">var <span class="ident">start</span> : datetime.datetime</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEvent.status"><code class="name">var <span class="ident">status</span> : <a title="genshin.models.zzz.chronicle.events.ZZZGachaEventStatus" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventStatus">ZZZGachaEventStatus</a> | str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEvent.sup_lock_show"><code class="name">var <span class="ident">sup_lock_show</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEvent.type"><code class="name">var <span class="ident">type</span> : <a title="genshin.models.zzz.chronicle.events.ZZZGachaEventType" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventType">ZZZGachaEventType</a> | str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEvent.version"><code class="name">var <span class="ident">version</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Like 2.4, 2.5.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter"><code class="flex name class">
+<span>class <span class="ident">ZZZGachaEventCharacter</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ZZZGachaEventCharacter(APIModel):
+    &#34;&#34;&#34;ZZZ gacha event character.&#34;&#34;&#34;
+
+    id: int = Aliased(&#34;avatar_id&#34;)
+    name: str = Aliased(&#34;avatar_name&#34;)
+    full_name: str
+
+    rarity: typing.Literal[&#34;S&#34;, &#34;A&#34;]
+    icon: str
+    specialty: ZZZSpecialty = Aliased(&#34;avatar_profession&#34;)
+    element: ZZZElementType = Aliased(&#34;avatar_element_type&#34;)
+    sub_element: int = Aliased(&#34;avatar_sub_element_type&#34;)  # Probably like Miyabi&#39;s Frost
+
+    wiki_url: str
+    jump_cultivate: bool
+    is_forward: bool
+    show_upon: bool</code></pre>
+</details>
+<div class="desc"><p>ZZZ gacha event character.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.element"><code class="name">var <span class="ident">element</span> : <a title="genshin.models.zzz.character.ZZZElementType" href="../character.html#genshin.models.zzz.character.ZZZElementType">ZZZElementType</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.full_name"><code class="name">var <span class="ident">full_name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.icon"><code class="name">var <span class="ident">icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.is_forward"><code class="name">var <span class="ident">is_forward</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.jump_cultivate"><code class="name">var <span class="ident">jump_cultivate</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.rarity"><code class="name">var <span class="ident">rarity</span> : Literal['S', 'A']</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.show_upon"><code class="name">var <span class="ident">show_upon</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.specialty"><code class="name">var <span class="ident">specialty</span> : <a title="genshin.models.zzz.character.ZZZSpecialty" href="../character.html#genshin.models.zzz.character.ZZZSpecialty">ZZZSpecialty</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.sub_element"><code class="name">var <span class="ident">sub_element</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.wiki_url"><code class="name">var <span class="ident">wiki_url</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventStatus"><code class="flex name class">
+<span>class <span class="ident">ZZZGachaEventStatus</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ZZZGachaEventStatus(Enum):
+    &#34;&#34;&#34;ZZZ gacha event status enum.&#34;&#34;&#34;
+
+    IN_PROGRESS = &#34;GACHA_STATE_IN_PROGRESS&#34;
+    COMPLETED = &#34;GACHA_STATE_COMPLETED&#34;
+    NOT_STARTED = &#34;GACHA_STATE_NOT_START&#34;</code></pre>
+</details>
+<div class="desc"><p>ZZZ gacha event status enum.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventStatus.COMPLETED"><code class="name">var <span class="ident">COMPLETED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventStatus.IN_PROGRESS"><code class="name">var <span class="ident">IN_PROGRESS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventStatus.NOT_STARTED"><code class="name">var <span class="ident">NOT_STARTED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventType"><code class="flex name class">
+<span>class <span class="ident">ZZZGachaEventType</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ZZZGachaEventType(Enum):
+    &#34;&#34;&#34;ZZZ gacha event type enum.&#34;&#34;&#34;
+
+    CHARACTER = &#34;GACHA_TYPE_CHARACTER_UP&#34;
+    WEAPON = &#34;GACHA_TYPE_WEAPON_UP&#34;
+    PERMANENT = &#34;GACHA_TYPE_PERMANENT&#34;
+    BANGBOO = &#34;GACHA_TYPE_BANGBOO&#34;</code></pre>
+</details>
+<div class="desc"><p>ZZZ gacha event type enum.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventType.BANGBOO"><code class="name">var <span class="ident">BANGBOO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventType.CHARACTER"><code class="name">var <span class="ident">CHARACTER</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventType.PERMANENT"><code class="name">var <span class="ident">PERMANENT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventType.WEAPON"><code class="name">var <span class="ident">WEAPON</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon"><code class="flex name class">
+<span>class <span class="ident">ZZZGachaEventWeapon</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ZZZGachaEventWeapon(APIModel):
+    &#34;&#34;&#34;ZZZ gacha event weapon.&#34;&#34;&#34;
+
+    id: int = Aliased(&#34;weapon_id&#34;)
+    rarity: typing.Literal[&#34;S&#34;, &#34;A&#34;]
+    icon: str
+    specialty: ZZZSpecialty = Aliased(&#34;profession&#34;)
+
+    skill_name: str = Aliased(&#34;talent_title&#34;)
+    skill_description: str = Aliased(&#34;talent_content&#34;)
+
+    wiki_url: str
+    show_upon: bool</code></pre>
+</details>
+<div class="desc"><p>ZZZ gacha event weapon.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.icon"><code class="name">var <span class="ident">icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.rarity"><code class="name">var <span class="ident">rarity</span> : Literal['S', 'A']</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.show_upon"><code class="name">var <span class="ident">show_upon</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.skill_description"><code class="name">var <span class="ident">skill_description</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.skill_name"><code class="name">var <span class="ident">skill_name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.specialty"><code class="name">var <span class="ident">specialty</span> : <a title="genshin.models.zzz.character.ZZZSpecialty" href="../character.html#genshin.models.zzz.character.ZZZSpecialty">ZZZSpecialty</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.wiki_url"><code class="name">var <span class="ident">wiki_url</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZWeaponGachaEvent"><code class="flex name class">
+<span>class <span class="ident">ZZZWeaponGachaEvent</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ZZZWeaponGachaEvent(ZZZGachaEvent):
+    &#34;&#34;&#34;ZZZ gacha event for weapons.&#34;&#34;&#34;
+
+    weapons: typing.Sequence[ZZZGachaEventWeapon] = Aliased(&#34;weapon_list&#34;)</code></pre>
+</details>
+<div class="desc"><p>ZZZ gacha event for weapons.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.zzz.chronicle.events.ZZZGachaEvent" href="#genshin.models.zzz.chronicle.events.ZZZGachaEvent">ZZZGachaEvent</a></li>
+<li><a title="genshin.models.model.APIModel" href="../../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.events.ZZZWeaponGachaEvent.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.events.ZZZWeaponGachaEvent.weapons"><code class="name">var <span class="ident">weapons</span> : Sequence[<a title="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon">ZZZGachaEventWeapon</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="genshin.models.zzz.chronicle.events.ZZZGachaEvent" href="#genshin.models.zzz.chronicle.events.ZZZGachaEvent">ZZZGachaEvent</a></b></code>:
+<ul class="hlist">
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEvent.version" href="#genshin.models.zzz.chronicle.events.ZZZGachaEvent.version">version</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="genshin.models.zzz.chronicle" href="index.html">genshin.models.zzz.chronicle</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.events.ZZZCharacterGachaEvent" href="#genshin.models.zzz.chronicle.events.ZZZCharacterGachaEvent">ZZZCharacterGachaEvent</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZCharacterGachaEvent.characters" href="#genshin.models.zzz.chronicle.events.ZZZCharacterGachaEvent.characters">characters</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZCharacterGachaEvent.model_config" href="#genshin.models.zzz.chronicle.events.ZZZCharacterGachaEvent.model_config">model_config</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.events.ZZZEvent" href="#genshin.models.zzz.chronicle.events.ZZZEvent">ZZZEvent</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZEvent.end" href="#genshin.models.zzz.chronicle.events.ZZZEvent.end">end</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZEvent.id" href="#genshin.models.zzz.chronicle.events.ZZZEvent.id">id</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZEvent.max_monochromes" href="#genshin.models.zzz.chronicle.events.ZZZEvent.max_monochromes">max_monochromes</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZEvent.model_config" href="#genshin.models.zzz.chronicle.events.ZZZEvent.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZEvent.name" href="#genshin.models.zzz.chronicle.events.ZZZEvent.name">name</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZEvent.obtained_monochromes" href="#genshin.models.zzz.chronicle.events.ZZZEvent.obtained_monochromes">obtained_monochromes</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZEvent.seconds_until_end" href="#genshin.models.zzz.chronicle.events.ZZZEvent.seconds_until_end">seconds_until_end</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZEvent.seconds_until_start" href="#genshin.models.zzz.chronicle.events.ZZZEvent.seconds_until_start">seconds_until_start</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZEvent.start" href="#genshin.models.zzz.chronicle.events.ZZZEvent.start">start</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZEvent.status" href="#genshin.models.zzz.chronicle.events.ZZZEvent.status">status</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.events.ZZZEventStatus" href="#genshin.models.zzz.chronicle.events.ZZZEventStatus">ZZZEventStatus</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZEventStatus.COMPLETED" href="#genshin.models.zzz.chronicle.events.ZZZEventStatus.COMPLETED">COMPLETED</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZEventStatus.IN_PROGRESS" href="#genshin.models.zzz.chronicle.events.ZZZEventStatus.IN_PROGRESS">IN_PROGRESS</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZEventStatus.NOT_STARTED" href="#genshin.models.zzz.chronicle.events.ZZZEventStatus.NOT_STARTED">NOT_STARTED</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaCalendar" href="#genshin.models.zzz.chronicle.events.ZZZGachaCalendar">ZZZGachaCalendar</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaCalendar.characters" href="#genshin.models.zzz.chronicle.events.ZZZGachaCalendar.characters">characters</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaCalendar.model_config" href="#genshin.models.zzz.chronicle.events.ZZZGachaCalendar.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaCalendar.weapons" href="#genshin.models.zzz.chronicle.events.ZZZGachaCalendar.weapons">weapons</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEvent" href="#genshin.models.zzz.chronicle.events.ZZZGachaEvent">ZZZGachaEvent</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEvent.end" href="#genshin.models.zzz.chronicle.events.ZZZGachaEvent.end">end</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEvent.insurance_id" href="#genshin.models.zzz.chronicle.events.ZZZGachaEvent.insurance_id">insurance_id</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEvent.model_config" href="#genshin.models.zzz.chronicle.events.ZZZGachaEvent.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEvent.seconds_until_end" href="#genshin.models.zzz.chronicle.events.ZZZGachaEvent.seconds_until_end">seconds_until_end</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEvent.seconds_until_start" href="#genshin.models.zzz.chronicle.events.ZZZGachaEvent.seconds_until_start">seconds_until_start</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEvent.start" href="#genshin.models.zzz.chronicle.events.ZZZGachaEvent.start">start</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEvent.status" href="#genshin.models.zzz.chronicle.events.ZZZGachaEvent.status">status</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEvent.sup_lock_show" href="#genshin.models.zzz.chronicle.events.ZZZGachaEvent.sup_lock_show">sup_lock_show</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEvent.type" href="#genshin.models.zzz.chronicle.events.ZZZGachaEvent.type">type</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEvent.version" href="#genshin.models.zzz.chronicle.events.ZZZGachaEvent.version">version</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter">ZZZGachaEventCharacter</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.element" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.element">element</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.full_name" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.full_name">full_name</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.icon" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.icon">icon</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.id" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.id">id</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.is_forward" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.is_forward">is_forward</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.jump_cultivate" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.jump_cultivate">jump_cultivate</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.model_config" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.name" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.name">name</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.rarity" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.rarity">rarity</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.show_upon" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.show_upon">show_upon</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.specialty" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.specialty">specialty</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.sub_element" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.sub_element">sub_element</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.wiki_url" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventCharacter.wiki_url">wiki_url</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventStatus" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventStatus">ZZZGachaEventStatus</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventStatus.COMPLETED" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventStatus.COMPLETED">COMPLETED</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventStatus.IN_PROGRESS" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventStatus.IN_PROGRESS">IN_PROGRESS</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventStatus.NOT_STARTED" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventStatus.NOT_STARTED">NOT_STARTED</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventType" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventType">ZZZGachaEventType</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventType.BANGBOO" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventType.BANGBOO">BANGBOO</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventType.CHARACTER" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventType.CHARACTER">CHARACTER</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventType.PERMANENT" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventType.PERMANENT">PERMANENT</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventType.WEAPON" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventType.WEAPON">WEAPON</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon">ZZZGachaEventWeapon</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.icon" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.icon">icon</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.id" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.id">id</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.model_config" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.rarity" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.rarity">rarity</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.show_upon" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.show_upon">show_upon</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.skill_description" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.skill_description">skill_description</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.skill_name" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.skill_name">skill_name</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.specialty" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.specialty">specialty</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.wiki_url" href="#genshin.models.zzz.chronicle.events.ZZZGachaEventWeapon.wiki_url">wiki_url</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.events.ZZZWeaponGachaEvent" href="#genshin.models.zzz.chronicle.events.ZZZWeaponGachaEvent">ZZZWeaponGachaEvent</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZWeaponGachaEvent.model_config" href="#genshin.models.zzz.chronicle.events.ZZZWeaponGachaEvent.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.events.ZZZWeaponGachaEvent.weapons" href="#genshin.models.zzz.chronicle.events.ZZZWeaponGachaEvent.weapons">weapons</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>
