@@ -217,7 +217,7 @@ class SQLiteCache(BaseCache):
         *,
         ttl: int = HOUR,
         static_ttl: int = DAY,
-        db_name: str = "genshin_py.db",
+        db_name: str = ".cache/genshin_py.db",
     ) -> None:
         self.conn = conn
         self.ttl = ttl
@@ -267,10 +267,17 @@ class SQLiteCache(BaseCache):
         else:
             conn = self.conn
 
-        async with conn.execute(
-            "SELECT value FROM cache WHERE key = ? AND expiration > ?", (self.serialize_key(key), int(time.time()))
-        ) as cursor:
-            value = await cursor.fetchone()
+        try:
+            async with conn.execute(
+                "SELECT value FROM cache WHERE key = ? AND expiration > ?", (self.serialize_key(key), int(time.time()))
+            ) as cursor:
+                value = await cursor.fetchone()
+        except aiosqlite.OperationalError as e:
+            if "no such table" in str(e):
+                await self.initialize()
+                return None
+            else:
+                raise
 
         if self.conn is None:
             await conn.close()
@@ -289,10 +296,19 @@ class SQLiteCache(BaseCache):
         else:
             conn = self.conn
 
-        await conn.execute(
-            "INSERT OR REPLACE INTO cache (key, value, expiration) VALUES (?, ?, ?)",
-            (self.serialize_key(key), self.serialize_value(value), int(time.time() + self.ttl)),
-        )
+        try:
+            await conn.execute(
+                "INSERT OR REPLACE INTO cache (key, value, expiration) VALUES (?, ?, ?)",
+                (self.serialize_key(key), self.serialize_value(value), int(time.time() + self.ttl)),
+            )
+        except aiosqlite.OperationalError as e:
+            if "no such table" in str(e):
+                await self.initialize()
+                await self.set(key, value)
+                return
+            else:
+                raise
+
         await conn.commit()
         await self._clear_cache(conn)
 
@@ -312,10 +328,19 @@ class SQLiteCache(BaseCache):
         else:
             conn = self.conn
 
-        await conn.execute(
-            "INSERT OR REPLACE INTO cache (key, value, expiration) VALUES (?, ?, ?)",
-            (self.serialize_key(key), self.serialize_value(value), int(time.time() + self.static_ttl)),
-        )
+        try:
+            await conn.execute(
+                "INSERT OR REPLACE INTO cache (key, value, expiration) VALUES (?, ?, ?)",
+                (self.serialize_key(key), self.serialize_value(value), int(time.time() + self.static_ttl)),
+            )
+        except aiosqlite.OperationalError as e:
+            if "no such table" in str(e):
+                await self.initialize()
+                await self.set_static(key, value)
+                return
+            else:
+                raise
+
         await conn.commit()
         await self._clear_cache(conn)
 

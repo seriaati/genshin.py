@@ -3,7 +3,7 @@ from enum import Enum
 
 import pydantic
 
-from genshin.models.model import APIModel, TZDateTime
+from genshin.models.model import APIModel, TZDateTime, prevent_enum_error
 
 __all__ = (
     "ChallengeStatus",
@@ -41,6 +41,15 @@ class HSREventStatus(Enum):
     DOUBLE_REWARDS_LOCKED = "DoubleActStatusUnopened"
     SIGN_IN_UNCLAIMED = "SignActStatusUnclaimed"
 
+    # Enums below exist but we don't know what they mean for now
+    SIGN_STATUS_UNSIGNED_TODAY = "SignStatusUnSignedToday"
+    SIGN_STATUS_SIGNED_TODAY = "SignStatusSignedToday"
+    SIGN_STATUS_UNCLAIMED = "SignStatusUnclaimed"
+    SIGN_STATUS_FINISH = "SignStatusFinish"
+    DOUBLE_REWARD_ACT_STATUS_PROGRESS = "DoubleRewardActStatusProgress"
+    DOUBLE_REWARD_ACT_STATUS_UNOPENED = "DoubleRewardActStatusUnopened"
+    OTHER_ACT_STATUS_FINISH = "OtherActStatusFinish"
+
 
 class HSREventTimeType(Enum):
     """Event time type enum."""
@@ -65,6 +74,7 @@ class ChallengeStatus(Enum):
 
     IN_PROGRESS = "challengeStatusInProgress"
     LOCKED = "challengeStatusUnopened"
+    FINISHED = "challengeStatusFinish"
 
 
 class TimeInfo(APIModel):
@@ -180,24 +190,15 @@ class HSREvent(HSRBaseEvent):
 
     @pydantic.field_validator("type", mode="before")
     def __validate_type(cls, v: str) -> typing.Union[HSREventType, str]:
-        try:
-            return HSREventType(v)
-        except ValueError:
-            return v
+        return prevent_enum_error(v, HSREventType)
 
     @pydantic.field_validator("time_type", mode="before")
     def __validate_time_type(cls, v: str) -> typing.Union[HSREventTimeType, str]:
-        try:
-            return HSREventTimeType(v)
-        except ValueError:
-            return v
+        return prevent_enum_error(v, HSREventTimeType)
 
     @pydantic.field_validator("status", mode="before")
     def __validate_status(cls, v: str) -> typing.Union[HSREventStatus, str]:
-        try:
-            return HSREventStatus(v)
-        except ValueError:
-            return v
+        return prevent_enum_error(v, HSREventStatus)
 
     @pydantic.field_validator("name", mode="after")
     def __format_name(cls, v: str) -> str:
@@ -224,24 +225,18 @@ class HSRChallenge(HSRBaseEvent):
     show_text: str
 
     @pydantic.field_validator("special_reward", mode="after")
-    def __validate_special_reward(cls, v: HSREventReward) -> typing.Optional[HSREventReward]:
-        if v.id == 0:
+    def __validate_special_reward(cls, v: typing.Optional[HSREventReward]) -> typing.Optional[HSREventReward]:
+        if v is not None and v.id == 0:
             return None
         return v
 
     @pydantic.field_validator("type", mode="before")
     def __validate_type(cls, v: str) -> typing.Union[ChallengeType, str]:
-        try:
-            return ChallengeType(v)
-        except ValueError:
-            return v
+        return prevent_enum_error(v, ChallengeType)
 
     @pydantic.field_validator("status", mode="before")
     def __validate_status(cls, v: str) -> typing.Union[ChallengeStatus, str]:
-        try:
-            return ChallengeStatus(v)
-        except ValueError:
-            return v
+        return prevent_enum_error(v, ChallengeStatus)
 
 
 class HSREventCalendar(APIModel):

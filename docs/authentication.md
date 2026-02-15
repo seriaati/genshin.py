@@ -35,7 +35,7 @@ client.set_cookies("ltuid=...; ltoken=...") # cookie header
 
 #### Using username and password
 
-1. Run `python -m genshin login <account> <password>`.
+1. Run `python -m genshin login -a <account> -p <password>`.
 2. Press the `Login` button and solve a captcha.
 3. Copy cookies.
 
@@ -106,9 +106,9 @@ async for wish in client.wish_history(authkey="..."):
 
 #### PC
 
-- Genshin Impact: <https://stardb.gg/en/wish-import>
+- Genshin Impact: <https://stardb.gg/en/genshin/wish-import>
 - Honkai Star Rail: <https://stardb.gg/en/warp-import>
-- Zenless Zone Zero: <https://stardb.gg/en/signal-import>
+- Zenless Zone Zero: <https://stardb.gg/en/zzz/signal-import>
 
 Future games can also be found on the same website.
 

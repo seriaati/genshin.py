@@ -53,6 +53,10 @@ class DailyRewardClient(base.BaseClient):
             headers["x-rpc-signgame"] = "hkrpg"
         elif game is types.Game.ZZZ:
             headers["x-rpc-signgame"] = "zzz"
+        elif game is types.Game.TOT:
+            headers["x-rpc-signgame"] = "nxx"
+        elif game is types.Game.HONKAI:
+            headers["x-rpc-signgame"] = "bh3"
 
         if self.region == types.Region.OVERSEAS:
             params["lang"] = lang or self.lang

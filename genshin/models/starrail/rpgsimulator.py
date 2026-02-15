@@ -39,6 +39,8 @@ class StarRailGameModeType(str, Enum):
     """Pure Fiction."""
     APC_SHADOW = "Boss"
     """Apocalyptic Shadow."""
+    ANOMALY_ARBITRATION = "Peak"
+    """Anomaly Arbitration."""
 
 
 class StarRailGameModeFloor(APIModel):

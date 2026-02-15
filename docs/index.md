@@ -4,9 +4,7 @@ Modern API wrapper for HoYoLAB & Miyoushe(米游社) API built on asyncio and py
 
 ---
 
-Documentation: <https://seriaati.github.io/genshin.py>
-
-API Reference: <https://seriaati.github.io/genshin.py/pdoc/genshin>
+Documentation: <https://gh.seria.moe/genshin.py>
 
 Source Code: <https://github.com/seriaati/genshin.py>
 
@@ -60,7 +58,7 @@ async def main():
     client = genshin.Client(cookies, uid=710785423)
 
     user = await client.get_genshin_user()
-    print(f"User has a total of {len(user.stats.characters)} characters")
+    print(f"User has a total of {user.stats.characters} characters")
 
 asyncio.run(main())
 ```

@@ -9,21 +9,31 @@ from genshin.models.starrail.character import FloorCharacter
 
 from .base import PartialTime
 
-__all__ = [
+__all__ = (
     "APCShadowBoss",
     "APCShadowFloor",
     "APCShadowFloorNode",
     "APCShadowSeason",
+    "AnomalyArbitration",
+    "AnomalyBossInfo",
+    "AnomalyBossRecord",
+    "AnomalyMiniBossInfo",
+    "AnomalyMiniBossRecord",
+    "AnomalyPlayer",
+    "AnomalyRecord",
+    "AnomalySeason",
+    "AnomalySummary",
     "ChallengeBuff",
     "FictionFloor",
     "FictionFloorNode",
     "FloorNode",
     "StarRailAPCShadow",
     "StarRailChallenge",
+    "StarRailChallengeFloor",
     "StarRailChallengeSeason",
     "StarRailFloor",
     "StarRailPureFiction",
-]
+)
 
 
 class FloorNode(APIModel):
@@ -40,6 +50,12 @@ class StarRailChallengeFloor(APIModel):
     name: str
     star_num: int
     is_quick_clear: bool = Aliased("is_fast")
+
+    @pydantic.computed_field  # type: ignore[prop-decorator]
+    @property
+    def stars(self) -> int:
+        """Number of stars earned on the floor."""
+        return self.star_num
 
 
 class StarRailFloor(StarRailChallengeFloor):
@@ -202,3 +218,105 @@ class StarRailAPCShadow(APIModel):
     floors: list[APCShadowFloor] = Aliased("all_floor_detail")
     seasons: list[APCShadowSeason] = Aliased("groups")
     max_floor_id: int
+
+
+class AnomalySeason(APIModel):
+    """Anomaly Arbitration season."""
+
+    id: int = Aliased("group_id")
+    begin_time: PartialTime
+    end_time: PartialTime
+    status: str
+    name: str = Aliased("name_mi18n")
+    game_version: str
+    icon: str = Aliased("theme_pic_path")
+
+
+class AnomalyBossInfo(APIModel):
+    """Anomaly Arbitration boss info."""
+
+    id: int = Aliased("maze_id")
+    name: str = Aliased("name_mi18n")
+    game_mode_name: str = Aliased("hard_mode_name_mi18n")
+    icon: str
+
+
+class AnomalyMiniBossInfo(APIModel):
+    """Anomaly Arbitration mini boss info."""
+
+    id: int = Aliased("maze_id")
+    level_name: str = Aliased("name")
+    name: str = Aliased("monster_name")
+    icon: str = Aliased("monster_icon")
+
+
+class AnomalyBossRecord(APIModel):
+    """Anomaly Arbitration boss record."""
+
+    id: int = Aliased("maze_id")
+    has_data: bool = Aliased("has_challenge_record")
+    time: PartialTime = Aliased("challenge_time")
+    characters: list[FloorCharacter] = Aliased("avatars")
+    buff: ChallengeBuff
+    is_hard_mode: bool = Aliased("hard_mode")
+    cycles_used: int = Aliased("round_num")
+    stars: int = Aliased("star_num")
+    has_color_medal: bool = Aliased("finish_color_medal")
+    medal_type: str = Aliased("challenge_peak_rank_icon_type")
+    medal_icon: str = Aliased("challenge_peak_rank_icon")
+    record_unique_key: str
+
+
+class AnomalyMiniBossRecord(APIModel):
+    """Anomaly Arbitration mini boss record."""
+
+    id: int = Aliased("maze_id")
+    has_data: bool = Aliased("has_challenge_record")
+    time: typing.Optional[PartialTime] = Aliased("challenge_time")
+    characters: list[FloorCharacter] = Aliased("avatars")
+    cycles_used: int = Aliased("round_num")
+    stars: int = Aliased("star_num")
+    is_quick_clear: bool = Aliased("is_fast")
+
+
+class AnomalyRecord(APIModel):
+    """HSR Anomaly Arbitration record."""
+
+    season: AnomalySeason = Aliased("group")
+    boss: AnomalyBossInfo = Aliased("boss_info")
+    mini_bosses: list[AnomalyMiniBossInfo] = Aliased("mob_infos")
+    has_data: bool = Aliased("has_challenge_record")
+    cycles_used: int = Aliased("battle_num")
+
+    boss_record: typing.Optional[AnomalyBossRecord] = Aliased("boss_record", default=None)
+    mini_boss_records: list[AnomalyMiniBossRecord] = Aliased("mob_records")
+
+    boss_stars: int
+    mini_boss_stars: int = Aliased("mob_stars")
+
+
+class AnomalySummary(APIModel):
+    """HSR Anomaly Arbitration summary."""
+
+    challenge_attempts: int = Aliased("total_battle_num")
+    mini_boss_stars: int = Aliased("mob_stars")
+    boss_stars: int
+    medal_type: str = Aliased("challenge_peak_rank_icon_type")
+    medal_icon: str = Aliased("challenge_peak_rank_icon")
+
+
+class AnomalyPlayer(APIModel):
+    """HSR Anomaly Arbitration player info."""
+
+    server: str
+    nickname: str
+    level: int
+    uid: str = Aliased("role_id")
+
+
+class AnomalyArbitration(APIModel):
+    """HSR Anomaly Arbitration info."""
+
+    records: list[AnomalyRecord] = Aliased("challenge_peak_records")
+    summary: AnomalySummary = Aliased("challenge_peak_best_record_brief")
+    player: AnomalyPlayer = Aliased("role")

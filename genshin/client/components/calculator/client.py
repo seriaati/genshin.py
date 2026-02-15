@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import asyncio
-import logging
 import typing
 import warnings
 
@@ -17,12 +16,9 @@ from genshin.client.components import base
 from genshin.models.genshin import calculator as models
 from genshin.utility import deprecation
 
-from .calculator import Calculator, FurnishingCalculator
+from .calculator import BatchCalculator, Calculator, FurnishingCalculator
 
 __all__ = ["CalculatorClient"]
-
-
-_LOGGER = logging.getLogger(__name__)
 
 
 class CalculatorClient(base.BaseClient):
@@ -37,6 +33,7 @@ class CalculatorClient(base.BaseClient):
         params: typing.Optional[typing.Mapping[str, typing.Any]] = None,
         data: typing.Optional[typing.Mapping[str, typing.Any]] = None,
         headers: typing.Optional[aiohttp.typedefs.LooseHeaders] = None,
+        api_version: int = 1,
         **kwargs: typing.Any,
     ) -> typing.Mapping[str, typing.Any]:
         """Make a request towards the calculator endpoint."""
@@ -44,7 +41,7 @@ class CalculatorClient(base.BaseClient):
         headers = base.parse_loose_headers(headers)
 
         base_url = routes.CALCULATOR_URL.get_url(self.region)
-        url = base_url / endpoint
+        url = base_url / f"v{api_version}" / endpoint
 
         if method == "GET":
             params["lang"] = lang or self.lang
@@ -53,8 +50,7 @@ class CalculatorClient(base.BaseClient):
             data = dict(data or {})
             data["lang"] = lang or self.lang
 
-        if self.region == types.Region.CHINESE:
-            headers["referer"] = str(routes.CALCULATOR_REFERER_URL.get_url())
+        headers["referer"] = str(routes.CALCULATOR_REFERER_URL.get_url(self.region))
         update_task = asyncio.create_task(utility.update_characters_any(lang or self.lang, lenient=True))
 
         data = await self.request(url, method=method, params=params, data=data, headers=headers, **kwargs)
@@ -73,8 +69,18 @@ class CalculatorClient(base.BaseClient):
         lang: typing.Optional[str] = None,
     ) -> models.CalculatorResult:
         """Calculate the results of a builder."""
-        data = await self.request_calculator("compute", lang=lang, data=data)
-        return models.CalculatorResult(**data)
+        api_data = await self.request_calculator("compute", lang=lang, data=data, api_version=2)
+        return models.CalculatorResult(**api_data)
+
+    async def _execute_batch_calculator(
+        self,
+        data: typing.Sequence[typing.Mapping[str, typing.Any]],
+        *,
+        lang: typing.Optional[str] = None,
+    ) -> models.CalculatorBatchResult:
+        """Calculate the results of a batch builder."""
+        api_data = await self.request_calculator("batch_compute", lang=lang, data={"items": data}, api_version=3)
+        return models.CalculatorBatchResult(**api_data)
 
     async def _execute_furnishings_calculator(
         self,
@@ -89,6 +95,10 @@ class CalculatorClient(base.BaseClient):
     def calculator(self, *, lang: typing.Optional[str] = None) -> Calculator:
         """Create a calculator builder object."""
         return Calculator(self, lang=lang)
+
+    def batch_calculator(self, *, lang: typing.Optional[str] = None) -> BatchCalculator:
+        """Create a batch calculator builder object."""
+        return BatchCalculator(self, lang=lang)
 
     def furnishings_calculator(self, *, lang: typing.Optional[str] = None) -> FurnishingCalculator:
         """Create a calculator builder object."""
@@ -119,7 +129,7 @@ class CalculatorClient(base.BaseClient):
 
             filters = dict(keywords=query, **filters)
 
-        payload: dict[str, typing.Any] = dict(page=1, size=69420, is_all=is_all, **filters)
+        payload: dict[str, typing.Any] = dict(page=1, size=200, **filters)
 
         if sync:
             uid = uid or await self._get_uid(types.Game.GENSHIN)
@@ -252,25 +262,6 @@ class CalculatorClient(base.BaseClient):
             ),
         )
         return models.CalculatorCharacterDetails(**data)
-
-    async def get_character_talents(
-        self,
-        character: types.IDOr[genshin_models.BaseCharacter],
-        *,
-        lang: typing.Optional[str] = None,
-    ) -> typing.Sequence[models.CalculatorTalent]:
-        """Get the talents of a character.
-
-        This only gets the talent names, not their levels.
-        Use `get_character_details` for precise information.
-        """
-        data = await self.request_calculator(
-            "avatar/skill_list",
-            method="GET",
-            lang=lang,
-            params=dict(avatar_id=int(character)),
-        )
-        return [models.CalculatorTalent(**i) for i in data["list"]]
 
     async def get_complete_artifact_set(
         self,

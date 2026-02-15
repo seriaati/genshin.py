@@ -4,6 +4,8 @@ Covers HoYoLAB and Miyoushe app auth endpoints.
 """
 
 import json
+import random
+import string
 import typing
 from http.cookies import SimpleCookie
 
@@ -23,12 +25,20 @@ __all__ = ["AppAuthClient"]
 class AppAuthClient(base.BaseClient):
     """App sub client for AuthClient."""
 
+    @staticmethod
+    def generate_app_device_id() -> str:
+        """Generate a random device ID for app login."""
+        return "".join(random.choices(string.ascii_lowercase + string.digits, k=16))
+
     @typing.overload
     async def _app_login(  # noqa: D102 missing docstring in overload?
         self,
         account: str,
         password: str,
         *,
+        device_id: str,
+        device_name: typing.Optional[str] = ...,
+        device_model: typing.Optional[str] = ...,
         encrypted: bool = ...,
         mmt_result: SessionMMTResult,
         ticket: None = ...,
@@ -40,6 +50,9 @@ class AppAuthClient(base.BaseClient):
         account: str,
         password: str,
         *,
+        device_id: str,
+        device_name: typing.Optional[str] = ...,
+        device_model: typing.Optional[str] = ...,
         encrypted: bool = ...,
         mmt_result: None = ...,
         ticket: ActionTicket,
@@ -51,6 +64,9 @@ class AppAuthClient(base.BaseClient):
         account: str,
         password: str,
         *,
+        device_id: str,
+        device_name: typing.Optional[str] = ...,
+        device_model: typing.Optional[str] = ...,
         encrypted: bool = ...,
         mmt_result: None = ...,
         ticket: None = ...,
@@ -61,6 +77,9 @@ class AppAuthClient(base.BaseClient):
         account: str,
         password: str,
         *,
+        device_id: str,
+        device_name: typing.Optional[str] = None,
+        device_model: typing.Optional[str] = None,
         encrypted: bool = False,
         mmt_result: typing.Optional[SessionMMTResult] = None,
         ticket: typing.Optional[ActionTicket] = None,
@@ -76,12 +95,25 @@ class AppAuthClient(base.BaseClient):
         headers = {
             **auth_utility.APP_LOGIN_HEADERS,
             "ds": ds_utility.generate_dynamic_secret(constants.DS_SALT["app_login"]),
+            # Passing "x-rpc-device_id" header will trigger email verification
+            # (unless the device_id is already verified).
+            # For some reason, without this header, email verification is not triggered.
+            #
+            # 2025/07/18: Hoyo found this issue and fixed it, we now have to provide this header.
+            # This value needs to be consistent across all requests, else it will trigger email
+            # verification repeatedly.
+            "x-rpc-device_id": device_id,
         }
         if mmt_result:
             headers["x-rpc-aigis"] = mmt_result.to_aigis_header()
 
         if ticket:
             headers["x-rpc-verify"] = ticket.to_rpc_verify_header()
+
+        if device_name:
+            headers["x-rpc-device_name"] = device_name
+        if device_model:
+            headers["x-rpc-device_model"] = device_model
 
         payload = {
             "account": account if encrypted else auth_utility.encrypt_credentials(account, 1),

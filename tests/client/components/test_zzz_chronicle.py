@@ -44,3 +44,33 @@ async def test_deadly_assault(zzz_client: genshin.Client):
 async def test_lost_void_summary(zzz_client: genshin.Client):
     data = await zzz_client.get_lost_void_summary()
     assert data
+
+
+async def test_threshold_simulation_brief(zzz_client: genshin.Client):
+    brief = await zzz_client.get_threshold_simulation_brief()
+    assert brief
+
+
+async def test_threshold_simulation(zzz_client: genshin.Client):
+    data = await zzz_client.get_threshold_simulation()
+    assert data
+
+
+async def test_threshold_simulation_by_uid(zzz_client: genshin.Client, zzz_uid: int):
+    data_by_uid = await zzz_client.get_threshold_simulation(uid=zzz_uid)
+    assert data_by_uid
+
+
+async def test_zzz_event_calendar(zzz_client: genshin.Client):
+    calendar = await zzz_client.get_zzz_event_calendar()
+    assert calendar
+
+
+async def test_zzz_gacha_calendar(zzz_client: genshin.Client):
+    calendar = await zzz_client.get_zzz_gacha_calendar()
+    assert calendar
+
+
+async def test_zzz_gacha_info(zzz_client: genshin.Client):
+    gacha_info = await zzz_client.get_zzz_gacha_info()
+    assert gacha_info

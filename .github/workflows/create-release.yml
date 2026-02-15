@@ -3,7 +3,9 @@ name: Create Release
 on:
   push:
     branches:
-      - main
+      - master
+    paths:
+      - pyproject.toml
   workflow_dispatch:
 
 jobs:
@@ -11,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
-        
+
       - name: Create release
         uses: seriaati/create-release@main
         with:

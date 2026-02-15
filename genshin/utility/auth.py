@@ -45,11 +45,6 @@ WEB_LOGIN_HEADERS = {
 APP_LOGIN_HEADERS = {
     "x-rpc-app_id": "c9oqaq3s3gu8",
     "x-rpc-client_type": "2",
-    # Passing "x-rpc-device_id" header will trigger email verification
-    # (unless the device_id is already verified).
-    #
-    # For some reason, without this header, email verification is not triggered.
-    # "x-rpc-device_id": "1c33337bd45c1bfs",
 }
 
 CN_LOGIN_HEADERS = {

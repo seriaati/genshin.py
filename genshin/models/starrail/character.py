@@ -8,24 +8,33 @@ import pydantic
 from genshin.models.model import Aliased, APIModel, Unique
 
 __all__ = (
+    "BaseMemoSprite",
     "BaseRelic",
     "BaseSkill",
+    "DetailMemoSprite",
     "DetailRelic",
     "DetailRelicProperty",
+    "DetailSkill",
     "FloorCharacter",
+    "LineupMemoSprite",
     "LineupRelic",
     "PropertyInfo",
     "Rank",
     "RelicProperty",
     "RogueCharacter",
+    "SimpleRelic",
     "SkillStage",
     "StarRailBaseCharacter",
     "StarRailBaseEquipment",
     "StarRailBaseProperty",
     "StarRailCharacterProperty",
+    "StarRailDetailCharacter",
     "StarRailEquipment",
+    "StarRailLineupCharacter",
     "StarRailLineupProperty",
     "StarRailPartialCharacter",
+    "StarRailPath",
+    "StarRailSimpleCharacter",
 )
 
 
@@ -142,13 +151,17 @@ class LineupRelic(BaseRelic):
     wiki: str = Aliased("wiki_url")
 
 
-class DetailRelic(BaseRelic):
-    """HSR character relic."""
+class SimpleRelic(BaseRelic):
+    """HSR simple relic without properties."""
 
     level: int
     name: str
     desc: str
     icon: str
+
+
+class DetailRelic(SimpleRelic):
+    """HSR character relic with properties."""
 
     wiki: str
     main_property: DetailRelicProperty
@@ -252,24 +265,36 @@ class DetailMemoSprite(BaseMemoSprite):
     skills: typing.Sequence[DetailSkill] = Aliased("servant_skills")
 
 
-class StarRailDetailCharacter(StarRailPartialCharacter):
-    """StarRail character with equipment and relics."""
+class StarRailSimpleCharacter(StarRailPartialCharacter):
+    """HSR character with simplified data.
+
+    Relics and ornaments have no properties, no skills, properties, and memosprite.
+    This happens when the character is viewed by other players.
+    """
 
     image: str
     equip: typing.Optional[StarRailEquipment]
-    relics: typing.Sequence[DetailRelic]
-    ornaments: typing.Sequence[DetailRelic]
+    relics: typing.Sequence[SimpleRelic]
+    ornaments: typing.Sequence[SimpleRelic]
     ranks: typing.Sequence[Rank]
-    properties: typing.Sequence[StarRailCharacterProperty]
     path: StarRailPath = Aliased("base_type")
     figure_path: str
-    skills: typing.Sequence[DetailSkill]
-    memosprite: typing.Optional[DetailMemoSprite] = Aliased("servant_detail")
 
     @property
     def is_wearing_outfit(self) -> bool:
         """Whether the character is wearing an outfit."""
         return "avatar_skin_image" in self.image
+
+
+class StarRailDetailCharacter(StarRailSimpleCharacter):
+    """HSR character with detailed equipment and relics."""
+
+    relics: typing.Sequence[DetailRelic]
+    ornaments: typing.Sequence[DetailRelic]
+
+    properties: typing.Sequence[StarRailCharacterProperty]
+    skills: typing.Sequence[DetailSkill]
+    memosprite: typing.Optional[DetailMemoSprite] = Aliased("servant_detail")
 
     @pydantic.field_validator("memosprite", mode="before")
     @classmethod

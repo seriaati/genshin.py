@@ -519,7 +519,7 @@ def requires_cookie_token(func: AsyncCallableT) -> AsyncCallableT:
         if isinstance(self.cookie_manager, CookieManager):
             contained = set(self.cookie_manager.cookies.keys())
             if "cookie_token" not in contained and "cookie_token_v2" not in contained:
-                raise errors.InvalidCookies(msg="Missing cookie_token cookie.")
+                raise errors.InvalidCookies(msg="Missing cookie_token or cookie_token_v2 in cookies.")
 
         return await func(self, *args, **kwargs)
 

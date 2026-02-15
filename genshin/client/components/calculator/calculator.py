@@ -61,14 +61,6 @@ class CalculatorState:
         return await self.client.get_character_details(self.character_id)
 
     @_cache
-    async def get_character_talents(self) -> typing.Sequence[models.CalculatorTalent]:
-        """Get talent ids."""
-        if self.character_id is None:
-            raise TypeError("No specified character.")
-
-        return await self.client.get_character_talents(self.character_id)
-
-    @_cache
     async def get_artifact_ids(self, artifact_id: int) -> typing.Sequence[int]:
         """Get artifact ids."""
         others = await self.client.get_complete_artifact_set(artifact_id)
@@ -197,6 +189,8 @@ class CurrentArtifactResolver(ArtifactResolver):
         else:
             self.artifacts = (flower, feather, sands, goblet, circlet)
 
+        super().__init__()
+
     async def __call__(self, state: CalculatorState) -> typing.Sequence[typing.Mapping[str, typing.Any]]:
         details = await state.get_character_details()
 
@@ -249,12 +243,8 @@ class CurrentTalentResolver(TalentResolver):
         super().__init__()
 
     async def __call__(self, state: CalculatorState) -> typing.Sequence[typing.Mapping[str, typing.Any]]:
-        if self.current:
-            talents = await state.get_character_talents()
-        else:
-            details = await state.get_character_details()
-            talents = details.talents
-            self.current = 0
+        details = await state.get_character_details()
+        talents = details.talents
 
         if talents[2].type == "dash":
             ordered = (talents[0], talents[1], talents[3])
@@ -263,7 +253,7 @@ class CurrentTalentResolver(TalentResolver):
 
         for talent, name in zip(ordered, ("attack", "skill", "burst")):
             if target := self.talents[name]:
-                self.add_talent(talent.group_id, talent.level or self.current, target)
+                self.add_talent(talent.group_id, self.current if self.current is not None else talent.level, target)
 
         return self.data
 
@@ -399,6 +389,37 @@ class Calculator:
         return await self.client._execute_calculator(await self.build(), lang=self.lang)
 
     def __await__(self) -> typing.Generator[typing.Any, None, models.CalculatorResult]:
+        return self.calculate().__await__()
+
+
+class BatchCalculator:
+    """Builder for the genshin impact batch enhancement calculator."""
+
+    client: Client
+    lang: typing.Optional[str]
+
+    characters: list[Calculator]
+
+    def __init__(self, client: Client, *, lang: typing.Optional[str] = None) -> None:
+        self.client = client
+        self.lang = lang
+
+        self.characters = []
+
+    def add_character(self, builder: Calculator) -> BatchCalculator:
+        """Add a character."""
+        self.characters.append(builder)
+        return self
+
+    async def build(self) -> typing.Sequence[typing.Mapping[str, typing.Any]]:
+        """Build the calculator object."""
+        return [await character.build() for character in self.characters]
+
+    async def calculate(self) -> models.CalculatorBatchResult:
+        """Execute the calculator."""
+        return await self.client._execute_batch_calculator(await self.build(), lang=self.lang)
+
+    def __await__(self) -> typing.Generator[typing.Any, None, models.CalculatorBatchResult]:
         return self.calculate().__await__()
 
 

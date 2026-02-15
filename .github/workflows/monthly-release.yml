@@ -1,16 +1,16 @@
-name: Biweekly Release
+name: Monthly Release
 
 on:
   schedule:
-    - cron: '0 0 1,15 * *'
+    - cron: "0 0 1 * *"
   workflow_dispatch:
 
 jobs:
-  create-release:
+  monthly-release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -18,7 +18,7 @@ jobs:
         uses: seriaati/update-ver-num@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-        
+
       - name: Create release
         uses: seriaati/create-release@main
         with:

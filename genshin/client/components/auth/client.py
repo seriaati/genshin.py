@@ -90,7 +90,10 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
         - AccountLoginFail: Invalid password provided.
         - AccountDoesNotExist: Invalid email/username.
         """
-        result = await self._os_web_login(account, password, encrypted=encrypted, token_type=token_type)
+        device_id = self.generate_web_device_id()
+        result = await self._os_web_login(
+            account, password, encrypted=encrypted, token_type=token_type, device_id=device_id
+        )
 
         if not isinstance(result, SessionMMT):
             # Captcha not triggered
@@ -102,7 +105,7 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
             mmt_result = await server.solve_geetest(result, port=port)
 
         return await self._os_web_login(
-            account, password, encrypted=encrypted, token_type=token_type, mmt_result=mmt_result
+            account, password, encrypted=encrypted, token_type=token_type, mmt_result=mmt_result, device_id=device_id
         )
 
     @base.region_specific(types.Region.CHINESE)
@@ -187,6 +190,9 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
         encrypted: bool = False,
         port: int = 5000,
         geetest_solver: typing.Optional[typing.Callable[[SessionMMT], typing.Awaitable[SessionMMTResult]]] = None,
+        device_id: typing.Optional[str] = None,
+        device_model: typing.Optional[str] = None,
+        device_name: typing.Optional[str] = None,
     ) -> AppLoginResult:
         """Login with a password via HoYoLab app endpoint.
 
@@ -203,7 +209,15 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
         - AccountDoesNotExist: Invalid email/username.
         - VerificationCodeRateLimited: Too many verification code requests.
         """
-        result = await self._app_login(account, password, encrypted=encrypted)
+        device_id = device_id or self.generate_app_device_id()
+        result = await self._app_login(
+            account,
+            password,
+            device_id=device_id,
+            device_name=device_name,
+            device_model=device_model,
+            encrypted=encrypted,
+        )
 
         if isinstance(result, SessionMMT):
             # Captcha triggered
@@ -212,7 +226,15 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
             else:
                 mmt_result = await server.solve_geetest(result, port=port)
 
-            result = await self._app_login(account, password, encrypted=encrypted, mmt_result=mmt_result)
+            result = await self._app_login(
+                account,
+                password,
+                device_id=device_id,
+                device_name=device_name,
+                device_model=device_model,
+                encrypted=encrypted,
+                mmt_result=mmt_result,
+            )
 
         if isinstance(result, ActionTicket):
             # Email verification required
@@ -223,13 +245,18 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
                 else:
                     mmt_result = await server.solve_geetest(mmt, port=port)
 
-                await asyncio.sleep(2)  # Add delay to prevent [-3206]
-                await self._send_verification_email(result, mmt_result=mmt_result)
-
             code = await server.enter_code(port=port)
             await self._verify_email(code, result)
 
-            result = await self._app_login(account, password, encrypted=encrypted, ticket=result)
+            result = await self._app_login(
+                account,
+                password,
+                device_id=device_id,
+                device_name=device_name,
+                device_model=device_model,
+                encrypted=encrypted,
+                ticket=result,
+            )
 
         return result
 

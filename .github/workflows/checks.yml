@@ -1,6 +1,29 @@
 name: Run checks
 
-on: [push, pull_request, issue_comment]
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - genshin/**.py
+      - tests/**.py
+      - noxfile.py
+      - pyproject.toml
+      - uv.lock
+      - .github/workflows/checks.yml
+      - .pre-commit-config.yaml
+  pull_request:
+    branches:
+      - master
+    paths:
+      - genshin/**.py
+      - tests/**.py
+      - noxfile.py
+      - pyproject.toml
+      - uv.lock
+      - .github/workflows/checks.yml
+      - .pre-commit-config.yaml
 
 jobs:
   lint:
@@ -8,10 +31,10 @@ jobs:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
 
       - name: install nox
         run: |
@@ -31,10 +54,10 @@ jobs:
         python-version: ["3.9", "3.10", "3.11"]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -56,7 +79,7 @@ jobs:
           mv .coverage .coverage.${{ matrix.python-version }}
 
       - name: Upload coverage artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: coverage-${{ matrix.python-version }}
           path: .coverage.${{ matrix.python-version }}
@@ -71,13 +94,13 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
 
       - name: Download coverage
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           pattern: coverage-*
           merge-multiple: true
@@ -90,7 +113,7 @@ jobs:
           uv run coverage lcov -o lcov.info
 
       - name: Upload coverage to qlty cloud
-        uses: qltysh/qlty-action/coverage@v1
+        uses: qltysh/qlty-action/coverage@v2
         with:
           token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
           files: lcov.info
@@ -100,10 +123,10 @@ jobs:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
 
       - name: install nox
         run: |
@@ -119,10 +142,10 @@ jobs:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
 
       - name: install nox
         run: |
@@ -138,7 +161,7 @@ jobs:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Run prettier
         run: |

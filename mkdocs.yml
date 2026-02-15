@@ -1,33 +1,89 @@
-site_name: Genshin.py
+site_name: genshin.py
 site_description: Modern API wrapper for Genshin Impact & Honkai Impact 3rd built on asyncio and pydantic.
-site_url: https://seriaati.github.io/genshin.py
+site_url: https://gh.seria.moe/genshin.py
+repo_name: seriaati/genshin.py
+repo_url: https://github.com/seriaati/genshin.py
+copyright: Copyright &copy; 2025 Seria Ati & Ashleny
+watch: [mkdocs.yml, README.md, genshin]
+edit_uri: edit/main/docs/
+
 theme:
   name: material
   palette:
-    - scheme: default
-      primary: blue grey
-      accent: amber
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
       toggle:
-        icon: material/toggle-switch-off-outline
+        icon: material/brightness-auto
         name: Switch to light mode
-    - scheme: slate
       primary: blue grey
-      accent: amber
+      accent: blue grey
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       toggle:
-        icon: material/toggle-switch
+        icon: material/brightness-7
         name: Switch to dark mode
+      primary: blue grey
+      accent: blue grey
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+      primary: blue grey
+      accent: blue grey
   features:
+    - navigation.tabs
     - navigation.instant
-    - navigation.expand
     - content.code.copy
     - content.code.annotate
   language: en
-repo_name: seriaati/genshin.py
-repo_url: https://github.com/seriaati/genshin.py
+
 plugins:
   - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ["genshin"]
+          inventories:
+            - https://docs.python.org/3/objects.inv
+            - https://mkdocstrings.github.io/griffe/objects.inv
+            - https://docs.pydantic.dev/latest/objects.inv
+          options:
+            backlinks: tree
+            docstring_style: google
+            docstring_options:
+              ignore_init_summary: true
+            docstring_section_style: list
+            parameter_headings: true
+            relative_crossrefs: true
+            scoped_crossrefs: true
+            type_parameter_headings: true
+            show_root_heading: true
+            show_root_full_path: false
+            show_root_toc_entry: false
+            show_symbol_type_heading: true
+            show_if_no_docstring: true
+            show_source: false
+            show_bases: false
+            separate_signature: true
+            signature_crossrefs: true
+            show_symbol_type_toc: true
+            show_signature_annotations: true
+            show_signature_type_parameters: true
+            summary: true
+            filters: public
+            unwrap_annotated: true
+            extensions:
+              - griffe_pydantic:
+                  schema: false
 markdown_extensions:
+  - admonition
   - tables
+  - pymdownx.details
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
@@ -52,8 +108,88 @@ nav:
       - wish_history.md
       - transactions.md
       - hsr_lineup.md
+      - hsr_characters.md
   - Advanced Usage:
       - configuration.md
       - caching.md
       - debugging.md
   - cli.md
+  - API Reference:
+      - Clients:
+          - reference/clients/auth.md
+          - reference/clients/calculator.md
+          - Battle Chronicle:
+              - reference/clients/chronicle/genshin.md
+              - reference/clients/chronicle/hsr.md
+              - reference/clients/chronicle/honkai.md
+              - reference/clients/chronicle/zzz.md
+          - reference/clients/daily.md
+          - reference/clients/diary.md
+          - reference/clients/gacha.md
+          - reference/clients/hoyolab.md
+          - reference/clients/lineup.md
+          - reference/clients/teapot.md
+          - reference/clients/transaction.md
+          - reference/clients/wiki.md
+      - Models:
+          - Auth:
+              - reference/models/auth/cookie.md
+              - reference/models/auth/geetest.md
+              - reference/models/auth/qrcode.md
+              - reference/models/auth/verification.md
+              - reference/models/auth/responses.md
+          - Genshin:
+              - reference/models/genshin/calculator.md
+              - reference/models/genshin/character.md
+              - reference/models/genshin/daily.md
+              - reference/models/genshin/diary.md
+              - reference/models/genshin/gacha.md
+              - reference/models/genshin/lineup.md
+              - reference/models/genshin/teapot.md
+              - reference/models/genshin/transaction.md
+              - reference/models/genshin/wiki.md
+              - Chronicle:
+                  - reference/models/genshin/chronicle/abyss.md
+                  - reference/models/genshin/chronicle/characters.md
+                  - reference/models/genshin/chronicle/stats.md
+                  - reference/models/genshin/chronicle/notes.md
+                  - reference/models/genshin/chronicle/activities.md
+                  - reference/models/genshin/chronicle/tcg.md
+                  - reference/models/genshin/chronicle/img_theater.md
+                  - reference/models/genshin/chronicle/act_calendar.md
+                  - reference/models/genshin/chronicle/hard_challenge.md
+                  - reference/models/genshin/chronicle/char_master.md
+          - Star Rail:
+              - reference/models/starrail/character.md
+              - reference/models/starrail/rpgsimulator.md
+              - Chronicle:
+                  - reference/models/starrail/chronicle/base.md
+                  - reference/models/starrail/chronicle/characters.md
+                  - reference/models/starrail/chronicle/stats.md
+                  - reference/models/starrail/chronicle/notes.md
+                  - reference/models/starrail/chronicle/challenge.md
+                  - reference/models/starrail/chronicle/rogue.md
+                  - reference/models/starrail/chronicle/events.md
+          - Honkai:
+              - reference/models/honkai/battlesuit.md
+              - Chronicle:
+                  - reference/models/honkai/chronicle/battlesuits.md
+                  - reference/models/honkai/chronicle/stats.md
+                  - reference/models/honkai/chronicle/notes.md
+                  - reference/models/honkai/chronicle/modes.md
+          - ZZZ:
+              - reference/models/zzz/character.md
+              - Chronicle:
+                  - reference/models/zzz/chronicle/stats.md
+                  - reference/models/zzz/chronicle/notes.md
+                  - reference/models/zzz/chronicle/abyss.md
+                  - reference/models/zzz/chronicle/challenge.md
+                  - reference/models/zzz/chronicle/month_info.md
+          - HoYoLAB:
+              - reference/models/hoyolab/accompany.md
+              - reference/models/hoyolab/announcements.md
+              - reference/models/hoyolab/mimo.md
+              - reference/models/hoyolab/private.md
+              - reference/models/hoyolab/record.md
+              - reference/models/hoyolab/web_event.md
+      - reference/utility.md

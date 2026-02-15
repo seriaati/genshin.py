@@ -114,15 +114,37 @@ class StarRailBattleChronicleClient(base.BaseBattleChronicleClient):
         basic_data = models.StarRailUserInfo(**basic_info)
         return models.StarRailUserStats(**index_data, info=basic_data)
 
+    @typing.overload
+    async def get_starrail_characters(
+        self,
+        uid: typing.Optional[int] = ...,
+        *,
+        lang: typing.Optional[str] = ...,
+        simple: typing.Literal[False] = ...,
+    ) -> models.StarRailDetailCharacterResponse: ...
+
+    @typing.overload
+    async def get_starrail_characters(
+        self,
+        uid: typing.Optional[int] = ...,
+        *,
+        lang: typing.Optional[str] = ...,
+        simple: typing.Literal[True] = ...,
+    ) -> models.StarRailSimpleCharacterResponse: ...
+
     async def get_starrail_characters(
         self,
         uid: typing.Optional[int] = None,
         *,
         lang: typing.Optional[str] = None,
-    ) -> models.StarRailDetailCharacterResponse:
+        simple: bool = False,
+    ) -> typing.Union[models.StarRailSimpleCharacterResponse, models.StarRailDetailCharacterResponse]:
         """Get starrail characters."""
         payload = {"need_wiki": "true"}
         data = await self._request_starrail_record("avatar/info", uid, lang=lang, payload=payload)
+
+        if simple:
+            return models.StarRailSimpleCharacterResponse(**data)
         return models.StarRailDetailCharacterResponse(**data)
 
     @typing.overload
@@ -245,3 +267,39 @@ class StarRailBattleChronicleClient(base.BaseBattleChronicleClient):
         """Get HSR event calendar."""
         data = await self._request_starrail_record("get_act_calender", uid, lang=lang, cache=True)
         return models.HSREventCalendar(**data)
+
+    get_apocalyptic_shadow = get_starrail_apc_shadow
+    """Alias for :meth:`get_starrail_apc_shadow`."""
+
+    @typing.overload
+    async def get_anomaly_arbitration(
+        self,
+        uid: typing.Optional[int] = ...,
+        *,
+        previous: bool = ...,
+        lang: typing.Optional[str] = ...,
+        raw: typing.Literal[False] = ...,
+    ) -> models.AnomalyArbitration: ...
+    @typing.overload
+    async def get_anomaly_arbitration(
+        self,
+        uid: typing.Optional[int] = ...,
+        *,
+        previous: bool = ...,
+        lang: typing.Optional[str] = ...,
+        raw: typing.Literal[True] = ...,
+    ) -> typing.Mapping[str, typing.Any]: ...
+    async def get_anomaly_arbitration(
+        self,
+        uid: typing.Optional[int] = None,
+        *,
+        previous: bool = False,
+        lang: typing.Optional[str] = None,
+        raw: bool = False,
+    ) -> typing.Union[models.AnomalyArbitration, typing.Mapping[str, typing.Any]]:
+        """Get starrail anomaly arbitration runs."""
+        payload = dict(schedule_type=2 if previous else 1)
+        data = await self._request_starrail_record("challenge_peak", uid, lang=lang, payload=payload)
+        if raw:
+            return data
+        return models.AnomalyArbitration(**data)

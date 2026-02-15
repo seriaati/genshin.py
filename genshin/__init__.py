@@ -1,8 +1,6 @@
 """Modern API wrapper for Genshin Impact & Honkai Impact 3rd built on asyncio and pydantic.
 
-Documentation: https://seriaati.github.io/genshin.py
-
-API Reference: https://seriaati.github.io/genshin.py/pdoc/genshin
+Documentation: https://gh.seria.moe/genshin.py
 
 Source Code: https://github.com/seriaati/genshin.py
 """

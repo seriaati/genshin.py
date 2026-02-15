@@ -1,11 +1,14 @@
 """StarRail battle chronicle component."""
 
 import asyncio
+import contextlib
+import functools
 import typing
 
-from genshin import errors, types, utility
+from genshin import errors, paginators, types, utility
 from genshin.client import routes
 from genshin.models import zzz as models
+from genshin.models.genshin import gacha as gacha_models
 
 from . import base
 
@@ -25,7 +28,7 @@ class ZZZBattleChronicleClient(base.BaseBattleChronicleClient):
         payload: typing.Optional[typing.Mapping[str, typing.Any]] = None,
         cache: bool = False,
         is_nap_ledger: bool = False,
-        is_special_payload: bool = False,
+        use_uid_in_payload: bool = False,
     ) -> typing.Mapping[str, typing.Any]:
         """Get an arbitrary ZZZ object."""
         payload = dict(payload or {})
@@ -33,7 +36,7 @@ class ZZZBattleChronicleClient(base.BaseBattleChronicleClient):
 
         uid = uid or await self._get_uid(types.Game.ZZZ)
 
-        if is_nap_ledger or is_special_payload:
+        if is_nap_ledger or use_uid_in_payload:
             payload = {
                 "uid": uid,
                 "region": utility.recognize_zzz_server(uid),
@@ -219,7 +222,7 @@ class ZZZBattleChronicleClient(base.BaseBattleChronicleClient):
         previous: bool = ...,
         lang: typing.Optional[str] = ...,
         raw: typing.Literal[False] = ...,
-    ) -> models.ShiyuDefense: ...
+    ) -> typing.Union[models.ShiyuDefenseV1, models.ShiyuDefenseV2]: ...
     @typing.overload
     async def get_shiyu_defense(
         self,
@@ -236,13 +239,35 @@ class ZZZBattleChronicleClient(base.BaseBattleChronicleClient):
         previous: bool = False,
         lang: typing.Optional[str] = None,
         raw: bool = False,
-    ) -> typing.Union[models.ShiyuDefense, typing.Mapping[str, typing.Any]]:
+    ) -> typing.Union[models.ShiyuDefenseV1, models.ShiyuDefenseV2, typing.Mapping[str, typing.Any]]:
         """Get ZZZ Shiyu defense stats."""
-        payload = {"schedule_type": 2 if previous else 1, "need_all": "true"}
-        data = await self._request_zzz_record("challenge", uid, lang=lang, payload=payload)
+        payload = {"schedule_type": 2 if previous else 1}
+        data = await self._request_zzz_record("hadal_info_v2", uid, lang=lang, payload=payload)
+        version = data["hadal_ver"]  # v1 or v2
+        key = f"hadal_info_{version}"
+
+        if version == "v1":
+            data = data[key]
+        elif version == "v2":
+            nickname = data["nick_name"]
+            icon = data["icon"]
+            data = data[key]
+            data["nick_name"] = nickname
+            data["icon"] = icon
+        else:
+            msg = f"Unknown Shiyu Defense version: {version!r}"
+            raise ValueError(msg)
+
+        account_tz = self.get_account_timezone(game=types.Game.ZZZ, uid=uid)
+        with contextlib.suppress(KeyError):
+            data["hadal_begin_time"]["tzinfo"] = account_tz
+            data["hadal_end_time"]["tzinfo"] = account_tz
+
         if raw:
             return data
-        return models.ShiyuDefense(**data)
+        if version == "v2":
+            return models.ShiyuDefenseV2(**data)
+        return models.ShiyuDefenseV1(**data)
 
     @typing.overload
     async def get_deadly_assault(
@@ -272,7 +297,7 @@ class ZZZBattleChronicleClient(base.BaseBattleChronicleClient):
     ) -> typing.Union[models.DeadlyAssault, typing.Mapping[str, typing.Any]]:
         """Get ZZZ Shiyu defense stats."""
         payload = {"schedule_type": 2 if previous else 1}
-        data = await self._request_zzz_record("mem_detail", uid, lang=lang, payload=payload, is_special_payload=True)
+        data = await self._request_zzz_record("mem_detail", uid, lang=lang, payload=payload, use_uid_in_payload=True)
         if raw:
             return data
         return models.DeadlyAssault(**data)
@@ -281,5 +306,139 @@ class ZZZBattleChronicleClient(base.BaseBattleChronicleClient):
         self, uid: typing.Optional[int] = None, *, lang: typing.Optional[str] = None
     ) -> models.LostVoidSummary:
         """Get ZZZ Lost Void summary."""
-        data = await self._request_zzz_record("abysss2_abstract", uid, lang=lang, is_special_payload=True)
+        data = await self._request_zzz_record("abysss2_abstract", uid, lang=lang, use_uid_in_payload=True)
         return models.LostVoidSummary(**data)
+
+    async def get_threshold_simulation_brief(
+        self, uid: typing.Optional[int] = None, *, lang: typing.Optional[str] = None
+    ) -> models.ThresholdSimulationInfo:
+        """Get ZZZ Threshold Simulation brief info."""
+        data = await self._request_zzz_record(
+            "void_front_battle_abstract_info", uid, lang=lang, use_uid_in_payload=True
+        )
+        return models.ThresholdSimulationInfo(**data["void_front_battle_abstract_info_brief"])
+
+    @typing.overload
+    async def get_threshold_simulation(
+        self,
+        id: typing.Optional[int] = ...,
+        uid: typing.Optional[int] = ...,
+        *,
+        lang: typing.Optional[str] = ...,
+        raw: typing.Literal[False] = ...,
+    ) -> models.ThresholdSimulation: ...
+    @typing.overload
+    async def get_threshold_simulation(
+        self,
+        id: typing.Optional[int] = ...,
+        uid: typing.Optional[int] = ...,
+        *,
+        lang: typing.Optional[str] = ...,
+        raw: typing.Literal[True] = ...,
+    ) -> typing.Mapping[str, typing.Any]: ...
+    async def get_threshold_simulation(
+        self,
+        id: typing.Optional[int] = None,
+        uid: typing.Optional[int] = None,
+        *,
+        lang: typing.Optional[str] = None,
+        raw: bool = False,
+    ) -> typing.Union[models.ThresholdSimulation, typing.Mapping[str, typing.Any]]:
+        """Get ZZZ Threshold Simulation stats.
+
+        If no ID is given, the latest run will be fetched.
+        """
+        if id is None:
+            brief = await self.get_threshold_simulation_brief(uid, lang=lang)
+            id = brief.id
+
+        data = await self._request_zzz_record(
+            "void_front_battle_detail", uid, lang=lang, payload={"void_front_id": id}, use_uid_in_payload=True
+        )
+        if raw:
+            return data
+        return models.ThresholdSimulation(**data)
+
+    async def _get_chronicle_signal_page(
+        self,
+        end_id: int,
+        banner_type: gacha_models.ZZZBannerType,
+        *,
+        lang: typing.Optional[str] = None,
+        uid: typing.Optional[int] = None,
+    ) -> typing.Sequence[gacha_models.SignalSearch]:
+        """Get a single page of battle chronicle signal searches."""
+        uid = uid or await self._get_uid(types.Game.ZZZ)
+        timezone = self.get_account_timezone(game=types.Game.ZZZ, uid=uid)
+        if timezone is None:
+            msg = "Cannot find account timezone."
+            raise ValueError(msg)
+
+        data = await self._request_zzz_record(
+            "gacha_record",
+            uid,
+            lang=lang,
+            payload={"gacha_type": banner_type.to_chronicle_type(), "end_id": end_id},
+            use_uid_in_payload=True,
+        )
+        records = data.get("gacha_item_list", [])
+        return [
+            gacha_models.SignalSearch.from_chronicle_data(i, uid=uid, banner_type=banner_type, tz_offset=timezone - 8)
+            for i in records
+        ]
+
+    def chronicle_signal_history(
+        self,
+        banner_type: typing.Optional[typing.Union[int, typing.Sequence[int]]] = None,
+        *,
+        limit: typing.Optional[int] = None,
+        lang: typing.Optional[str] = None,
+        uid: typing.Optional[int] = None,
+        end_id: int = 0,
+    ) -> paginators.Paginator[gacha_models.SignalSearch]:
+        """Get the signal search history of a user."""
+        banner_types = banner_type or list(gacha_models.ZZZBannerType)
+
+        if not isinstance(banner_types, typing.Sequence):
+            banner_types = [banner_types]
+
+        iterators: list[paginators.Paginator[gacha_models.SignalSearch]] = []
+        for banner in banner_types:
+            iterators.append(
+                paginators.CursorPaginator(
+                    functools.partial(
+                        self._get_chronicle_signal_page,
+                        banner_type=gacha_models.ZZZBannerType(banner),
+                        lang=lang,
+                        uid=uid,
+                    ),
+                    limit=limit,
+                    end_id=end_id,
+                )
+            )
+
+        if len(iterators) == 1:
+            return iterators[0]
+
+        return paginators.MergedPaginator(iterators, key=lambda wish: wish.time.timestamp())
+
+    async def get_zzz_event_calendar(
+        self, uid: typing.Optional[int] = None, *, lang: typing.Optional[str] = None
+    ) -> typing.Sequence[models.ZZZEvent]:
+        """Get ZZZ event calendar."""
+        data = await self._request_zzz_record("activity_calendar", uid, lang=lang, use_uid_in_payload=True)
+        return [models.ZZZEvent(**item) for item in data["activity_list"]]
+
+    async def get_zzz_gacha_calendar(
+        self, uid: typing.Optional[int] = None, *, lang: typing.Optional[str] = None
+    ) -> models.ZZZGachaCalendar:
+        """Get ZZZ gacha calendar."""
+        data = await self._request_zzz_record("gacha_calendar", uid, lang=lang, use_uid_in_payload=True)
+        return models.ZZZGachaCalendar(**data)
+
+    async def get_zzz_gacha_info(
+        self, uid: typing.Optional[int] = None, *, lang: typing.Optional[str] = None
+    ) -> models.ZZZGachaInfo:
+        """Get ZZZ gacha info."""
+        data = await self._request_zzz_record("cur_gacha_detail", uid, lang=lang, use_uid_in_payload=True)
+        return models.ZZZGachaInfo(**data)

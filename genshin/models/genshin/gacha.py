@@ -15,6 +15,8 @@ __all__ = [
     "BannerDetailsUpItem",
     "GachaItem",
     "GenshinBannerType",
+    "MWBannerType",
+    "MWWish",
     "SignalSearch",
     "StarRailBannerType",
     "Warp",
@@ -51,6 +53,28 @@ class GenshinBannerType(enum.IntEnum):
     """Character banner #2."""
 
 
+class MWBannerType(enum.IntEnum):
+    """Banner types in Genshin Miliastra Wonderland."""
+
+    STANDARD = PERMANENT = 1000
+    """Permanent standard banner."""
+
+    EVENT = 2000
+    """Event banner."""
+
+    EVENT_MALE_OUTFIT1 = 20011
+    """Male Manekin outfit banner #1."""
+
+    EVENT_MALE_OUTFIT2 = 20012
+    """Male Manekin outfit banner #2."""
+
+    EVENT_FEMALE_OUTFIT1 = 20021
+    """Female Manekin outfit banner #1."""
+
+    EVENT_FEMALE_OUTFIT2 = 20022
+    """Female Manekin outfit banner #2."""
+
+
 class StarRailBannerType(enum.IntEnum):
     """Banner types in wish histories."""
 
@@ -61,7 +85,12 @@ class StarRailBannerType(enum.IntEnum):
     CHARACTER = 11
     """Rotating character banner."""
     WEAPON = 12
-    """Rotating weapon banner."""
+    """Rotating light cone banner."""
+
+    FATE_CHARACTER = 21
+    """FGO collab character banner."""
+    FATE_WEAPON = 22
+    """FGO collab light cone banner."""
 
 
 class ZZZBannerType(enum.IntEnum):
@@ -74,10 +103,28 @@ class ZZZBannerType(enum.IntEnum):
     """Rotating character banner."""
 
     WEAPON = 3
-    """Rotating weapon banner."""
+    """Rotating w-engine banner."""
 
     BANGBOO = 5
     """Bangboo banner."""
+
+    EXCLUSIVE_RESCREENING = 102
+    """Exclusive rescreening banner."""
+
+    REVERBERATION = 103
+    """W-Engine reverberation banner."""
+
+    def to_chronicle_type(self) -> str:
+        """Get the chronicle type string for this banner type."""
+        mapping = {
+            ZZZBannerType.STANDARD: "GACHA_TYPE_PERMANENT",
+            ZZZBannerType.CHARACTER: "GACHA_TYPE_CHARACTER_UP",
+            ZZZBannerType.WEAPON: "GACHA_TYPE_WEAPON_UP",
+            ZZZBannerType.BANGBOO: "GACHA_TYPE_BANGBOO",
+            ZZZBannerType.EXCLUSIVE_RESCREENING: "GACHA_TYPE_CHARACTER_RETURN",
+            ZZZBannerType.REVERBERATION: "GACHA_TYPE_WEAPON_RETURN",
+        }
+        return mapping[self]
 
 
 class BaseWish(APIModel, Unique):
@@ -92,6 +139,10 @@ class BaseWish(APIModel, Unique):
     """Number of hours from UTC+8."""
     time: datetime.datetime
     """Timezone-aware time of when the wish was made"""
+
+    @pydantic.field_validator("rarity", mode="before")
+    def __cast_rarity(cls, v: typing.Any) -> int:
+        return int(v)
 
     @pydantic.field_validator("time", mode="before")
     def __parse_time(cls, v: str, info: pydantic.ValidationInfo) -> datetime.datetime:
@@ -109,6 +160,18 @@ class Wish(BaseWish):
     @pydantic.field_validator("banner_type", mode="before")
     def __cast_banner_type(cls, v: typing.Any) -> int:
         return int(v)
+
+
+class MWWish(BaseWish):
+    """Wish made on Genshin Miliastra Wonderland banner."""
+
+    item_id: int
+    type: str = Aliased("item_type")
+    is_up: bool
+    name: str = Aliased("item_name")
+
+    banner_id: int = Aliased("schedule_id")
+    banner_type: MWBannerType = Aliased("op_gacha_type")
 
 
 class Warp(BaseWish):
@@ -136,6 +199,34 @@ class SignalSearch(BaseWish):
     @pydantic.field_validator("banner_type", mode="before")
     def __cast_banner_type(cls, v: typing.Any) -> int:
         return int(v)
+
+    @classmethod
+    def from_chronicle_data(
+        cls, data: typing.Mapping[str, typing.Any], uid: int, tz_offset: int, banner_type: ZZZBannerType
+    ) -> "SignalSearch":
+        """Create a ZZZChronicleWish from chronicle data."""
+        rarity_convert = {"S": 4, "A": 3, "B": 2}
+        wish_time = data["date"]
+        wish_dt = datetime.datetime(
+            year=wish_time["year"],
+            month=wish_time["month"],
+            day=wish_time["day"],
+            hour=wish_time["hour"],
+            minute=wish_time["minute"],
+            second=wish_time["second"],
+        )
+        converted_data = {
+            "uid": uid,
+            "id": int(data["id"]),
+            "name": data["item_name"],
+            "rank_type": rarity_convert[data["rarity"]],
+            "tz_offset": tz_offset,
+            "time": wish_dt.isoformat(),
+            "item_id": int(data["item_id"]),
+            "item_type": data["item_type"],
+            "banner_type": banner_type,
+        }
+        return cls.model_validate(converted_data)
 
 
 class BannerDetailItem(APIModel):

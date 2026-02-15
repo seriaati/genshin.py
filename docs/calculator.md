@@ -1,11 +1,11 @@
 # Enhancment Progress Calculator
 
-A wrapper around the [Genshin Impact Enhancment Progress Calculator](https://webstatic-sea.mihoyo.com/ys/event/calculator-sea/index.html) page.
-Contains a database of all characters, weapons and artifacts. Also the only way to recieve talents.
+A wrapper around the [Genshin Impact Enhancment Progress Calculator](https://act.hoyolab.com/ys/event/calculator-sea/index.html) page.
+Contains a database of all characters, weapons and artifacts. Also the only way to receive talents.
 
-To request many of the calculator endpoints you must first be logged in. Refer to [the authentication section](authentication.md) for more information.
+To request calculator endpoints that require user's in-game information, you must first be logged in. Refer to [the authentication section](authentication.md) for more information.
 
-## Quick Example
+## Accessing the Database
 
 ```py
 # get a list of all characters
@@ -23,15 +23,12 @@ characters = await client.get_calculator_characters(query="Xi")
 # filter the returned characters/weapons/artifacts
 weapons = await client.get_calculator_weapons(rarities=[5, 4])
 
-# get all talents of a character
-talents = await client.get_character_talents(10000002)
-
 # get all other artifacts in a set
 artifacts = await client.get_complete_artifact_set(7554)
 ```
 
 ```py
-# get a list of synced characters
+# get a list of synced characters (must be logged in)
 # only returns the characters you have and ensures all level fields are provided
 characters = await client.get_calculator_characters(sync=True)
 
@@ -109,4 +106,29 @@ cost = await (
     # upgrade only the burst
     .with_current_talents(burst=10)
 )
+```
+
+### Batch Calculation
+
+You can calculate multiple characters at once using a batch builder, each character can also have their own weapon (optional).
+
+```py
+character1 = (
+    client.calculator()
+    .set_character(10000052, current=1, target=90)
+    .set_weapon(11509, current=1, target=90)
+    .set_artifact_set(9651, current=0, target=20)
+    .with_current_talents(current=1, target=10)
+)
+character2 = (
+    client.calculator()
+    .set_character(10000020, current=1, target=90)
+    .set_weapon(11401, current=1, target=90)
+    .set_artifact_set(7551, current=0, target=20)
+    .with_current_talents(current=1, target=10)
+)
+
+batch = client.batch_calculator().add_character(character1).add_character(character2)
+result = await batch.calculate()
+print(result)
 ```

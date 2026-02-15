@@ -203,3 +203,25 @@ WEB_EVENT_GAME_IDS = {
     types.Game.ZZZ: 8,
     types.Game.TOT: 4,
 }
+
+# Server names are from uid.py
+SERVER_TIMEZONES: typing.Final[dict[int, typing.Tuple[str, ...]]] = {
+    8: (
+        "cn_gf01",
+        "cn_qd01",
+        "os_asia",
+        "os_cht",
+        "prod_gf_cn",
+        "prod_qd_cn",
+        "prod_official_asia",
+        "prod_official_cht",
+        "prod_gf_sg",
+        "prod_gf_jp",
+        "prod_gf_cn",
+    ),
+    -5: ("os_usa", "prod_official_usa", "prod_gf_us"),
+    1: ("os_euro", "prod_official_eur", "prod_gf_eu"),
+}
+
+CODE_SUPPORTED_GAMES = {types.Game.GENSHIN, types.Game.ZZZ, types.Game.STARRAIL, types.Game.TOT}
+"""Games that support redeeming codes."""

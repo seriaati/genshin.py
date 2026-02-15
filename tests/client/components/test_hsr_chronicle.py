@@ -39,3 +39,8 @@ async def test_apc_shadow(hsr_client: genshin.Client):
 async def test_event_calendar(hsr_client: genshin.Client):
     data = await hsr_client.get_starrail_event_calendar()
     assert data
+
+
+async def test_anomaly_arbitration(hsr_client: genshin.Client):
+    data = await hsr_client.get_anomaly_arbitration()
+    assert data

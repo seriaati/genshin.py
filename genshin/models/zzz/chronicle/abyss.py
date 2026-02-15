@@ -59,6 +59,8 @@ class LostVoidDataType(IntEnum):
     GEAR_DATABASE = 2
     RESONIUM_RESEARCH = 3
     CARD_DATABASE = 4
+    TACTICAL_PRISM_PROGRAM = 5
+    UNOFFICIAL_GUIDE = 6
 
 
 class LostVoidData(APIModel):

@@ -2,13 +2,16 @@
 
 import datetime
 import enum
+import logging
 import typing
 
 import pydantic
 
-from genshin.models.model import Aliased, APIModel
+from genshin.models.model import Aliased, APIModel, prevent_enum_error
 
 __all__ = ("BatteryCharge", "VideoStoreState", "ZZZEngagement", "ZZZMemberCard", "ZZZNotes", "ZZZTempleRunning")
+
+logger: logging.Logger = logging.getLogger(__name__)
 
 
 class VideoStoreState(enum.Enum):
@@ -20,26 +23,35 @@ class VideoStoreState(enum.Enum):
 
 
 class BenchState(enum.Enum):
-    """Bench management state."""
+    """Crafting state."""
 
     CAN_PRODUCE = "BenchStateCanProduce"
+    """Craftable."""
     PRODUCING = "BenchStateProducing"
+    UNKNOWN = "BenchStateUnknown"
 
 
 class ShelveStoreState(enum.Enum):
-    """Shelve management state."""
+    """Selling state."""
 
     CAN_SELL = "ShelveStateCanSell"
+    """Can Be Stocked."""
     SELLING = "ShelveStateSelling"
     SOLD_OUT = "ShelveStateSoldOut"
+    """Out of Stock."""
+    UNKNOWN = "ShelveStateUnknown"
 
 
 class ExpeditionState(enum.Enum):
-    """Expedition state."""
+    """Bangboo expedition state."""
 
     CAN_SEND = "ExpeditionStateInCanSend"
+    """Dispatchable."""
     IN_PROGRESS = "ExpeditionStateInProgress"
+    """Adventuring."""
     ENDED = "ExpeditionStateEnd"
+    """Squad Return."""
+    UNKNOWN = "ExpeditionStateUnknown"
 
 
 class ZZZMemberCardState(enum.Enum):
@@ -89,12 +101,12 @@ class ZZZEngagement(APIModel):
 class ZZZTempleRunning(APIModel):
     """ZZZ Suibian Temple Management model."""
 
-    bench_state: BenchState
+    bench_state: typing.Union[BenchState, str]
     currency_next_refresh_ts: datetime.timedelta
     current_currency: int
-    expedition_state: ExpeditionState
+    expedition_state: typing.Union[ExpeditionState, str]
     level: int
-    shelve_state: ShelveStoreState
+    shelve_state: typing.Union[ShelveStoreState, str]
     weekly_currency_max: int
 
     @property
@@ -107,10 +119,20 @@ class ZZZTempleRunning(APIModel):
     def __parse_currency_refresh(cls, v: str) -> datetime.timedelta:
         return datetime.timedelta(seconds=int(v))
 
-    @pydantic.field_validator("current_currency", "weekly_currency_max", mode="before")
+    @pydantic.field_validator("bench_state", mode="before")
     @classmethod
-    def __parse_int_fields(cls, v: str) -> int:
-        return int(v)
+    def __parse_bench_state(cls, v: str) -> typing.Union[BenchState, str]:
+        return prevent_enum_error(v, BenchState)
+
+    @pydantic.field_validator("expedition_state", mode="before")
+    @classmethod
+    def __parse_expedition_state(cls, v: str) -> typing.Union[ExpeditionState, str]:
+        return prevent_enum_error(v, ExpeditionState)
+
+    @pydantic.field_validator("shelve_state", mode="before")
+    @classmethod
+    def __parse_shelve_store_state(cls, v: str) -> typing.Union[ShelveStoreState, str]:
+        return prevent_enum_error(v, ShelveStoreState)
 
 
 class ZZZMemberCard(APIModel):

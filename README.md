@@ -16,11 +16,9 @@ Downloading the package from <https://github.com/ashleney/genshin.py> will still
 
 ## Useful Links
 
-Documentation: <https://seriaati.github.io/genshin.py>
-
-API Reference: <https://seriaati.github.io/genshin.py/pdoc/genshin>
-
-Source Code: <https://github.com/seriaati/genshin.py>
+- [Documentation](https://gh.seria.moe/genshin.py)
+- [Source Code](https://github.com/seriaati/genshin.py)
+- [Discord Server](https://discord.gg/sMkSKRPuCR)
 
 ## Introduction
 
@@ -57,7 +55,7 @@ You can also install the latest development version from GitHub:
 pip install git+https://github.com/seriaati/genshin.py
 ```
 
-A new release is made every 2 weeks.
+A new release is made every month.
 
 ## Example
 
@@ -72,7 +70,7 @@ async def main():
     client = genshin.Client(cookies, uid=710785423)
 
     user = await client.get_genshin_user()
-    print(f"User has a total of {len(user.stats.characters)} characters")
+    print(f"User has a total of {user.stats.characters} characters")
 
 asyncio.run(main())
 ```

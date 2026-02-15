@@ -1,3 +1,5 @@
+import os
+
 import pytest
 
 import genshin
@@ -71,3 +73,25 @@ async def test_get_accompany_characters(client: genshin.Client):
     characters = await client.get_accompany_characters()
 
     assert characters
+
+
+async def test_get_web_events(client: genshin.Client):
+    events = await client.get_web_events()
+
+    assert events
+
+
+@pytest.mark.skipif(not os.getenv("TEST_COMMUNITY"), reason="Community tests not enabled")
+async def test_join_topic(client: genshin.Client, hoyolab_topic_id: int):
+    await client.join_topic(hoyolab_topic_id)
+
+
+@pytest.mark.skipif(not os.getenv("TEST_COMMUNITY"), reason="Community tests not enabled")
+async def test_leave_topic(client: genshin.Client, hoyolab_topic_id: int):
+    await client.leave_topic(hoyolab_topic_id)
+
+
+@pytest.mark.skipif(not os.getenv("TEST_COMMUNITY"), reason="Community tests not enabled")
+async def test_reply_topic(client: genshin.Client, hoyolab_post_id: int):
+    reply_id = await client.reply_to_post("test", post_id=hoyolab_post_id)
+    await client.delete_reply(reply_id=reply_id, post_id=hoyolab_post_id)

@@ -372,7 +372,10 @@ def check_for_geetest(data: dict[str, typing.Any]) -> None:
     if not data.get("data"):  # if is an error
         return
 
-    gt_result = data["data"].get("gt_result", data["data"])
+    gt_result: typing.Any = data["data"].get("gt_result", data["data"])
+
+    if not gt_result:
+        return
 
     if (
         gt_result.get("risk_code") != 0
@@ -380,4 +383,4 @@ def check_for_geetest(data: dict[str, typing.Any]) -> None:
         and gt_result.get("challenge")
         and gt_result.get("success") != 0
     ):
-        raise DailyGeetestTriggered(data, gt=gt_result.get("gt"), challenge=gt_result.get("challenge"))
+        raise DailyGeetestTriggered(data, gt=gt_result.get("gt", ""), challenge=gt_result.get("challenge", ""))

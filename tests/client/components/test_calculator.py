@@ -18,9 +18,16 @@ async def test_calculator_weapons(client: genshin.Client):
     assert len(weapons) >= 126
 
     weapon = min(weapons, key=lambda weapon: weapon.id)
-    assert weapon.name == "Dull Blade"
-    assert weapon.max_level == 70
+    assert weapon.name == "Favonius Sword"
+    assert weapon.max_level == 90
     assert weapon.level == 0
+
+
+async def test_calculator_weapons_rarity(client: genshin.Client):
+    weapons = await client.get_calculator_weapons(rarities=[5, 4])
+
+    assert all(weapon.rarity in [4, 5] for weapon in weapons)
+    assert len(weapons) >= 50
 
 
 async def test_calculator_artifacts(client: genshin.Client):
@@ -38,29 +45,7 @@ async def test_calculator_furnishings(client: genshin.Client):
     assert len(furnishings) >= 100
 
     furnishing = min(furnishings, key=lambda furnishing: furnishing.id)
-    assert furnishing.name == "Timber Wall With Jade Eaves"
-
-
-# noqa: PT018
-async def test_character_talents(client: genshin.Client):
-    talents = await client.get_character_talents(10000002)
-    assert len(talents) == 7
-
-    talents = sorted(talents, key=lambda t: t.group_id)
-
-    # special character - has dash
-    # fmt: off
-    assert talents[0].type == "passive" and talents[0].name == "Amatsumi Kunitsumi Sanctification"
-    assert talents[1].type == "passive" and talents[1].name == "Kanten Senmyou Blessing"
-    assert talents[2].type == "passive" and talents[2].name == "Fruits of Shinsa"
-    assert talents[3].type == "attack"  and talents[3].name == "Normal Attack: Kamisato Art - Kabuki"
-    assert talents[4].type == "skill"   and talents[4].name == "Kamisato Art: Hyouka"
-    assert talents[5].type == "dash"    and talents[5].name == "Kamisato Art: Senho"
-    assert talents[6].type == "burst"   and talents[6].name == "Kamisato Art: Soumetsu"
-    # fmt: on
-
-    assert talents[0].max_level == 1
-    assert talents[6].max_level == 10
+    assert furnishing.name == "Court Lantern: Red Moon of Yore"
 
 
 # noqa: PT018
@@ -90,10 +75,31 @@ async def test_calculate(client: genshin.Client):
 
     assert len(cost.character) == 11
     assert len(cost.weapon) == 12
-    assert len(cost.artifacts) == 5 and all(len(i.list) == 2 for i in cost.artifacts)
-    assert len(cost.talents) == 9
-    assert len(cost.total) == 25
-    assert cost.total[0].name == "Hero's Wit"
+    assert len(cost.artifacts) == 5 and all(len(i.materials) == 2 for i in cost.artifacts)
+    assert len(cost.talents) == 3
+
+
+async def test_batch_calculate(client: genshin.Client):
+    builder1 = (
+        client.calculator()
+        .set_character(10000052, current=1, target=90)
+        .set_weapon(11509, current=1, target=90)
+        .set_artifact_set(9651, current=0, target=20)
+        .with_current_talents(current=1, target=10)
+    )
+    builder2 = (
+        client.calculator()
+        .set_character(10000020, current=1, target=90)
+        .set_weapon(11401, current=1, target=90)
+        .set_artifact_set(7551, current=0, target=20)
+        .with_current_talents(current=1, target=10)
+    )
+
+    batch = client.batch_calculator().add_character(builder1).add_character(builder2)
+    result = await batch.calculate()
+
+    assert len(result.characters) == 2
+    assert all(isinstance(i, genshin.models.CalculatorResult) for i in result.characters)
 
 
 async def test_furnishing_calculate(client: genshin.Client):
@@ -103,12 +109,12 @@ async def test_furnishing_calculate(client: genshin.Client):
     assert cost.total[1].name == "White Iron Chunk" and cost.total[1].amount == 6
 
 
-async def test_calculator_characters_synced(lclient: genshin.Client):
-    characters = await lclient.get_calculator_characters(sync=True)
+async def test_calculator_characters_synced(client: genshin.Client):
+    characters = await client.get_calculator_characters(sync=True)
     assert characters[0].level != 0
 
 
-async def test_character_details(lclient: genshin.Client):
+async def test_character_details(client: genshin.Client):
     # Amber
-    details = await lclient.get_character_details(10000021)
+    details = await client.get_character_details(10000021)
     assert details.weapon.level >= 1

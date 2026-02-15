@@ -3,7 +3,7 @@ import typing
 
 import pydantic
 
-from genshin.models.model import Aliased, APIModel, Unique
+from genshin.models.model import Aliased, APIModel, Unique, prevent_enum_error
 
 __all__ = (
     "AgentSkill",
@@ -12,6 +12,10 @@ __all__ = (
     "WEngine",
     "ZZZAgentProperty",
     "ZZZAgentRank",
+    "ZZZAwakenedPotential",
+    "ZZZAwakenedPotentialInfo",
+    "ZZZAwakenedPotentialSkill",
+    "ZZZAwakenedPotentialSkillDetail",
     "ZZZBaseAgent",
     "ZZZDisc",
     "ZZZElementType",
@@ -55,26 +59,8 @@ class ZZZBaseAgent(APIModel, Unique):
     full_name: str = Aliased("full_name_mi18n")
     specialty: ZZZSpecialty = Aliased("avatar_profession")
     faction_icon: str = Aliased("group_icon_path")
-    flat_icon: str = Aliased("hollow_icon_path")
-
-    @property
-    def base_icon_url(self) -> str:
-        return "https://act-webstatic.hoyoverse.com/game_record/zzzv2"
-
-    @property
-    def square_icon(self) -> str:
-        """Example: https://act-webstatic.hoyoverse.com/game_record/zzz/role_square_avatar/role_square_avatar_1131.png"""
-        return f"{self.base_icon_url}/role_square_avatar/role_square_avatar_{self.id}.png"
-
-    @property
-    def rectangle_icon(self) -> str:
-        """Example: https://act-webstatic.hoyoverse.com/game_record/zzz/role_rectangle_avatar/role_rectangle_avatar_1131.png"""
-        return f"{self.base_icon_url}/role_rectangle_avatar/role_rectangle_avatar_{self.id}.png"
-
-    @property
-    def banner_icon(self) -> str:
-        """Example: https://act-webstatic.hoyoverse.com/game_record/zzz/role_vertical_painting/role_vertical_painting_1131.png"""
-        return f"{self.base_icon_url}/role_vertical_painting/role_vertical_painting_{self.id}.png"
+    rectangle_icon: str = Aliased("hollow_icon_path")
+    square_icon: str = Aliased("role_square_url")
 
 
 class ZZZPartialAgent(ZZZBaseAgent):
@@ -83,6 +69,10 @@ class ZZZPartialAgent(ZZZBaseAgent):
     level: int
     rank: int
     """Also known as Mindscape Cinema in-game."""
+
+    @property
+    def banner_icon(self) -> str:
+        return f"https://act-webstatic.hoyoverse.com/game_record/zzzv2/role_vertical_painting/role_vertical_painting_{self.id}.png"
 
 
 class ZZZPropertyType(enum.IntEnum):
@@ -146,11 +136,7 @@ class ZZZProperty(APIModel):
 
     @pydantic.field_validator("type", mode="before")
     def __cast_id(cls, v: int) -> typing.Union[int, ZZZPropertyType]:
-        # Prevent enum crash
-        try:
-            return ZZZPropertyType(v)
-        except ValueError:
-            return v
+        return prevent_enum_error(v, ZZZPropertyType)
 
 
 class ZZZAgentProperty(ZZZProperty):
@@ -237,6 +223,38 @@ class ZZZAgentRank(APIModel):
     unlocked: bool = Aliased("is_unlocked")
 
 
+class ZZZAwakenedPotentialSkillDetail(APIModel):
+    """ZZZ awakened potential skill detail model."""
+
+    name: str = Aliased("title")
+    description: str = Aliased("text")
+
+
+class ZZZAwakenedPotentialSkill(APIModel):
+    """ZZZ awakened potential skill model."""
+
+    type: ZZZSkillType = Aliased("skill_type")
+    title: str = Aliased("awaken_simple_info")
+    skill_details: typing.Sequence[ZZZAwakenedPotentialSkillDetail] = Aliased("skill_items")
+
+
+class ZZZAwakenedPotential(APIModel):
+    """ZZZ awakened potential model."""
+
+    level: int = Aliased("awaken_level")
+    name: str = Aliased("level_show_name")
+    buffed_skills: typing.Sequence[ZZZAwakenedPotentialSkill] = Aliased("awaken_skill_items")
+
+
+class ZZZAwakenedPotentialInfo(APIModel):
+    """ZZZ agent awakened potential info model."""
+
+    has_potential: bool = Aliased("has_awaken_system")
+    current: int = Aliased("awaken_level")
+    max: int = Aliased("awaken_max_level")
+    items: typing.Sequence[ZZZAwakenedPotential] = Aliased("skill_awaken_items")
+
+
 class ZZZFullAgent(ZZZBaseAgent):
     """Character with equipment."""
 
@@ -250,3 +268,19 @@ class ZZZFullAgent(ZZZBaseAgent):
     skills: typing.Sequence[AgentSkill]
     ranks: typing.Sequence[ZZZAgentRank]
     """Also known as Mindscape Cinemas in-game."""
+    potential: ZZZAwakenedPotentialInfo = Aliased("skill_awaken")
+
+    banner_icon: str = Aliased("role_vertical_painting_url")
+
+    @staticmethod
+    def _extract_skin_id(url: str) -> typing.Optional[int]:
+        filename = url.split("/")[-1].split(".")[0]
+        parts = filename.split("_")
+
+        if len(parts) >= 5:
+            return int(parts[-1])
+        return None
+
+    @property
+    def outfit_id(self) -> typing.Optional[int]:
+        return self._extract_skin_id(self.banner_icon)

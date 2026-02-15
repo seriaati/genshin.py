@@ -38,6 +38,7 @@ class TheaterDifficulty(enum.IntEnum):
     NORMAL = 2
     HARD = 3
     VISIONARY = 4
+    ARCANA_CHALLENGE = 5
 
 
 class ActCharacter(character.BaseCharacter):
@@ -68,6 +69,8 @@ class Act(APIModel):
     round_id: int
     finish_time: int  # As timestamp
     finish_datetime: TZDateTime = Aliased("finish_date_time")
+    is_arcana: bool = Aliased("is_tarot", default=False)
+    arcana_number: typing.Optional[int] = Aliased("tarot_serial_no", default=None)
 
     @pydantic.field_validator("finish_datetime", mode="before")
     def __parse_datetime(cls, value: typing.Mapping[str, typing.Any]) -> datetime.datetime:
@@ -131,6 +134,14 @@ class TheaterBattleStats(APIModel):
     max_take_damage_character: typing.Optional[BattleStatCharacter] = Aliased("max_take_damage_avatar", default=None)
     fastest_character_list: typing.Sequence[BattleStatCharacter] = Aliased("shortest_avatar_list")
     total_cast_seconds: int = Aliased("total_use_time")
+
+    @pydantic.field_validator(
+        "max_defeat_character", "max_damage_character", "max_take_damage_character", mode="before"
+    )
+    def __none_if_empty(cls, value: dict[str, typing.Any]) -> typing.Any:
+        if not value or value.get("avatar_id", 0) == 0:
+            return None
+        return value
 
 
 class ImgTheaterData(APIModel):

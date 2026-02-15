@@ -5,6 +5,7 @@ Covers HoYoLAB and Miyoushe web auth endpoints.
 
 import json
 import typing
+import uuid
 
 from genshin import constants, errors, types
 from genshin.client import routes
@@ -20,12 +21,18 @@ __all__ = ["WebAuthClient"]
 class WebAuthClient(base.BaseClient):
     """Web sub client for AuthClient."""
 
+    @staticmethod
+    def generate_web_device_id() -> str:
+        """Generate a random device ID for web login."""
+        return str(uuid.uuid4())
+
     @typing.overload
     async def _os_web_login(  # noqa: D102 missing docstring in overload?
         self,
         account: str,
         password: str,
         *,
+        device_id: str,
         encrypted: bool = ...,
         token_type: typing.Optional[int] = ...,
         mmt_result: SessionMMTResult,
@@ -37,6 +44,7 @@ class WebAuthClient(base.BaseClient):
         account: str,
         password: str,
         *,
+        device_id: str,
         encrypted: bool = ...,
         token_type: typing.Optional[int] = ...,
         mmt_result: None = ...,
@@ -48,6 +56,7 @@ class WebAuthClient(base.BaseClient):
         account: str,
         password: str,
         *,
+        device_id: str,
         encrypted: bool = False,
         token_type: typing.Optional[int] = 6,
         mmt_result: typing.Optional[SessionMMTResult] = None,
@@ -57,6 +66,9 @@ class WebAuthClient(base.BaseClient):
         Returns either data from aigis header or cookies.
         """
         headers = {**auth_utility.WEB_LOGIN_HEADERS}
+        # If not provided, [-3104] is returned, see #272
+        headers["x-rpc-device_id"] = device_id
+
         if mmt_result:
             headers["x-rpc-aigis"] = mmt_result.to_aigis_header()
 
