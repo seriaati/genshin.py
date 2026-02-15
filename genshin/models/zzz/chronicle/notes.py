@@ -98,6 +98,19 @@ class ZZZEngagement(APIModel):
     max: int
 
 
+class ZZZAutoWork(APIModel):
+    """Temple auto work status."""
+
+    is_auto_work_running: bool
+    auto_work_ended: bool
+    left_ts: datetime.timedelta
+
+    @pydantic.field_validator("left_ts", mode="before")
+    @classmethod
+    def __parse_left_ts(cls, v: typing.Any) -> datetime.timedelta:
+        return datetime.timedelta(seconds=int(v))
+
+
 class ZZZTempleRunning(APIModel):
     """ZZZ Suibian Temple Management model."""
 
@@ -108,6 +121,7 @@ class ZZZTempleRunning(APIModel):
     level: int
     shelve_state: typing.Union[ShelveStoreState, str]
     weekly_currency_max: int
+    auto_work: typing.Optional[ZZZAutoWork] = None
 
     @property
     def reset_datetime(self) -> datetime.datetime:
@@ -159,6 +173,7 @@ class BountyCommission(APIModel):
     cur_completed: int = Aliased("num")
     total: int
     refresh_time: datetime.timedelta
+    unlock: typing.Optional[bool] = None
 
     @property
     def completed(self) -> bool:
