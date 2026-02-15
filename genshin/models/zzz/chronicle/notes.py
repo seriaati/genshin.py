@@ -105,11 +105,6 @@ class ZZZAutoWork(APIModel):
     auto_work_ended: bool
     left_ts: datetime.timedelta
 
-    @pydantic.field_validator("left_ts", mode="before")
-    @classmethod
-    def __parse_left_ts(cls, v: typing.Any) -> datetime.timedelta:
-        return datetime.timedelta(seconds=int(v))
-
 
 class ZZZTempleRunning(APIModel):
     """ZZZ Suibian Temple Management model."""
