@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>genshin.models.zzz.chronicle.challenge.threshold API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>genshin.models.zzz.chronicle.challenge.threshold</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulation"><code class="flex name class">
+<span>class <span class="ident">ThresholdSimulation</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ThresholdSimulation(APIModel):
+    &#34;&#34;&#34;ZZZ Threshold Simulation.&#34;&#34;&#34;
+
+    info: ThresholdSimulationInfo = Aliased(&#34;void_front_battle_abstract_info_brief&#34;)
+    boss_challenge: ThresholdSimulationBossChallenge = Aliased(&#34;boss_challenge_record&#34;)
+    challenges: typing.Sequence[ThresholdSimulationChallenge] = Aliased(&#34;main_challenge_record_list&#34;)
+    player: ThresholdSimulationPlayer = Aliased(&#34;role_basic_info&#34;)</code></pre>
+</details>
+<div class="desc"><p>ZZZ Threshold Simulation.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../../../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulation.boss_challenge"><code class="name">var <span class="ident">boss_challenge</span> : <a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBossChallenge" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBossChallenge">ThresholdSimulationBossChallenge</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulation.challenges"><code class="name">var <span class="ident">challenges</span> : Sequence[<a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge">ThresholdSimulationChallenge</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulation.info"><code class="name">var <span class="ident">info</span> : <a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo">ThresholdSimulationInfo</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulation.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulation.player"><code class="name">var <span class="ident">player</span> : <a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationPlayer" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationPlayer">ThresholdSimulationPlayer</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo"><code class="flex name class">
+<span>class <span class="ident">ThresholdSimulationBangboo</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ThresholdSimulationBangboo(APIModel):
+    &#34;&#34;&#34;ZZZ Threshold Simulation bangboo model.&#34;&#34;&#34;
+
+    id: int
+    rarity: typing.Literal[&#34;S&#34;, &#34;A&#34;]
+    level: int
+    icon: str = Aliased(&#34;bangboo_rectangle_url&#34;)</code></pre>
+</details>
+<div class="desc"><p>ZZZ Threshold Simulation bangboo model.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../../../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo.icon"><code class="name">var <span class="ident">icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo.level"><code class="name">var <span class="ident">level</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo.rarity"><code class="name">var <span class="ident">rarity</span> : Literal['S', 'A']</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss"><code class="flex name class">
+<span>class <span class="ident">ThresholdSimulationBoss</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ThresholdSimulationBoss(APIModel):
+    &#34;&#34;&#34;ZZZ Threshold Simulation boss model.&#34;&#34;&#34;
+
+    icon: str
+    name: str
+    badge_icon: str = Aliased(&#34;race_icon&#34;)
+    background: str = Aliased(&#34;bg_icon&#34;)</code></pre>
+</details>
+<div class="desc"><p>ZZZ Threshold Simulation boss model.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../../../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss.background"><code class="name">var <span class="ident">background</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss.badge_icon"><code class="name">var <span class="ident">badge_icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss.icon"><code class="name">var <span class="ident">icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBossChallenge"><code class="flex name class">
+<span>class <span class="ident">ThresholdSimulationBossChallenge</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ThresholdSimulationBossChallenge(APIModel):
+    &#34;&#34;&#34;ZZZ Threshold Simulation boss challenge model.&#34;&#34;&#34;
+
+    boss: ThresholdSimulationBoss = Aliased(&#34;boss_info&#34;)
+    challenge: ThresholdSimulationMainChallenge = Aliased(&#34;main_challenge_record&#34;)</code></pre>
+</details>
+<div class="desc"><p>ZZZ Threshold Simulation boss challenge model.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../../../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBossChallenge.boss"><code class="name">var <span class="ident">boss</span> : <a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss">ThresholdSimulationBoss</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBossChallenge.challenge"><code class="name">var <span class="ident">challenge</span> : <a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge">ThresholdSimulationMainChallenge</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBossChallenge.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBuff"><code class="flex name class">
+<span>class <span class="ident">ThresholdSimulationBuff</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ThresholdSimulationBuff(APIModel):
+    &#34;&#34;&#34;ZZZ Threshold Simulation buff model.&#34;&#34;&#34;
+
+    name: str
+    description: str = Aliased(&#34;desc&#34;)
+    icon: str</code></pre>
+</details>
+<div class="desc"><p>ZZZ Threshold Simulation buff model.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../../../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBuff.description"><code class="name">var <span class="ident">description</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBuff.icon"><code class="name">var <span class="ident">icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBuff.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBuff.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge"><code class="flex name class">
+<span>class <span class="ident">ThresholdSimulationChallenge</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ThresholdSimulationChallenge(APIModel):
+    &#34;&#34;&#34;ZZZ Threshold Simulation challenge model.&#34;&#34;&#34;
+
+    id: int = Aliased(&#34;battle_id&#34;)
+    name: str
+    rating: typing.Literal[&#34;S&#34;, &#34;A&#34;, &#34;B&#34;] = Aliased(&#34;star&#34;)
+
+    characters: typing.Sequence[ThresholdSimulationCharacter] = Aliased(&#34;avatar_list&#34;)
+    bangboo: typing.Optional[ThresholdSimulationBangboo] = Aliased(&#34;buddy&#34;, default=None)
+    buff: ThresholdSimulationBuff = Aliased(&#34;buffer&#34;)</code></pre>
+</details>
+<div class="desc"><p>ZZZ Threshold Simulation challenge model.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../../../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge">ThresholdSimulationMainChallenge</a></li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.bangboo"><code class="name">var <span class="ident">bangboo</span> : <a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo">ThresholdSimulationBangboo</a> | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.buff"><code class="name">var <span class="ident">buff</span> : <a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBuff" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBuff">ThresholdSimulationBuff</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.characters"><code class="name">var <span class="ident">characters</span> : Sequence[<a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter">ThresholdSimulationCharacter</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.rating"><code class="name">var <span class="ident">rating</span> : Literal['B', 'A', 'S']</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter"><code class="flex name class">
+<span>class <span class="ident">ThresholdSimulationCharacter</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ThresholdSimulationCharacter(APIModel):
+    &#34;&#34;&#34;ZZZ Threshold Simulation character model.&#34;&#34;&#34;
+
+    id: int
+    level: int
+    element: ZZZElementType = Aliased(&#34;element_type&#34;)
+    rarity: typing.Literal[&#34;S&#34;, &#34;A&#34;]
+    mindscape: int = Aliased(&#34;rank&#34;)
+    icon: str = Aliased(&#34;role_square_url&#34;)</code></pre>
+</details>
+<div class="desc"><p>ZZZ Threshold Simulation character model.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../../../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.element"><code class="name">var <span class="ident">element</span> : <a title="genshin.models.zzz.character.ZZZElementType" href="../../character.html#genshin.models.zzz.character.ZZZElementType">ZZZElementType</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.icon"><code class="name">var <span class="ident">icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.level"><code class="name">var <span class="ident">level</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.mindscape"><code class="name">var <span class="ident">mindscape</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.rarity"><code class="name">var <span class="ident">rarity</span> : Literal['S', 'A']</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo"><code class="flex name class">
+<span>class <span class="ident">ThresholdSimulationInfo</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ThresholdSimulationInfo(APIModel):
+    &#34;&#34;&#34;ZZZ Threshold Simulation brief info.&#34;&#34;&#34;
+
+    id: int = Aliased(&#34;void_front_id&#34;)
+    time_remaining_over_42_days: bool = Aliased(&#34;end_ts_over_42_days&#34;)
+    time_remaining_days: int = Aliased(&#34;end_ts&#34;)
+    has_data: bool = Aliased(&#34;has_ending_record&#34;)
+    ending_name: str = Aliased(&#34;ending_record_name&#34;)
+    ending_background: str = Aliased(&#34;ending_record_bg_pic&#34;)
+    total_score: int
+    rank_percent: str
+
+    @pydantic.field_validator(&#34;rank_percent&#34;, mode=&#34;before&#34;)
+    def __parse_rank_percent(cls, value: int) -&gt; str:
+        return f&#34;{value / 100}%&#34;</code></pre>
+</details>
+<div class="desc"><p>ZZZ Threshold Simulation brief info.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../../../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.ending_background"><code class="name">var <span class="ident">ending_background</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.ending_name"><code class="name">var <span class="ident">ending_name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.has_data"><code class="name">var <span class="ident">has_data</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.rank_percent"><code class="name">var <span class="ident">rank_percent</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.time_remaining_days"><code class="name">var <span class="ident">time_remaining_days</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.time_remaining_over_42_days"><code class="name">var <span class="ident">time_remaining_over_42_days</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.total_score"><code class="name">var <span class="ident">total_score</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge"><code class="flex name class">
+<span>class <span class="ident">ThresholdSimulationMainChallenge</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ThresholdSimulationMainChallenge(ThresholdSimulationChallenge):
+    &#34;&#34;&#34;ZZZ Threshold Simulation main challenge model.&#34;&#34;&#34;
+
+    node_id: int
+    score: int
+    max_score: int
+    score_multiplier: str = Aliased(&#34;score_ratio&#34;)
+    time: PartialTime = Aliased(&#34;challenge_time&#34;)
+
+    sub_challenges: typing.Sequence[&#34;ThresholdSimulationChallenge&#34;] = Aliased(&#34;sub_challenge_record&#34;)</code></pre>
+</details>
+<div class="desc"><p>ZZZ Threshold Simulation main challenge model.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge">ThresholdSimulationChallenge</a></li>
+<li><a title="genshin.models.model.APIModel" href="../../../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.max_score"><code class="name">var <span class="ident">max_score</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.node_id"><code class="name">var <span class="ident">node_id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.score"><code class="name">var <span class="ident">score</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.score_multiplier"><code class="name">var <span class="ident">score_multiplier</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.sub_challenges"><code class="name">var <span class="ident">sub_challenges</span> : Sequence[<a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge">ThresholdSimulationChallenge</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.time"><code class="name">var <span class="ident">time</span> : <a title="genshin.models.starrail.chronicle.base.PartialTime" href="../../../starrail/chronicle/base.html#genshin.models.starrail.chronicle.base.PartialTime">PartialTime</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationPlayer"><code class="flex name class">
+<span>class <span class="ident">ThresholdSimulationPlayer</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ThresholdSimulationPlayer(APIModel):
+    &#34;&#34;&#34;ZZZ Threshold Simulation player info.&#34;&#34;&#34;
+
+    nickname: str
+    server: str
+    icon: str</code></pre>
+</details>
+<div class="desc"><p>ZZZ Threshold Simulation player info.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../../../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationPlayer.icon"><code class="name">var <span class="ident">icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationPlayer.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationPlayer.nickname"><code class="name">var <span class="ident">nickname</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationPlayer.server"><code class="name">var <span class="ident">server</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="genshin.models.zzz.chronicle.challenge" href="index.html">genshin.models.zzz.chronicle.challenge</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulation" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulation">ThresholdSimulation</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulation.boss_challenge" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulation.boss_challenge">boss_challenge</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulation.challenges" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulation.challenges">challenges</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulation.info" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulation.info">info</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulation.model_config" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulation.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulation.player" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulation.player">player</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo">ThresholdSimulationBangboo</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo.icon" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo.icon">icon</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo.id" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo.id">id</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo.level" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo.level">level</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo.model_config" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo.rarity" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBangboo.rarity">rarity</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss">ThresholdSimulationBoss</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss.background" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss.background">background</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss.badge_icon" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss.badge_icon">badge_icon</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss.icon" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss.icon">icon</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss.model_config" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss.name" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBoss.name">name</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBossChallenge" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBossChallenge">ThresholdSimulationBossChallenge</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBossChallenge.boss" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBossChallenge.boss">boss</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBossChallenge.challenge" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBossChallenge.challenge">challenge</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBossChallenge.model_config" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBossChallenge.model_config">model_config</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBuff" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBuff">ThresholdSimulationBuff</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBuff.description" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBuff.description">description</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBuff.icon" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBuff.icon">icon</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBuff.model_config" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBuff.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBuff.name" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationBuff.name">name</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge">ThresholdSimulationChallenge</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.bangboo" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.bangboo">bangboo</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.buff" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.buff">buff</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.characters" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.characters">characters</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.id" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.id">id</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.model_config" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.name" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.name">name</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.rating" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationChallenge.rating">rating</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter">ThresholdSimulationCharacter</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.element" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.element">element</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.icon" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.icon">icon</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.id" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.id">id</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.level" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.level">level</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.mindscape" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.mindscape">mindscape</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.model_config" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.rarity" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationCharacter.rarity">rarity</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo">ThresholdSimulationInfo</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.ending_background" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.ending_background">ending_background</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.ending_name" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.ending_name">ending_name</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.has_data" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.has_data">has_data</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.id" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.id">id</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.model_config" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.rank_percent" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.rank_percent">rank_percent</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.time_remaining_days" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.time_remaining_days">time_remaining_days</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.time_remaining_over_42_days" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.time_remaining_over_42_days">time_remaining_over_42_days</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.total_score" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationInfo.total_score">total_score</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge">ThresholdSimulationMainChallenge</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.max_score" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.max_score">max_score</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.model_config" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.node_id" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.node_id">node_id</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.score" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.score">score</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.score_multiplier" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.score_multiplier">score_multiplier</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.sub_challenges" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.sub_challenges">sub_challenges</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.time" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationMainChallenge.time">time</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationPlayer" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationPlayer">ThresholdSimulationPlayer</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationPlayer.icon" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationPlayer.icon">icon</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationPlayer.model_config" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationPlayer.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationPlayer.nickname" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationPlayer.nickname">nickname</a></code></li>
+<li><code><a title="genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationPlayer.server" href="#genshin.models.zzz.chronicle.challenge.threshold.ThresholdSimulationPlayer.server">server</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>
