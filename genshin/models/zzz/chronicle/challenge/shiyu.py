@@ -177,7 +177,7 @@ class ShiyuV2FifthFloorLayer(APIModel):
     buff: ShiyuDefenseBuff = Aliased("buffer")
     score: int
     max_score: int
-    clear_time: int = Aliased("battle_time")
+    clear_time: typing.Optional[int] = Aliased("battle_time", default=None)
     """Clear time in seconds."""
     boss_icon: str = Aliased("monster_pic")
     bangboo: typing.Optional[ShiyuDefenseBangboo] = Aliased("buddy", default=None)
@@ -194,7 +194,7 @@ class ShiyuV2FourthFloorLayer(APIModel):
     """ZZZ Shiyu Defense V2 fourth floor layer model."""
 
     id: int = Aliased("layer_id")
-    clear_time: int = Aliased("battle_time")
+    clear_time: typing.Optional[int] = Aliased("battle_time", default=None)
     """Clear time in seconds."""
     characters: typing.Sequence[ShiyuDefenseCharacter] = Aliased("avatar_list")
     bangboo: typing.Optional[ShiyuDefenseBangboo] = Aliased("buddy", default=None)
@@ -215,7 +215,7 @@ class ShiyuV2BriefInfo(APIModel):
     score: int
     max_score: int
     rank_percent: str
-    total_clear_time: int = Aliased("battle_time")
+    total_clear_time: typing.Optional[int] = Aliased("battle_time", default=None)
     rating: typing.Optional[typing.Literal["S+", "S", "A", "B"]]
     challenge_time: typing.Optional[DateTime] = None
 
