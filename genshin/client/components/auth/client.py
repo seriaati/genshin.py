@@ -23,7 +23,15 @@ from genshin.models.auth.cookie import (
     QRLoginResult,
     WebLoginResult,
 )
-from genshin.models.auth.geetest import MMT, MMTResult, RiskyCheckMMT, RiskyCheckMMTResult, SessionMMT, SessionMMTResult
+from genshin.models.auth.geetest import (
+    MMT,
+    MMTResult,
+    RiskyCheckMMT,
+    RiskyCheckMMTResult,
+    SessionMMT,
+    SessionMMTResult,
+    SessionMMTv4,
+)
 from genshin.models.auth.qrcode import QRCodeStatus
 from genshin.models.auth.verification import ActionTicket
 from genshin.utility import auth as auth_utility
@@ -189,7 +197,7 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
         *,
         encrypted: bool = False,
         port: int = 5000,
-        geetest_solver: typing.Optional[typing.Callable[[SessionMMT], typing.Awaitable[SessionMMTResult]]] = None,
+        geetest_solver: typing.Optional[types.AppGeetestSolver] = None,
         device_id: typing.Optional[str] = None,
         device_model: typing.Optional[str] = None,
         device_name: typing.Optional[str] = None,
@@ -225,6 +233,22 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
                 mmt_result = await geetest_solver(result)
             else:
                 mmt_result = await server.solve_geetest(result, port=port)
+
+            result = await self._app_login(
+                account,
+                password,
+                device_id=device_id,
+                device_name=device_name,
+                device_model=device_model,
+                encrypted=encrypted,
+                mmt_result=mmt_result,
+            )
+        elif isinstance(result, SessionMMTv4):
+            # v4 captcha triggered
+            if geetest_solver:
+                mmt_result = await geetest_solver(result)
+            else:
+                mmt_result = await server.solve_geetest(result, port=port, for_new_os_app=True)
 
             result = await self._app_login(
                 account,

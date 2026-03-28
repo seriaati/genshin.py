@@ -13,7 +13,7 @@ from genshin import errors
 from genshin.client import routes
 from genshin.client.components import base
 from genshin.models.auth.cookie import AppLoginResult
-from genshin.models.auth.geetest import SessionMMT, SessionMMTResult
+from genshin.models.auth.geetest import SessionMMT, SessionMMTResult, SessionMMTv4, SessionMMTv4Result
 from genshin.models.auth.qrcode import QRCodeCreationResult, QRCodeStatus
 from genshin.models.auth.verification import ActionTicket
 from genshin.utility import auth as auth_utility
@@ -54,6 +54,20 @@ class AppAuthClient(base.BaseClient):
         device_name: typing.Optional[str] = ...,
         device_model: typing.Optional[str] = ...,
         encrypted: bool = ...,
+        mmt_result: SessionMMTv4Result,
+        ticket: None = ...,
+    ) -> typing.Union[AppLoginResult, ActionTicket]: ...
+
+    @typing.overload
+    async def _app_login(  # noqa: D102 missing docstring in overload?
+        self,
+        account: str,
+        password: str,
+        *,
+        device_id: str,
+        device_name: typing.Optional[str] = ...,
+        device_model: typing.Optional[str] = ...,
+        encrypted: bool = ...,
         mmt_result: None = ...,
         ticket: ActionTicket,
     ) -> AppLoginResult: ...
@@ -81,9 +95,9 @@ class AppAuthClient(base.BaseClient):
         device_name: typing.Optional[str] = None,
         device_model: typing.Optional[str] = None,
         encrypted: bool = False,
-        mmt_result: typing.Optional[SessionMMTResult] = None,
+        mmt_result: typing.Optional[typing.Union[SessionMMTResult, SessionMMTv4Result]] = None,
         ticket: typing.Optional[ActionTicket] = None,
-    ) -> typing.Union[AppLoginResult, SessionMMT, ActionTicket]:
+    ) -> typing.Union[AppLoginResult, SessionMMT, SessionMMTv4, ActionTicket]:
         """Login with a password using HoYoLab app endpoint.
 
         Returns
@@ -102,6 +116,7 @@ class AppAuthClient(base.BaseClient):
             # This value needs to be consistent across all requests, else it will trigger email
             # verification repeatedly.
             "x-rpc-device_id": device_id,
+            "x-rpc-aigis_v4": "true",
         }
         if mmt_result:
             headers["x-rpc-aigis"] = mmt_result.to_aigis_header()
@@ -132,6 +147,16 @@ class AppAuthClient(base.BaseClient):
         if data["retcode"] == -3101:
             # Captcha triggered
             aigis = json.loads(r.headers["x-rpc-aigis"])
+
+            if isinstance(aigis["data"], str):
+                aigis["data"] = json.loads(aigis["data"])
+
+            if aigis["data"].get("use_v4"):
+                return SessionMMTv4(
+                    **aigis["data"],
+                    session_id=aigis["session_id"],
+                )
+
             return SessionMMT(**aigis)
 
         if data["retcode"] == -3239:

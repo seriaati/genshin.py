@@ -6,6 +6,7 @@ import typing
 import typing_extensions
 
 if typing.TYPE_CHECKING:
+    from genshin.models.auth import SessionMMT, SessionMMTResult, SessionMMTv4, SessionMMTv4Result
     from genshin.models.model import Unique
 
 __all__ = ["Game", "Region"]
@@ -62,3 +63,21 @@ Lang: typing_extensions.TypeAlias = typing.Literal[
     "vi-vn",
     "tr-tr",
 ]
+
+AppGeetestSession: typing_extensions.TypeAlias = typing.Union[
+    "SessionMMT",
+    "SessionMMTv4",
+]
+"""Geetest session returned by the API."""
+
+AppGeetestResult: typing_extensions.TypeAlias = typing.Union[
+    "SessionMMTResult",
+    "SessionMMTv4Result",
+]
+"""Solved geetest result."""
+
+AppGeetestSolver: typing_extensions.TypeAlias = typing.Callable[
+    [AppGeetestSession],
+    typing.Awaitable[AppGeetestResult],
+]
+"""Asynchronous geetest solver callable."""

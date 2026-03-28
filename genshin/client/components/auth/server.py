@@ -36,6 +36,7 @@ PAGES: typing.Final[dict[typing.Literal["captcha", "enter-code"], str]] = {
       <body></body>
       <script src="./gt/v{gt_version}.js"></script>
       <script>
+        const forNewOsApp = {for_new_os_app};
         const geetestVersion = {gt_version};
         const initGeetest = geetestVersion === 3 ? window.initGeetest : window.initGeetest4;
         fetch("/mmt")
@@ -52,10 +53,12 @@ PAGES: typing.Final[dict[typing.Literal["captcha", "enter-code"], str]] = {
             } : {
               captchaId: mmt.gt,
               riskType: mmt.risk_type,
-              userInfo: mmt.session_id ? JSON.stringify({
+              userInfo: mmt.session_id ? JSON.stringify(forNewOsApp ? {
+                session_id: mmt.session_id
+              } : {
                 mmt_key: mmt.session_id
               }) : undefined,
-              api_server: "{api_server}",
+              apiServers: ["{api_server}"],
               product: "bind",
               language: "{lang}",
             };
@@ -96,7 +99,7 @@ PAGES: typing.Final[dict[typing.Literal["captcha", "enter-code"], str]] = {
             body: JSON.stringify({
               code: document.getElementById("code").value
             }),
-          });
+          }).then(() => window.close());
           document.body.innerHTML = "You may now close this window.";
         };
       </script>
@@ -116,6 +119,7 @@ async def launch_webapp(
     mmt: typing.Union[MMT, MMTv4, SessionMMT, SessionMMTv4, RiskyCheckMMT],
     lang: str = ...,
     api_server: str = ...,
+    for_new_os_app: bool = ...,
     port: int = ...,
 ) -> typing.Union[MMTResult, MMTv4Result, SessionMMTResult, SessionMMTv4Result, RiskyCheckMMTResult]: ...
 @typing.overload
@@ -125,6 +129,7 @@ async def launch_webapp(
     mmt: None = ...,
     lang: None = ...,
     api_server: None = ...,
+    for_new_os_app: None = ...,
     port: int = ...,
 ) -> str: ...
 async def launch_webapp(
@@ -133,6 +138,7 @@ async def launch_webapp(
     mmt: typing.Optional[typing.Union[MMT, MMTv4, SessionMMT, SessionMMTv4, RiskyCheckMMT]] = None,
     lang: typing.Optional[str] = None,
     api_server: typing.Optional[str] = None,
+    for_new_os_app: typing.Optional[bool] = None,
     port: int = 5000,
 ) -> typing.Union[MMTResult, MMTv4Result, SessionMMTResult, SessionMMTv4Result, RiskyCheckMMTResult, str]:
     """Create and run a webapp to solve captcha or enter a verification code."""
@@ -145,6 +151,7 @@ async def launch_webapp(
         body = body.replace("{gt_version}", "4" if isinstance(mmt, MMTv4) else "3")
         body = body.replace("{api_server}", api_server or "api-na.geetest.com")
         body = body.replace("{lang}", lang or "en")
+        body = body.replace("{for_new_os_app}", str(for_new_os_app).lower() if for_new_os_app is not None else "false")
         return web.Response(body=body, content_type="text/html")
 
     @routes.get("/gt/{version}.js")
@@ -210,6 +217,7 @@ async def solve_geetest(
     *,
     lang: types.Lang = ...,
     api_server: str = ...,
+    for_new_os_app: bool = ...,
     port: int = ...,
 ) -> RiskyCheckMMTResult: ...
 @typing.overload
@@ -218,6 +226,7 @@ async def solve_geetest(
     *,
     lang: types.Lang = ...,
     api_server: str = ...,
+    for_new_os_app: bool = ...,
     port: int = ...,
 ) -> SessionMMTResult: ...
 @typing.overload
@@ -226,6 +235,7 @@ async def solve_geetest(
     *,
     lang: types.Lang = ...,
     api_server: str = ...,
+    for_new_os_app: bool = ...,
     port: int = ...,
 ) -> MMTResult: ...
 @typing.overload
@@ -234,6 +244,7 @@ async def solve_geetest(
     *,
     lang: types.Lang = ...,
     api_server: str = ...,
+    for_new_os_app: bool = ...,
     port: int = ...,
 ) -> SessionMMTv4Result: ...
 @typing.overload
@@ -242,6 +253,7 @@ async def solve_geetest(
     *,
     lang: types.Lang = ...,
     api_server: str = ...,
+    for_new_os_app: bool = ...,
     port: int = ...,
 ) -> MMTv4Result: ...
 async def solve_geetest(
@@ -249,6 +261,7 @@ async def solve_geetest(
     *,
     lang: types.Lang = "en-us",
     api_server: str = "api-na.geetest.com",
+    for_new_os_app: bool = False,
     port: int = 5000,
 ) -> typing.Union[MMTResult, MMTv4Result, SessionMMTResult, SessionMMTv4Result, RiskyCheckMMTResult]:
     """Start a web server and manually solve geetest captcha."""
@@ -258,6 +271,7 @@ async def solve_geetest(
         mmt=mmt,
         lang=geetest_lang,
         api_server=api_server,
+        for_new_os_app=for_new_os_app,
         port=port,
     )
 
