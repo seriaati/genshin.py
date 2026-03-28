@@ -194,6 +194,12 @@ class WrongOTP(GenshinException):
     msg = "The provided OTP code is wrong."
 
 
+class GeetestFailed(GenshinException):
+    """Geetest verification failed."""
+
+    msg = "The provided aigis payload is invalid."
+
+
 class GeetestError(GenshinException):
     """Geetest triggered during the battle chronicle API request."""
 
@@ -308,7 +314,7 @@ _errors: dict[int, typing.Union[_TGE, str, tuple[_TGE, typing.Optional[str]]]] =
     -3203: AccountDoesNotExist,
     -3205: WrongOTP,
     -3206: VerificationCodeRateLimited,
-    -3102: WrongOTP,
+    -3102: GeetestFailed,
     # Miyoushe
     -119: OTPRateLimited,
     -3006: "Request too frequent.",  # OTP endpoint
