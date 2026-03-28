@@ -117,6 +117,8 @@ class AppAuthClient(base.BaseClient):
             # verification repeatedly.
             "x-rpc-device_id": device_id,
             "x-rpc-aigis_v4": "true",
+            "x-rpc-app_version": "4.8.0",
+            "x-rpc-sdk_version": "2.2.0",
         }
         if mmt_result:
             headers["x-rpc-aigis"] = mmt_result.to_aigis_header()
@@ -152,6 +154,7 @@ class AppAuthClient(base.BaseClient):
                 aigis["data"] = json.loads(aigis["data"])
 
             if aigis["data"].get("use_v4"):
+                print("v4")
                 return SessionMMTv4(
                     **aigis["data"],
                     session_id=aigis["session_id"],
