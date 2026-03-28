@@ -122,7 +122,6 @@ class SessionMMTResult(MMTResult, BaseSessionMMTResult):
 class MMTv4Result(BaseMMTResult):
     """Geetest verification result (V4)."""
 
-    captcha_id: str
     lot_number: str
     pass_token: str
     gen_time: str
@@ -131,6 +130,15 @@ class MMTv4Result(BaseMMTResult):
 
 class SessionMMTv4Result(MMTv4Result, BaseSessionMMTResult):
     """Session-based geetest verification result (V4)."""
+
+    captcha_id: typing.Optional[str] = None
+
+    def get_data(self) -> dict[str, typing.Any]:
+        """Get the MMTv4 result data, prepending captcha_id when available."""
+        data = super().get_data()
+        if self.captcha_id:
+            return {"captcha_id": self.captcha_id, **data}
+        return data
 
 
 class RiskyCheckMMTResult(MMTResult):

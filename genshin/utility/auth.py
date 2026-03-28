@@ -1,5 +1,7 @@
 """Auth utilities."""
 
+from __future__ import annotations
+
 import base64
 import hmac
 import json
@@ -49,6 +51,9 @@ WEB_LOGIN_HEADERS = {
 APP_LOGIN_HEADERS = {
     "x-rpc-app_id": "c9oqaq3s3gu8",
     "x-rpc-client_type": "2",
+    "x-rpc-aigis_v4": "true",
+    "x-rpc-app_version": "4.8.0",
+    "x-rpc-sdk_version": "2.2.0",
 }
 
 CN_LOGIN_HEADERS = {

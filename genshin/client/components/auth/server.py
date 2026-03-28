@@ -173,6 +173,7 @@ async def launch_webapp(
             elif isinstance(mmt, SessionMMT):
                 result = SessionMMTResult(**result)
             elif isinstance(mmt, SessionMMTv4):
+                print("mmt result", result)
                 result = SessionMMTv4Result(**result)
             elif isinstance(mmt, MMT):
                 result = MMTResult(**result)

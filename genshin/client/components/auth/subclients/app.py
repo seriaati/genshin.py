@@ -3,6 +3,8 @@
 Covers HoYoLAB and Miyoushe app auth endpoints.
 """
 
+from __future__ import annotations
+
 import json
 import random
 import string
@@ -13,7 +15,7 @@ from genshin import errors
 from genshin.client import routes
 from genshin.client.components import base
 from genshin.models.auth.cookie import AppLoginResult
-from genshin.models.auth.geetest import SessionMMT, SessionMMTResult
+from genshin.models.auth.geetest import SessionMMT, SessionMMTResult, SessionMMTv4, SessionMMTv4Result
 from genshin.models.auth.qrcode import QRCodeCreationResult, QRCodeStatus
 from genshin.models.auth.verification import ActionTicket
 from genshin.utility import auth as auth_utility
@@ -40,7 +42,7 @@ class AppAuthClient(base.BaseClient):
         device_name: typing.Optional[str] = ...,
         device_model: typing.Optional[str] = ...,
         encrypted: bool = ...,
-        mmt_result: SessionMMTResult,
+        mmt_result: typing.Union[SessionMMTResult, SessionMMTv4Result],
         ticket: None = ...,
     ) -> typing.Union[AppLoginResult, ActionTicket]: ...
 
@@ -70,7 +72,7 @@ class AppAuthClient(base.BaseClient):
         encrypted: bool = ...,
         mmt_result: None = ...,
         ticket: None = ...,
-    ) -> typing.Union[AppLoginResult, SessionMMT, ActionTicket]: ...
+    ) -> typing.Union[AppLoginResult, SessionMMT, SessionMMTv4, ActionTicket]: ...
 
     async def _app_login(
         self,
@@ -81,16 +83,17 @@ class AppAuthClient(base.BaseClient):
         device_name: typing.Optional[str] = None,
         device_model: typing.Optional[str] = None,
         encrypted: bool = False,
-        mmt_result: typing.Optional[SessionMMTResult] = None,
+        mmt_result: typing.Optional[typing.Union[SessionMMTResult, SessionMMTv4Result]] = None,
         ticket: typing.Optional[ActionTicket] = None,
-    ) -> typing.Union[AppLoginResult, SessionMMT, ActionTicket]:
+    ) -> typing.Union[AppLoginResult, SessionMMT, SessionMMTv4, ActionTicket]:
         """Login with a password using HoYoLab app endpoint.
 
         Returns
         -------
         - Cookies if login is successful.
-        - SessionMMT if captcha is triggered.
-        - ActionTicket if email verification is required.
+        - SessionMMT if GeeTest v3 captcha is triggered.
+        - SessionMMTv4 if GeeTest v4 captcha is triggered.
+        - ActionTicket if new-device email verification is required.
         """
         headers = {
             **auth_utility.APP_LOGIN_HEADERS,
@@ -129,14 +132,25 @@ class AppAuthClient(base.BaseClient):
             ) as r:
                 data = await r.json()
 
+        print("_app_login headers", headers)
+        print("_app_login payload", payload)
+        print("_app_login", data)
+
         if data["retcode"] == -3101:
-            # Captcha triggered
+            # Captcha triggered, detect v3 vs v4 from the aigis data
             aigis = json.loads(r.headers["x-rpc-aigis"])
+            inner_data = aigis.get("data", "{}")
+            print("_app_login aigis", aigis)
+            if isinstance(inner_data, str):
+                inner_data = json.loads(inner_data)
+            if inner_data.get("use_v4"):
+                return SessionMMTv4(**aigis)
             return SessionMMT(**aigis)
 
         if data["retcode"] == -3239:
-            # Email verification required
+            # New device, email verification required
             action_ticket = json.loads(r.headers["x-rpc-verify"])
+            print("_app_login action_ticket", action_ticket)
             return ActionTicket(**action_ticket)
 
         if not data["data"]:
@@ -157,11 +171,11 @@ class AppAuthClient(base.BaseClient):
         self,
         ticket: ActionTicket,
         *,
-        mmt_result: typing.Optional[SessionMMTResult] = None,
-    ) -> typing.Union[None, SessionMMT]:
+        mmt_result: typing.Optional[typing.Union[SessionMMTResult, SessionMMTv4Result]] = None,
+    ) -> typing.Union[None, SessionMMT, SessionMMTv4]:
         """Send verification email.
 
-        Returns None if success, SessionMMT data if geetest triggered.
+        Returns None if success, SessionMMT or SessionMMTv4 data if geetest triggered.
         """
         headers = {**auth_utility.EMAIL_SEND_HEADERS}
         if mmt_result:
@@ -178,9 +192,22 @@ class AppAuthClient(base.BaseClient):
             ) as r:
                 data = await r.json()
 
+        print("_send_verification_email headers", headers)
+        print(
+            "_send_verification_email payload",
+            {"action_type": "verify_for_component", "action_ticket": ticket.verify_str.ticket},
+        )
+        print("_send_verification_email", data)
+
         if data["retcode"] == -3101:
             # Captcha triggered
             aigis = json.loads(r.headers["x-rpc-aigis"])
+            inner_data = aigis.get("data", "{}")
+            print("_send_verification_email aigis", aigis)
+            if isinstance(inner_data, str):
+                inner_data = json.loads(inner_data)
+            if inner_data.get("use_v4"):
+                return SessionMMTv4(**aigis)
             return SessionMMT(**aigis)
 
         if data["retcode"] != 0:
@@ -202,6 +229,18 @@ class AppAuthClient(base.BaseClient):
                 headers=auth_utility.EMAIL_VERIFY_HEADERS,
             ) as r:
                 data = await r.json()
+
+        print("_verify_email headers", auth_utility.EMAIL_VERIFY_HEADERS)
+        print(
+            "_verify_email payload",
+            {
+                "action_type": "verify_for_component",
+                "action_ticket": ticket.verify_str.ticket,
+                "email_captcha": code,
+                "verify_method": 2,
+            },
+        )
+        print("_verify_email", data)
 
         if data["retcode"] != 0:
             errors.raise_for_retcode(data)

@@ -1,5 +1,7 @@
 """Main auth client."""
 
+from __future__ import annotations
+
 import asyncio
 import json
 import logging
@@ -23,7 +25,16 @@ from genshin.models.auth.cookie import (
     QRLoginResult,
     WebLoginResult,
 )
-from genshin.models.auth.geetest import MMT, MMTResult, RiskyCheckMMT, RiskyCheckMMTResult, SessionMMT, SessionMMTResult
+from genshin.models.auth.geetest import (
+    MMT,
+    MMTResult,
+    RiskyCheckMMT,
+    RiskyCheckMMTResult,
+    SessionMMT,
+    SessionMMTResult,
+    SessionMMTv4,
+    SessionMMTv4Result,
+)
 from genshin.models.auth.qrcode import QRCodeStatus
 from genshin.models.auth.verification import ActionTicket
 from genshin.utility import auth as auth_utility
@@ -189,7 +200,12 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
         *,
         encrypted: bool = False,
         port: int = 5000,
-        geetest_solver: typing.Optional[typing.Callable[[SessionMMT], typing.Awaitable[SessionMMTResult]]] = None,
+        geetest_solver: typing.Optional[
+            typing.Callable[
+                [typing.Union[SessionMMT, SessionMMTv4]],
+                typing.Awaitable[typing.Union[SessionMMTResult, SessionMMTv4Result]],
+            ]
+        ] = None,
         device_id: typing.Optional[str] = None,
         device_model: typing.Optional[str] = None,
         device_name: typing.Optional[str] = None,
@@ -200,8 +216,13 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
         following happens:
 
         1. Captcha is triggered and `geetest_solver` is not passed.
-        2. Email verification is triggered (can happen if you
+        2. New-device email verification is triggered (can happen if you
         first login with a new device).
+
+        The `geetest_solver` callback receives either a
+        `SessionMMT` (GeeTest v3) or a
+        `SessionMMTv4` (GeeTest v4) object and must
+        return the corresponding result type.
 
         Raises
         ------
@@ -218,13 +239,17 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
             device_model=device_model,
             encrypted=encrypted,
         )
+        print(type(result), result)
 
-        if isinstance(result, SessionMMT):
-            # Captcha triggered
+        if isinstance(result, (SessionMMT, SessionMMTv4)):
+            # Captcha triggered (v3 or v4)
             if geetest_solver:
                 mmt_result = await geetest_solver(result)
             else:
                 mmt_result = await server.solve_geetest(result, port=port)
+
+            if isinstance(result, SessionMMTv4) and isinstance(mmt_result, SessionMMTv4Result):
+                mmt_result.captcha_id = result.captcha_id
 
             result = await self._app_login(
                 account,
@@ -237,13 +262,18 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
             )
 
         if isinstance(result, ActionTicket):
-            # Email verification required
+            # New-device email verification required
             mmt = await self._send_verification_email(result)
             if mmt:
                 if geetest_solver:
                     mmt_result = await geetest_solver(mmt)
                 else:
                     mmt_result = await server.solve_geetest(mmt, port=port)
+
+                if isinstance(mmt, SessionMMTv4) and isinstance(mmt_result, SessionMMTv4Result):
+                    mmt_result.captcha_id = mmt.captcha_id
+
+                await self._send_verification_email(result, mmt_result=mmt_result)
 
             code = await server.enter_code(port=port)
             await self._verify_email(code, result)
@@ -258,7 +288,7 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
                 ticket=result,
             )
 
-        return result
+        return result  # type: ignore[return-value]
 
     @base.region_specific(types.Region.CHINESE)
     async def login_with_qrcode(self) -> QRLoginResult:
