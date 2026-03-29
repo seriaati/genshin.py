@@ -154,7 +154,6 @@ class AppAuthClient(base.BaseClient):
                 aigis["data"] = json.loads(aigis["data"])
 
             if aigis["data"].get("use_v4"):
-                print("v4")
                 return SessionMMTv4(
                     **aigis["data"],
                     session_id=aigis["session_id"],

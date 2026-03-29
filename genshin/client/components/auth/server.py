@@ -24,7 +24,7 @@ from genshin.models.auth.geetest import (
 )
 from genshin.utility import auth as auth_utility
 
-__all__ = ["PAGES", "enter_code", "launch_webapp", "solve_geetest"]
+__all__ = ["HOYOLAB_GT_SERVER", "PAGES", "enter_code", "launch_webapp", "solve_geetest"]
 
 PAGES: typing.Final[dict[typing.Literal["captcha", "enter-code"], str]] = {
     "captcha": """
@@ -51,7 +51,7 @@ PAGES: typing.Final[dict[typing.Literal["captcha", "enter-code"], str]] = {
               product: "bind",
               lang: "{lang}",
             } : {
-              captchaId: mmt.gt,
+              captchaId: mmt.captcha_id ?? mmt.gt,
               riskType: mmt.risk_type,
               userInfo: mmt.session_id ? JSON.stringify(forNewOsApp ? {
                 session_id: mmt.session_id
@@ -62,6 +62,7 @@ PAGES: typing.Final[dict[typing.Literal["captcha", "enter-code"], str]] = {
               product: "bind",
               language: "{lang}",
             };
+            console.log(initParams);
             initGeetest(
               initParams,
               (captcha) => {
@@ -76,7 +77,7 @@ PAGES: typing.Final[dict[typing.Literal["captcha", "enter-code"], str]] = {
                       ...(mmt.check_id && {check_id: mmt.check_id}),
                       ...captcha.getValidate()
                     }),
-                  }).then(() => window.close());
+                  });
                   document.body.innerHTML = "You may now close this window.";
                 });
               }
@@ -110,6 +111,7 @@ PAGES: typing.Final[dict[typing.Literal["captcha", "enter-code"], str]] = {
 
 GT_V3_URL = "https://static.geetest.com/static/js/gt.0.5.0.js"
 GT_V4_URL = "https://static.geetest.com/v4/gt4.js"
+HOYOLAB_GT_SERVER = "gcaptcha4.captchami.com"
 
 
 @typing.overload

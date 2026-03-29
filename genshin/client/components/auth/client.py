@@ -248,7 +248,12 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
             if geetest_solver:
                 mmt_result = await geetest_solver(result)
             else:
-                mmt_result = await server.solve_geetest(result, port=port, for_new_os_app=True)
+                mmt_result = await server.solve_geetest(
+                    result,
+                    port=port,
+                    for_new_os_app=True,
+                    api_server=server.HOYOLAB_GT_SERVER,
+                )
 
             result = await self._app_login(
                 account,
