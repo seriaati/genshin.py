@@ -16,6 +16,7 @@ from genshin.models.auth.cookie import AppLoginResult
 from genshin.models.auth.geetest import SessionMMT, SessionMMTResult, SessionMMTv4, SessionMMTv4Result
 from genshin.models.auth.qrcode import QRCodeCreationResult, QRCodeStatus
 from genshin.models.auth.verification import ActionTicket
+from genshin.types import AppGeetestResult, AppGeetestSession
 from genshin.utility import auth as auth_utility
 from genshin.utility import ds as ds_utility
 
@@ -95,15 +96,15 @@ class AppAuthClient(base.BaseClient):
         device_name: typing.Optional[str] = None,
         device_model: typing.Optional[str] = None,
         encrypted: bool = False,
-        mmt_result: typing.Optional[typing.Union[SessionMMTResult, SessionMMTv4Result]] = None,
+        mmt_result: typing.Optional[AppGeetestResult] = None,
         ticket: typing.Optional[ActionTicket] = None,
-    ) -> typing.Union[AppLoginResult, SessionMMT, SessionMMTv4, ActionTicket]:
+    ) -> typing.Union[AppLoginResult, AppGeetestSession, ActionTicket]:
         """Login with a password using HoYoLab app endpoint.
 
         Returns
         -------
-        - Cookies if login is successful.
-        - SessionMMT if captcha is triggered.
+        - AppLoginResult if login is successful.
+        - AppGeetestSession if captcha is triggered.
         - ActionTicket if email verification is required.
         """
         headers = {
