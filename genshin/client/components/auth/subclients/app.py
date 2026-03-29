@@ -116,9 +116,6 @@ class AppAuthClient(base.BaseClient):
             # This value needs to be consistent across all requests, else it will trigger email
             # verification repeatedly.
             "x-rpc-device_id": device_id,
-            "x-rpc-aigis_v4": "true",
-            "x-rpc-app_version": "4.8.0",
-            "x-rpc-sdk_version": "2.2.0",
         }
         if mmt_result:
             headers["x-rpc-aigis"] = mmt_result.to_aigis_header()
