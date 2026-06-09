@@ -49,13 +49,16 @@ class StarRailChallengeFloor(APIModel):
     id: int = Aliased("maze_id")
     name: str
     star_num: int
+    starward_star_num: int = Aliased("extra_star_num", default=0)
+
     is_quick_clear: bool = Aliased("is_fast")
+    has_starward_mode: bool = Aliased("is_tierce", default=False)
 
     @pydantic.computed_field  # type: ignore[prop-decorator]
     @property
     def stars(self) -> int:
         """Number of stars earned on the floor."""
-        return self.star_num
+        return self.star_num + self.starward_star_num
 
 
 class StarRailFloor(StarRailChallengeFloor):
@@ -65,6 +68,7 @@ class StarRailFloor(StarRailChallengeFloor):
     is_chaos: bool
     node_1: FloorNode
     node_2: FloorNode
+    node_3: typing.Optional[FloorNode] = Aliased(default=None)
 
 
 class StarRailChallengeSeason(APIModel):
@@ -86,6 +90,7 @@ class StarRailChallenge(APIModel):
     end_time: typing.Optional[PartialTime]
 
     total_stars: int = Aliased("star_num")
+    starward_stars: int = Aliased("extra_star_num", default=0)
     max_floor: str
     total_battles: int = Aliased("battle_num")
     has_data: bool
@@ -127,11 +132,12 @@ class FictionFloor(StarRailChallengeFloor):
     round_num: int
     node_1: FictionFloorNode
     node_2: FictionFloorNode
+    node_3: typing.Optional[FictionFloorNode] = Aliased(default=None)
 
     @property
     def score(self) -> int:
         """Total score of the floor."""
-        return self.node_1.score + self.node_2.score
+        return self.node_1.score + self.node_2.score + (self.node_3.score if self.node_3 is not None else 0)
 
 
 class StarRailPureFiction(APIModel):
@@ -143,6 +149,7 @@ class StarRailPureFiction(APIModel):
     end_time: PartialTime = pydantic.Field(deprecated="Use `season_id` together with `seasons instead`.")
 
     total_stars: int = Aliased("star_num")
+    starward_stars: int = Aliased("extra_star_num", default=0)
     max_floor: str
     total_battles: int = Aliased("battle_num")
     has_data: bool
@@ -214,7 +221,7 @@ class StarRailAPCShadow(APIModel):
     """Apocalyptic shadow challenge in a season."""
 
     total_stars: int = Aliased("star_num")
-    starward_star: int = Aliased("extra_star_num", default=0)
+    starward_stars: int = Aliased("extra_star_num", default=0)
     max_floor: str
     total_battles: int = Aliased("battle_num")
     has_data: bool
