@@ -26,9 +26,7 @@ from genshin.utility import auth as auth_utility
 
 __all__ = ["CAPTCHA_PAGE", "HOYOLAB_GT_SERVER", "enter_code", "launch_webapp", "solve_geetest"]
 
-CAPTCHA_PAGE: typing.Final[
-    str
-] = """
+CAPTCHA_PAGE: typing.Final[str] = """
     <!DOCTYPE html>
     <head>
       <meta name="referrer" content="no-referrer"/>
