@@ -53,6 +53,7 @@ class StarRailChallengeFloor(APIModel):
 
     is_quick_clear: bool = Aliased("is_fast")
     has_starward_mode: bool = Aliased("is_tierce", default=False)
+    starward_extra_stars: int = Aliased("extra_star_num", default=0)
 
     @pydantic.computed_field  # type: ignore[prop-decorator]
     @property
@@ -66,8 +67,8 @@ class StarRailFloor(StarRailChallengeFloor):
 
     round_num: int
     is_chaos: bool
-    node_1: FloorNode
-    node_2: FloorNode
+    node_1: typing.Optional[FloorNode] = Aliased(default=None)
+    node_2: typing.Optional[FloorNode] = Aliased(default=None)
     node_3: typing.Optional[FloorNode] = Aliased(default=None)
 
 
@@ -92,8 +93,10 @@ class StarRailChallenge(APIModel):
     total_stars: int = Aliased("star_num")
     starward_stars: int = Aliased("extra_star_num", default=0)
     max_floor: str
+    max_floor_id: int
     total_battles: int = Aliased("battle_num")
     has_data: bool
+    starward_star: int = Aliased("extra_star_num", default=0)
 
     floors: typing.Sequence[StarRailFloor] = Aliased("all_floor_detail")
     seasons: typing.Sequence[StarRailChallengeSeason] = Aliased("groups")
@@ -116,6 +119,7 @@ class ChallengeBuff(APIModel):
     id: int
     name: str = Aliased("name_mi18n")
     description: str = Aliased("desc_mi18n")
+    simple_description: typing.Optional[str] = Aliased("simple_desc_mi18m", default=None)  # only for PF
     icon: str
 
 
@@ -130,14 +134,17 @@ class FictionFloor(StarRailChallengeFloor):
     """Floor in a Pure Fiction challenge."""
 
     round_num: int
-    node_1: FictionFloorNode
-    node_2: FictionFloorNode
+    node_1: typing.Optional[FictionFloorNode] = Aliased(default=None)
+    node_2: typing.Optional[FictionFloorNode] = Aliased(default=None)
     node_3: typing.Optional[FictionFloorNode] = Aliased(default=None)
 
     @property
     def score(self) -> int:
         """Total score of the floor."""
-        return self.node_1.score + self.node_2.score + (self.node_3.score if self.node_3 is not None else 0)
+        node_1_score = self.node_1.score if self.node_1 is not None else 0
+        node_2_score = self.node_2.score if self.node_2 is not None else 0
+        node_3_score = self.node_3.score if self.node_3 is not None else 0
+        return node_1_score + node_2_score + node_3_score
 
 
 class StarRailPureFiction(APIModel):
@@ -153,6 +160,7 @@ class StarRailPureFiction(APIModel):
     max_floor: str
     total_battles: int = Aliased("battle_num")
     has_data: bool
+    starward_star: int = Aliased("extra_star_num", default=0)
 
     floors: list[FictionFloor] = Aliased("all_floor_detail")
     seasons: list[StarRailChallengeSeason] = Aliased("groups")
@@ -188,24 +196,25 @@ class APCShadowFloorNode(FloorNode):
 class APCShadowFloor(StarRailChallengeFloor):
     """Floor in an apocalyptic shadow challenge."""
 
-    node_1: APCShadowFloorNode
-    node_2: APCShadowFloorNode
+    node_1: typing.Optional[APCShadowFloorNode] = Aliased(default=None)
+    node_2: typing.Optional[APCShadowFloorNode] = Aliased(default=None)
     node_3: typing.Optional[APCShadowFloorNode] = Aliased(default=None)
     last_update_time: PartialTime
-    is_quick_clear: bool = Aliased("is_fast")
-    has_starward_mode: bool = Aliased("is_tierce", default=False)
 
     @property
     def score(self) -> int:
         """Total score of the floor."""
-        return self.node_1.score + self.node_2.score + (self.node_3.score if self.node_3 is not None else 0)
+        node_1_score = self.node_1.score if self.node_1 is not None else 0
+        node_2_score = self.node_2.score if self.node_2 is not None else 0
+        node_3_score = self.node_3.score if self.node_3 is not None else 0
+        return node_1_score + node_2_score + node_3_score
 
 
 class APCShadowBoss(APIModel):
     """Boss in an apocalyptic shadow challenge."""
 
     id: int
-    name_mi18n: str
+    name: str = Aliased("name_mi18n")
     icon: str
 
 

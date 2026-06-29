@@ -63,3 +63,5 @@ dmypy.json
 # databases
 *.sqlite3
 *.db
+
+.serena/

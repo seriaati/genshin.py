@@ -8,6 +8,7 @@ from genshin import errors, paginators, types, utility
 from genshin.client import routes
 from genshin.models import zzz as models
 from genshin.models.genshin import gacha as gacha_models
+from genshin.utility import ds
 
 from . import base
 
@@ -213,6 +214,101 @@ class ZZZBattleChronicleClient(base.BaseBattleChronicleClient):
         data = await self._request_zzz_record("avatar/info", uid, lang=lang, payload={"id_list[]": character_id})
         return models.ZZZFullAgent(**data["avatar_list"][0])
 
+    def _upgrade_guide_headers(
+        self,
+        region: types.Region,
+        *,
+        lang: str,
+        data: typing.Any = None,
+        params: typing.Optional[typing.Mapping[str, typing.Any]] = None,
+    ) -> typing.Dict[str, str]:
+        """Build headers for an upgrade guide request (DS is only required for China)."""
+        headers = {"x-rpc-lang": lang, "x-rpc-language": lang}
+        if region is types.Region.CHINESE:
+            headers.update(ds.get_ds_headers(region=region, data=data, params=params, lang=lang))
+        return headers
+
+    async def _login_upgrade_guide(self, uid: int, *, lang: typing.Optional[str] = None) -> None:
+        """Obtain the ``e_nap_token`` cookie required by the ZZZ agent upgrade guide.
+
+        The response sets a fresh ``e_nap_token`` cookie which the cookie manager
+        merges into the session automatically.
+        """
+        # Drop stale session cookies so the fresh ones from the response are stored. The
+        # cookie manager only merges cookie keys it doesn't already have, so the token
+        # (e_nap_token), its paired risk-control token (e_lrsag), and the load-balancer
+        # affinity cookies must all be cleared to be refreshed together — a stale
+        # SERVERID otherwise routes the new token to the wrong backend.
+        cookies = getattr(self.cookie_manager, "cookies", None)
+        if isinstance(cookies, dict):
+            for key in ("e_nap_token", "e_lrsag", "SERVERID", "SERVERCORSID"):
+                cookies.pop(key, None)
+
+        lang = lang or self.lang
+        region = utility.recognize_region(uid, game=types.Game.ZZZ) or types.Region.OVERSEAS
+        body = {
+            "game_biz": "nap_cn" if region is types.Region.CHINESE else "nap_global",
+            "lang": lang,
+            "region": utility.recognize_zzz_server(uid),
+            "uid": str(uid),
+        }
+        await self.request(
+            routes.NAP_BADGE_LOGIN_URL.get_url(region),
+            method="POST",
+            data=body,
+            headers=self._upgrade_guide_headers(region, lang=lang, data=body),
+        )
+
+    async def _request_upgrade_guide(
+        self,
+        endpoint: str,
+        uid: typing.Optional[int] = None,
+        *,
+        lang: typing.Optional[str] = None,
+        body: typing.Optional[typing.Mapping[str, typing.Any]] = None,
+    ) -> typing.Mapping[str, typing.Any]:
+        """Make a request towards the ZZZ agent upgrade guide tool."""
+        uid = uid or await self._get_uid(types.Game.ZZZ)
+        await self._login_upgrade_guide(uid, lang=lang)
+
+        lang = lang or self.lang
+        region = utility.recognize_region(uid, game=types.Game.ZZZ) or types.Region.OVERSEAS
+        params = {"uid": uid, "region": utility.recognize_zzz_server(uid)}
+        return await self.request(
+            routes.NAP_CULTIVATE_URL.get_url(region) / endpoint,
+            method="POST" if body is not None else "GET",
+            params=params,
+            data=body,
+            headers=self._upgrade_guide_headers(region, lang=lang, data=body, params=params),
+        )
+
+    async def get_zzz_upgrade_guide_agents(
+        self, uid: typing.Optional[int] = None, *, lang: typing.Optional[str] = None
+    ) -> typing.Sequence[models.ZZZUpgradeGuideAgent]:
+        """Get all agents available in the ZZZ agent upgrade guide tool."""
+        data = await self._request_upgrade_guide("user/avatar_basic_list", uid, lang=lang)
+        return [models.ZZZUpgradeGuideAgent(**item) for item in data["list"]]
+
+    async def get_zzz_agent_upgrade_guide(
+        self,
+        character_id: typing.Union[int, typing.Sequence[int]],
+        *,
+        uid: typing.Optional[int] = None,
+        lang: typing.Optional[str] = None,
+    ) -> typing.Sequence[models.ZZZAgentUpgradeGuide]:
+        """Get detailed builds and recommended upgrade guides for ZZZ agents."""
+        if isinstance(character_id, int):
+            character_id = [character_id]
+
+        avatar_list = [
+            {"avatar_id": id_, "is_teaser": False, "teaser_need_weapon": False, "teaser_sp_skill": False}
+            for id_ in character_id
+        ]
+        data = await self._request_upgrade_guide(
+            "user/batch_avatar_detail_v2", uid, lang=lang, body={"avatar_list": avatar_list}
+        )
+        return [models.ZZZAgentUpgradeGuide(**item) for item in data["list"]]
+
     @typing.overload
     async def get_shiyu_defense(
         self,
@@ -300,6 +396,44 @@ class ZZZBattleChronicleClient(base.BaseBattleChronicleClient):
         if raw:
             return data
         return models.DeadlyAssault(**data)
+
+    @typing.overload
+    async def get_annihilation_simulacrum(
+        self,
+        uid: typing.Optional[int] = ...,
+        *,
+        previous: bool = ...,
+        lang: typing.Optional[str] = ...,
+        raw: typing.Literal[False] = ...,
+    ) -> models.AnnihilationSimulacrum: ...
+    @typing.overload
+    async def get_annihilation_simulacrum(
+        self,
+        uid: typing.Optional[int] = ...,
+        *,
+        previous: bool = ...,
+        lang: typing.Optional[str] = ...,
+        raw: typing.Literal[True] = ...,
+    ) -> typing.Mapping[str, typing.Any]: ...
+    async def get_annihilation_simulacrum(
+        self,
+        uid: typing.Optional[int] = None,
+        *,
+        previous: bool = False,
+        lang: typing.Optional[str] = None,
+        raw: bool = False,
+    ) -> typing.Union[models.AnnihilationSimulacrum, typing.Mapping[str, typing.Any]]:
+        """Get ZZZ Annihilation Simulacrum stats."""
+        payload = {"schedule_type": 2 if previous else 1}
+        data = await self._request_zzz_record(
+            "holo_boss_detail", uid, lang=lang, payload=payload, use_uid_in_payload=True
+        )
+
+        data = self._add_timezone_to_data(data, ("start_time", "end_time"), game=types.Game.ZZZ, uid=uid)
+
+        if raw:
+            return data
+        return models.AnnihilationSimulacrum(**data)
 
     async def get_lost_void_summary(
         self, uid: typing.Optional[int] = None, *, lang: typing.Optional[str] = None

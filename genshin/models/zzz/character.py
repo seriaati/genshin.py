@@ -101,6 +101,7 @@ class ZZZPropertyType(enum.IntEnum):
     ICE_DMG_BONUS = 317
     ELECTRIC_DMG_BONUS = 318
     ETHER_DMG_BONUS = 319
+    WIND_DMG_BONUS = 323
 
     # Disc drive and w-engine
     CRIT_RATE = 20103
@@ -127,6 +128,7 @@ class ZZZPropertyType(enum.IntEnum):
     DISC_ICE_DMG_BONUS = 31703
     DISC_ELECTRIC_DMG_BONUS = 31803
     DISC_ETHER_DMG_BONUS = 31903
+    DISC_WIND_DMG_BONUS = 32303
 
 
 class ZZZProperty(APIModel):
