@@ -49,17 +49,15 @@ class StarRailChallengeFloor(APIModel):
     id: int = Aliased("maze_id")
     name: str
     star_num: int
-    starward_star_num: int = Aliased("extra_star_num", default=0)
-
     is_quick_clear: bool = Aliased("is_fast")
     has_starward_mode: bool = Aliased("is_tierce", default=False)
-    starward_extra_stars: int = Aliased("extra_star_num", default=0)
+    starward_stars: int = Aliased("extra_star_num", default=0)
 
     @pydantic.computed_field  # type: ignore[prop-decorator]
     @property
     def stars(self) -> int:
         """Number of stars earned on the floor."""
-        return self.star_num + self.starward_star_num
+        return self.star_num + self.starward_stars
 
 
 class StarRailFloor(StarRailChallengeFloor):
@@ -96,7 +94,6 @@ class StarRailChallenge(APIModel):
     max_floor_id: int
     total_battles: int = Aliased("battle_num")
     has_data: bool
-    starward_star: int = Aliased("extra_star_num", default=0)
 
     floors: typing.Sequence[StarRailFloor] = Aliased("all_floor_detail")
     seasons: typing.Sequence[StarRailChallengeSeason] = Aliased("groups")
@@ -160,7 +157,6 @@ class StarRailPureFiction(APIModel):
     max_floor: str
     total_battles: int = Aliased("battle_num")
     has_data: bool
-    starward_star: int = Aliased("extra_star_num", default=0)
 
     floors: list[FictionFloor] = Aliased("all_floor_detail")
     seasons: list[StarRailChallengeSeason] = Aliased("groups")
@@ -221,8 +217,8 @@ class APCShadowBoss(APIModel):
 class APCShadowSeason(StarRailChallengeSeason):
     """Season of an apocalyptic shadow challenge."""
 
-    upper_boss: APCShadowBoss
-    lower_boss: APCShadowBoss
+    upper_boss: typing.Optional[APCShadowBoss] = Aliased(default=None)
+    lower_boss: typing.Optional[APCShadowBoss] = Aliased(default=None)
     starward_boss: typing.Optional[APCShadowBoss] = Aliased("tierce_boss", default=None)
 
 
