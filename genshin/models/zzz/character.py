@@ -37,6 +37,7 @@ class ZZZElementType(enum.IntEnum):
     ELECTRIC = 203
     WIND = 204
     ETHER = 205
+    LUMIFLUX = 300
 
 
 class ZZZSpecialty(enum.IntEnum):
