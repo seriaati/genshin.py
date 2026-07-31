@@ -31,7 +31,7 @@ jobs:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Install uv
         uses: astral-sh/setup-uv@v8.3.2
@@ -56,7 +56,7 @@ jobs:
         python-version: [ "3.9", "3.10", "3.11" ]
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Install uv
         uses: astral-sh/setup-uv@v8.3.2
@@ -108,7 +108,7 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Install uv
         uses: astral-sh/setup-uv@v8.3.2
@@ -137,7 +137,7 @@ jobs:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Install uv
         uses: astral-sh/setup-uv@v8.3.2
@@ -156,7 +156,7 @@ jobs:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Install uv
         uses: astral-sh/setup-uv@v8.3.2
@@ -175,7 +175,7 @@ jobs:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Run prettier
         run: |
