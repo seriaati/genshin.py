@@ -489,11 +489,13 @@ class ZZZBattleChronicleClient(base.BaseBattleChronicleClient):
         lang: typing.Optional[str] = None,
         raw: bool = False,
     ) -> typing.Union[models.DeadlyAssault, typing.Mapping[str, typing.Any]]:
-        """Get ZZZ Shiyu defense stats."""
+        """Get ZZZ Deadly Assault stats."""
         payload = {"schedule_type": 2 if previous else 1}
-        data = await self._request_zzz_record("mem_detail", uid, lang=lang, payload=payload, use_uid_in_payload=True)
+        data = await self._request_zzz_record(
+            "hadal_mem_detail_v2", uid, lang=lang, payload=payload, use_uid_in_payload=True
+        )
 
-        self._add_timezone_to_data(data, ("hadal_begin_time", "hadal_end_time"), game=types.Game.ZZZ, uid=uid)
+        self._add_timezone_to_data(data, ("start_time", "end_time"), game=types.Game.ZZZ, uid=uid)
 
         if raw:
             return data
