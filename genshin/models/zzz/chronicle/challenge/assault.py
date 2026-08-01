@@ -3,7 +3,7 @@ import typing
 
 import pydantic
 
-from genshin.models.model import Aliased, APIModel, DateTime, TZDateTime
+from genshin.models.model import Aliased, APIModel, DateTime, TZDateTime, prevent_enum_error
 from genshin.models.zzz.character import ZZZElementType, ZZZSpecialty
 
 from .common import ChallengeBangboo
@@ -39,11 +39,21 @@ class DeadlyAssaultAgent(APIModel):
 
     id: int
     level: int
-    element: ZZZElementType = Aliased("element_type")
-    specialty: ZZZSpecialty = Aliased("avatar_profession")
+    element: typing.Union[ZZZElementType, int] = Aliased("element_type")
+    specialty: typing.Union[ZZZSpecialty, int] = Aliased("avatar_profession")
     rarity: typing.Literal["S", "A"]
     mindscape: int = Aliased("rank")
     icon: str = Aliased("role_square_url")
+
+    @pydantic.field_validator("element", mode="before")
+    @classmethod
+    def __parse_element(cls, v: int) -> typing.Union[ZZZElementType, int]:
+        return prevent_enum_error(v, ZZZElementType)
+
+    @pydantic.field_validator("specialty", mode="before")
+    @classmethod
+    def __parse_specialty(cls, v: int) -> typing.Union[ZZZSpecialty, int]:
+        return prevent_enum_error(v, ZZZSpecialty)
 
 
 class DeadlyAssaultChallenge(APIModel):
