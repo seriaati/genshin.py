@@ -2,158 +2,55 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Project Overview
+Async API wrapper for HoYoLAB/Miyoushe APIs (Genshin Impact, Honkai Impact 3rd, Honkai: Star Rail, Zenless Zone Zero). Python 3.9+, asyncio, pydantic v2, aiohttp. Managed with `uv` and `nox`.
 
-genshin.py is an async API wrapper for HoYoLAB and Miyoushe (米游社) APIs, supporting multiple HoYoverse games (Genshin Impact, Honkai Impact, Star Rail, ZZZ). Built on asyncio and pydantic with full type-hinting support.
+> See also `AGENTS.md` (condensed agent guide) and `.roo/rules-code/AGENTS.md` (post-edit hook + coding rules). This file expands on the architecture.
 
-## Development Commands
-
-### Setup
+## Commands
 
 ```bash
-pip install nox
+nox -s test                                       # run all tests
+nox -s test -- tests/client/test_gacha.py         # single test file
+nox -s test -- tests/client/test_gacha.py::test_wish_history  # single test
+nox -s test -- -k "wish"                          # filter by keyword
+nox -s lint                                        # ruff check
+nox -s reformat                                    # black + ruff fix + sort __all__ (RUF022,I)
+nox -s type-check                                  # pyright (strict) + mypy
+nox -s verify-types                                # pyright --verifytypes (type completeness)
+nox -s                                             # all default sessions
+nox --no-install -s test                           # skip reinstalling deps (faster)
+uv sync --all-groups --all-extras                  # install all dev deps
 ```
 
-### Testing
-
-```bash
-# Run all default tasks (reformat, lint, type-check, verify-types, test)
-nox -s
-
-# Run specific tasks
-nox -s test
-nox -s lint
-nox -s type-check
-nox -s reformat
-
-# List all available tasks
-nox -l
-
-# Run tests without reinstalling dependencies
-nox --no-install
-
-# Filter tests by keyword
-nox -s test -- -k "wish"
-nox -s test -- -k "genshin"
-```
-
-### Single Test Execution
-
-```bash
-nox -s test -- tests/client/test_specific.py::test_function_name
-```
-
-### Type Checking
-
-```bash
-nox -s type-check      # Run pyright and mypy
-nox -s verify-types    # Verify type completeness
-```
-
-### Linting and Formatting
-
-```bash
-nox -s reformat  # Auto-fix with black and ruff
-nox -s lint      # Check with ruff
-```
-
-### Documentation
-
-```bash
-nox -s docs  # Generate pdoc3 documentation
-```
+After editing any `.py` file, run `ruff check --fix <files> && ruff format <files>` (per `.roo/rules-code` post-edit hook).
 
 ## Architecture
 
-### Client Architecture
+**Client = mixin composition.** `genshin.Client` (`client/clients.py`) is assembled by multiply-inheriting one component class per API category from `client/components/` (e.g. `BattleChronicleClient`, `WishClient`, `AuthClient`). All components ultimately derive from `components/base.py`'s base client, which holds the cookie/session manager and the core request logic. To add an endpoint, add a method to the relevant component (or a new component, then add it to the `Client` bases). **Features are split by API endpoint in components.**
 
-The main `Client` class is composed through multiple inheritance of component classes, each handling specific API endpoints:
+**Region split.** Almost every endpoint exists in two variants: OVERSEAS (HoYoLAB) and CHINESE (Miyoushe/米游社). This is handled by `InternationalRoute(overseas=..., chinese=...)` in `client/routes.py` — never hardcode URLs in components. The client's `region` (`types.Region`) selects which URL and which auth/header logic apply.
 
-- **Base**: `BaseClient` in [components/base.py](genshin/client/components/base.py) - Core HTTP request handling, cookie management, auth, region/language settings
-- **Components** in [client/components/](genshin/client/components/):
-  - `BattleChronicleClient` - Game statistics and records
-  - `HoyolabClient` - Community features (posts, users)
-  - `DailyRewardClient` - Daily check-in rewards
-  - `CalculatorClient` - Character/weapon calculations
-  - `DiaryClient` - In-game currency transactions
-  - `LineupClient` / `HSRLineupClient` - Team composition
-  - `TeapotClient` - Genshin teapot/realm features
-  - `WikiClient` - Game encyclopedia data
-  - `WishClient` - Gacha/wish history
-  - `TransactionClient` - Transaction logs
-  - `AuthClient` - Authentication flows
+**Auth & cookies.** `client/manager/` parses cookies (`cookie.py`) and manages sessions + dynamic security headers like DS tokens (`managers.py`). The `auth/` component handles login flows (password, QR, mobile, game-login). Cookie-related optional deps (`browser-cookie3`, `rsa`, `qrcode`) live behind extras.
 
-### Models Architecture
+**Models, split by game then category.** `models/` has a base layer (`model.py`) plus per-game packages (`genshin/`, `starrail/`, `honkai/`, `zzz/`, `hoyolab/`, `auth/`). The API returns mixed Chinese/English fields; models rename them to clean English fields via aliases. Every model is a pydantic v2 `BaseModel`.
 
-Models in [genshin/models/](genshin/models/) are organized by game and feature category:
+**Paginators** (`paginators/`) wrap cursor/page-based endpoints (e.g. wish/gacha history, transactions) as async iterables.
 
-- **Base**: `APIModel` (Pydantic base class) in [model.py](genshin/models/model.py)
-- **Game-specific directories**:
-  - `genshin/` - Genshin Impact models
-  - `starrail/` - Honkai: Star Rail models
-  - `honkai/` - Honkai Impact models
-  - `zzz/` - Zenless Zone Zero models
-  - `hoyolab/` - HoYoLAB community models
-  - `auth/` - Authentication models
+## Critical patterns (enforced)
 
-All models inherit from `APIModel` and use Pydantic v2 for validation.
-
-### Routes
-
-API endpoints are defined in [client/routes.py](genshin/client/routes.py) using `Route` and `InternationalRoute` classes to handle region-specific URLs (OVERSEAS vs CHINESE regions).
-
-### Cookie & Auth Management
-
-Cookie handling in [client/manager/](genshin/client/manager/) supports multiple authentication methods and cookie formats. The `BaseCookieManager` handles cookie parsing and storage.
-
-## Code Style & Conventions
-
-### Import Style
-
-- Import entire modules rather than individual symbols (exceptions: `Aliased` and constants)
-- Use `typing.Optional` and `typing.Union` instead of `|` syntax (Python 3.9 compatibility)
-- Import `typing` module itself, not individual types
-
-### Module Structure
-
-- All modules start with imports followed by `__all__` declaration
-- Public modules must be explicitly imported in package `__init__.py`
-- Only abstract methods may be overridden
-
-### Type Hinting
-
-- All code must be type-complete per pyright standards
-- Functions must have full type annotations
-- Use `typing.` prefix for generics (e.g., `typing.Optional`, `typing.List`)
-
-### Formatting
-
-- Line length: 120 characters (black/ruff enforced)
-- Follow PEP 8 with black overrides
-- Docstrings required for all exported symbols (numpy convention)
-
-### Project-Specific Patterns
-
-- Use `Aliased()` for pydantic field aliases mapping API field names to Pythonic names
-- Models should inherit from `APIModel`
-- Use `Unique` mixin for hashable models with IDs
-- Custom datetime types: `TZDateTime`, `DateTime`, `UnixDateTime`
+- **Models** inherit from `APIModel` (`models/model.py`); use the `Unique` mixin for hashable models with an `id`.
+- **Field aliases**: use `Aliased("api_field_name")` from `genshin.models.model`, NOT `pydantic.Field(alias=...)`. `Aliased` and constants are the only symbols imported directly (otherwise import whole modules).
+- **Datetime fields**: annotate with `TZDateTime`, `DateTime`, or `UnixDateTime` from `model.py` — these are `Annotated` types with validators baked in, not functions to call.
+- **Enums**: wrap unknown API enum values with `prevent_enum_error(value, EnumClass)` to avoid crashing on new game content.
+- **Routes**: define endpoints as `Route(...)` / `InternationalRoute(...)` in `client/routes.py`.
+- **`from __future__ import annotations`** must be the first import in every `.py` file (forward refs + 3.9 compat).
+- **`__all__`** declared in every module; `nox -s reformat` auto-sorts it.
+- **Python 3.9 typing**: use `typing.Optional[X]`, `typing.Union[X, Y]`, `typing.List`, `typing.Sequence` — NOT `X | Y` or `list[X]`. Import `typing` as a module and prefix (`typing.Optional`), prioritizing `typing` over `collections.abc`.
+- **Docstrings** required for all exported symbols (numpy convention); `@property` exempt. Line length 120.
+- pyright runs in **strict mode** over `genshin/` (excludes `**/__init__.py` and `tests/`).
 
 ## Testing
 
-Tests are in [tests/](tests/) mirroring the package structure. Test configuration uses environment variables for cookies:
-
-- `GENSHIN_COOKIES` - Genshin Impact account cookies
-- `HSR_COOKIES` - Star Rail account cookies
-- `HONKAI_COOKIES` - Honkai Impact account cookies
-- `ZZZ_COOKIES` - ZZZ account cookies
-- `CHINESE_GENSHIN_COOKIES` - Chinese region cookies
-
-See [conftest.py](tests/conftest.py) for fixture definitions. Tests use `pytest` with `pytest-asyncio` for async support.
-
-## Important Files
-
-- [pyproject.toml](pyproject.toml) - Project metadata, dependencies, tool configuration
-- [noxfile.py](noxfile.py) - Task automation (testing, linting, type-checking)
-- [ruff.toml](ruff.toml) - Linting rules and exclusions
-- [CONTRIBUTING.md](CONTRIBUTING.md) - Detailed contribution guidelines and project structure
+- Tests are **integration tests against live APIs** and require real account cookies via env vars: `GENSHIN_COOKIES`, `HSR_COOKIES`, `HONKAI_COOKIES`, `ZZZ_COOKIES`, `CHINESE_GENSHIN_COOKIES` (optional: `LOCAL_GENSHIN_COOKIES`, `GENSHIN_AUTHKEY`). Tests skip automatically when credentials are absent; model/unit tests run without them.
+- `asyncio_mode = "auto"` — test functions are `async def` with no `@pytest.mark.asyncio`.
+- A shared `client: genshin.Client` fixture is defined in `tests/conftest.py`; `ruff.toml` excludes `tests/` and `test.py` from linting.

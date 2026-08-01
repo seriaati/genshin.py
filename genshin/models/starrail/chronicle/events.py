@@ -67,6 +67,7 @@ class ChallengeType(Enum):
     MOC = "ChallengeTypeChasm"
     """Memory of Chaos."""
     PURE_FICTION = "ChallengeTypeStory"
+    ANOMALY_ARBITRATION = "ChallengeTypePeak"
 
 
 class ChallengeStatus(Enum):

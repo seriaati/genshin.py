@@ -2,9 +2,12 @@
 
 import asyncio
 import functools
+import logging
 import typing
 import urllib.parse
 import warnings
+
+from pydantic import ValidationError
 
 from genshin import paginators, types, utility
 from genshin.client import cache as client_cache
@@ -20,6 +23,7 @@ MW_BANNER_TYPES = {
     models.MWBannerType.STANDARD,
     models.MWBannerType.EVENT,
 }
+LOGGER_ = logging.getLogger(__name__)
 
 
 class WishClient(base.BaseClient):
@@ -136,7 +140,14 @@ class WishClient(base.BaseClient):
             authkey=authkey,
             game=types.Game.GENSHIN,
         )
-        return [models.MWWish(**i, banner_type=banner_type, tz_offset=tz_offset) for i in data]
+        wishes: list[models.MWWish] = []
+        for i in data:
+            try:
+                wishes.append(models.MWWish(**i, banner_type=banner_type, tz_offset=tz_offset))
+            except ValidationError as e:
+                LOGGER_.warning(f"Failed to parse wish with id {i.get('id', 'unknown')}: {e}")
+                continue
+        return wishes
 
     async def _get_warp_page(
         self,

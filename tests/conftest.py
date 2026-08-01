@@ -100,22 +100,34 @@ async def cache():
 
 @pytest.fixture(scope="session")
 def genshin_uid():
-    return 832705997
+    if not os.environ.get("GENSHIN_UID"):
+        pytest.skip("No Genshin UID set")
+
+    return int(os.environ["GENSHIN_UID"])
 
 
 @pytest.fixture(scope="session")
 def honkai_uid():
-    return 10001138
+    if not os.environ.get("HONKAI_UID"):
+        pytest.skip("No Honkai UID set")
+
+    return int(os.environ["HONKAI_UID"])
 
 
 @pytest.fixture(scope="session")
 def zzz_uid():
-    return 1309335571
+    if not os.environ.get("ZZZ_UID"):
+        pytest.skip("No ZZZ UID set")
+
+    return int(os.environ["ZZZ_UID"])
 
 
 @pytest.fixture(scope="session")
 def hsr_uid():
-    return 828103396
+    if not os.environ.get("HSR_UID"):
+        pytest.skip("No HSR UID set")
+
+    return int(os.environ["HSR_UID"])
 
 
 @pytest.fixture(scope="session")
@@ -202,27 +214,42 @@ async def lcnclient(local_chinese_cookies: typing.Mapping[str, str]):
 
 @pytest.fixture(scope="session")
 def hoyolab_id():
-    return 7368957
+    if not os.environ.get("HOYOLAB_ID"):
+        pytest.skip("No Hoyolab ID set")
+
+    return int(os.environ["HOYOLAB_ID"])
 
 
 @pytest.fixture(scope="session")
 def genshin_cnuid():
-    return 101322963
+    if not os.environ.get("GENSHIN_CNUID"):
+        pytest.skip("No Genshin CN UID set")
+
+    return int(os.environ["GENSHIN_CNUID"])
 
 
 @pytest.fixture(scope="session")
 def miyoushe_uid():
-    return 75276539
+    if not os.environ.get("MIYOUSHE_UID"):
+        pytest.skip("No Miyoushe UID set")
+
+    return int(os.environ["MIYOUSHE_UID"])
 
 
 @pytest.fixture(scope="session")
 def hoyolab_topic_id():
-    return 3882
+    if not os.environ.get("HOYOLAB_TOPIC_ID"):
+        pytest.skip("No Hoyolab topic ID set")
+
+    return int(os.environ["HOYOLAB_TOPIC_ID"])
 
 
 @pytest.fixture(scope="session")
 def hoyolab_post_id():
-    return 41326930
+    if not os.environ.get("HOYOLAB_POST_ID"):
+        pytest.skip("No Hoyolab post ID set")
+
+    return int(os.environ["HOYOLAB_POST_ID"])
 
 
 def pytest_addoption(parser: pytest.Parser):

@@ -555,10 +555,79 @@ class HoyolabClient(base.BaseClient):
         )
         return [models.AccompanyCharacterGame(**i) for i in data["game_roles_list"]]
 
+    def _complete_stuid_cookie(self) -> None:
+        """Add the stuid cookie if it is missing.
+
+        Accompany endpoints authenticate with the stoken and require the account id
+        to be present under the stuid cookie name, otherwise they either fail with
+        retcode -100 or silently return no user-specific data.
+        """
+        if not isinstance(self.cookie_manager, managers.CookieManager):
+            return
+
+        cookies = self.cookie_manager.cookies
+        if cookies and "stoken" in cookies and "stuid" not in cookies and self.cookie_manager.user_id is not None:
+            cookies["stuid"] = str(self.cookie_manager.user_id)
+
     @base.region_specific(types.Region.OVERSEAS)
     async def accompany_character(self, *, role_id: int, topic_id: int) -> models.AccompanyResult:
         """Accompany a character, role_id and topic_id can be found by calling get_accompany_characters."""
+        self._complete_stuid_cookie()
         data = await self.request_bbs(
             "community/apihub/api/user/accompany/role", params=dict(role_id=role_id, topic_id=topic_id)
         )
         return models.AccompanyResult(**data)
+
+    @base.region_specific(types.Region.OVERSEAS)
+    async def get_accompany_character_details(
+        self, *, topic_id: int, lang: typing.Optional[str] = None
+    ) -> models.AccompanyCharacterDetails:
+        """Get the page details of an accompany character, topic_id can be found by calling get_accompany_characters."""
+        self._complete_stuid_cookie()
+        data = await self.request_bbs(
+            "community/painter/api/topic/info",
+            params=dict(topic_id=topic_id, scene="SceneAll"),
+            lang=lang,
+        )
+        return models.AccompanyCharacterDetails(**data["info"]["role_info"], stats=data["info"]["stat"])
+
+    @base.region_specific(types.Region.OVERSEAS)
+    async def get_accompany_voice_setting(self, *, game_id: int, role_id: int) -> models.AccompanyVoiceSetting:
+        """Get the voice and subtitle language setting of an accompany character."""
+        data = await self.request_bbs(
+            "community/user/api/role_setting/get",
+            data=dict(game_id=game_id, role_id=role_id, types=["SettingTypeVoiceScript"]),
+            method="POST",
+        )
+        return models.AccompanyVoiceSetting(**data["setting"]["voice_script_setting"])
+
+    @base.region_specific(types.Region.OVERSEAS)
+    async def set_accompany_voice_setting(
+        self,
+        *,
+        game_id: int,
+        role_id: int,
+        voice_lang: str,
+        script_lang: str,
+        sync_all_roles: bool = False,
+    ) -> None:
+        """Set the voice and subtitle language setting of an accompany character."""
+        self._complete_stuid_cookie()
+        setting = dict(
+            voice_script_setting=dict(
+                script_lang=script_lang,
+                setting_unix=int(time.time() * 1000),
+                voice_lang=voice_lang,
+            )
+        )
+        await self.request_bbs(
+            "community/user/api/role_setting/set",
+            data=dict(
+                game_id=game_id,
+                role_id=role_id,
+                setting=setting,
+                sync_all_roles=sync_all_roles,
+                types=["SettingTypeVoiceScript"],
+            ),
+            method="POST",
+        )

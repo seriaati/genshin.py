@@ -35,16 +35,17 @@ class GameAuthClient(base.BaseClient):
         headers["x-rpc-game_biz"] = constants.GAME_BIZS[self.region][self.default_game]
         headers.update(self.custom_headers)
 
-        async with self.cookie_manager.create_session() as session:
-            async with session.post(
-                routes.GAME_RISKY_CHECK_URL.get_url(self.region), json=payload, headers=headers
-            ) as r:
-                data = await r.json()
+        resp = await self.cookie_manager._raw_request(
+            "POST",
+            routes.GAME_RISKY_CHECK_URL.get_url(self.region),
+            json=payload,
+            headers=headers,
+        )
 
-        if not data["data"]:
-            errors.raise_for_retcode(data)
+        if not resp.data["data"]:
+            errors.raise_for_retcode(resp.data)
 
-        return RiskyCheckResult(**data["data"])
+        return RiskyCheckResult(**resp.data["data"])
 
     @typing.overload
     async def _shield_login(  # noqa: D102 missing docstring in overload?
@@ -100,16 +101,17 @@ class GameAuthClient(base.BaseClient):
             "password": password if encrypted else auth_utility.encrypt_credentials(password, 2),
             "is_crypto": True,
         }
-        async with self.cookie_manager.create_session() as session:
-            async with session.post(
-                routes.SHIELD_LOGIN_URL.get_url(self.region, self.default_game), json=payload, headers=headers
-            ) as r:
-                data = await r.json()
+        resp = await self.cookie_manager._raw_request(
+            "POST",
+            routes.SHIELD_LOGIN_URL.get_url(self.region, self.default_game),
+            json=payload,
+            headers=headers,
+        )
 
-        if not data["data"]:
-            errors.raise_for_retcode(data)
+        if not resp.data["data"]:
+            errors.raise_for_retcode(resp.data)
 
-        return ShieldLoginResponse(**data["data"])
+        return ShieldLoginResponse(**resp.data["data"])
 
     @typing.overload
     async def _send_game_verification_email(  # noqa: D102 missing docstring in overload?
@@ -173,14 +175,15 @@ class GameAuthClient(base.BaseClient):
                 "device_name": device_name or "iPhone",
             },
         }
-        async with self.cookie_manager.create_session() as session:
-            async with session.post(
-                routes.PRE_GRANT_TICKET_URL.get_url(self.region), json=payload, headers=headers
-            ) as r:
-                data = await r.json()
+        resp = await self.cookie_manager._raw_request(
+            "POST",
+            routes.PRE_GRANT_TICKET_URL.get_url(self.region),
+            json=payload,
+            headers=headers,
+        )
 
-        if data["retcode"] != 0:
-            errors.raise_for_retcode(data)
+        if resp.data["retcode"] != 0:
+            errors.raise_for_retcode(resp.data)
 
         return None
 
@@ -194,11 +197,14 @@ class GameAuthClient(base.BaseClient):
         headers["x-rpc-game_biz"] = constants.GAME_BIZS[self.region][self.default_game]
         headers.update(self.custom_headers)
 
-        async with self.cookie_manager.create_session() as session:
-            async with session.post(routes.DEVICE_GRANT_URL.get_url(self.region), json=payload, headers=headers) as r:
-                data = await r.json()
+        resp = await self.cookie_manager._raw_request(
+            "POST",
+            routes.DEVICE_GRANT_URL.get_url(self.region),
+            json=payload,
+            headers=headers,
+        )
 
-        return DeviceGrantResult(**data["data"])
+        return DeviceGrantResult(**resp.data["data"])
 
     async def _os_game_login(self, uid: str, game_token: str) -> GameLoginResult:
         """Log in to the game."""
@@ -217,15 +223,14 @@ class GameAuthClient(base.BaseClient):
         headers["x-rpc-game_biz"] = constants.GAME_BIZS[self.region][self.default_game]
         headers.update(self.custom_headers)
 
-        async with self.cookie_manager.create_session() as session:
-            async with session.post(
-                routes.GAME_LOGIN_URL.get_url(self.region, self.default_game),
-                json=payload,
-                headers=headers,
-            ) as r:
-                data = await r.json()
+        resp = await self.cookie_manager._raw_request(
+            "POST",
+            routes.GAME_LOGIN_URL.get_url(self.region, self.default_game),
+            json=payload,
+            headers=headers,
+        )
 
-        if not data["data"]:
-            errors.raise_for_retcode(data)
+        if not resp.data["data"]:
+            errors.raise_for_retcode(resp.data)
 
-        return GameLoginResult(**data["data"])
+        return GameLoginResult(**resp.data["data"])

@@ -78,25 +78,24 @@ class WebAuthClient(base.BaseClient):
             "token_type": token_type,
         }
 
-        async with self.cookie_manager.create_session() as session:
-            async with session.post(
-                routes.WEB_LOGIN_URL.get_url(),
-                json=payload,
-                headers=headers,
-            ) as r:
-                data = await r.json()
-                cookies = {cookie.key: cookie.value for cookie in r.cookies.values()}
+        resp = await self.cookie_manager._raw_request(
+            "POST",
+            routes.WEB_LOGIN_URL.get_url(),
+            json=payload,
+            headers=headers,
+        )
+        cookies = {cookie.key: cookie.value for cookie in resp.cookies.values()}
 
-        if data["retcode"] == -3101:
+        if resp.data["retcode"] == -3101:
             # Captcha triggered
-            aigis = json.loads(r.headers["x-rpc-aigis"])
+            aigis = json.loads(resp.headers["x-rpc-aigis"])
             return SessionMMT(**aigis)
 
-        if not data["data"]:
-            errors.raise_for_retcode(data)
+        if not resp.data["data"]:
+            errors.raise_for_retcode(resp.data)
 
-        if data["data"].get("stoken"):
-            cookies["stoken"] = data["data"]["stoken"]
+        if resp.data["data"].get("stoken"):
+            cookies["stoken"] = resp.data["data"]["stoken"]
 
         self.set_cookies(cookies)
         return WebLoginResult(**cookies)
@@ -147,23 +146,22 @@ class WebAuthClient(base.BaseClient):
             "password": password if encrypted else auth_utility.encrypt_credentials(password, 2),
         }
 
-        async with self.cookie_manager.create_session() as session:
-            async with session.post(
-                routes.CN_WEB_LOGIN_URL.get_url(),
-                json=payload,
-                headers=headers,
-            ) as r:
-                data = await r.json()
+        resp = await self.cookie_manager._raw_request(
+            "POST",
+            routes.CN_WEB_LOGIN_URL.get_url(),
+            json=payload,
+            headers=headers,
+        )
 
-        if data["retcode"] == -3102:
+        if resp.data["retcode"] == -3102:
             # Captcha triggered
-            aigis = json.loads(r.headers["x-rpc-aigis"])
+            aigis = json.loads(resp.headers["x-rpc-aigis"])
             return SessionMMT(**aigis)
 
-        if not data["data"]:
-            errors.raise_for_retcode(data)
+        if not resp.data["data"]:
+            errors.raise_for_retcode(resp.data)
 
-        cookies = {cookie.key: cookie.value for cookie in r.cookies.values()}
+        cookies = {cookie.key: cookie.value for cookie in resp.cookies.values()}
         self.set_cookies(cookies)
 
         return CNWebLoginResult(**cookies)
@@ -191,21 +189,20 @@ class WebAuthClient(base.BaseClient):
             "area_code": auth_utility.encrypt_credentials("+86", 2),
         }
 
-        async with self.cookie_manager.create_session() as session:
-            async with session.post(
-                routes.MOBILE_OTP_URL.get_url(),
-                json=payload,
-                headers=headers,
-            ) as r:
-                data = await r.json()
+        resp = await self.cookie_manager._raw_request(
+            "POST",
+            routes.MOBILE_OTP_URL.get_url(),
+            json=payload,
+            headers=headers,
+        )
 
-        if data["retcode"] == -3101:
+        if resp.data["retcode"] == -3101:
             # Captcha triggered
-            aigis = json.loads(r.headers["x-rpc-aigis"])
+            aigis = json.loads(resp.headers["x-rpc-aigis"])
             return SessionMMTv4(**aigis)
 
-        if not data["data"]:
-            errors.raise_for_retcode(data)
+        if not resp.data["data"]:
+            errors.raise_for_retcode(resp.data)
 
         return None
 
@@ -225,18 +222,17 @@ class WebAuthClient(base.BaseClient):
             "captcha": otp,
         }
 
-        async with self.cookie_manager.create_session() as session:
-            async with session.post(
-                routes.MOBILE_LOGIN_URL.get_url(),
-                json=payload,
-                headers=headers,
-            ) as r:
-                data = await r.json()
+        resp = await self.cookie_manager._raw_request(
+            "POST",
+            routes.MOBILE_LOGIN_URL.get_url(),
+            json=payload,
+            headers=headers,
+        )
 
-        if not data["data"]:
-            errors.raise_for_retcode(data)
+        if not resp.data["data"]:
+            errors.raise_for_retcode(resp.data)
 
-        cookies = {cookie.key: cookie.value for cookie in r.cookies.values()}
+        cookies = {cookie.key: cookie.value for cookie in resp.cookies.values()}
         self.set_cookies(cookies)
 
         return MobileLoginResult(**cookies)

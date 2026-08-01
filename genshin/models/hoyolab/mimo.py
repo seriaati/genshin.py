@@ -46,6 +46,8 @@ class MimoTaskType(enum.IntEnum):
     """e.g. Claim rewards from Ley Line Blossoms 2 times"""
     GI_COMMUNITY = 101
     """e.g. Browse today's must-see highlights"""
+    GI_VIDEO = 102
+    """e.g. Watch today's highlights for 15s"""
     HSR_GAME = 8
     """e.g. Complete Divergent Universe or Simulated Universe 1 time"""
     TRAILER = 10

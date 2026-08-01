@@ -6,6 +6,7 @@ import abc
 import dataclasses
 import enum
 import json
+import os
 import sys
 import time
 import typing
@@ -223,6 +224,11 @@ class SQLiteCache(BaseCache):
         self.ttl = ttl
         self.static_ttl = static_ttl
         self.db_name = db_name
+
+        if conn is None:
+            directory = os.path.dirname(db_name)
+            if directory:
+                os.makedirs(directory, exist_ok=True)
 
     async def _clear_cache(self, conn: aiosqlite.Connection) -> None:
         """Clear timed-out items."""

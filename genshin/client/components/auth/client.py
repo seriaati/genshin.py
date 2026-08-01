@@ -23,7 +23,15 @@ from genshin.models.auth.cookie import (
     QRLoginResult,
     WebLoginResult,
 )
-from genshin.models.auth.geetest import MMT, MMTResult, RiskyCheckMMT, RiskyCheckMMTResult, SessionMMT, SessionMMTResult
+from genshin.models.auth.geetest import (
+    MMT,
+    MMTResult,
+    RiskyCheckMMT,
+    RiskyCheckMMTResult,
+    SessionMMT,
+    SessionMMTResult,
+    SessionMMTv4,
+)
 from genshin.models.auth.qrcode import QRCodeStatus
 from genshin.models.auth.verification import ActionTicket
 from genshin.utility import auth as auth_utility
@@ -142,14 +150,13 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
 
         Returns True if the mobile number is valid, False otherwise.
         """
-        async with self.cookie_manager.create_session() as session:
-            async with session.get(
-                routes.CHECK_MOBILE_VALIDITY_URL.get_url(),
-                params={"mobile": mobile},
-            ) as r:
-                data = await r.json()
+        resp = await self.cookie_manager._raw_request(
+            "GET",
+            routes.CHECK_MOBILE_VALIDITY_URL.get_url(),
+            params={"mobile": mobile},
+        )
 
-        return data["data"]["status"] != data["data"]["is_registable"]
+        return resp.data["data"]["status"] != resp.data["data"]["is_registable"]
 
     @base.region_specific(types.Region.CHINESE)
     async def login_with_mobile_number(
@@ -178,7 +185,7 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
             mmt_result = await server.solve_geetest(result, port=port)
             await self._send_mobile_otp(mobile, encrypted=encrypted, mmt_result=mmt_result)
 
-        otp = await server.enter_code(port=port)
+        otp = await server.enter_code()
         return await self._login_with_mobile_otp(mobile, otp, encrypted=encrypted)
 
     @base.region_specific(types.Region.OVERSEAS)
@@ -189,19 +196,19 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
         *,
         encrypted: bool = False,
         port: int = 5000,
-        geetest_solver: typing.Optional[typing.Callable[[SessionMMT], typing.Awaitable[SessionMMTResult]]] = None,
+        geetest_solver: typing.Optional[types.AppGeetestSolver] = None,
         device_id: typing.Optional[str] = None,
         device_model: typing.Optional[str] = None,
         device_name: typing.Optional[str] = None,
     ) -> AppLoginResult:
         """Login with a password via HoYoLab app endpoint.
 
-        Note that this will start a webserver if either of the
-        following happens:
+        Note that this will start a webserver if captcha is
+        triggered and ``geetest_solver`` is not passed.
 
-        1. Captcha is triggered and `geetest_solver` is not passed.
-        2. Email verification is triggered (can happen if you
-        first login with a new device).
+        If email verification is triggered (can happen on first
+        login with a new device), the verification code will be
+        requested via CLI input.
 
         Raises
         ------
@@ -235,6 +242,27 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
                 encrypted=encrypted,
                 mmt_result=mmt_result,
             )
+        elif isinstance(result, SessionMMTv4):
+            # v4 captcha triggered
+            if geetest_solver:
+                mmt_result = await geetest_solver(result)
+            else:
+                mmt_result = await server.solve_geetest(
+                    result,
+                    port=port,
+                    for_new_os_app=True,
+                    api_server=server.HOYOLAB_GT_SERVER,
+                )
+
+            result = await self._app_login(
+                account,
+                password,
+                device_id=device_id,
+                device_name=device_name,
+                device_model=device_model,
+                encrypted=encrypted,
+                mmt_result=mmt_result,
+            )
 
         if isinstance(result, ActionTicket):
             # Email verification required
@@ -245,7 +273,7 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
                 else:
                     mmt_result = await server.solve_geetest(mmt, port=port)
 
-            code = await server.enter_code(port=port)
+            code = await server.enter_code()
             await self._verify_email(code, result)
 
             result = await self._app_login(
@@ -303,14 +331,17 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
             url = url.update_query(app_key=constants.GEETEST_RECORD_KEYS[self.default_game])
 
         assert isinstance(self.cookie_manager, managers.CookieManager)
-        async with self.cookie_manager.create_session() as session:
-            async with session.get(url, headers=headers, cookies=self.cookie_manager.cookies) as r:
-                data = await r.json()
+        resp = await self.cookie_manager._raw_request(
+            "GET",
+            url,
+            headers=headers,
+            cookies=self.cookie_manager.cookies,
+        )
 
-        if not data["data"]:
-            errors.raise_for_retcode(data)
+        if not resp.data["data"]:
+            errors.raise_for_retcode(resp.data)
 
-        return MMT(**data["data"])
+        return MMT(**resp.data["data"])
 
     @base.region_specific(types.Region.OVERSEAS)
     @managers.no_multi
@@ -328,14 +359,16 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
         body["app_key"] = constants.GEETEST_RECORD_KEYS[self.default_game]
 
         assert isinstance(self.cookie_manager, managers.CookieManager)
-        async with self.cookie_manager.create_session() as session:
-            async with session.post(
-                routes.VERIFY_MMT_URL.get_url(), json=body, headers=headers, cookies=self.cookie_manager.cookies
-            ) as r:
-                data = await r.json()
+        resp = await self.cookie_manager._raw_request(
+            "POST",
+            routes.VERIFY_MMT_URL.get_url(),
+            json=body,
+            headers=headers,
+            cookies=self.cookie_manager.cookies,
+        )
 
-        if not data["data"]:
-            errors.raise_for_retcode(data)
+        if not resp.data["data"]:
+            errors.raise_for_retcode(resp.data)
 
     async def os_game_login(
         self,

@@ -61,6 +61,7 @@ class LostVoidDataType(IntEnum):
     CARD_DATABASE = 4
     TACTICAL_PRISM_PROGRAM = 5
     UNOFFICIAL_GUIDE = 6
+    AUXILLARY_GEAR_DATABASE = 7
 
 
 class LostVoidData(APIModel):

@@ -1,6 +1,6 @@
 [project]
 name = "genshin"
-version = "1.7.24"
+version = "1.7.28"
 description = "API wrapper for HoYoLAB/Miyoushe API built on asyncio and pydantic."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -8,7 +8,6 @@ dependencies = ["aiohttp==3.*", "pydantic==2.*", "tenacity==9.*"]
 license = { file = "LICENSE" }
 classifiers = [
     "Development Status :: 4 - Beta",
-    "License :: OSI Approved :: MIT License",
     "Intended Audience :: Developers",
     "Natural Language :: English",
     "Operating System :: OS Independent",
@@ -44,7 +43,19 @@ redis = ["aioredis>=2.0.1"]
 sqlite = ["aiosqlite>=0.17.0"]
 
 [dependency-groups]
-dev = ["nox>=2024.4.15"]
+dev = [
+    "nox>=2024.4.15",
+    "pytest>=8.3.3",
+    "pytest-asyncio>=0.24.0",
+    "ruff>=0.6.8",
+    "aiohttp-socks>=0.9.0",
+    "aioredis>=2.0.1",
+    "aiosqlite>=0.17.0",
+    "browser-cookie3>=0.19.1",
+    "click>=8.1.7",
+    "qrcode[pil]>=7.4.2",
+    "rsa>=4.9",
+]
 lint = ["ruff>=0.6.8"]
 pytest = [
     "coverage[toml]>=7.6.1",
@@ -70,7 +81,7 @@ Repository = "https://github.com/seriaati/genshin.py.git"
 Issues = "https://github.com/seriaati/genshin.py/issues"
 
 [build-system]
-requires = ["uv_build>=0.10.0,<0.11.0"]
+requires = ["uv_build>=0.11.0,<0.12.0"]
 build-backend = "uv_build"
 
 [tool.hatch.build.targets.wheel]
@@ -85,7 +96,7 @@ testpaths = ["tests"]
 
 [tool.pyright]
 include = ["genshin"]
-exclude = ["**/__init__.py", "tests/**"]
+exclude = ["**/__init__.py", "tests/**", "**/__pycache__", "**/.*", "**/node_modules", ".venv"]
 
 typeCheckingMode = "strict"
 reportMissingTypeStubs = "none"

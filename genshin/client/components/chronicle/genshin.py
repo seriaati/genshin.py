@@ -405,7 +405,17 @@ class GenshinBattleChronicleClient(base.BaseBattleChronicleClient):
         )
         if raw:
             return data["data"]
-        return [models.HardChallenge(**item) for item in data["data"] if item["schedule"]["is_valid"]]
+
+        result: list[models.HardChallenge] = []
+
+        for item in data["data"]:
+            if item["schedule"]["is_valid"]:
+                self._add_timezone_to_data(
+                    item["schedule"], ("start_date_time", "end_date_time"), game=types.Game.GENSHIN, uid=uid
+                )
+                result.append(models.HardChallenge(**item))
+
+        return result
 
     get_spiral_abyss = get_genshin_spiral_abyss
     get_notes = get_genshin_notes

@@ -10,6 +10,7 @@ import typing
 from genshin import constants, types
 
 __all__ = [
+    "generate_app_login_ds",
     "generate_cn_dynamic_secret",
     "generate_dynamic_secret",
     "generate_geetest_ds",
@@ -23,6 +24,17 @@ def generate_dynamic_secret(salt: str = constants.DS_SALT[types.Region.OVERSEAS]
     t = int(time.time())
     r = "".join(random.choices(string.ascii_letters, k=6))
     h = hashlib.md5(f"salt={salt}&t={t}&r={r}".encode()).hexdigest()
+    return f"{t},{r},{h}"
+
+
+def generate_app_login_ds(body: dict[str, typing.Any]) -> str:
+    """Create a dynamic secret for app login."""
+    # Follows exactly the same implementation as in RequestUtils.createSign()
+    # of the official app. See comment in auth.py on how to decompile the app.
+    t = int(time.time())
+    r = "".join(random.choices(string.ascii_letters + string.digits, k=6))
+    b = json.dumps(body, separators=(",", ":"))
+    h = hashlib.md5(f"salt={constants.DS_SALT['app_login']}&t={t}&r={r}&b={b}&q=".encode()).hexdigest()
     return f"{t},{r},{h}"
 
 

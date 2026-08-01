@@ -143,7 +143,7 @@ RECORD_URL = GameRoute(
         genshin="https://sg-public-api.hoyolab.com/event/game_record/genshin/api",
         hkrpg="https://bbs-api-os.hoyolab.com/game_record/hkrpg/api",
         honkai3rd="https://bbs-api-os.hoyolab.com/game_record/honkai3rd/api",
-        nap="https://sg-public-api.hoyolab.com/event/game_record_zzz/api/zzz",
+        nap="https://sg-act-public-api.hoyolab.com/event/game_record_zzz/api/zzz",
     ),
     chinese=dict(
         genshin="https://api-takumi-record.mihoyo.com/game_record/app/genshin/api",
@@ -153,6 +153,16 @@ RECORD_URL = GameRoute(
     ),
 )
 NAP_LEDGER_URL = Route("https://sg-public-api.hoyolab.com/event/nap_ledger")
+
+NAP_CULTIVATE_URL = InternationalRoute(
+    overseas="https://sg-act-public-api.hoyolab.com/event/nap_cultivate_tool",
+    chinese="https://api-takumi.mihoyo.com/event/nap_cultivate_tool",
+)
+
+NAP_BADGE_LOGIN_URL = InternationalRoute(
+    overseas="https://sg-act-public-api.hoyolab.com/common/badge/v1/login/account",
+    chinese="https://api-takumi.mihoyo.com/common/badge/v1/login/account",
+)
 
 CARD_WAPI_URL = InternationalRoute(
     overseas="https://bbs-api-os.hoyolab.com/game_record/card/wapi",

@@ -49,6 +49,7 @@ class StarRailPath(enum.IntEnum):
     PRESERVATION = 6
     ABUNDANCE = 7
     REMEMBRANCE = 8
+    ELATION = 9
 
 
 class StarRailBaseCharacter(APIModel, Unique):

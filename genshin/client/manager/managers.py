@@ -23,6 +23,7 @@ __all__ = [
     "BaseCookieManager",
     "CookieManager",
     "InternationalCookieManager",
+    "RawResponse",
     "RotatingCookieManager",
     "parse_cookie",
 ]
@@ -59,6 +60,14 @@ def get_cookie_identifier(cookie: typing.Mapping[str, str]) -> typing.Optional[s
             return value
 
     return None
+
+
+class RawResponse(typing.NamedTuple):
+    """Raw HTTP response for auth endpoints that need headers/cookies."""
+
+    data: typing.Any
+    headers: typing.Any
+    cookies: http.cookies.SimpleCookie
 
 
 class BaseCookieManager(abc.ABC):
@@ -139,10 +148,12 @@ class BaseCookieManager(abc.ABC):
         return aiohttp.ClientSession(
             cookie_jar=aiohttp.DummyCookieJar(),
             connector=connector,
+            proxy=self.proxy,
             **kwargs,
         )
 
     @ratelimit.handle_ratelimits()
+    @ratelimit.handle_proxy_errors
     @ratelimit.handle_request_timeouts()
     async def _request(
         self,
@@ -176,6 +187,30 @@ class BaseCookieManager(abc.ABC):
             return data
 
         errors.raise_for_retcode(data)
+
+    @ratelimit.handle_ratelimits()
+    @ratelimit.handle_proxy_errors
+    @ratelimit.handle_request_timeouts()
+    async def _raw_request(
+        self,
+        method: str,
+        str_or_url: aiohttp.typedefs.StrOrURL,
+        *,
+        cookies: typing.Optional[typing.Mapping[str, str]] = None,
+        **kwargs: typing.Any,
+    ) -> RawResponse:
+        """Make a request and return data + headers + cookies (no retcode enforcement)."""
+        async with self.create_session() as session:
+            async with session.request(method, str_or_url, proxy=self.proxy, cookies=cookies, **kwargs) as response:
+                if response.content_type != "application/json":
+                    content = await response.text()
+                    raise errors.GenshinException(msg="Recieved a response with an invalid content type:\n" + content)
+                data = await response.json()
+                return RawResponse(
+                    data=data,
+                    headers=response.headers,
+                    cookies=response.cookies,
+                )
 
     @abc.abstractmethod
     async def request(

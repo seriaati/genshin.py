@@ -593,6 +593,24 @@ class BaseClient(abc.ABC):
 
         return None
 
+    def _add_timezone_to_data(
+        self,
+        data: typing.Mapping[str, typing.Any],
+        keys: typing.Sequence[str],
+        *,
+        game: typing.Optional[types.Game] = None,
+        uid: typing.Optional[int] = None,
+    ) -> typing.Mapping[str, typing.Any]:
+        """Add timezone info to a data dict based on the default game account."""
+        tz = self.get_account_timezone(game=game, uid=uid)
+        if tz is not None:
+            data = dict(data)
+            for key in keys:
+                if key in data and isinstance(data[key], dict):
+                    data[key]["tzinfo"] = tz
+
+        return data
+
 
 def region_specific(region: types.Region) -> typing.Callable[[AsyncCallableT], AsyncCallableT]:
     """Prevent function to be ran with unsupported regions."""

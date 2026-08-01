@@ -80,9 +80,9 @@ class DailyRewardClient(base.BaseClient):
             headers["ds"] = ds_utility.generate_dynamic_secret(constants.DS_SALT["cn_signin"])
 
         if challenge:
-            headers["x-rpc-challenge"] = challenge["challenge"]
-            headers["x-rpc-seccode"] = challenge["seccode"]
-            headers["x-rpc-validate"] = challenge["validate"]
+            headers["x-rpc-challenge"] = challenge["geetest_challenge"]
+            headers["x-rpc-seccode"] = challenge["geetest_seccode"]
+            headers["x-rpc-validate"] = challenge["geetest_validate"]
 
         return await self.request(url, method=method, params=params, headers=headers, **kwargs)
 

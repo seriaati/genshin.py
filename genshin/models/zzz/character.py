@@ -35,7 +35,9 @@ class ZZZElementType(enum.IntEnum):
     FIRE = 201
     ICE = 202
     ELECTRIC = 203
+    WIND = 204
     ETHER = 205
+    LUMIFLUX = 300
 
 
 class ZZZSpecialty(enum.IntEnum):
@@ -61,6 +63,7 @@ class ZZZBaseAgent(APIModel, Unique):
     faction_icon: str = Aliased("group_icon_path")
     rectangle_icon: str = Aliased("hollow_icon_path")
     square_icon: str = Aliased("role_square_url")
+    faction_name: str = Aliased("camp_name_mi18n")
 
 
 class ZZZPartialAgent(ZZZBaseAgent):
@@ -99,6 +102,7 @@ class ZZZPropertyType(enum.IntEnum):
     ICE_DMG_BONUS = 317
     ELECTRIC_DMG_BONUS = 318
     ETHER_DMG_BONUS = 319
+    WIND_DMG_BONUS = 323
 
     # Disc drive and w-engine
     CRIT_RATE = 20103
@@ -125,6 +129,7 @@ class ZZZPropertyType(enum.IntEnum):
     DISC_ICE_DMG_BONUS = 31703
     DISC_ELECTRIC_DMG_BONUS = 31803
     DISC_ETHER_DMG_BONUS = 31903
+    DISC_WIND_DMG_BONUS = 32303
 
 
 class ZZZProperty(APIModel):
@@ -261,7 +266,6 @@ class ZZZFullAgent(ZZZBaseAgent):
     level: int
     rank: int
     """Also known as Mindscape Cinema in-game."""
-    faction_name: str = Aliased("camp_name_mi18n")
     properties: typing.Sequence[ZZZAgentProperty]
     discs: typing.Sequence[ZZZDisc] = Aliased("equip")
     w_engine: typing.Optional[WEngine] = Aliased("weapon", default=None)

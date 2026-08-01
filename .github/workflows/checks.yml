@@ -31,10 +31,10 @@ jobs:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@v8.3.2
 
       - name: install nox
         run: |
@@ -47,17 +47,19 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || (github.event_name == 'issue_comment' && github.event.issue.pull_request && contains(github.event.comment.body, '/test'))
+    if: github.event_name == 'push' || (github.event_name == 'issue_comment' &&
+      github.event.issue.pull_request && contains(github.event.comment.body,
+      '/test'))
 
     strategy:
       matrix:
-        python-version: ["3.9", "3.10", "3.11"]
+        python-version: [ "3.9", "3.10", "3.11" ]
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@v8.3.2
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -70,16 +72,28 @@ jobs:
         env:
           GENSHIN_COOKIES: ${{ secrets.GENSHIN_COOKIES }}
           HONKAI_COOKIES: ${{ secrets.HONKAI_COOKIES }}
-          LOCAL_GENSHIN_COOKIES: ${{ matrix.python-version == '3.10' && secrets.LOCAL_GENSHIN_COOKIES || '' }}
+          LOCAL_GENSHIN_COOKIES: ${{ matrix.python-version == '3.10' &&
+            secrets.LOCAL_GENSHIN_COOKIES || '' }}
           HSR_COOKIES: ${{ secrets.HSR_COOKIES }}
           ZZZ_COOKIES: ${{ secrets.ZZZ_COOKIES }}
+
+          GENSHIN_UID: ${{ vars.GENSHIN_UID }}
+          HONKAI_UID: ${{ vars.HONKAI_UID }}
+          HSR_UID: ${{ vars.HSR_UID }}
+          ZZZ_UID: ${{ vars.ZZZ_UID }}
+
+          HOYOLAB_ID: ${{ vars.HOYOLAB_ID }}
+          GENSHIN_CNUID: ${{ vars.GENSHIN_CNUID }}
+          MIYOUSHE_UID: ${{ vars.MIYOUSHE_UID }}
+          HOYOLAB_TOPIC_ID: ${{ vars.HOYOLAB_TOPIC_ID }}
+          HOYOLAB_POST_ID: ${{ vars.HOYOLAB_POST_ID }}
 
         run: |
           uv run nox -s test --verbose -- --cov-append
           mv .coverage .coverage.${{ matrix.python-version }}
 
       - name: Upload coverage artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: coverage-${{ matrix.python-version }}
           path: .coverage.${{ matrix.python-version }}
@@ -88,19 +102,19 @@ jobs:
           include-hidden-files: true
 
   upload-coverage:
-    needs: [test]
+    needs: [ test ]
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@v8.3.2
 
       - name: Download coverage
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           pattern: coverage-*
           merge-multiple: true
@@ -123,10 +137,10 @@ jobs:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@v8.3.2
 
       - name: install nox
         run: |
@@ -142,10 +156,10 @@ jobs:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@v8.3.2
 
       - name: install nox
         run: |
@@ -161,7 +175,7 @@ jobs:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Run prettier
         run: |
