@@ -1255,7 +1255,7 @@ wheels = [
 
 [[package]]
 name = "genshin"
-version = "1.7.28"
+version = "1.7.29"
 source = { editable = "." }
 dependencies = [
     { name = "aiohttp", version = "3.13.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
