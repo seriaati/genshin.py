@@ -25,6 +25,7 @@ import typing
 
 import genshin
 
+
 class JsonCache(genshin.BaseCache):
     """Terrible json cache without any expiration."""
 

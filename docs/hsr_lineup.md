@@ -9,8 +9,8 @@ The following code example shows all the possible API features the wrapper can c
 ```py
 import genshin
 
-client = genshin.Client(lang="en-us") # (1)
-client = genshin.Client(cookies, uid=809162009, lang="zh-cn") # (2)
+client = genshin.Client(lang="en-us")  # (1)
+client = genshin.Client(cookies, uid=809162009, lang="zh-cn")  # (2)
 
 game_modes = await client.get_starrail_lineup_game_modes()
 for mode in game_modes:
@@ -18,15 +18,17 @@ for mode in game_modes:
     for floor in mode.floors:
         print(floor.name)
 
-moc_stage11 = client.get_starrail_lineup_floor(game_modes, type="Chasm", floor=11) # (3)
-moc_stage11 = client.get_starrail_lineup_floor(game_modes, type=genshin.models.StarRailGameModeType.MOC, floor=11) # (4)
+moc_stage11 = client.get_starrail_lineup_floor(game_modes, type="Chasm", floor=11)  # (3)
+moc_stage11 = client.get_starrail_lineup_floor(
+    game_modes, type=genshin.models.StarRailGameModeType.MOC, floor=11
+)  # (4)
 
 if moc_stage11 is None:
     print("MOC Stage 11 not found.")
     return
 print(moc_stage11)
 
-schedules = await client.get_starrail_lineup_schedules("Chasm") # (5)
+schedules = await client.get_starrail_lineup_schedules("Chasm")  # (5)
 for schedule in schedules:
     print(f"{schedule.id} - {schedule.name} ({schedule.start_time} ~ {schedule.end_time})")
 
@@ -34,7 +36,7 @@ for schedule in schedules:
 schedule = schedules[0]
 next_page_token = None
 for _ in range(5):
-    page = await client.get_starrail_lineups( # (6)
+    page = await client.get_starrail_lineups(  # (6)
         tag_id=moc_stage11.id,
         group_id=schedule.id,
         type="Chasm",

@@ -18,9 +18,9 @@ client = genshin.Client({"ltuid": ..., "ltoken": ...})
 
 # set dynamically
 client = genshin.Client()
-client.set_cookies({"ltuid": ..., "ltoken": ...}) # mapping
-client.set_cookies(ltuid=..., ltoken=...) # kwargs
-client.set_cookies("ltuid=...; ltoken=...") # cookie header
+client.set_cookies({"ltuid": ..., "ltoken": ...})  # mapping
+client.set_cookies(ltuid=..., ltoken=...)  # kwargs
+client.set_cookies("ltuid=...; ltoken=...")  # cookie header
 ```
 
 ### How can I get my cookies?

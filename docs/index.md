@@ -53,12 +53,14 @@ A very simple example of how genshin.py would be used:
 import asyncio
 import genshin
 
+
 async def main():
     cookies = {"ltuid": 119480035, "ltoken": "cnF7TiZqHAAvYqgCBoSPx5EjwezOh1ZHoqSHf7dT"}
     client = genshin.Client(cookies, uid=710785423)
 
     user = await client.get_genshin_user()
     print(f"User has a total of {user.stats.characters} characters")
+
 
 asyncio.run(main())
 ```

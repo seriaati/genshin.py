@@ -56,16 +56,16 @@ For convenience, if a list of cookies is passed into `Client.set_cookies` the co
 ```py
 import genshin
 
+
 class RandomCookieManager(genshin.BaseCookieManager):
     """Cookie Manager that provides random cookies fetched from a database."""
 
     def __init__(self, database):
         self.database = database
 
-    async def request(self, url, *, method = "GET", **kwargs):
+    async def request(self, url, *, method="GET", **kwargs):
         cookies = await self.database.get_random_cookies()
         return await self._request(method, url, cookies=cookies, **kwargs)
-
 ```
 
 ### International Cookie Manager
@@ -73,11 +73,12 @@ class RandomCookieManager(genshin.BaseCookieManager):
 When providing data for both cn and os players you might want to share the same client for them and in extension things like the cache. To achieve that you have to set cookies for all regions with `InternationalCookieManager`.
 
 ```py
-
-client.cookie_manager = genshin.InternationalCookieManager({
-    genshin.Region.OVESEAS: [{...}, ...],
-    genshin.Region.CHINESE: [{...}, ...],
-})
+client.cookie_manager = genshin.InternationalCookieManager(
+    {
+        genshin.Region.OVESEAS: [{...}, ...],
+        genshin.Region.CHINESE: [{...}, ...],
+    }
+)
 ```
 
 ## Cached UIDs

@@ -58,27 +58,16 @@ print(cost)
 
 ```py
 # you may also chain the builder (recommended)
-cost = await (
-    client.calculator()
-    .set_character(10000046, current=1, target=90)
-    .set_weapon(13501, current=20, target=70)
-)
-
+cost = await client.calculator().set_character(10000046, current=1, target=90).set_weapon(13501, current=20, target=70)
 ```
 
 ```py
 # calculate the amount needed for a 5* gladiator's nostalgia
 artifact_id = 7554
-cost = await (
-    client.calculator()
-    .add_artifact(artifact_id, current=0, target=20)
-)
+cost = await client.calculator().add_artifact(artifact_id, current=0, target=20)
 
 # or calculate for a full set
-cost = await (
-    client.calculator()
-    .set_artifact_set(artifact_id, current=0, target=20)
-)
+cost = await client.calculator().set_artifact_set(artifact_id, current=0, target=20)
 ```
 
 ### Calculation based off a character
@@ -91,8 +80,8 @@ cost = await (
     client.calculator()
     .set_character(10000046, current=1, target=90)
     .with_current_weapon(target=70)
-    .with_current_artifacts(target=20) # every artifact will be set to lvl 20
-    .with_current_talents(target=7) # every artifact will be set to lvl 7
+    .with_current_artifacts(target=20)  # every artifact will be set to lvl 20
+    .with_current_talents(target=7)  # every artifact will be set to lvl 7
 )
 ```
 
