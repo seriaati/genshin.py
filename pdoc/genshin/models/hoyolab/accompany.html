@@ -1,0 +1,2193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>genshin.models.hoyolab.accompany API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>genshin.models.hoyolab.accompany</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAction"><code class="flex name class">
+<span>class <span class="ident">AccompanyAction</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyAction(APIModel):
+    &#34;&#34;&#34;Action that grants accompany points.&#34;&#34;&#34;
+
+    action: str
+    points: int = Aliased(&#34;point&#34;)
+    max_points_per_day: int = Aliased(&#34;max_point_per_day&#34;)
+    done: bool
+    jump: Optional[AccompanyJump] = None</code></pre>
+</details>
+<div class="desc"><p>Action that grants accompany points.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAction.action"><code class="name">var <span class="ident">action</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAction.done"><code class="name">var <span class="ident">done</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAction.jump"><code class="name">var <span class="ident">jump</span> : <a title="genshin.models.hoyolab.accompany.AccompanyJump" href="#genshin.models.hoyolab.accompany.AccompanyJump">AccompanyJump</a> | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAction.max_points_per_day"><code class="name">var <span class="ident">max_points_per_day</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAction.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAction.points"><code class="name">var <span class="ident">points</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAvatarFrame"><code class="flex name class">
+<span>class <span class="ident">AccompanyAvatarFrame</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyAvatarFrame(APIModel):
+    &#34;&#34;&#34;Quarterly avatar frame reward progress.&#34;&#34;&#34;
+
+    config: AccompanyAvatarFrameConfig = Aliased(&#34;avatar_frame_conf&#34;)
+    id: int = Aliased(&#34;avatar_frame_id&#34;)
+    quarter_days: int = Aliased(&#34;accompany_quarter_days&#34;)
+    accompanied_today: bool = Aliased(&#34;is_accompany_today&#34;)</code></pre>
+</details>
+<div class="desc"><p>Quarterly avatar frame reward progress.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAvatarFrame.accompanied_today"><code class="name">var <span class="ident">accompanied_today</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAvatarFrame.config"><code class="name">var <span class="ident">config</span> : <a title="genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig" href="#genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig">AccompanyAvatarFrameConfig</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAvatarFrame.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAvatarFrame.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAvatarFrame.quarter_days"><code class="name">var <span class="ident">quarter_days</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig"><code class="flex name class">
+<span>class <span class="ident">AccompanyAvatarFrameConfig</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyAvatarFrameConfig(APIModel):
+    &#34;&#34;&#34;Avatar frame reward configuration.&#34;&#34;&#34;
+
+    icon: str = Aliased(&#34;icon_url&#34;)
+    popup_docs: Sequence[AccompanyPopupDoc] = Aliased(&#34;pop_up_doc&#34;)
+    jump: AccompanyJump = Aliased(&#34;pop_up_jump&#34;)
+    quarter_begin_at: int
+    quarter_end_at: int
+    quarter_left_seconds: int</code></pre>
+</details>
+<div class="desc"><p>Avatar frame reward configuration.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.icon"><code class="name">var <span class="ident">icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.jump"><code class="name">var <span class="ident">jump</span> : <a title="genshin.models.hoyolab.accompany.AccompanyJump" href="#genshin.models.hoyolab.accompany.AccompanyJump">AccompanyJump</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.popup_docs"><code class="name">var <span class="ident">popup_docs</span> : Sequence[<a title="genshin.models.hoyolab.accompany.AccompanyPopupDoc" href="#genshin.models.hoyolab.accompany.AccompanyPopupDoc">AccompanyPopupDoc</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.quarter_begin_at"><code class="name">var <span class="ident">quarter_begin_at</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.quarter_end_at"><code class="name">var <span class="ident">quarter_end_at</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.quarter_left_seconds"><code class="name">var <span class="ident">quarter_left_seconds</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAwardInfo"><code class="flex name class">
+<span>class <span class="ident">AccompanyAwardInfo</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyAwardInfo(APIModel):
+    &#34;&#34;&#34;Accompany rewards and point-earning actions.&#34;&#34;&#34;
+
+    pendants: Sequence[AccompanyPendant] = Aliased(&#34;pendant_list&#34;)
+    actions: Sequence[AccompanyAction] = Aliased(&#34;action_list&#34;)
+    titles: Sequence[AccompanyTitle] = Aliased(&#34;title_list&#34;)</code></pre>
+</details>
+<div class="desc"><p>Accompany rewards and point-earning actions.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAwardInfo.actions"><code class="name">var <span class="ident">actions</span> : Sequence[<a title="genshin.models.hoyolab.accompany.AccompanyAction" href="#genshin.models.hoyolab.accompany.AccompanyAction">AccompanyAction</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAwardInfo.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAwardInfo.pendants"><code class="name">var <span class="ident">pendants</span> : Sequence[<a title="genshin.models.hoyolab.accompany.AccompanyPendant" href="#genshin.models.hoyolab.accompany.AccompanyPendant">AccompanyPendant</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyAwardInfo.titles"><code class="name">var <span class="ident">titles</span> : Sequence[<a title="genshin.models.hoyolab.accompany.AccompanyTitle" href="#genshin.models.hoyolab.accompany.AccompanyTitle">AccompanyTitle</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacter"><code class="flex name class">
+<span>class <span class="ident">AccompanyCharacter</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyCharacter(APIModel):
+    &#34;&#34;&#34;Accompany character.&#34;&#34;&#34;
+
+    info: AccompanyCharacterInfo = Aliased(&#34;basic&#34;)
+    profile: AccompanyCharacterProfile = Aliased(&#34;attr_profile&#34;)
+    attribute_ids: Sequence[int]</code></pre>
+</details>
+<div class="desc"><p>Accompany character.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacter.attribute_ids"><code class="name">var <span class="ident">attribute_ids</span> : Sequence[int]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacter.info"><code class="name">var <span class="ident">info</span> : <a title="genshin.models.hoyolab.accompany.AccompanyCharacterInfo" href="#genshin.models.hoyolab.accompany.AccompanyCharacterInfo">AccompanyCharacterInfo</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacter.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacter.profile"><code class="name">var <span class="ident">profile</span> : <a title="genshin.models.hoyolab.accompany.AccompanyCharacterProfile" href="#genshin.models.hoyolab.accompany.AccompanyCharacterProfile">AccompanyCharacterProfile</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterAttribute"><code class="flex name class">
+<span>class <span class="ident">AccompanyCharacterAttribute</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyCharacterAttribute(APIModel):
+    &#34;&#34;&#34;Accompany character attribute.&#34;&#34;&#34;
+
+    id: int
+    icon: str = Aliased(&#34;icon_url&#34;)
+    corner_icon: str = Aliased(&#34;corner_icon_url&#34;)</code></pre>
+</details>
+<div class="desc"><p>Accompany character attribute.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterAttribute.corner_icon"><code class="name">var <span class="ident">corner_icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterAttribute.icon"><code class="name">var <span class="ident">icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterAttribute.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterAttribute.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterDetails"><code class="flex name class">
+<span>class <span class="ident">AccompanyCharacterDetails</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyCharacterDetails(APIModel):
+    &#34;&#34;&#34;Accompany character page details.&#34;&#34;&#34;
+
+    info: AccompanyCharacterInfo = Aliased(&#34;basic&#34;)
+    profile: AccompanyCharacterProfile = Aliased(&#34;attr_profile&#34;)
+    accompany_info: AccompanyInfo
+    voice_scripts: Mapping[str, Sequence[AccompanyVoiceLine]] = Aliased(&#34;attr_wiki_voice_script&#34;)
+    videos: Sequence[AccompanyWikiVideo] = Aliased(&#34;attr_wiki_video&#34;)
+    gallery: Sequence[AccompanyWikiImage] = Aliased(&#34;attr_wiki_gallery&#34;)
+    widget: Optional[AccompanyWidget] = Aliased(&#34;attr_widget&#34;, default=None)
+    moment_posts: Sequence[AccompanyMomentPost] = Aliased(&#34;attr_moment&#34;)
+    feed_info: AccompanyFeedInfo
+    game_jump_url: str
+    award_info: Optional[AccompanyAwardInfo] = None
+    lantern_sign: Optional[AccompanyLanternSign] = None
+    avatar_frame: Optional[AccompanyAvatarFrame] = None
+    stats: Optional[AccompanyTopicStats] = None
+    &#34;&#34;&#34;Topic statistics, not part of role_info but passed in by the client.&#34;&#34;&#34;
+
+    @field_validator(&#34;voice_scripts&#34;, mode=&#34;before&#34;)
+    def __unnest_voice_scripts(cls, v: Optional[dict[str, Any]]) -&gt; dict[str, Any]:
+        return {name: script[&#34;list&#34;] for name, script in v[&#34;scripts&#34;].items()} if v else {}
+
+    @field_validator(&#34;videos&#34;, mode=&#34;before&#34;)
+    def __unnest_videos(cls, v: Optional[dict[str, Any]]) -&gt; list[Any]:
+        return v[&#34;videos&#34;] if v else []
+
+    @field_validator(&#34;gallery&#34;, mode=&#34;before&#34;)
+    def __unnest_gallery(cls, v: Optional[dict[str, Any]]) -&gt; list[Any]:
+        return v[&#34;images&#34;] if v else []
+
+    @field_validator(&#34;moment_posts&#34;, mode=&#34;before&#34;)
+    def __unnest_moment_posts(cls, v: Optional[dict[str, Any]]) -&gt; list[Any]:
+        return [post[&#34;post&#34;] for post in v[&#34;post_list&#34;]] if v else []</code></pre>
+</details>
+<div class="desc"><p>Accompany character page details.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.accompany_info"><code class="name">var <span class="ident">accompany_info</span> : <a title="genshin.models.hoyolab.accompany.AccompanyInfo" href="#genshin.models.hoyolab.accompany.AccompanyInfo">AccompanyInfo</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.avatar_frame"><code class="name">var <span class="ident">avatar_frame</span> : <a title="genshin.models.hoyolab.accompany.AccompanyAvatarFrame" href="#genshin.models.hoyolab.accompany.AccompanyAvatarFrame">AccompanyAvatarFrame</a> | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.award_info"><code class="name">var <span class="ident">award_info</span> : <a title="genshin.models.hoyolab.accompany.AccompanyAwardInfo" href="#genshin.models.hoyolab.accompany.AccompanyAwardInfo">AccompanyAwardInfo</a> | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.feed_info"><code class="name">var <span class="ident">feed_info</span> : <a title="genshin.models.hoyolab.accompany.AccompanyFeedInfo" href="#genshin.models.hoyolab.accompany.AccompanyFeedInfo">AccompanyFeedInfo</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.gallery"><code class="name">var <span class="ident">gallery</span> : Sequence[<a title="genshin.models.hoyolab.accompany.AccompanyWikiImage" href="#genshin.models.hoyolab.accompany.AccompanyWikiImage">AccompanyWikiImage</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.game_jump_url"><code class="name">var <span class="ident">game_jump_url</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.info"><code class="name">var <span class="ident">info</span> : <a title="genshin.models.hoyolab.accompany.AccompanyCharacterInfo" href="#genshin.models.hoyolab.accompany.AccompanyCharacterInfo">AccompanyCharacterInfo</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.lantern_sign"><code class="name">var <span class="ident">lantern_sign</span> : <a title="genshin.models.hoyolab.accompany.AccompanyLanternSign" href="#genshin.models.hoyolab.accompany.AccompanyLanternSign">AccompanyLanternSign</a> | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.moment_posts"><code class="name">var <span class="ident">moment_posts</span> : Sequence[<a title="genshin.models.hoyolab.accompany.AccompanyMomentPost" href="#genshin.models.hoyolab.accompany.AccompanyMomentPost">AccompanyMomentPost</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.profile"><code class="name">var <span class="ident">profile</span> : <a title="genshin.models.hoyolab.accompany.AccompanyCharacterProfile" href="#genshin.models.hoyolab.accompany.AccompanyCharacterProfile">AccompanyCharacterProfile</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.stats"><code class="name">var <span class="ident">stats</span> : <a title="genshin.models.hoyolab.accompany.AccompanyTopicStats" href="#genshin.models.hoyolab.accompany.AccompanyTopicStats">AccompanyTopicStats</a> | None</code></dt>
+<dd>
+<div class="desc"><p>Topic statistics, not part of role_info but passed in by the client.</p></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.videos"><code class="name">var <span class="ident">videos</span> : Sequence[<a title="genshin.models.hoyolab.accompany.AccompanyWikiVideo" href="#genshin.models.hoyolab.accompany.AccompanyWikiVideo">AccompanyWikiVideo</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.voice_scripts"><code class="name">var <span class="ident">voice_scripts</span> : Mapping[str, Sequence[<a title="genshin.models.hoyolab.accompany.AccompanyVoiceLine" href="#genshin.models.hoyolab.accompany.AccompanyVoiceLine">AccompanyVoiceLine</a>]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.widget"><code class="name">var <span class="ident">widget</span> : <a title="genshin.models.hoyolab.accompany.AccompanyWidget" href="#genshin.models.hoyolab.accompany.AccompanyWidget">AccompanyWidget</a> | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterGame"><code class="flex name class">
+<span>class <span class="ident">AccompanyCharacterGame</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyCharacterGame(APIModel):
+    &#34;&#34;&#34;Accompany character game.&#34;&#34;&#34;
+
+    attributes: Sequence[Sequence[AccompanyCharacterAttribute]] = Aliased(&#34;attribute_group_list&#34;)
+    id: int = Aliased(&#34;game_id&#34;)
+    icon: str = Aliased(&#34;game_icon&#34;)
+    characters: Sequence[AccompanyCharacter] = Aliased(&#34;role_list&#34;)
+
+    @field_validator(&#34;attributes&#34;, mode=&#34;before&#34;)
+    def __unnest_attributes(cls, v: list[dict[str, Any]]) -&gt; list[list[dict[str, Any]]]:
+        return [group[&#34;attribute_list&#34;] for group in v]
+
+    @property
+    def game(self) -&gt; types.Game:
+        if self.id == 2:
+            return types.Game.GENSHIN
+        if self.id == 6:
+            return types.Game.STARRAIL
+        if self.id == 8:
+            return types.Game.ZZZ
+
+        raise ValueError(f&#34;Unknown game ID: {self.id}&#34;)</code></pre>
+</details>
+<div class="desc"><p>Accompany character game.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterGame.attributes"><code class="name">var <span class="ident">attributes</span> : Sequence[Sequence[<a title="genshin.models.hoyolab.accompany.AccompanyCharacterAttribute" href="#genshin.models.hoyolab.accompany.AccompanyCharacterAttribute">AccompanyCharacterAttribute</a>]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterGame.characters"><code class="name">var <span class="ident">characters</span> : Sequence[<a title="genshin.models.hoyolab.accompany.AccompanyCharacter" href="#genshin.models.hoyolab.accompany.AccompanyCharacter">AccompanyCharacter</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterGame.icon"><code class="name">var <span class="ident">icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterGame.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterGame.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterGame.game"><code class="name">prop <span class="ident">game</span> : <a title="genshin.types.Game" href="../../types.html#genshin.types.Game">Game</a></code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def game(self) -&gt; types.Game:
+    if self.id == 2:
+        return types.Game.GENSHIN
+    if self.id == 6:
+        return types.Game.STARRAIL
+    if self.id == 8:
+        return types.Game.ZZZ
+
+    raise ValueError(f&#34;Unknown game ID: {self.id}&#34;)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterInfo"><code class="flex name class">
+<span>class <span class="ident">AccompanyCharacterInfo</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyCharacterInfo(APIModel):
+    &#34;&#34;&#34;Accompany character info.&#34;&#34;&#34;
+
+    role_id: int
+    game_id: int
+    name: str
+    brief_name: str
+    topic_id: int
+    game_name: str</code></pre>
+</details>
+<div class="desc"><p>Accompany character info.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterInfo.brief_name"><code class="name">var <span class="ident">brief_name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterInfo.game_id"><code class="name">var <span class="ident">game_id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterInfo.game_name"><code class="name">var <span class="ident">game_name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterInfo.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterInfo.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterInfo.role_id"><code class="name">var <span class="ident">role_id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterInfo.topic_id"><code class="name">var <span class="ident">topic_id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterProfile"><code class="flex name class">
+<span>class <span class="ident">AccompanyCharacterProfile</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyCharacterProfile(APIModel):
+    &#34;&#34;&#34;Accompany character color and images.&#34;&#34;&#34;
+
+    card_color: str
+    bg_dark_color: str
+    bg_light_color: str
+    bg_card_color: str
+
+    card_image: str = Aliased(&#34;card_img_url&#34;)
+    video: str = Aliased(&#34;full_screen_video_265&#34;)
+    icon: str = Aliased(&#34;icon_url&#34;)</code></pre>
+</details>
+<div class="desc"><p>Accompany character color and images.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterProfile.bg_card_color"><code class="name">var <span class="ident">bg_card_color</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterProfile.bg_dark_color"><code class="name">var <span class="ident">bg_dark_color</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterProfile.bg_light_color"><code class="name">var <span class="ident">bg_light_color</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterProfile.card_color"><code class="name">var <span class="ident">card_color</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterProfile.card_image"><code class="name">var <span class="ident">card_image</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterProfile.icon"><code class="name">var <span class="ident">icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterProfile.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyCharacterProfile.video"><code class="name">var <span class="ident">video</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyFeedInfo"><code class="flex name class">
+<span>class <span class="ident">AccompanyFeedInfo</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyFeedInfo(APIModel):
+    &#34;&#34;&#34;Post counts of an accompany character&#39;s feed.&#34;&#34;&#34;
+
+    fan_art_posts: int = Aliased(&#34;fan_art_post_num&#34;)
+    discussion_posts: int = Aliased(&#34;discussion_post_num&#34;)
+    yesterday_posts: int = Aliased(&#34;yesterday_post_num&#34;)
+    total_posts: int = Aliased(&#34;total_post_num&#34;)</code></pre>
+</details>
+<div class="desc"><p>Post counts of an accompany character's feed.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyFeedInfo.discussion_posts"><code class="name">var <span class="ident">discussion_posts</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyFeedInfo.fan_art_posts"><code class="name">var <span class="ident">fan_art_posts</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyFeedInfo.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyFeedInfo.total_posts"><code class="name">var <span class="ident">total_posts</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyFeedInfo.yesterday_posts"><code class="name">var <span class="ident">yesterday_posts</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyInfo"><code class="flex name class">
+<span>class <span class="ident">AccompanyInfo</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyInfo(APIModel):
+    &#34;&#34;&#34;Accompany progress of a character.&#34;&#34;&#34;
+
+    days: int = Aliased(&#34;accompany_days&#34;)
+    quarter_days: int = Aliased(&#34;accompany_quarter_days&#34;)
+    accompanied_today: bool = Aliased(&#34;is_accompany_today&#34;)
+    can_accompany: bool
+    points: int = Aliased(&#34;accompany_point&#34;)
+    available_points: int = Aliased(&#34;available_accompany_point&#34;)</code></pre>
+</details>
+<div class="desc"><p>Accompany progress of a character.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyInfo.accompanied_today"><code class="name">var <span class="ident">accompanied_today</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyInfo.available_points"><code class="name">var <span class="ident">available_points</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyInfo.can_accompany"><code class="name">var <span class="ident">can_accompany</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyInfo.days"><code class="name">var <span class="ident">days</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyInfo.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyInfo.points"><code class="name">var <span class="ident">points</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyInfo.quarter_days"><code class="name">var <span class="ident">quarter_days</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyJump"><code class="flex name class">
+<span>class <span class="ident">AccompanyJump</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyJump(APIModel):
+    &#34;&#34;&#34;Deep link to a location in the app or on the web.&#34;&#34;&#34;
+
+    text: str
+    app_path: str
+    web_path: str</code></pre>
+</details>
+<div class="desc"><p>Deep link to a location in the app or on the web.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyJump.app_path"><code class="name">var <span class="ident">app_path</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyJump.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyJump.text"><code class="name">var <span class="ident">text</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyJump.web_path"><code class="name">var <span class="ident">web_path</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternBonus"><code class="flex name class">
+<span>class <span class="ident">AccompanyLanternBonus</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyLanternBonus(APIModel):
+    &#34;&#34;&#34;Lantern sign reward tier.&#34;&#34;&#34;
+
+    required_points: int = Aliased(&#34;require_accompany_points&#34;)
+    pendant_id: int
+    lifetime: int
+    title: str
+    light_icon: str = Aliased(&#34;light_icon_url&#34;)
+    dark_icon: str = Aliased(&#34;dark_icon_url&#34;)
+    description: str = Aliased(&#34;desc&#34;)</code></pre>
+</details>
+<div class="desc"><p>Lantern sign reward tier.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternBonus.dark_icon"><code class="name">var <span class="ident">dark_icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternBonus.description"><code class="name">var <span class="ident">description</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternBonus.lifetime"><code class="name">var <span class="ident">lifetime</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternBonus.light_icon"><code class="name">var <span class="ident">light_icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternBonus.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternBonus.pendant_id"><code class="name">var <span class="ident">pendant_id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternBonus.required_points"><code class="name">var <span class="ident">required_points</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternBonus.title"><code class="name">var <span class="ident">title</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternConfig"><code class="flex name class">
+<span>class <span class="ident">AccompanyLanternConfig</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyLanternConfig(APIModel):
+    &#34;&#34;&#34;Lantern sign event configuration.&#34;&#34;&#34;
+
+    bonuses: Sequence[AccompanyLanternBonus]
+    templates: Sequence[AccompanyLanternTemplate] = Aliased(&#34;lantern_sign_templates&#34;)
+    jump: AccompanyJump = Aliased(&#34;pop_up_jump&#34;)
+    quarter_begin_at: int
+    quarter_end_at: int
+    quarter_left_seconds: int
+    light_icon: str = Aliased(&#34;light_icon_url&#34;)
+    dark_icon: str = Aliased(&#34;dark_icon_url&#34;)</code></pre>
+</details>
+<div class="desc"><p>Lantern sign event configuration.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternConfig.bonuses"><code class="name">var <span class="ident">bonuses</span> : Sequence[<a title="genshin.models.hoyolab.accompany.AccompanyLanternBonus" href="#genshin.models.hoyolab.accompany.AccompanyLanternBonus">AccompanyLanternBonus</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternConfig.dark_icon"><code class="name">var <span class="ident">dark_icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternConfig.jump"><code class="name">var <span class="ident">jump</span> : <a title="genshin.models.hoyolab.accompany.AccompanyJump" href="#genshin.models.hoyolab.accompany.AccompanyJump">AccompanyJump</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternConfig.light_icon"><code class="name">var <span class="ident">light_icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternConfig.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternConfig.quarter_begin_at"><code class="name">var <span class="ident">quarter_begin_at</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternConfig.quarter_end_at"><code class="name">var <span class="ident">quarter_end_at</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternConfig.quarter_left_seconds"><code class="name">var <span class="ident">quarter_left_seconds</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternConfig.templates"><code class="name">var <span class="ident">templates</span> : Sequence[<a title="genshin.models.hoyolab.accompany.AccompanyLanternTemplate" href="#genshin.models.hoyolab.accompany.AccompanyLanternTemplate">AccompanyLanternTemplate</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternSign"><code class="flex name class">
+<span>class <span class="ident">AccompanyLanternSign</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyLanternSign(APIModel):
+    &#34;&#34;&#34;Lantern sign event progress.&#34;&#34;&#34;
+
+    config: AccompanyLanternConfig = Aliased(&#34;lantern_sign_conf&#34;)
+    pendant_id: int = Aliased(&#34;lantern_pendant_id&#34;)
+    post_points: int
+    total_post_points: int
+    post_points_today: int
+    accompany_points: int
+    total_accompany_points: int
+    accompany_days: int
+    accompanied_today: bool = Aliased(&#34;is_accompany_today&#34;)
+    wearing: bool
+    has_got: bool
+    expire_at: int</code></pre>
+</details>
+<div class="desc"><p>Lantern sign event progress.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternSign.accompanied_today"><code class="name">var <span class="ident">accompanied_today</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternSign.accompany_days"><code class="name">var <span class="ident">accompany_days</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternSign.accompany_points"><code class="name">var <span class="ident">accompany_points</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternSign.config"><code class="name">var <span class="ident">config</span> : <a title="genshin.models.hoyolab.accompany.AccompanyLanternConfig" href="#genshin.models.hoyolab.accompany.AccompanyLanternConfig">AccompanyLanternConfig</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternSign.expire_at"><code class="name">var <span class="ident">expire_at</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternSign.has_got"><code class="name">var <span class="ident">has_got</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternSign.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternSign.pendant_id"><code class="name">var <span class="ident">pendant_id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternSign.post_points"><code class="name">var <span class="ident">post_points</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternSign.post_points_today"><code class="name">var <span class="ident">post_points_today</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternSign.total_accompany_points"><code class="name">var <span class="ident">total_accompany_points</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternSign.total_post_points"><code class="name">var <span class="ident">total_post_points</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternSign.wearing"><code class="name">var <span class="ident">wearing</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternTemplate"><code class="flex name class">
+<span>class <span class="ident">AccompanyLanternTemplate</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyLanternTemplate(APIModel):
+    &#34;&#34;&#34;Suggested post template for the lantern sign event.&#34;&#34;&#34;
+
+    subject: str
+    game_id: int
+    classification_id: int
+    topic_ids: Sequence[int]</code></pre>
+</details>
+<div class="desc"><p>Suggested post template for the lantern sign event.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternTemplate.classification_id"><code class="name">var <span class="ident">classification_id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternTemplate.game_id"><code class="name">var <span class="ident">game_id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternTemplate.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternTemplate.subject"><code class="name">var <span class="ident">subject</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyLanternTemplate.topic_ids"><code class="name">var <span class="ident">topic_ids</span> : Sequence[int]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyMomentPost"><code class="flex name class">
+<span>class <span class="ident">AccompanyMomentPost</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyMomentPost(APIModel):
+    &#34;&#34;&#34;Official post shown on an accompany character&#39;s page.&#34;&#34;&#34;
+
+    id: int = Aliased(&#34;post_id&#34;)
+    game_id: int
+    subject: str
+    content: str
+    lang: str
+    created_at: UnixDateTime</code></pre>
+</details>
+<div class="desc"><p>Official post shown on an accompany character's page.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyMomentPost.content"><code class="name">var <span class="ident">content</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyMomentPost.created_at"><code class="name">var <span class="ident">created_at</span> : datetime.datetime</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyMomentPost.game_id"><code class="name">var <span class="ident">game_id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyMomentPost.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyMomentPost.lang"><code class="name">var <span class="ident">lang</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyMomentPost.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyMomentPost.subject"><code class="name">var <span class="ident">subject</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyPendant"><code class="flex name class">
+<span>class <span class="ident">AccompanyPendant</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyPendant(APIModel):
+    &#34;&#34;&#34;Cosmetic unlockable with accompany points.&#34;&#34;&#34;
+
+    id: int = Aliased(&#34;pendant_id&#34;)
+    icon: str = Aliased(&#34;icon_url&#34;)
+    lifetime: str
+    source: str
+    type: str = Aliased(&#34;pendant_type&#34;)
+    cost: int = Aliased(&#34;point&#34;)
+    award_type: str
+    is_owned: bool
+    can_use: bool
+    in_use: bool
+    jump: Optional[AccompanyJump] = Aliased(&#34;use_jump&#34;, default=None)</code></pre>
+</details>
+<div class="desc"><p>Cosmetic unlockable with accompany points.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyPendant.award_type"><code class="name">var <span class="ident">award_type</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyPendant.can_use"><code class="name">var <span class="ident">can_use</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyPendant.cost"><code class="name">var <span class="ident">cost</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyPendant.icon"><code class="name">var <span class="ident">icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyPendant.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyPendant.in_use"><code class="name">var <span class="ident">in_use</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyPendant.is_owned"><code class="name">var <span class="ident">is_owned</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyPendant.jump"><code class="name">var <span class="ident">jump</span> : <a title="genshin.models.hoyolab.accompany.AccompanyJump" href="#genshin.models.hoyolab.accompany.AccompanyJump">AccompanyJump</a> | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyPendant.lifetime"><code class="name">var <span class="ident">lifetime</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyPendant.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyPendant.source"><code class="name">var <span class="ident">source</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyPendant.type"><code class="name">var <span class="ident">type</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyPopupDoc"><code class="flex name class">
+<span>class <span class="ident">AccompanyPopupDoc</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyPopupDoc(APIModel):
+    &#34;&#34;&#34;Avatar frame popup document.&#34;&#34;&#34;
+
+    day: str = Aliased(&#34;the_day&#34;)
+    icon: str
+    description: str = Aliased(&#34;desc&#34;)</code></pre>
+</details>
+<div class="desc"><p>Avatar frame popup document.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyPopupDoc.day"><code class="name">var <span class="ident">day</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyPopupDoc.description"><code class="name">var <span class="ident">description</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyPopupDoc.icon"><code class="name">var <span class="ident">icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyPopupDoc.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyRecentPoster"><code class="flex name class">
+<span>class <span class="ident">AccompanyRecentPoster</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyRecentPoster(APIModel):
+    &#34;&#34;&#34;Recent poster in an accompany character&#39;s topic.&#34;&#34;&#34;
+
+    uid: int
+    posted_at: UnixDateTime = Aliased(&#34;post_time&#34;)</code></pre>
+</details>
+<div class="desc"><p>Recent poster in an accompany character's topic.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyRecentPoster.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyRecentPoster.posted_at"><code class="name">var <span class="ident">posted_at</span> : datetime.datetime</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyRecentPoster.uid"><code class="name">var <span class="ident">uid</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyResult"><code class="flex name class">
+<span>class <span class="ident">AccompanyResult</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyResult(APIModel):
+    &#34;&#34;&#34;Accompany result.&#34;&#34;&#34;
+
+    accompany_days: int
+    points_increased: int = Aliased(&#34;increase_accompany_point&#34;)</code></pre>
+</details>
+<div class="desc"><p>Accompany result.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyResult.accompany_days"><code class="name">var <span class="ident">accompany_days</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyResult.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyResult.points_increased"><code class="name">var <span class="ident">points_increased</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyTitle"><code class="flex name class">
+<span>class <span class="ident">AccompanyTitle</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyTitle(APIModel):
+    &#34;&#34;&#34;Title earnable through accompanying.&#34;&#34;&#34;
+
+    title: str
+    name: str = Aliased(&#34;title_name&#34;)
+    description: str = Aliased(&#34;title_desc&#34;)
+    icon: str = Aliased(&#34;icon_url&#34;)
+    highlight_icon: str = Aliased(&#34;highlight_icon_url&#34;)
+    is_owned: bool</code></pre>
+</details>
+<div class="desc"><p>Title earnable through accompanying.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyTitle.description"><code class="name">var <span class="ident">description</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyTitle.highlight_icon"><code class="name">var <span class="ident">highlight_icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyTitle.icon"><code class="name">var <span class="ident">icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyTitle.is_owned"><code class="name">var <span class="ident">is_owned</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyTitle.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyTitle.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyTitle.title"><code class="name">var <span class="ident">title</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyTopicStats"><code class="flex name class">
+<span>class <span class="ident">AccompanyTopicStats</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyTopicStats(APIModel):
+    &#34;&#34;&#34;Community statistics of an accompany character&#39;s topic.&#34;&#34;&#34;
+
+    topic_id: int
+    views: int = Aliased(&#34;view_num&#34;)
+    replies: int = Aliased(&#34;reply_num&#34;)
+    members: int = Aliased(&#34;member_num&#34;)
+    posts: int = Aliased(&#34;post_num&#34;)
+    today_posts: int = Aliased(&#34;today_increase_post_num&#34;)
+    week_posts: int = Aliased(&#34;seven_days_increase_post_num&#34;)
+    recent_posters: Sequence[AccompanyRecentPoster] = Aliased(&#34;recent_post_user_info_list&#34;)</code></pre>
+</details>
+<div class="desc"><p>Community statistics of an accompany character's topic.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyTopicStats.members"><code class="name">var <span class="ident">members</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyTopicStats.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyTopicStats.posts"><code class="name">var <span class="ident">posts</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyTopicStats.recent_posters"><code class="name">var <span class="ident">recent_posters</span> : Sequence[<a title="genshin.models.hoyolab.accompany.AccompanyRecentPoster" href="#genshin.models.hoyolab.accompany.AccompanyRecentPoster">AccompanyRecentPoster</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyTopicStats.replies"><code class="name">var <span class="ident">replies</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyTopicStats.today_posts"><code class="name">var <span class="ident">today_posts</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyTopicStats.topic_id"><code class="name">var <span class="ident">topic_id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyTopicStats.views"><code class="name">var <span class="ident">views</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyTopicStats.week_posts"><code class="name">var <span class="ident">week_posts</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyVoiceLine"><code class="flex name class">
+<span>class <span class="ident">AccompanyVoiceLine</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyVoiceLine(APIModel):
+    &#34;&#34;&#34;Accompany character voice line.&#34;&#34;&#34;
+
+    voice_url: str = Aliased(&#34;voice&#34;)
+    text: str = Aliased(&#34;script&#34;)</code></pre>
+</details>
+<div class="desc"><p>Accompany character voice line.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyVoiceLine.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyVoiceLine.text"><code class="name">var <span class="ident">text</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyVoiceLine.voice_url"><code class="name">var <span class="ident">voice_url</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyVoiceSetting"><code class="flex name class">
+<span>class <span class="ident">AccompanyVoiceSetting</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyVoiceSetting(APIModel):
+    &#34;&#34;&#34;Voice and subtitle language setting of an accompany character.&#34;&#34;&#34;
+
+    voice_lang: str
+    script_lang: str
+    updated_at: UnixDateTime = Aliased(&#34;setting_unix&#34;)</code></pre>
+</details>
+<div class="desc"><p>Voice and subtitle language setting of an accompany character.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyVoiceSetting.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyVoiceSetting.script_lang"><code class="name">var <span class="ident">script_lang</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyVoiceSetting.updated_at"><code class="name">var <span class="ident">updated_at</span> : datetime.datetime</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyVoiceSetting.voice_lang"><code class="name">var <span class="ident">voice_lang</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWidget"><code class="flex name class">
+<span>class <span class="ident">AccompanyWidget</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyWidget(APIModel):
+    &#34;&#34;&#34;Accompany character widget image assets.&#34;&#34;&#34;
+
+    role_image: AccompanyWidgetImage
+    component_image: AccompanyWidgetImage = Aliased(&#34;role_component_image&#34;)
+    emoji_image: AccompanyWidgetImage = Aliased(&#34;emo_url&#34;)
+    background_url: str = Aliased(&#34;bg_url&#34;)</code></pre>
+</details>
+<div class="desc"><p>Accompany character widget image assets.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWidget.background_url"><code class="name">var <span class="ident">background_url</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWidget.component_image"><code class="name">var <span class="ident">component_image</span> : <a title="genshin.models.hoyolab.accompany.AccompanyWidgetImage" href="#genshin.models.hoyolab.accompany.AccompanyWidgetImage">AccompanyWidgetImage</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWidget.emoji_image"><code class="name">var <span class="ident">emoji_image</span> : <a title="genshin.models.hoyolab.accompany.AccompanyWidgetImage" href="#genshin.models.hoyolab.accompany.AccompanyWidgetImage">AccompanyWidgetImage</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWidget.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWidget.role_image"><code class="name">var <span class="ident">role_image</span> : <a title="genshin.models.hoyolab.accompany.AccompanyWidgetImage" href="#genshin.models.hoyolab.accompany.AccompanyWidgetImage">AccompanyWidgetImage</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWidgetImage"><code class="flex name class">
+<span>class <span class="ident">AccompanyWidgetImage</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyWidgetImage(APIModel):
+    &#34;&#34;&#34;Widget image asset in two resolutions.&#34;&#34;&#34;
+
+    img_2x: str
+    img_3x: str</code></pre>
+</details>
+<div class="desc"><p>Widget image asset in two resolutions.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWidgetImage.img_2x"><code class="name">var <span class="ident">img_2x</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWidgetImage.img_3x"><code class="name">var <span class="ident">img_3x</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWidgetImage.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWikiImage"><code class="flex name class">
+<span>class <span class="ident">AccompanyWikiImage</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyWikiImage(APIModel):
+    &#34;&#34;&#34;Accompany character wiki gallery image.&#34;&#34;&#34;
+
+    image_url: str
+    origin_url: str
+    height: int
+    width: int
+    size: int
+    synced_at: UnixDateTime = Aliased(&#34;sync_unix&#34;)</code></pre>
+</details>
+<div class="desc"><p>Accompany character wiki gallery image.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWikiImage.height"><code class="name">var <span class="ident">height</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWikiImage.image_url"><code class="name">var <span class="ident">image_url</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWikiImage.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWikiImage.origin_url"><code class="name">var <span class="ident">origin_url</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWikiImage.size"><code class="name">var <span class="ident">size</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWikiImage.synced_at"><code class="name">var <span class="ident">synced_at</span> : datetime.datetime</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWikiImage.width"><code class="name">var <span class="ident">width</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWikiVideo"><code class="flex name class">
+<span>class <span class="ident">AccompanyWikiVideo</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AccompanyWikiVideo(APIModel):
+    &#34;&#34;&#34;Accompany character wiki video.&#34;&#34;&#34;
+
+    video_id: str
+    video_url: str
+    cover_url: str
+    synced_at: UnixDateTime = Aliased(&#34;sync_unix&#34;)
+    sort: int</code></pre>
+</details>
+<div class="desc"><p>Accompany character wiki video.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWikiVideo.cover_url"><code class="name">var <span class="ident">cover_url</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWikiVideo.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWikiVideo.sort"><code class="name">var <span class="ident">sort</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWikiVideo.synced_at"><code class="name">var <span class="ident">synced_at</span> : datetime.datetime</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWikiVideo.video_id"><code class="name">var <span class="ident">video_id</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.hoyolab.accompany.AccompanyWikiVideo.video_url"><code class="name">var <span class="ident">video_url</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="genshin.models.hoyolab" href="index.html">genshin.models.hoyolab</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyAction" href="#genshin.models.hoyolab.accompany.AccompanyAction">AccompanyAction</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAction.action" href="#genshin.models.hoyolab.accompany.AccompanyAction.action">action</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAction.done" href="#genshin.models.hoyolab.accompany.AccompanyAction.done">done</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAction.jump" href="#genshin.models.hoyolab.accompany.AccompanyAction.jump">jump</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAction.max_points_per_day" href="#genshin.models.hoyolab.accompany.AccompanyAction.max_points_per_day">max_points_per_day</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAction.model_config" href="#genshin.models.hoyolab.accompany.AccompanyAction.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAction.points" href="#genshin.models.hoyolab.accompany.AccompanyAction.points">points</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyAvatarFrame" href="#genshin.models.hoyolab.accompany.AccompanyAvatarFrame">AccompanyAvatarFrame</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAvatarFrame.accompanied_today" href="#genshin.models.hoyolab.accompany.AccompanyAvatarFrame.accompanied_today">accompanied_today</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAvatarFrame.config" href="#genshin.models.hoyolab.accompany.AccompanyAvatarFrame.config">config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAvatarFrame.id" href="#genshin.models.hoyolab.accompany.AccompanyAvatarFrame.id">id</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAvatarFrame.model_config" href="#genshin.models.hoyolab.accompany.AccompanyAvatarFrame.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAvatarFrame.quarter_days" href="#genshin.models.hoyolab.accompany.AccompanyAvatarFrame.quarter_days">quarter_days</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig" href="#genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig">AccompanyAvatarFrameConfig</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.icon" href="#genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.icon">icon</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.jump" href="#genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.jump">jump</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.model_config" href="#genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.popup_docs" href="#genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.popup_docs">popup_docs</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.quarter_begin_at" href="#genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.quarter_begin_at">quarter_begin_at</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.quarter_end_at" href="#genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.quarter_end_at">quarter_end_at</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.quarter_left_seconds" href="#genshin.models.hoyolab.accompany.AccompanyAvatarFrameConfig.quarter_left_seconds">quarter_left_seconds</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyAwardInfo" href="#genshin.models.hoyolab.accompany.AccompanyAwardInfo">AccompanyAwardInfo</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAwardInfo.actions" href="#genshin.models.hoyolab.accompany.AccompanyAwardInfo.actions">actions</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAwardInfo.model_config" href="#genshin.models.hoyolab.accompany.AccompanyAwardInfo.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAwardInfo.pendants" href="#genshin.models.hoyolab.accompany.AccompanyAwardInfo.pendants">pendants</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyAwardInfo.titles" href="#genshin.models.hoyolab.accompany.AccompanyAwardInfo.titles">titles</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacter" href="#genshin.models.hoyolab.accompany.AccompanyCharacter">AccompanyCharacter</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacter.attribute_ids" href="#genshin.models.hoyolab.accompany.AccompanyCharacter.attribute_ids">attribute_ids</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacter.info" href="#genshin.models.hoyolab.accompany.AccompanyCharacter.info">info</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacter.model_config" href="#genshin.models.hoyolab.accompany.AccompanyCharacter.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacter.profile" href="#genshin.models.hoyolab.accompany.AccompanyCharacter.profile">profile</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterAttribute" href="#genshin.models.hoyolab.accompany.AccompanyCharacterAttribute">AccompanyCharacterAttribute</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterAttribute.corner_icon" href="#genshin.models.hoyolab.accompany.AccompanyCharacterAttribute.corner_icon">corner_icon</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterAttribute.icon" href="#genshin.models.hoyolab.accompany.AccompanyCharacterAttribute.icon">icon</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterAttribute.id" href="#genshin.models.hoyolab.accompany.AccompanyCharacterAttribute.id">id</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterAttribute.model_config" href="#genshin.models.hoyolab.accompany.AccompanyCharacterAttribute.model_config">model_config</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterDetails" href="#genshin.models.hoyolab.accompany.AccompanyCharacterDetails">AccompanyCharacterDetails</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.accompany_info" href="#genshin.models.hoyolab.accompany.AccompanyCharacterDetails.accompany_info">accompany_info</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.avatar_frame" href="#genshin.models.hoyolab.accompany.AccompanyCharacterDetails.avatar_frame">avatar_frame</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.award_info" href="#genshin.models.hoyolab.accompany.AccompanyCharacterDetails.award_info">award_info</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.feed_info" href="#genshin.models.hoyolab.accompany.AccompanyCharacterDetails.feed_info">feed_info</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.gallery" href="#genshin.models.hoyolab.accompany.AccompanyCharacterDetails.gallery">gallery</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.game_jump_url" href="#genshin.models.hoyolab.accompany.AccompanyCharacterDetails.game_jump_url">game_jump_url</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.info" href="#genshin.models.hoyolab.accompany.AccompanyCharacterDetails.info">info</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.lantern_sign" href="#genshin.models.hoyolab.accompany.AccompanyCharacterDetails.lantern_sign">lantern_sign</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.model_config" href="#genshin.models.hoyolab.accompany.AccompanyCharacterDetails.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.moment_posts" href="#genshin.models.hoyolab.accompany.AccompanyCharacterDetails.moment_posts">moment_posts</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.profile" href="#genshin.models.hoyolab.accompany.AccompanyCharacterDetails.profile">profile</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.stats" href="#genshin.models.hoyolab.accompany.AccompanyCharacterDetails.stats">stats</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.videos" href="#genshin.models.hoyolab.accompany.AccompanyCharacterDetails.videos">videos</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.voice_scripts" href="#genshin.models.hoyolab.accompany.AccompanyCharacterDetails.voice_scripts">voice_scripts</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterDetails.widget" href="#genshin.models.hoyolab.accompany.AccompanyCharacterDetails.widget">widget</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterGame" href="#genshin.models.hoyolab.accompany.AccompanyCharacterGame">AccompanyCharacterGame</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterGame.attributes" href="#genshin.models.hoyolab.accompany.AccompanyCharacterGame.attributes">attributes</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterGame.characters" href="#genshin.models.hoyolab.accompany.AccompanyCharacterGame.characters">characters</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterGame.game" href="#genshin.models.hoyolab.accompany.AccompanyCharacterGame.game">game</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterGame.icon" href="#genshin.models.hoyolab.accompany.AccompanyCharacterGame.icon">icon</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterGame.id" href="#genshin.models.hoyolab.accompany.AccompanyCharacterGame.id">id</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterGame.model_config" href="#genshin.models.hoyolab.accompany.AccompanyCharacterGame.model_config">model_config</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterInfo" href="#genshin.models.hoyolab.accompany.AccompanyCharacterInfo">AccompanyCharacterInfo</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterInfo.brief_name" href="#genshin.models.hoyolab.accompany.AccompanyCharacterInfo.brief_name">brief_name</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterInfo.game_id" href="#genshin.models.hoyolab.accompany.AccompanyCharacterInfo.game_id">game_id</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterInfo.game_name" href="#genshin.models.hoyolab.accompany.AccompanyCharacterInfo.game_name">game_name</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterInfo.model_config" href="#genshin.models.hoyolab.accompany.AccompanyCharacterInfo.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterInfo.name" href="#genshin.models.hoyolab.accompany.AccompanyCharacterInfo.name">name</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterInfo.role_id" href="#genshin.models.hoyolab.accompany.AccompanyCharacterInfo.role_id">role_id</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterInfo.topic_id" href="#genshin.models.hoyolab.accompany.AccompanyCharacterInfo.topic_id">topic_id</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterProfile" href="#genshin.models.hoyolab.accompany.AccompanyCharacterProfile">AccompanyCharacterProfile</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterProfile.bg_card_color" href="#genshin.models.hoyolab.accompany.AccompanyCharacterProfile.bg_card_color">bg_card_color</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterProfile.bg_dark_color" href="#genshin.models.hoyolab.accompany.AccompanyCharacterProfile.bg_dark_color">bg_dark_color</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterProfile.bg_light_color" href="#genshin.models.hoyolab.accompany.AccompanyCharacterProfile.bg_light_color">bg_light_color</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterProfile.card_color" href="#genshin.models.hoyolab.accompany.AccompanyCharacterProfile.card_color">card_color</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterProfile.card_image" href="#genshin.models.hoyolab.accompany.AccompanyCharacterProfile.card_image">card_image</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterProfile.icon" href="#genshin.models.hoyolab.accompany.AccompanyCharacterProfile.icon">icon</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterProfile.model_config" href="#genshin.models.hoyolab.accompany.AccompanyCharacterProfile.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyCharacterProfile.video" href="#genshin.models.hoyolab.accompany.AccompanyCharacterProfile.video">video</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyFeedInfo" href="#genshin.models.hoyolab.accompany.AccompanyFeedInfo">AccompanyFeedInfo</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyFeedInfo.discussion_posts" href="#genshin.models.hoyolab.accompany.AccompanyFeedInfo.discussion_posts">discussion_posts</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyFeedInfo.fan_art_posts" href="#genshin.models.hoyolab.accompany.AccompanyFeedInfo.fan_art_posts">fan_art_posts</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyFeedInfo.model_config" href="#genshin.models.hoyolab.accompany.AccompanyFeedInfo.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyFeedInfo.total_posts" href="#genshin.models.hoyolab.accompany.AccompanyFeedInfo.total_posts">total_posts</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyFeedInfo.yesterday_posts" href="#genshin.models.hoyolab.accompany.AccompanyFeedInfo.yesterday_posts">yesterday_posts</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyInfo" href="#genshin.models.hoyolab.accompany.AccompanyInfo">AccompanyInfo</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyInfo.accompanied_today" href="#genshin.models.hoyolab.accompany.AccompanyInfo.accompanied_today">accompanied_today</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyInfo.available_points" href="#genshin.models.hoyolab.accompany.AccompanyInfo.available_points">available_points</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyInfo.can_accompany" href="#genshin.models.hoyolab.accompany.AccompanyInfo.can_accompany">can_accompany</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyInfo.days" href="#genshin.models.hoyolab.accompany.AccompanyInfo.days">days</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyInfo.model_config" href="#genshin.models.hoyolab.accompany.AccompanyInfo.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyInfo.points" href="#genshin.models.hoyolab.accompany.AccompanyInfo.points">points</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyInfo.quarter_days" href="#genshin.models.hoyolab.accompany.AccompanyInfo.quarter_days">quarter_days</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyJump" href="#genshin.models.hoyolab.accompany.AccompanyJump">AccompanyJump</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyJump.app_path" href="#genshin.models.hoyolab.accompany.AccompanyJump.app_path">app_path</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyJump.model_config" href="#genshin.models.hoyolab.accompany.AccompanyJump.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyJump.text" href="#genshin.models.hoyolab.accompany.AccompanyJump.text">text</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyJump.web_path" href="#genshin.models.hoyolab.accompany.AccompanyJump.web_path">web_path</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternBonus" href="#genshin.models.hoyolab.accompany.AccompanyLanternBonus">AccompanyLanternBonus</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternBonus.dark_icon" href="#genshin.models.hoyolab.accompany.AccompanyLanternBonus.dark_icon">dark_icon</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternBonus.description" href="#genshin.models.hoyolab.accompany.AccompanyLanternBonus.description">description</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternBonus.lifetime" href="#genshin.models.hoyolab.accompany.AccompanyLanternBonus.lifetime">lifetime</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternBonus.light_icon" href="#genshin.models.hoyolab.accompany.AccompanyLanternBonus.light_icon">light_icon</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternBonus.model_config" href="#genshin.models.hoyolab.accompany.AccompanyLanternBonus.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternBonus.pendant_id" href="#genshin.models.hoyolab.accompany.AccompanyLanternBonus.pendant_id">pendant_id</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternBonus.required_points" href="#genshin.models.hoyolab.accompany.AccompanyLanternBonus.required_points">required_points</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternBonus.title" href="#genshin.models.hoyolab.accompany.AccompanyLanternBonus.title">title</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternConfig" href="#genshin.models.hoyolab.accompany.AccompanyLanternConfig">AccompanyLanternConfig</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternConfig.bonuses" href="#genshin.models.hoyolab.accompany.AccompanyLanternConfig.bonuses">bonuses</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternConfig.dark_icon" href="#genshin.models.hoyolab.accompany.AccompanyLanternConfig.dark_icon">dark_icon</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternConfig.jump" href="#genshin.models.hoyolab.accompany.AccompanyLanternConfig.jump">jump</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternConfig.light_icon" href="#genshin.models.hoyolab.accompany.AccompanyLanternConfig.light_icon">light_icon</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternConfig.model_config" href="#genshin.models.hoyolab.accompany.AccompanyLanternConfig.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternConfig.quarter_begin_at" href="#genshin.models.hoyolab.accompany.AccompanyLanternConfig.quarter_begin_at">quarter_begin_at</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternConfig.quarter_end_at" href="#genshin.models.hoyolab.accompany.AccompanyLanternConfig.quarter_end_at">quarter_end_at</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternConfig.quarter_left_seconds" href="#genshin.models.hoyolab.accompany.AccompanyLanternConfig.quarter_left_seconds">quarter_left_seconds</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternConfig.templates" href="#genshin.models.hoyolab.accompany.AccompanyLanternConfig.templates">templates</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternSign" href="#genshin.models.hoyolab.accompany.AccompanyLanternSign">AccompanyLanternSign</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternSign.accompanied_today" href="#genshin.models.hoyolab.accompany.AccompanyLanternSign.accompanied_today">accompanied_today</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternSign.accompany_days" href="#genshin.models.hoyolab.accompany.AccompanyLanternSign.accompany_days">accompany_days</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternSign.accompany_points" href="#genshin.models.hoyolab.accompany.AccompanyLanternSign.accompany_points">accompany_points</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternSign.config" href="#genshin.models.hoyolab.accompany.AccompanyLanternSign.config">config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternSign.expire_at" href="#genshin.models.hoyolab.accompany.AccompanyLanternSign.expire_at">expire_at</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternSign.has_got" href="#genshin.models.hoyolab.accompany.AccompanyLanternSign.has_got">has_got</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternSign.model_config" href="#genshin.models.hoyolab.accompany.AccompanyLanternSign.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternSign.pendant_id" href="#genshin.models.hoyolab.accompany.AccompanyLanternSign.pendant_id">pendant_id</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternSign.post_points" href="#genshin.models.hoyolab.accompany.AccompanyLanternSign.post_points">post_points</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternSign.post_points_today" href="#genshin.models.hoyolab.accompany.AccompanyLanternSign.post_points_today">post_points_today</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternSign.total_accompany_points" href="#genshin.models.hoyolab.accompany.AccompanyLanternSign.total_accompany_points">total_accompany_points</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternSign.total_post_points" href="#genshin.models.hoyolab.accompany.AccompanyLanternSign.total_post_points">total_post_points</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternSign.wearing" href="#genshin.models.hoyolab.accompany.AccompanyLanternSign.wearing">wearing</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternTemplate" href="#genshin.models.hoyolab.accompany.AccompanyLanternTemplate">AccompanyLanternTemplate</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternTemplate.classification_id" href="#genshin.models.hoyolab.accompany.AccompanyLanternTemplate.classification_id">classification_id</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternTemplate.game_id" href="#genshin.models.hoyolab.accompany.AccompanyLanternTemplate.game_id">game_id</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternTemplate.model_config" href="#genshin.models.hoyolab.accompany.AccompanyLanternTemplate.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternTemplate.subject" href="#genshin.models.hoyolab.accompany.AccompanyLanternTemplate.subject">subject</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyLanternTemplate.topic_ids" href="#genshin.models.hoyolab.accompany.AccompanyLanternTemplate.topic_ids">topic_ids</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyMomentPost" href="#genshin.models.hoyolab.accompany.AccompanyMomentPost">AccompanyMomentPost</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyMomentPost.content" href="#genshin.models.hoyolab.accompany.AccompanyMomentPost.content">content</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyMomentPost.created_at" href="#genshin.models.hoyolab.accompany.AccompanyMomentPost.created_at">created_at</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyMomentPost.game_id" href="#genshin.models.hoyolab.accompany.AccompanyMomentPost.game_id">game_id</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyMomentPost.id" href="#genshin.models.hoyolab.accompany.AccompanyMomentPost.id">id</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyMomentPost.lang" href="#genshin.models.hoyolab.accompany.AccompanyMomentPost.lang">lang</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyMomentPost.model_config" href="#genshin.models.hoyolab.accompany.AccompanyMomentPost.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyMomentPost.subject" href="#genshin.models.hoyolab.accompany.AccompanyMomentPost.subject">subject</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyPendant" href="#genshin.models.hoyolab.accompany.AccompanyPendant">AccompanyPendant</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyPendant.award_type" href="#genshin.models.hoyolab.accompany.AccompanyPendant.award_type">award_type</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyPendant.can_use" href="#genshin.models.hoyolab.accompany.AccompanyPendant.can_use">can_use</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyPendant.cost" href="#genshin.models.hoyolab.accompany.AccompanyPendant.cost">cost</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyPendant.icon" href="#genshin.models.hoyolab.accompany.AccompanyPendant.icon">icon</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyPendant.id" href="#genshin.models.hoyolab.accompany.AccompanyPendant.id">id</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyPendant.in_use" href="#genshin.models.hoyolab.accompany.AccompanyPendant.in_use">in_use</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyPendant.is_owned" href="#genshin.models.hoyolab.accompany.AccompanyPendant.is_owned">is_owned</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyPendant.jump" href="#genshin.models.hoyolab.accompany.AccompanyPendant.jump">jump</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyPendant.lifetime" href="#genshin.models.hoyolab.accompany.AccompanyPendant.lifetime">lifetime</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyPendant.model_config" href="#genshin.models.hoyolab.accompany.AccompanyPendant.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyPendant.source" href="#genshin.models.hoyolab.accompany.AccompanyPendant.source">source</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyPendant.type" href="#genshin.models.hoyolab.accompany.AccompanyPendant.type">type</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyPopupDoc" href="#genshin.models.hoyolab.accompany.AccompanyPopupDoc">AccompanyPopupDoc</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyPopupDoc.day" href="#genshin.models.hoyolab.accompany.AccompanyPopupDoc.day">day</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyPopupDoc.description" href="#genshin.models.hoyolab.accompany.AccompanyPopupDoc.description">description</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyPopupDoc.icon" href="#genshin.models.hoyolab.accompany.AccompanyPopupDoc.icon">icon</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyPopupDoc.model_config" href="#genshin.models.hoyolab.accompany.AccompanyPopupDoc.model_config">model_config</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyRecentPoster" href="#genshin.models.hoyolab.accompany.AccompanyRecentPoster">AccompanyRecentPoster</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyRecentPoster.model_config" href="#genshin.models.hoyolab.accompany.AccompanyRecentPoster.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyRecentPoster.posted_at" href="#genshin.models.hoyolab.accompany.AccompanyRecentPoster.posted_at">posted_at</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyRecentPoster.uid" href="#genshin.models.hoyolab.accompany.AccompanyRecentPoster.uid">uid</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyResult" href="#genshin.models.hoyolab.accompany.AccompanyResult">AccompanyResult</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyResult.accompany_days" href="#genshin.models.hoyolab.accompany.AccompanyResult.accompany_days">accompany_days</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyResult.model_config" href="#genshin.models.hoyolab.accompany.AccompanyResult.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyResult.points_increased" href="#genshin.models.hoyolab.accompany.AccompanyResult.points_increased">points_increased</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyTitle" href="#genshin.models.hoyolab.accompany.AccompanyTitle">AccompanyTitle</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyTitle.description" href="#genshin.models.hoyolab.accompany.AccompanyTitle.description">description</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyTitle.highlight_icon" href="#genshin.models.hoyolab.accompany.AccompanyTitle.highlight_icon">highlight_icon</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyTitle.icon" href="#genshin.models.hoyolab.accompany.AccompanyTitle.icon">icon</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyTitle.is_owned" href="#genshin.models.hoyolab.accompany.AccompanyTitle.is_owned">is_owned</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyTitle.model_config" href="#genshin.models.hoyolab.accompany.AccompanyTitle.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyTitle.name" href="#genshin.models.hoyolab.accompany.AccompanyTitle.name">name</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyTitle.title" href="#genshin.models.hoyolab.accompany.AccompanyTitle.title">title</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyTopicStats" href="#genshin.models.hoyolab.accompany.AccompanyTopicStats">AccompanyTopicStats</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyTopicStats.members" href="#genshin.models.hoyolab.accompany.AccompanyTopicStats.members">members</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyTopicStats.model_config" href="#genshin.models.hoyolab.accompany.AccompanyTopicStats.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyTopicStats.posts" href="#genshin.models.hoyolab.accompany.AccompanyTopicStats.posts">posts</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyTopicStats.recent_posters" href="#genshin.models.hoyolab.accompany.AccompanyTopicStats.recent_posters">recent_posters</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyTopicStats.replies" href="#genshin.models.hoyolab.accompany.AccompanyTopicStats.replies">replies</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyTopicStats.today_posts" href="#genshin.models.hoyolab.accompany.AccompanyTopicStats.today_posts">today_posts</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyTopicStats.topic_id" href="#genshin.models.hoyolab.accompany.AccompanyTopicStats.topic_id">topic_id</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyTopicStats.views" href="#genshin.models.hoyolab.accompany.AccompanyTopicStats.views">views</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyTopicStats.week_posts" href="#genshin.models.hoyolab.accompany.AccompanyTopicStats.week_posts">week_posts</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyVoiceLine" href="#genshin.models.hoyolab.accompany.AccompanyVoiceLine">AccompanyVoiceLine</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyVoiceLine.model_config" href="#genshin.models.hoyolab.accompany.AccompanyVoiceLine.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyVoiceLine.text" href="#genshin.models.hoyolab.accompany.AccompanyVoiceLine.text">text</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyVoiceLine.voice_url" href="#genshin.models.hoyolab.accompany.AccompanyVoiceLine.voice_url">voice_url</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyVoiceSetting" href="#genshin.models.hoyolab.accompany.AccompanyVoiceSetting">AccompanyVoiceSetting</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyVoiceSetting.model_config" href="#genshin.models.hoyolab.accompany.AccompanyVoiceSetting.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyVoiceSetting.script_lang" href="#genshin.models.hoyolab.accompany.AccompanyVoiceSetting.script_lang">script_lang</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyVoiceSetting.updated_at" href="#genshin.models.hoyolab.accompany.AccompanyVoiceSetting.updated_at">updated_at</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyVoiceSetting.voice_lang" href="#genshin.models.hoyolab.accompany.AccompanyVoiceSetting.voice_lang">voice_lang</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyWidget" href="#genshin.models.hoyolab.accompany.AccompanyWidget">AccompanyWidget</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWidget.background_url" href="#genshin.models.hoyolab.accompany.AccompanyWidget.background_url">background_url</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWidget.component_image" href="#genshin.models.hoyolab.accompany.AccompanyWidget.component_image">component_image</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWidget.emoji_image" href="#genshin.models.hoyolab.accompany.AccompanyWidget.emoji_image">emoji_image</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWidget.model_config" href="#genshin.models.hoyolab.accompany.AccompanyWidget.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWidget.role_image" href="#genshin.models.hoyolab.accompany.AccompanyWidget.role_image">role_image</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyWidgetImage" href="#genshin.models.hoyolab.accompany.AccompanyWidgetImage">AccompanyWidgetImage</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWidgetImage.img_2x" href="#genshin.models.hoyolab.accompany.AccompanyWidgetImage.img_2x">img_2x</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWidgetImage.img_3x" href="#genshin.models.hoyolab.accompany.AccompanyWidgetImage.img_3x">img_3x</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWidgetImage.model_config" href="#genshin.models.hoyolab.accompany.AccompanyWidgetImage.model_config">model_config</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyWikiImage" href="#genshin.models.hoyolab.accompany.AccompanyWikiImage">AccompanyWikiImage</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWikiImage.height" href="#genshin.models.hoyolab.accompany.AccompanyWikiImage.height">height</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWikiImage.image_url" href="#genshin.models.hoyolab.accompany.AccompanyWikiImage.image_url">image_url</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWikiImage.model_config" href="#genshin.models.hoyolab.accompany.AccompanyWikiImage.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWikiImage.origin_url" href="#genshin.models.hoyolab.accompany.AccompanyWikiImage.origin_url">origin_url</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWikiImage.size" href="#genshin.models.hoyolab.accompany.AccompanyWikiImage.size">size</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWikiImage.synced_at" href="#genshin.models.hoyolab.accompany.AccompanyWikiImage.synced_at">synced_at</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWikiImage.width" href="#genshin.models.hoyolab.accompany.AccompanyWikiImage.width">width</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.hoyolab.accompany.AccompanyWikiVideo" href="#genshin.models.hoyolab.accompany.AccompanyWikiVideo">AccompanyWikiVideo</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWikiVideo.cover_url" href="#genshin.models.hoyolab.accompany.AccompanyWikiVideo.cover_url">cover_url</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWikiVideo.model_config" href="#genshin.models.hoyolab.accompany.AccompanyWikiVideo.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWikiVideo.sort" href="#genshin.models.hoyolab.accompany.AccompanyWikiVideo.sort">sort</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWikiVideo.synced_at" href="#genshin.models.hoyolab.accompany.AccompanyWikiVideo.synced_at">synced_at</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWikiVideo.video_id" href="#genshin.models.hoyolab.accompany.AccompanyWikiVideo.video_id">video_id</a></code></li>
+<li><code><a title="genshin.models.hoyolab.accompany.AccompanyWikiVideo.video_url" href="#genshin.models.hoyolab.accompany.AccompanyWikiVideo.video_url">video_url</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>
