@@ -7,7 +7,7 @@ import typing
 
 import pydantic
 
-from genshin.models.model import Aliased, APIModel, Unique
+from genshin.models.model import Aliased, APIModel, DateTime, Unique
 
 __all__ = [
     "TCGBaseCard",
@@ -16,6 +16,9 @@ __all__ = [
     "TCGCharacterCard",
     "TCGCharacterTalent",
     "TCGCost",
+    "TCGMatch",
+    "TCGMatchPlayer",
+    "TCGMatches",
     "TCGPartialCard",
     "TCGPreview",
 ]
@@ -115,3 +118,30 @@ class TCGCard(TCGBaseCard):
 
     cost: typing.Sequence[TCGCost] = Aliased("action_cost")
     description: str = Aliased("desc")
+
+
+class TCGMatchPlayer(APIModel):
+    """TCG match player."""
+
+    name: str
+    lineup: typing.Sequence[str] = Aliased("linups")
+    """Icons of the character cards in the deck."""
+
+
+class TCGMatch(APIModel):
+    """TCG match."""
+
+    game_id: str
+    type: str = Aliased("match_type")
+    time: DateTime = Aliased("match_time")
+    is_win: bool
+
+    player: TCGMatchPlayer = Aliased("self")
+    opponent: TCGMatchPlayer = Aliased("opposite")
+
+
+class TCGMatches(APIModel):
+    """TCG match history."""
+
+    recent: typing.Sequence[TCGMatch] = Aliased("recent_matches")
+    favorites: typing.Sequence[TCGMatch] = Aliased("favourite_matches")

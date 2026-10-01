@@ -279,6 +279,14 @@ class GenshinBattleChronicleClient(base.BaseBattleChronicleClient):
         data = await self._request_genshin_record("gcg/basicInfo", uid, lang=lang)
         return models.TCGPreview(**data)
 
+    async def get_genshin_tcg_matches(
+        self, uid: typing.Optional[int] = None, *, lang: typing.Optional[str] = None
+    ) -> models.TCGMatches:
+        """Get genshin tcg match history."""
+        data = await self._request_genshin_record("gcg/matchList", uid, lang=lang)
+        data = self._add_timezone_to_data(data, ("match_time",), game=types.Game.GENSHIN, uid=uid)
+        return models.TCGMatches(**data)
+
     async def _get_genshin_tcg_page(
         self,
         page: int,

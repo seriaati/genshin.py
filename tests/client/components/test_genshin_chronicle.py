@@ -73,6 +73,12 @@ async def test_genshin_tcg(lclient: genshin.Client, genshin_uid: int):
     assert data
 
 
+async def test_genshin_tcg_matches(client: genshin.Client, genshin_uid: int):
+    data = await client.get_genshin_tcg_matches(genshin_uid)
+
+    assert data
+
+
 async def test_full_genshin_user(client: genshin.Client, genshin_uid: int):
     data = await client.get_full_genshin_user(genshin_uid)
 
