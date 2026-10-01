@@ -1,0 +1,3 @@
+# Errors
+
+::: genshin.errors

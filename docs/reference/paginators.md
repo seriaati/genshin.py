@@ -1,0 +1,3 @@
+# Paginators
+
+::: genshin.paginators

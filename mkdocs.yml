@@ -119,7 +119,10 @@ nav:
   - API Reference:
       - Clients:
           - reference/clients/auth.md
+          - reference/clients/base.md
           - reference/clients/calculator.md
+          - reference/clients/calculator_builders.md
+          - reference/clients/card_plaza.md
           - Battle Chronicle:
               - reference/clients/chronicle/genshin.md
               - reference/clients/chronicle/hsr.md
@@ -135,6 +138,7 @@ nav:
           - reference/clients/transaction.md
           - reference/clients/wiki.md
       - Models:
+          - reference/models/model.md
           - Auth:
               - reference/models/auth/cookie.md
               - reference/models/auth/geetest.md
@@ -143,6 +147,7 @@ nav:
               - reference/models/auth/responses.md
           - Genshin:
               - reference/models/genshin/calculator.md
+              - reference/models/genshin/card_plaza.md
               - reference/models/genshin/character.md
               - reference/models/genshin/daily.md
               - reference/models/genshin/diary.md
@@ -183,12 +188,15 @@ nav:
                   - reference/models/honkai/chronicle/modes.md
           - ZZZ:
               - reference/models/zzz/character.md
+              - reference/models/zzz/upgrade_guide.md
               - Chronicle:
                   - reference/models/zzz/chronicle/stats.md
                   - reference/models/zzz/chronicle/notes.md
                   - reference/models/zzz/chronicle/abyss.md
                   - reference/models/zzz/chronicle/challenge.md
                   - reference/models/zzz/chronicle/month_info.md
+                  - reference/models/zzz/chronicle/events.md
+                  - reference/models/zzz/chronicle/gacha.md
           - HoYoLAB:
               - reference/models/hoyolab/accompany.md
               - reference/models/hoyolab/announcements.md
@@ -197,3 +205,7 @@ nav:
               - reference/models/hoyolab/record.md
               - reference/models/hoyolab/web_event.md
       - reference/utility.md
+      - reference/paginators.md
+      - reference/errors.md
+      - reference/types.md
+      - reference/constants.md

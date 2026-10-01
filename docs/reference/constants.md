@@ -1,0 +1,3 @@
+# Constants
+
+::: genshin.constants
