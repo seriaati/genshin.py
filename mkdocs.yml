@@ -75,7 +75,8 @@ plugins:
             show_signature_annotations: true
             show_signature_type_parameters: true
             summary: true
-            filters: public
+            filters: ["!^_"]
+            merge_init_into_class: true
             unwrap_annotated: true
             extensions:
               - griffe_pydantic:
