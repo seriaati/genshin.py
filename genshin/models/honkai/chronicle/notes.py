@@ -1,3 +1,5 @@
+"""Honkai real-time notes models."""
+
 import typing
 
 import pydantic

@@ -1,3 +1,5 @@
+"""Genshin Imaginarium Theater models."""
+
 import enum
 import typing
 

@@ -1,3 +1,5 @@
+"""ZZZ chronicle gacha info models."""
+
 import typing
 
 import pydantic

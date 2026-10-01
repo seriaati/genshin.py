@@ -1,3 +1,5 @@
+"""ZZZ Annihilation Simulacrum models."""
+
 import datetime
 import typing
 

@@ -1,3 +1,5 @@
+"""Starrail chronicle event calendar models."""
+
 import typing
 from enum import Enum
 

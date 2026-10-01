@@ -1,3 +1,5 @@
+"""Genshin Envisaged Echoes models."""
+
 from enum import IntEnum
 
 import pydantic

@@ -1,3 +1,5 @@
+"""Honkai: Star Rail lineup simulator component."""
+
 import typing
 
 import aiohttp.typedefs

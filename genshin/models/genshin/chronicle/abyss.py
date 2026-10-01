@@ -1,3 +1,5 @@
+"""Genshin Spiral Abyss models."""
+
 import typing
 
 import pydantic

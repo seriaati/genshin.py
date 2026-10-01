@@ -1,3 +1,5 @@
+"""ZZZ Deadly Assault models."""
+
 import typing
 
 import pydantic

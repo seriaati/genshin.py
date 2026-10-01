@@ -1,3 +1,5 @@
+"""ZZZ monthly income models."""
+
 import typing
 from enum import Enum
 

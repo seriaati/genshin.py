@@ -1,3 +1,5 @@
+"""ZZZ character models."""
+
 import enum
 import typing
 

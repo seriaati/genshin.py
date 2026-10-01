@@ -1,3 +1,5 @@
+"""HoYoLAB web event models."""
+
 import datetime
 
 from genshin.models.model import Aliased, APIModel

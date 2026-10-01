@@ -1,3 +1,5 @@
+"""ZZZ Shiyu Defense models."""
+
 import datetime
 import enum
 import typing

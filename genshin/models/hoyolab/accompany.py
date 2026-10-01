@@ -1,3 +1,5 @@
+"""HoYoLAB character accompany models."""
+
 from typing import Any, Mapping, Optional, Sequence
 
 from pydantic import field_validator

@@ -1,3 +1,5 @@
+"""HoYoLAB Traveling Mimo models."""
+
 import datetime
 import enum
 import typing
