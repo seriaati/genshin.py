@@ -3,6 +3,7 @@
 from .components import (
     auth,
     calculator,
+    card_plaza,
     chronicle,
     daily,
     diary,
@@ -26,6 +27,7 @@ class Client(
     calculator.CalculatorClient,
     diary.DiaryClient,
     lineup.LineupClient,
+    card_plaza.CardPlazaClient,
     teapot.TeapotClient,
     wiki.WikiClient,
     gacha.WishClient,

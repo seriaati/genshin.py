@@ -1,6 +1,7 @@
 """Genshin models."""
 
 from .calculator import *
+from .card_plaza import *
 from .character import *
 from .chronicle import *
 from .constants import *

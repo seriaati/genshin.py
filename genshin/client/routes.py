@@ -12,7 +12,9 @@ __all__ = [
     "APP_LOGIN_URL",
     "BBS_REFERER_URL",
     "BBS_URL",
+    "BOULEUTERION_URL",
     "CALCULATOR_URL",
+    "CARD_PLAZA_URL",
     "CARD_WAPI_URL",
     "CHECK_QRCODE_URL",
     "CN_WEB_LOGIN_URL",
@@ -347,6 +349,9 @@ GET_FP_URL = InternationalRoute(
 MIMO_URL = Route("https://sg-public-api.hoyolab.com/event/e2023mimotravel")
 
 HSR_LINEUP_SIMULATOR_URL = Route("https://sg-public-api.hoyolab.com/event/rpgsimulator")
+
+CARD_PLAZA_URL = Route("https://sg-act-public-api.hoyolab.com/event/cardsquare")
+BOULEUTERION_URL = Route("https://sg-act-public-api.hoyolab.com/bouleuterion_v2/v1")
 
 HKRPG_GACHA_RECORD_URL = InternationalRoute(
     overseas="https://sg-act-public-api.hoyolab.com/event/rpg_gacha_record",
