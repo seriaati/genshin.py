@@ -136,22 +136,29 @@ class CalculatorClient(base.BaseClient):
             payload["uid"] = uid
             payload["region"] = utility.recognize_genshin_server(uid)
 
-        cache: typing.Optional[client_cache.CacheKey] = None
-        if not any(filters.values()) and not sync:
-            cache = client_cache.cache_key("calculator", slug=slug, lang=lang or self.lang)
+        items: list[typing.Mapping[str, typing.Any]] = []
 
-        try:
-            data = await self.request_calculator(endpoint, lang=lang, data=payload, cache=cache)
-        except errors.GenshinException as e:
-            if e.retcode != -502002:  # Sync not enabled
-                raise
-            if not autoauth:
-                raise errors.GenshinException(e.response, "Calculator sync is not enabled") from e
+        while True:
+            cache: typing.Optional[client_cache.CacheKey] = None
+            if not any(filters.values()) and not sync:
+                cache = client_cache.cache_key("calculator", slug=slug, page=payload["page"], lang=lang or self.lang)
 
-            await self._enable_calculator_sync()
-            data = await self.request_calculator(endpoint, lang=lang, data=payload, cache=cache)
+            try:
+                data = await self.request_calculator(endpoint, lang=lang, data=payload, cache=cache)
+            except errors.GenshinException as e:
+                if e.retcode != -502002:  # Sync not enabled
+                    raise
+                if not autoauth:
+                    raise errors.GenshinException(e.response, "Calculator sync is not enabled") from e
 
-        return data["list"]
+                await self._enable_calculator_sync()
+                data = await self.request_calculator(endpoint, lang=lang, data=payload, cache=cache)
+
+            items.extend(data["list"])
+            if not data["list"] or len(items) >= data.get("total", 0):
+                return items
+
+            payload["page"] += 1
 
     async def get_calculator_characters(
         self,

@@ -15,9 +15,9 @@ async def test_calculator_characters(client: genshin.Client):
 
 async def test_calculator_weapons(client: genshin.Client):
     weapons = await client.get_calculator_weapons()
-    assert len(weapons) >= 126
+    assert len(weapons) > 200  # more than a single page
 
-    weapon = min(weapons, key=lambda weapon: weapon.id)
+    weapon = next(weapon for weapon in weapons if weapon.id == 11414)
     assert weapon.name == "Amenoma Kageuchi"
     assert weapon.max_level == 90
     assert weapon.level == 0
@@ -44,7 +44,7 @@ async def test_calculator_furnishings(client: genshin.Client):
     furnishings = await client.get_calculator_furnishings()
     assert len(furnishings) >= 100
 
-    furnishing = min(furnishings, key=lambda furnishing: furnishing.id)
+    furnishing = next(furnishing for furnishing in furnishings if furnishing.id == 360412)
     assert furnishing.name == "Court Lantern: Red Moon of Yore"
 
 
