@@ -101,11 +101,10 @@ class AppAuthClient(base.BaseClient):
     ) -> typing.Union[AppLoginResult, AppGeetestSession, ActionTicket]:
         """Login with a password using HoYoLab app endpoint.
 
-        Returns
-        -------
-        - AppLoginResult if login is successful.
-        - AppGeetestSession if captcha is triggered.
-        - ActionTicket if email verification is required.
+        Returns:
+            - AppLoginResult if login is successful.
+            - AppGeetestSession if captcha is triggered.
+            - ActionTicket if email verification is required.
         """
         headers = {
             **auth_utility.APP_LOGIN_HEADERS,

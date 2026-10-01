@@ -23,7 +23,9 @@ exclude = ["tests", "test.py"]
 # D101: Missing docstring in public module
 # D105: Missing docstring in magic method
 # D106: Missing docstring Model.Config
+# D107: Missing docstring in __init__
 # D400: First line should end with a period
+# D415: First line should end with a period, question mark, or exclamation point
 # D419: Docstring is empty
 # PT007: Wrong values type in `@pytest.mark.parametrize` expected `list` of `tuple`
 # PT018: Assertion should be broken down into multiple parts
@@ -40,7 +42,9 @@ ignore = [
     "D100",
     "D105",
     "D106",
+    "D107",
     "D400",
+    "D415",
     "D419",
     "PT007",
     "PT018",
@@ -73,5 +77,5 @@ max-complexity = 16
 max-line-length = 130
 
 [lint.pydocstyle]
-convention = "numpy"
+convention = "google"
 ignore-decorators = ["property"]

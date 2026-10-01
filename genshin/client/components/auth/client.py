@@ -63,10 +63,9 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
         Note that this will start a webserver if captcha is
         triggered and `geetest_solver` is not passed.
 
-        Raises
-        ------
-        - AccountLoginFail: Invalid password provided.
-        - AccountDoesNotExist: Invalid email/username.
+        Raises:
+            AccountLoginFail: Invalid password provided.
+            AccountDoesNotExist: Invalid email/username.
         """
         if self.region is types.Region.CHINESE:
             return await self.cn_login_with_password(
@@ -93,10 +92,9 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
         Note that this will start a webserver if captcha is
         triggered and `geetest_solver` is not passed.
 
-        Raises
-        ------
-        - AccountLoginFail: Invalid password provided.
-        - AccountDoesNotExist: Invalid email/username.
+        Raises:
+            AccountLoginFail: Invalid password provided.
+            AccountDoesNotExist: Invalid email/username.
         """
         device_id = self.generate_web_device_id()
         result = await self._os_web_login(
@@ -210,11 +208,10 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
         login with a new device), the verification code will be
         requested via CLI input.
 
-        Raises
-        ------
-        - AccountLoginFail: Invalid password provided.
-        - AccountDoesNotExist: Invalid email/username.
-        - VerificationCodeRateLimited: Too many verification code requests.
+        Raises:
+            AccountLoginFail: Invalid password provided.
+            AccountDoesNotExist: Invalid email/username.
+            VerificationCodeRateLimited: Too many verification code requests.
         """
         device_id = device_id or self.generate_app_device_id()
         result = await self._app_login(
@@ -381,10 +378,9 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
     ) -> GameLoginResult:
         """Perform a login to the game.
 
-        Raises
-        ------
-        - IncorrectGameAccount: Invalid account provided.
-        - IncorrectGamePassword: Invalid password provided.
+        Raises:
+            IncorrectGameAccount: Invalid account provided.
+            IncorrectGamePassword: Invalid password provided.
         """
         api_server = "api.geetest.com" if self.region is types.Region.CHINESE else "api-na.geetest.com"
 

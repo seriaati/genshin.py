@@ -129,8 +129,7 @@ class WebAuthClient(base.BaseClient):
         encrypted: bool = False,
         mmt_result: typing.Optional[SessionMMTResult] = None,
     ) -> typing.Union[SessionMMT, CNWebLoginResult]:
-        """
-        Login with account and password using Miyoushe loginByPassword endpoint.
+        """Login with account and password using Miyoushe loginByPassword endpoint.
 
         Returns data from aigis header or cookies.
         """
