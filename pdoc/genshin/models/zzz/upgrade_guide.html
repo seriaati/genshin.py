@@ -1,0 +1,2004 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>genshin.models.zzz.upgrade_guide API documentation</title>
+<meta name="description" content="ZZZ agent upgrade guide models.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>genshin.models.zzz.upgrade_guide</code></h1>
+</header>
+<section id="section-intro">
+<p>ZZZ agent upgrade guide models.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.DiscLevelCap"><code class="flex name class">
+<span>class <span class="ident">DiscLevelCap</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DiscLevelCap(APIModel):
+    &#34;&#34;&#34;Max disc level per rarity.&#34;&#34;&#34;
+
+    b: int
+    a: int
+    s: int</code></pre>
+</details>
+<div class="desc"><p>Max disc level per rarity.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.DiscLevelCap.a"><code class="name">var <span class="ident">a</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.DiscLevelCap.b"><code class="name">var <span class="ident">b</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.DiscLevelCap.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.DiscLevelCap.s"><code class="name">var <span class="ident">s</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.LevelCapInfo"><code class="flex name class">
+<span>class <span class="ident">LevelCapInfo</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LevelCapInfo(APIModel):
+    &#34;&#34;&#34;Level caps for the current (or next) game version.&#34;&#34;&#34;
+
+    avatar_level_max: int
+    weapon_level_max: int
+    equip_level_max: DiscLevelCap
+    skill_core_level_max: int
+    skill_normal_level_max: typing.Sequence[SkillLevelCap]</code></pre>
+</details>
+<div class="desc"><p>Level caps for the current (or next) game version.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.LevelCapInfo.avatar_level_max"><code class="name">var <span class="ident">avatar_level_max</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.LevelCapInfo.equip_level_max"><code class="name">var <span class="ident">equip_level_max</span> : <a title="genshin.models.zzz.upgrade_guide.DiscLevelCap" href="#genshin.models.zzz.upgrade_guide.DiscLevelCap">DiscLevelCap</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.LevelCapInfo.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.LevelCapInfo.skill_core_level_max"><code class="name">var <span class="ident">skill_core_level_max</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.LevelCapInfo.skill_normal_level_max"><code class="name">var <span class="ident">skill_normal_level_max</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.SkillLevelCap" href="#genshin.models.zzz.upgrade_guide.SkillLevelCap">SkillLevelCap</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.LevelCapInfo.weapon_level_max"><code class="name">var <span class="ident">weapon_level_max</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.PlanUnlockInfo"><code class="flex name class">
+<span>class <span class="ident">PlanUnlockInfo</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class PlanUnlockInfo(APIModel):
+    &#34;&#34;&#34;Which agents, bangboos, and W-engines referenced by a build the user owns.&#34;&#34;&#34;
+
+    avatars: typing.Mapping[int, bool] = Aliased(&#34;avatar&#34;)
+    buddies: typing.Mapping[int, bool] = Aliased(&#34;buddy&#34;)
+    weapons: typing.Mapping[int, bool] = Aliased(&#34;weapon&#34;)</code></pre>
+</details>
+<div class="desc"><p>Which agents, bangboos, and W-engines referenced by a build the user owns.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.PlanUnlockInfo.avatars"><code class="name">var <span class="ident">avatars</span> : Mapping[int, bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.PlanUnlockInfo.buddies"><code class="name">var <span class="ident">buddies</span> : Mapping[int, bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.PlanUnlockInfo.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.PlanUnlockInfo.weapons"><code class="name">var <span class="ident">weapons</span> : Mapping[int, bool]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuddy"><code class="flex name class">
+<span>class <span class="ident">RecommendedBuddy</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class RecommendedBuddy(APIModel, Unique):
+    &#34;&#34;&#34;A recommended bangboo in a team comp.&#34;&#34;&#34;
+
+    id: int
+    name: str
+    rarity: str</code></pre>
+</details>
+<div class="desc"><p>A recommended bangboo in a team comp.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li><a title="genshin.models.model.Unique" href="../model.html#genshin.models.model.Unique">Unique</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuddy.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuddy.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuddy.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuddy.rarity"><code class="name">var <span class="ident">rarity</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuild"><code class="flex name class">
+<span>class <span class="ident">RecommendedBuild</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class RecommendedBuild(APIModel, Unique):
+    &#34;&#34;&#34;A recommended build for an agent.&#34;&#34;&#34;
+
+    id: int
+    name: str
+    description: str = Aliased(&#34;desc&#34;)
+    released_at: UnixDateTime
+    detail: typing.Optional[RecommendedBuildDetail] = Aliased(&#34;item&#34;, default=None)</code></pre>
+</details>
+<div class="desc"><p>A recommended build for an agent.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li><a title="genshin.models.model.Unique" href="../model.html#genshin.models.model.Unique">Unique</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuild.description"><code class="name">var <span class="ident">description</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuild.detail"><code class="name">var <span class="ident">detail</span> : <a title="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail" href="#genshin.models.zzz.upgrade_guide.RecommendedBuildDetail">RecommendedBuildDetail</a> | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuild.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuild.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuild.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuild.released_at"><code class="name">var <span class="ident">released_at</span> : datetime.datetime</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail"><code class="flex name class">
+<span>class <span class="ident">RecommendedBuildDetail</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class RecommendedBuildDetail(APIModel):
+    &#34;&#34;&#34;The contents of a recommended build.&#34;&#34;&#34;
+
+    target_stats: typing.Sequence[RecommendedStat] = Aliased(&#34;avatar&#34;)
+    weapon: RecommendedWeapon
+    discs: RecommendedDiscs = Aliased(&#34;equip&#34;)
+    skills: typing.Sequence[UpgradeGuideAgentSkill] = Aliased(&#34;skill&#34;)
+    team: RecommendedTeam
+    avatar_wiki: typing.Sequence[WikiEntry]
+    bangboo_wiki: typing.Sequence[WikiEntry]
+    unlock_info: PlanUnlockInfo
+    unlocked_talents: typing.Sequence[int]</code></pre>
+</details>
+<div class="desc"><p>The contents of a recommended build.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.avatar_wiki"><code class="name">var <span class="ident">avatar_wiki</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.WikiEntry" href="#genshin.models.zzz.upgrade_guide.WikiEntry">WikiEntry</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.bangboo_wiki"><code class="name">var <span class="ident">bangboo_wiki</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.WikiEntry" href="#genshin.models.zzz.upgrade_guide.WikiEntry">WikiEntry</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.discs"><code class="name">var <span class="ident">discs</span> : <a title="genshin.models.zzz.upgrade_guide.RecommendedDiscs" href="#genshin.models.zzz.upgrade_guide.RecommendedDiscs">RecommendedDiscs</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.skills"><code class="name">var <span class="ident">skills</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentSkill" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentSkill">UpgradeGuideAgentSkill</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.target_stats"><code class="name">var <span class="ident">target_stats</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.RecommendedStat" href="#genshin.models.zzz.upgrade_guide.RecommendedStat">RecommendedStat</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.team"><code class="name">var <span class="ident">team</span> : <a title="genshin.models.zzz.upgrade_guide.RecommendedTeam" href="#genshin.models.zzz.upgrade_guide.RecommendedTeam">RecommendedTeam</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.unlock_info"><code class="name">var <span class="ident">unlock_info</span> : <a title="genshin.models.zzz.upgrade_guide.PlanUnlockInfo" href="#genshin.models.zzz.upgrade_guide.PlanUnlockInfo">PlanUnlockInfo</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.unlocked_talents"><code class="name">var <span class="ident">unlocked_talents</span> : Sequence[int]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.weapon"><code class="name">var <span class="ident">weapon</span> : <a title="genshin.models.zzz.upgrade_guide.RecommendedWeapon" href="#genshin.models.zzz.upgrade_guide.RecommendedWeapon">RecommendedWeapon</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedDiscProperty"><code class="flex name class">
+<span>class <span class="ident">RecommendedDiscProperty</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class RecommendedDiscProperty(APIModel):
+    &#34;&#34;&#34;A recommended disc main or sub stat.&#34;&#34;&#34;
+
+    name: str = Aliased(&#34;property_name&#34;)
+    type: typing.Union[int, ZZZPropertyType] = Aliased(&#34;property_id&#34;)
+    system_id: int
+
+    @pydantic.field_validator(&#34;type&#34;, mode=&#34;before&#34;)
+    def __cast_id(cls, v: int) -&gt; typing.Union[int, ZZZPropertyType]:
+        return prevent_enum_error(v, ZZZPropertyType)</code></pre>
+</details>
+<div class="desc"><p>A recommended disc main or sub stat.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedDiscProperty.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedDiscProperty.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedDiscProperty.system_id"><code class="name">var <span class="ident">system_id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedDiscProperty.type"><code class="name">var <span class="ident">type</span> : int | <a title="genshin.models.zzz.character.ZZZPropertyType" href="character.html#genshin.models.zzz.character.ZZZPropertyType">ZZZPropertyType</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedDiscs"><code class="flex name class">
+<span>class <span class="ident">RecommendedDiscs</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class RecommendedDiscs(APIModel):
+    &#34;&#34;&#34;The recommended discs for a build.&#34;&#34;&#34;
+
+    sets: typing.Sequence[UpgradeGuideDiscSetEffect] = Aliased(&#34;equip&#34;)
+    set_kind: int = Aliased(&#34;equip_suit_kind&#34;)
+    slot_4_main_stats: typing.Sequence[RecommendedDiscProperty] = Aliased(&#34;main_properties_4&#34;)
+    slot_5_main_stats: typing.Sequence[RecommendedDiscProperty] = Aliased(&#34;main_properties_5&#34;)
+    slot_6_main_stats: typing.Sequence[RecommendedDiscProperty] = Aliased(&#34;main_properties_6&#34;)
+    sub_stats: typing.Sequence[RecommendedDiscProperty] = Aliased(&#34;sub_properties&#34;)</code></pre>
+</details>
+<div class="desc"><p>The recommended discs for a build.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedDiscs.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedDiscs.set_kind"><code class="name">var <span class="ident">set_kind</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedDiscs.sets"><code class="name">var <span class="ident">sets</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.UpgradeGuideDiscSetEffect" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideDiscSetEffect">UpgradeGuideDiscSetEffect</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedDiscs.slot_4_main_stats"><code class="name">var <span class="ident">slot_4_main_stats</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.RecommendedDiscProperty" href="#genshin.models.zzz.upgrade_guide.RecommendedDiscProperty">RecommendedDiscProperty</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedDiscs.slot_5_main_stats"><code class="name">var <span class="ident">slot_5_main_stats</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.RecommendedDiscProperty" href="#genshin.models.zzz.upgrade_guide.RecommendedDiscProperty">RecommendedDiscProperty</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedDiscs.slot_6_main_stats"><code class="name">var <span class="ident">slot_6_main_stats</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.RecommendedDiscProperty" href="#genshin.models.zzz.upgrade_guide.RecommendedDiscProperty">RecommendedDiscProperty</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedDiscs.sub_stats"><code class="name">var <span class="ident">sub_stats</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.RecommendedDiscProperty" href="#genshin.models.zzz.upgrade_guide.RecommendedDiscProperty">RecommendedDiscProperty</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedStat"><code class="flex name class">
+<span>class <span class="ident">RecommendedStat</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class RecommendedStat(APIModel):
+    &#34;&#34;&#34;A target stat range in a recommended build.&#34;&#34;&#34;
+
+    name: str = Aliased(&#34;property_name&#34;)
+    type: typing.Union[int, ZZZPropertyType] = Aliased(&#34;property_id&#34;)
+    low: str
+    mid: str
+    high: str
+    show_phase: int
+    show_percent: int
+
+    @pydantic.field_validator(&#34;type&#34;, mode=&#34;before&#34;)
+    def __cast_id(cls, v: int) -&gt; typing.Union[int, ZZZPropertyType]:
+        return prevent_enum_error(v, ZZZPropertyType)</code></pre>
+</details>
+<div class="desc"><p>A target stat range in a recommended build.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedStat.high"><code class="name">var <span class="ident">high</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedStat.low"><code class="name">var <span class="ident">low</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedStat.mid"><code class="name">var <span class="ident">mid</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedStat.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedStat.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedStat.show_percent"><code class="name">var <span class="ident">show_percent</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedStat.show_phase"><code class="name">var <span class="ident">show_phase</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedStat.type"><code class="name">var <span class="ident">type</span> : int | <a title="genshin.models.zzz.character.ZZZPropertyType" href="character.html#genshin.models.zzz.character.ZZZPropertyType">ZZZPropertyType</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedTeam"><code class="flex name class">
+<span>class <span class="ident">RecommendedTeam</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class RecommendedTeam(APIModel):
+    &#34;&#34;&#34;Recommended team comps for a build.&#34;&#34;&#34;
+
+    main: RecommendedTeamGroup
+    backup: RecommendedTeamGroup</code></pre>
+</details>
+<div class="desc"><p>Recommended team comps for a build.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedTeam.backup"><code class="name">var <span class="ident">backup</span> : <a title="genshin.models.zzz.upgrade_guide.RecommendedTeamGroup" href="#genshin.models.zzz.upgrade_guide.RecommendedTeamGroup">RecommendedTeamGroup</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedTeam.main"><code class="name">var <span class="ident">main</span> : <a title="genshin.models.zzz.upgrade_guide.RecommendedTeamGroup" href="#genshin.models.zzz.upgrade_guide.RecommendedTeamGroup">RecommendedTeamGroup</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedTeam.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedTeamGroup"><code class="flex name class">
+<span>class <span class="ident">RecommendedTeamGroup</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class RecommendedTeamGroup(APIModel):
+    &#34;&#34;&#34;A recommended team (main or backup variant).&#34;&#34;&#34;
+
+    agents: typing.Sequence[UpgradeGuideAgentInfo] = Aliased(&#34;avatar_list&#34;)
+    buddies: typing.Sequence[RecommendedBuddy] = Aliased(&#34;buddy_list&#34;)
+    ext_info: typing.Sequence[TeamAvatarExtInfo] = Aliased(&#34;team_avatar_ext_info&#34;)</code></pre>
+</details>
+<div class="desc"><p>A recommended team (main or backup variant).</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedTeamGroup.agents"><code class="name">var <span class="ident">agents</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo">UpgradeGuideAgentInfo</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedTeamGroup.buddies"><code class="name">var <span class="ident">buddies</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.RecommendedBuddy" href="#genshin.models.zzz.upgrade_guide.RecommendedBuddy">RecommendedBuddy</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedTeamGroup.ext_info"><code class="name">var <span class="ident">ext_info</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.TeamAvatarExtInfo" href="#genshin.models.zzz.upgrade_guide.TeamAvatarExtInfo">TeamAvatarExtInfo</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedTeamGroup.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedWeapon"><code class="flex name class">
+<span>class <span class="ident">RecommendedWeapon</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class RecommendedWeapon(APIModel):
+    &#34;&#34;&#34;The recommended W-engine for a build.&#34;&#34;&#34;
+
+    main: typing.Optional[UpgradeGuideWEngine] = None
+    backup: typing.Optional[UpgradeGuideWEngine] = None
+
+    @pydantic.field_validator(&#34;main&#34;, &#34;backup&#34;, mode=&#34;before&#34;)
+    def __nullify_placeholder(cls, v: typing.Any) -&gt; typing.Any:
+        # The API returns an empty object (id 0) when there is no recommendation.
+        if isinstance(v, typing.Mapping) and not typing.cast(&#34;typing.Mapping[str, typing.Any]&#34;, v).get(&#34;id&#34;):
+            return None
+        return typing.cast(&#34;typing.Any&#34;, v)</code></pre>
+</details>
+<div class="desc"><p>The recommended W-engine for a build.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedWeapon.backup"><code class="name">var <span class="ident">backup</span> : <a title="genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine">UpgradeGuideWEngine</a> | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedWeapon.main"><code class="name">var <span class="ident">main</span> : <a title="genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine">UpgradeGuideWEngine</a> | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.RecommendedWeapon.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.SkillLevelCap"><code class="flex name class">
+<span>class <span class="ident">SkillLevelCap</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SkillLevelCap(APIModel):
+    &#34;&#34;&#34;Max level for a skill type.&#34;&#34;&#34;
+
+    type: ZZZSkillType = Aliased(&#34;skill_type&#34;)
+    level: int</code></pre>
+</details>
+<div class="desc"><p>Max level for a skill type.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.SkillLevelCap.level"><code class="name">var <span class="ident">level</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.SkillLevelCap.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.SkillLevelCap.type"><code class="name">var <span class="ident">type</span> : <a title="genshin.models.zzz.character.ZZZSkillType" href="character.html#genshin.models.zzz.character.ZZZSkillType">ZZZSkillType</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.SkillUpgradeAdvice"><code class="flex name class">
+<span>class <span class="ident">SkillUpgradeAdvice</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SkillUpgradeAdvice(APIModel):
+    &#34;&#34;&#34;Recommended skill upgrade priority, grouped into tiers of skill types.&#34;&#34;&#34;
+
+    first: typing.Sequence[int]
+    second: typing.Sequence[int]
+    third: typing.Sequence[int]</code></pre>
+</details>
+<div class="desc"><p>Recommended skill upgrade priority, grouped into tiers of skill types.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.SkillUpgradeAdvice.first"><code class="name">var <span class="ident">first</span> : Sequence[int]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.SkillUpgradeAdvice.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.SkillUpgradeAdvice.second"><code class="name">var <span class="ident">second</span> : Sequence[int]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.SkillUpgradeAdvice.third"><code class="name">var <span class="ident">third</span> : Sequence[int]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.TeamAvatarExtInfo"><code class="flex name class">
+<span>class <span class="ident">TeamAvatarExtInfo</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TeamAvatarExtInfo(APIModel):
+    &#34;&#34;&#34;Extra info about an agent slot in a recommended team comp.&#34;&#34;&#34;
+
+    backup_avatar_list: typing.Sequence[typing.Any]
+    pos_type: int</code></pre>
+</details>
+<div class="desc"><p>Extra info about an agent slot in a recommended team comp.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.TeamAvatarExtInfo.backup_avatar_list"><code class="name">var <span class="ident">backup_avatar_list</span> : Sequence[Any]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.TeamAvatarExtInfo.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.TeamAvatarExtInfo.pos_type"><code class="name">var <span class="ident">pos_type</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail"><code class="flex name class">
+<span>class <span class="ident">UpgradeGuideAgentDetail</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UpgradeGuideAgentDetail(UpgradeGuideBaseAgent):
+    &#34;&#34;&#34;Detailed agent info (current build) in the upgrade guide tool.&#34;&#34;&#34;
+
+    level: int
+    rank: int
+    &#34;&#34;&#34;Also known as Mindscape Cinema in-game.&#34;&#34;&#34;
+    properties: typing.Sequence[UpgradeGuideAgentProperty]
+    skills: typing.Sequence[UpgradeGuideAgentSkill]
+    ranks: typing.Sequence[ZZZAgentRank]
+    &#34;&#34;&#34;Also known as Mindscape Cinemas in-game.&#34;&#34;&#34;
+    signature_weapon_id: int
+    skill_upgrade: SkillUpgradeAdvice
+    promotes: int
+    &#34;&#34;&#34;Current ascension (promotion) level.&#34;&#34;&#34;
+    unlock: bool
+    awaken_info: typing.Optional[UpgradeGuideAwakenInfo] = Aliased(&#34;skill_awaken&#34;, default=None)
+    &#34;&#34;&#34;``None`` for agents the user has not unlocked.&#34;&#34;&#34;</code></pre>
+</details>
+<div class="desc"><p>Detailed agent info (current build) in the upgrade guide tool.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent">UpgradeGuideBaseAgent</a></li>
+<li><a title="genshin.models.zzz.character.ZZZBaseAgent" href="character.html#genshin.models.zzz.character.ZZZBaseAgent">ZZZBaseAgent</a></li>
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li><a title="genshin.models.model.Unique" href="../model.html#genshin.models.model.Unique">Unique</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.awaken_info"><code class="name">var <span class="ident">awaken_info</span> : <a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAwakenInfo" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAwakenInfo">UpgradeGuideAwakenInfo</a> | None</code></dt>
+<dd>
+<div class="desc"><p><code>None</code> for agents the user has not unlocked.</p></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.level"><code class="name">var <span class="ident">level</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.promotes"><code class="name">var <span class="ident">promotes</span> : int</code></dt>
+<dd>
+<div class="desc"><p>Current ascension (promotion) level.</p></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.properties"><code class="name">var <span class="ident">properties</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentProperty" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentProperty">UpgradeGuideAgentProperty</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.rank"><code class="name">var <span class="ident">rank</span> : int</code></dt>
+<dd>
+<div class="desc"><p>Also known as Mindscape Cinema in-game.</p></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.ranks"><code class="name">var <span class="ident">ranks</span> : Sequence[<a title="genshin.models.zzz.character.ZZZAgentRank" href="character.html#genshin.models.zzz.character.ZZZAgentRank">ZZZAgentRank</a>]</code></dt>
+<dd>
+<div class="desc"><p>Also known as Mindscape Cinemas in-game.</p></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.signature_weapon_id"><code class="name">var <span class="ident">signature_weapon_id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.skill_upgrade"><code class="name">var <span class="ident">skill_upgrade</span> : <a title="genshin.models.zzz.upgrade_guide.SkillUpgradeAdvice" href="#genshin.models.zzz.upgrade_guide.SkillUpgradeAdvice">SkillUpgradeAdvice</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.skills"><code class="name">var <span class="ident">skills</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentSkill" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentSkill">UpgradeGuideAgentSkill</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.unlock"><code class="name">var <span class="ident">unlock</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo"><code class="flex name class">
+<span>class <span class="ident">UpgradeGuideAgentInfo</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UpgradeGuideAgentInfo(UpgradeGuideBaseAgent):
+    &#34;&#34;&#34;Brief agent info in the upgrade guide tool.&#34;&#34;&#34;
+
+    level: int
+    rank: int
+    &#34;&#34;&#34;Also known as Mindscape Cinema in-game.&#34;&#34;&#34;</code></pre>
+</details>
+<div class="desc"><p>Brief agent info in the upgrade guide tool.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent">UpgradeGuideBaseAgent</a></li>
+<li><a title="genshin.models.zzz.character.ZZZBaseAgent" href="character.html#genshin.models.zzz.character.ZZZBaseAgent">ZZZBaseAgent</a></li>
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li><a title="genshin.models.model.Unique" href="../model.html#genshin.models.model.Unique">Unique</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent" href="#genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent">ZZZUpgradeGuideAgent</a></li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo.level"><code class="name">var <span class="ident">level</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo.rank"><code class="name">var <span class="ident">rank</span> : int</code></dt>
+<dd>
+<div class="desc"><p>Also known as Mindscape Cinema in-game.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentProperty"><code class="flex name class">
+<span>class <span class="ident">UpgradeGuideAgentProperty</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UpgradeGuideAgentProperty(ZZZAgentProperty):
+    &#34;&#34;&#34;An agent stat in the upgrade guide tool.&#34;&#34;&#34;
+
+    final_val: str
+    &#34;&#34;&#34;The final value without formatting (e.g. percentages stripped).&#34;&#34;&#34;</code></pre>
+</details>
+<div class="desc"><p>An agent stat in the upgrade guide tool.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.zzz.character.ZZZAgentProperty" href="character.html#genshin.models.zzz.character.ZZZAgentProperty">ZZZAgentProperty</a></li>
+<li><a title="genshin.models.zzz.character.ZZZProperty" href="character.html#genshin.models.zzz.character.ZZZProperty">ZZZProperty</a></li>
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentProperty.final_val"><code class="name">var <span class="ident">final_val</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The final value without formatting (e.g. percentages stripped).</p></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentProperty.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentSkill"><code class="flex name class">
+<span>class <span class="ident">UpgradeGuideAgentSkill</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UpgradeGuideAgentSkill(AgentSkill):
+    &#34;&#34;&#34;ZZZ agent skill model in the upgrade guide tool.&#34;&#34;&#34;
+
+    items: typing.Sequence[UpgradeGuideSkillItem]</code></pre>
+</details>
+<div class="desc"><p>ZZZ agent skill model in the upgrade guide tool.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.zzz.character.AgentSkill" href="character.html#genshin.models.zzz.character.AgentSkill">AgentSkill</a></li>
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentSkill.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="genshin.models.zzz.character.AgentSkill" href="character.html#genshin.models.zzz.character.AgentSkill">AgentSkill</a></b></code>:
+<ul class="hlist">
+<li><code><a title="genshin.models.zzz.character.AgentSkill.items" href="character.html#genshin.models.zzz.character.AgentSkill.items">items</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAwakenInfo"><code class="flex name class">
+<span>class <span class="ident">UpgradeGuideAwakenInfo</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UpgradeGuideAwakenInfo(APIModel):
+    &#34;&#34;&#34;Agent awaken (potential) system availability info.&#34;&#34;&#34;
+
+    has_potential: bool = Aliased(&#34;has_awaken_system&#34;)
+    current_level: int = Aliased(&#34;awaken_level&#34;)
+    max_level: int = Aliased(&#34;awaken_max_level&#34;)</code></pre>
+</details>
+<div class="desc"><p>Agent awaken (potential) system availability info.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAwakenInfo.current_level"><code class="name">var <span class="ident">current_level</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAwakenInfo.has_potential"><code class="name">var <span class="ident">has_potential</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAwakenInfo.max_level"><code class="name">var <span class="ident">max_level</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideAwakenInfo.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent"><code class="flex name class">
+<span>class <span class="ident">UpgradeGuideBaseAgent</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UpgradeGuideBaseAgent(ZZZBaseAgent):
+    &#34;&#34;&#34;Base agent model returned by the upgrade guide tool.&#34;&#34;&#34;
+
+    square_icon: typing.Optional[str] = Aliased(&#34;role_square_url&#34;, default=None)  # type: ignore[assignment]
+    sub_element: int = Aliased(&#34;sub_element_type&#34;)
+    awaken_state: str</code></pre>
+</details>
+<div class="desc"><p>Base agent model returned by the upgrade guide tool.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.zzz.character.ZZZBaseAgent" href="character.html#genshin.models.zzz.character.ZZZBaseAgent">ZZZBaseAgent</a></li>
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li><a title="genshin.models.model.Unique" href="../model.html#genshin.models.model.Unique">Unique</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail">UpgradeGuideAgentDetail</a></li>
+<li><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo">UpgradeGuideAgentInfo</a></li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent.awaken_state"><code class="name">var <span class="ident">awaken_state</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent.square_icon"><code class="name">var <span class="ident">square_icon</span> : str | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent.sub_element"><code class="name">var <span class="ident">sub_element</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideDisc"><code class="flex name class">
+<span>class <span class="ident">UpgradeGuideDisc</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UpgradeGuideDisc(ZZZDisc):
+    &#34;&#34;&#34;A ZZZ disc in the upgrade guide tool.&#34;&#34;&#34;
+
+    properties: typing.Sequence[UpgradeGuideProperty]
+    main_properties: typing.Sequence[UpgradeGuideProperty]
+    set_effect: UpgradeGuideDiscSetEffect = Aliased(&#34;equip_suit&#34;)
+    invalid_property_cnt: int
+    all_hit: bool</code></pre>
+</details>
+<div class="desc"><p>A ZZZ disc in the upgrade guide tool.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.zzz.character.ZZZDisc" href="character.html#genshin.models.zzz.character.ZZZDisc">ZZZDisc</a></li>
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideDisc.all_hit"><code class="name">var <span class="ident">all_hit</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideDisc.invalid_property_cnt"><code class="name">var <span class="ident">invalid_property_cnt</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideDisc.main_properties"><code class="name">var <span class="ident">main_properties</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.UpgradeGuideProperty" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideProperty">UpgradeGuideProperty</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideDisc.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideDisc.properties"><code class="name">var <span class="ident">properties</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.UpgradeGuideProperty" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideProperty">UpgradeGuideProperty</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideDisc.set_effect"><code class="name">var <span class="ident">set_effect</span> : <a title="genshin.models.zzz.upgrade_guide.UpgradeGuideDiscSetEffect" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideDiscSetEffect">UpgradeGuideDiscSetEffect</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideDiscSetEffect"><code class="flex name class">
+<span>class <span class="ident">UpgradeGuideDiscSetEffect</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UpgradeGuideDiscSetEffect(DiscSetEffect):
+    &#34;&#34;&#34;A disc set effect in the upgrade guide tool.&#34;&#34;&#34;
+
+    icon: str
+    count: int = Aliased(&#34;cnt&#34;)
+    rarity: str</code></pre>
+</details>
+<div class="desc"><p>A disc set effect in the upgrade guide tool.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.zzz.character.DiscSetEffect" href="character.html#genshin.models.zzz.character.DiscSetEffect">DiscSetEffect</a></li>
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideDiscSetEffect.count"><code class="name">var <span class="ident">count</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideDiscSetEffect.icon"><code class="name">var <span class="ident">icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideDiscSetEffect.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideDiscSetEffect.rarity"><code class="name">var <span class="ident">rarity</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideProperty"><code class="flex name class">
+<span>class <span class="ident">UpgradeGuideProperty</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UpgradeGuideProperty(ZZZProperty):
+    &#34;&#34;&#34;A disc or W-engine property with upgrade guide detail.&#34;&#34;&#34;
+
+    level: int
+    valid: bool
+    system_id: int
+    add: int</code></pre>
+</details>
+<div class="desc"><p>A disc or W-engine property with upgrade guide detail.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.zzz.character.ZZZProperty" href="character.html#genshin.models.zzz.character.ZZZProperty">ZZZProperty</a></li>
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideProperty.add"><code class="name">var <span class="ident">add</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideProperty.level"><code class="name">var <span class="ident">level</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideProperty.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideProperty.system_id"><code class="name">var <span class="ident">system_id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideProperty.valid"><code class="name">var <span class="ident">valid</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideSkillItem"><code class="flex name class">
+<span>class <span class="ident">UpgradeGuideSkillItem</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UpgradeGuideSkillItem(AgentSkillItem):
+    &#34;&#34;&#34;An agent skill item in the upgrade guide tool.&#34;&#34;&#34;
+
+    awaken: bool</code></pre>
+</details>
+<div class="desc"><p>An agent skill item in the upgrade guide tool.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.zzz.character.AgentSkillItem" href="character.html#genshin.models.zzz.character.AgentSkillItem">AgentSkillItem</a></li>
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideSkillItem.awaken"><code class="name">var <span class="ident">awaken</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideSkillItem.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideUser"><code class="flex name class">
+<span>class <span class="ident">UpgradeGuideUser</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UpgradeGuideUser(APIModel):
+    &#34;&#34;&#34;The HoYoLAB user who owns the queried account.&#34;&#34;&#34;
+
+    aid: str
+    name: str
+    avatar: str
+    level: int
+    jump_url: str
+    uid: str</code></pre>
+</details>
+<div class="desc"><p>The HoYoLAB user who owns the queried account.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideUser.aid"><code class="name">var <span class="ident">aid</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideUser.avatar"><code class="name">var <span class="ident">avatar</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideUser.jump_url"><code class="name">var <span class="ident">jump_url</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideUser.level"><code class="name">var <span class="ident">level</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideUser.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideUser.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideUser.uid"><code class="name">var <span class="ident">uid</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine"><code class="flex name class">
+<span>class <span class="ident">UpgradeGuideWEngine</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UpgradeGuideWEngine(WEngine):
+    &#34;&#34;&#34;A ZZZ W-engine in the upgrade guide tool.&#34;&#34;&#34;
+
+    refinement: int = Aliased(&#34;star&#34;)  # type: ignore[assignment]
+    &#34;&#34;&#34;Can be 0 when the W-engine is a recommendation the user does not own.&#34;&#34;&#34;
+    properties: typing.Sequence[UpgradeGuideProperty]
+    main_properties: typing.Sequence[UpgradeGuideProperty]</code></pre>
+</details>
+<div class="desc"><p>A ZZZ W-engine in the upgrade guide tool.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.zzz.character.WEngine" href="character.html#genshin.models.zzz.character.WEngine">WEngine</a></li>
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine.main_properties"><code class="name">var <span class="ident">main_properties</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.UpgradeGuideProperty" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideProperty">UpgradeGuideProperty</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine.properties"><code class="name">var <span class="ident">properties</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.UpgradeGuideProperty" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideProperty">UpgradeGuideProperty</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine.refinement"><code class="name">var <span class="ident">refinement</span> : int</code></dt>
+<dd>
+<div class="desc"><p>Can be 0 when the W-engine is a recommendation the user does not own.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.WikiEntry"><code class="flex name class">
+<span>class <span class="ident">WikiEntry</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class WikiEntry(APIModel, Unique):
+    &#34;&#34;&#34;A HoYoLAB wiki link.&#34;&#34;&#34;
+
+    id: int
+    url: str</code></pre>
+</details>
+<div class="desc"><p>A HoYoLAB wiki link.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li><a title="genshin.models.model.Unique" href="../model.html#genshin.models.model.Unique">Unique</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.WikiEntry.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.WikiEntry.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.WikiEntry.url"><code class="name">var <span class="ident">url</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide"><code class="flex name class">
+<span>class <span class="ident">ZZZAgentUpgradeGuide</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ZZZAgentUpgradeGuide(APIModel):
+    &#34;&#34;&#34;Detailed agent build and recommended upgrade guide.&#34;&#34;&#34;
+
+    avatar: UpgradeGuideAgentDetail
+    discs: typing.Sequence[UpgradeGuideDisc] = Aliased(&#34;equip&#34;)
+    weapon: typing.Optional[UpgradeGuideWEngine] = None
+    plan: RecommendedBuild
+    &#34;&#34;&#34;The recommended build (upgrade guide).&#34;&#34;&#34;
+    level_caps: typing.Optional[LevelCapInfo] = Aliased(&#34;item_info&#34;, default=None)
+    &#34;&#34;&#34;``None`` for agents the user has not unlocked.&#34;&#34;&#34;
+    next_level_caps: typing.Optional[LevelCapInfo] = Aliased(&#34;next_item_info&#34;, default=None)
+    &#34;&#34;&#34;``None`` for agents the user has not unlocked.&#34;&#34;&#34;
+    user: UpgradeGuideUser
+    my_plan_id: str
+    my_plan_list: typing.Sequence[typing.Any]
+    valid_property_cnt: int
+    from_my_plan: bool
+    is_followed: bool
+    new_feed_plan_flag: bool
+    old_plan: bool
+    plan_changed: bool
+    plan_deleted: bool
+    plan_only_special_property: bool</code></pre>
+</details>
+<div class="desc"><p>Detailed agent build and recommended upgrade guide.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.avatar"><code class="name">var <span class="ident">avatar</span> : <a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail">UpgradeGuideAgentDetail</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.discs"><code class="name">var <span class="ident">discs</span> : Sequence[<a title="genshin.models.zzz.upgrade_guide.UpgradeGuideDisc" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideDisc">UpgradeGuideDisc</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.from_my_plan"><code class="name">var <span class="ident">from_my_plan</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.is_followed"><code class="name">var <span class="ident">is_followed</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.level_caps"><code class="name">var <span class="ident">level_caps</span> : <a title="genshin.models.zzz.upgrade_guide.LevelCapInfo" href="#genshin.models.zzz.upgrade_guide.LevelCapInfo">LevelCapInfo</a> | None</code></dt>
+<dd>
+<div class="desc"><p><code>None</code> for agents the user has not unlocked.</p></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.my_plan_id"><code class="name">var <span class="ident">my_plan_id</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.my_plan_list"><code class="name">var <span class="ident">my_plan_list</span> : Sequence[Any]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.new_feed_plan_flag"><code class="name">var <span class="ident">new_feed_plan_flag</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.next_level_caps"><code class="name">var <span class="ident">next_level_caps</span> : <a title="genshin.models.zzz.upgrade_guide.LevelCapInfo" href="#genshin.models.zzz.upgrade_guide.LevelCapInfo">LevelCapInfo</a> | None</code></dt>
+<dd>
+<div class="desc"><p><code>None</code> for agents the user has not unlocked.</p></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.old_plan"><code class="name">var <span class="ident">old_plan</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.plan"><code class="name">var <span class="ident">plan</span> : <a title="genshin.models.zzz.upgrade_guide.RecommendedBuild" href="#genshin.models.zzz.upgrade_guide.RecommendedBuild">RecommendedBuild</a></code></dt>
+<dd>
+<div class="desc"><p>The recommended build (upgrade guide).</p></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.plan_changed"><code class="name">var <span class="ident">plan_changed</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.plan_deleted"><code class="name">var <span class="ident">plan_deleted</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.plan_only_special_property"><code class="name">var <span class="ident">plan_only_special_property</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.user"><code class="name">var <span class="ident">user</span> : <a title="genshin.models.zzz.upgrade_guide.UpgradeGuideUser" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideUser">UpgradeGuideUser</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.valid_property_cnt"><code class="name">var <span class="ident">valid_property_cnt</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.weapon"><code class="name">var <span class="ident">weapon</span> : <a title="genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine">UpgradeGuideWEngine</a> | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent"><code class="flex name class">
+<span>class <span class="ident">ZZZUpgradeGuideAgent</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ZZZUpgradeGuideAgent(UpgradeGuideAgentInfo):
+    &#34;&#34;&#34;An entry in the upgrade guide tool&#39;s agent list.&#34;&#34;&#34;
+
+    unlocked: bool
+    is_up: bool
+    &#34;&#34;&#34;Whether the agent is currently on a rate-up banner.&#34;&#34;&#34;
+    is_teaser: bool
+    &#34;&#34;&#34;Whether the agent is unreleased (teaser/preview only).&#34;&#34;&#34;
+    is_top: bool
+
+    @pydantic.model_validator(mode=&#34;before&#34;)
+    @classmethod
+    def __unnest_avatar(cls, values: dict[str, typing.Any]) -&gt; dict[str, typing.Any]:
+        return {**values, **values.pop(&#34;avatar&#34;, {})}</code></pre>
+</details>
+<div class="desc"><p>An entry in the upgrade guide tool's agent list.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo">UpgradeGuideAgentInfo</a></li>
+<li><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent">UpgradeGuideBaseAgent</a></li>
+<li><a title="genshin.models.zzz.character.ZZZBaseAgent" href="character.html#genshin.models.zzz.character.ZZZBaseAgent">ZZZBaseAgent</a></li>
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li><a title="genshin.models.model.Unique" href="../model.html#genshin.models.model.Unique">Unique</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent.is_teaser"><code class="name">var <span class="ident">is_teaser</span> : bool</code></dt>
+<dd>
+<div class="desc"><p>Whether the agent is unreleased (teaser/preview only).</p></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent.is_top"><code class="name">var <span class="ident">is_top</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent.is_up"><code class="name">var <span class="ident">is_up</span> : bool</code></dt>
+<dd>
+<div class="desc"><p>Whether the agent is currently on a rate-up banner.</p></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent.unlocked"><code class="name">var <span class="ident">unlocked</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo">UpgradeGuideAgentInfo</a></b></code>:
+<ul class="hlist">
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo.rank" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo.rank">rank</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="genshin.models.zzz" href="index.html">genshin.models.zzz</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.DiscLevelCap" href="#genshin.models.zzz.upgrade_guide.DiscLevelCap">DiscLevelCap</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.DiscLevelCap.a" href="#genshin.models.zzz.upgrade_guide.DiscLevelCap.a">a</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.DiscLevelCap.b" href="#genshin.models.zzz.upgrade_guide.DiscLevelCap.b">b</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.DiscLevelCap.model_config" href="#genshin.models.zzz.upgrade_guide.DiscLevelCap.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.DiscLevelCap.s" href="#genshin.models.zzz.upgrade_guide.DiscLevelCap.s">s</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.LevelCapInfo" href="#genshin.models.zzz.upgrade_guide.LevelCapInfo">LevelCapInfo</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.LevelCapInfo.avatar_level_max" href="#genshin.models.zzz.upgrade_guide.LevelCapInfo.avatar_level_max">avatar_level_max</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.LevelCapInfo.equip_level_max" href="#genshin.models.zzz.upgrade_guide.LevelCapInfo.equip_level_max">equip_level_max</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.LevelCapInfo.model_config" href="#genshin.models.zzz.upgrade_guide.LevelCapInfo.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.LevelCapInfo.skill_core_level_max" href="#genshin.models.zzz.upgrade_guide.LevelCapInfo.skill_core_level_max">skill_core_level_max</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.LevelCapInfo.skill_normal_level_max" href="#genshin.models.zzz.upgrade_guide.LevelCapInfo.skill_normal_level_max">skill_normal_level_max</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.LevelCapInfo.weapon_level_max" href="#genshin.models.zzz.upgrade_guide.LevelCapInfo.weapon_level_max">weapon_level_max</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.PlanUnlockInfo" href="#genshin.models.zzz.upgrade_guide.PlanUnlockInfo">PlanUnlockInfo</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.PlanUnlockInfo.avatars" href="#genshin.models.zzz.upgrade_guide.PlanUnlockInfo.avatars">avatars</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.PlanUnlockInfo.buddies" href="#genshin.models.zzz.upgrade_guide.PlanUnlockInfo.buddies">buddies</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.PlanUnlockInfo.model_config" href="#genshin.models.zzz.upgrade_guide.PlanUnlockInfo.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.PlanUnlockInfo.weapons" href="#genshin.models.zzz.upgrade_guide.PlanUnlockInfo.weapons">weapons</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuddy" href="#genshin.models.zzz.upgrade_guide.RecommendedBuddy">RecommendedBuddy</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuddy.id" href="#genshin.models.zzz.upgrade_guide.RecommendedBuddy.id">id</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuddy.model_config" href="#genshin.models.zzz.upgrade_guide.RecommendedBuddy.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuddy.name" href="#genshin.models.zzz.upgrade_guide.RecommendedBuddy.name">name</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuddy.rarity" href="#genshin.models.zzz.upgrade_guide.RecommendedBuddy.rarity">rarity</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuild" href="#genshin.models.zzz.upgrade_guide.RecommendedBuild">RecommendedBuild</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuild.description" href="#genshin.models.zzz.upgrade_guide.RecommendedBuild.description">description</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuild.detail" href="#genshin.models.zzz.upgrade_guide.RecommendedBuild.detail">detail</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuild.id" href="#genshin.models.zzz.upgrade_guide.RecommendedBuild.id">id</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuild.model_config" href="#genshin.models.zzz.upgrade_guide.RecommendedBuild.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuild.name" href="#genshin.models.zzz.upgrade_guide.RecommendedBuild.name">name</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuild.released_at" href="#genshin.models.zzz.upgrade_guide.RecommendedBuild.released_at">released_at</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail" href="#genshin.models.zzz.upgrade_guide.RecommendedBuildDetail">RecommendedBuildDetail</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.avatar_wiki" href="#genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.avatar_wiki">avatar_wiki</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.bangboo_wiki" href="#genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.bangboo_wiki">bangboo_wiki</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.discs" href="#genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.discs">discs</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.model_config" href="#genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.skills" href="#genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.skills">skills</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.target_stats" href="#genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.target_stats">target_stats</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.team" href="#genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.team">team</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.unlock_info" href="#genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.unlock_info">unlock_info</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.unlocked_talents" href="#genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.unlocked_talents">unlocked_talents</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.weapon" href="#genshin.models.zzz.upgrade_guide.RecommendedBuildDetail.weapon">weapon</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.RecommendedDiscProperty" href="#genshin.models.zzz.upgrade_guide.RecommendedDiscProperty">RecommendedDiscProperty</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedDiscProperty.model_config" href="#genshin.models.zzz.upgrade_guide.RecommendedDiscProperty.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedDiscProperty.name" href="#genshin.models.zzz.upgrade_guide.RecommendedDiscProperty.name">name</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedDiscProperty.system_id" href="#genshin.models.zzz.upgrade_guide.RecommendedDiscProperty.system_id">system_id</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedDiscProperty.type" href="#genshin.models.zzz.upgrade_guide.RecommendedDiscProperty.type">type</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.RecommendedDiscs" href="#genshin.models.zzz.upgrade_guide.RecommendedDiscs">RecommendedDiscs</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedDiscs.model_config" href="#genshin.models.zzz.upgrade_guide.RecommendedDiscs.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedDiscs.set_kind" href="#genshin.models.zzz.upgrade_guide.RecommendedDiscs.set_kind">set_kind</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedDiscs.sets" href="#genshin.models.zzz.upgrade_guide.RecommendedDiscs.sets">sets</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedDiscs.slot_4_main_stats" href="#genshin.models.zzz.upgrade_guide.RecommendedDiscs.slot_4_main_stats">slot_4_main_stats</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedDiscs.slot_5_main_stats" href="#genshin.models.zzz.upgrade_guide.RecommendedDiscs.slot_5_main_stats">slot_5_main_stats</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedDiscs.slot_6_main_stats" href="#genshin.models.zzz.upgrade_guide.RecommendedDiscs.slot_6_main_stats">slot_6_main_stats</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedDiscs.sub_stats" href="#genshin.models.zzz.upgrade_guide.RecommendedDiscs.sub_stats">sub_stats</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.RecommendedStat" href="#genshin.models.zzz.upgrade_guide.RecommendedStat">RecommendedStat</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedStat.high" href="#genshin.models.zzz.upgrade_guide.RecommendedStat.high">high</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedStat.low" href="#genshin.models.zzz.upgrade_guide.RecommendedStat.low">low</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedStat.mid" href="#genshin.models.zzz.upgrade_guide.RecommendedStat.mid">mid</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedStat.model_config" href="#genshin.models.zzz.upgrade_guide.RecommendedStat.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedStat.name" href="#genshin.models.zzz.upgrade_guide.RecommendedStat.name">name</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedStat.show_percent" href="#genshin.models.zzz.upgrade_guide.RecommendedStat.show_percent">show_percent</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedStat.show_phase" href="#genshin.models.zzz.upgrade_guide.RecommendedStat.show_phase">show_phase</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedStat.type" href="#genshin.models.zzz.upgrade_guide.RecommendedStat.type">type</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.RecommendedTeam" href="#genshin.models.zzz.upgrade_guide.RecommendedTeam">RecommendedTeam</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedTeam.backup" href="#genshin.models.zzz.upgrade_guide.RecommendedTeam.backup">backup</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedTeam.main" href="#genshin.models.zzz.upgrade_guide.RecommendedTeam.main">main</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedTeam.model_config" href="#genshin.models.zzz.upgrade_guide.RecommendedTeam.model_config">model_config</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.RecommendedTeamGroup" href="#genshin.models.zzz.upgrade_guide.RecommendedTeamGroup">RecommendedTeamGroup</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedTeamGroup.agents" href="#genshin.models.zzz.upgrade_guide.RecommendedTeamGroup.agents">agents</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedTeamGroup.buddies" href="#genshin.models.zzz.upgrade_guide.RecommendedTeamGroup.buddies">buddies</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedTeamGroup.ext_info" href="#genshin.models.zzz.upgrade_guide.RecommendedTeamGroup.ext_info">ext_info</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedTeamGroup.model_config" href="#genshin.models.zzz.upgrade_guide.RecommendedTeamGroup.model_config">model_config</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.RecommendedWeapon" href="#genshin.models.zzz.upgrade_guide.RecommendedWeapon">RecommendedWeapon</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedWeapon.backup" href="#genshin.models.zzz.upgrade_guide.RecommendedWeapon.backup">backup</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedWeapon.main" href="#genshin.models.zzz.upgrade_guide.RecommendedWeapon.main">main</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.RecommendedWeapon.model_config" href="#genshin.models.zzz.upgrade_guide.RecommendedWeapon.model_config">model_config</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.SkillLevelCap" href="#genshin.models.zzz.upgrade_guide.SkillLevelCap">SkillLevelCap</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.SkillLevelCap.level" href="#genshin.models.zzz.upgrade_guide.SkillLevelCap.level">level</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.SkillLevelCap.model_config" href="#genshin.models.zzz.upgrade_guide.SkillLevelCap.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.SkillLevelCap.type" href="#genshin.models.zzz.upgrade_guide.SkillLevelCap.type">type</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.SkillUpgradeAdvice" href="#genshin.models.zzz.upgrade_guide.SkillUpgradeAdvice">SkillUpgradeAdvice</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.SkillUpgradeAdvice.first" href="#genshin.models.zzz.upgrade_guide.SkillUpgradeAdvice.first">first</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.SkillUpgradeAdvice.model_config" href="#genshin.models.zzz.upgrade_guide.SkillUpgradeAdvice.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.SkillUpgradeAdvice.second" href="#genshin.models.zzz.upgrade_guide.SkillUpgradeAdvice.second">second</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.SkillUpgradeAdvice.third" href="#genshin.models.zzz.upgrade_guide.SkillUpgradeAdvice.third">third</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.TeamAvatarExtInfo" href="#genshin.models.zzz.upgrade_guide.TeamAvatarExtInfo">TeamAvatarExtInfo</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.TeamAvatarExtInfo.backup_avatar_list" href="#genshin.models.zzz.upgrade_guide.TeamAvatarExtInfo.backup_avatar_list">backup_avatar_list</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.TeamAvatarExtInfo.model_config" href="#genshin.models.zzz.upgrade_guide.TeamAvatarExtInfo.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.TeamAvatarExtInfo.pos_type" href="#genshin.models.zzz.upgrade_guide.TeamAvatarExtInfo.pos_type">pos_type</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail">UpgradeGuideAgentDetail</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.awaken_info" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.awaken_info">awaken_info</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.level" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.level">level</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.model_config" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.promotes" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.promotes">promotes</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.properties" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.properties">properties</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.rank" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.rank">rank</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.ranks" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.ranks">ranks</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.signature_weapon_id" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.signature_weapon_id">signature_weapon_id</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.skill_upgrade" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.skill_upgrade">skill_upgrade</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.skills" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.skills">skills</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.unlock" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentDetail.unlock">unlock</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo">UpgradeGuideAgentInfo</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo.level" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo.level">level</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo.model_config" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo.rank" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentInfo.rank">rank</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentProperty" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentProperty">UpgradeGuideAgentProperty</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentProperty.final_val" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentProperty.final_val">final_val</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentProperty.model_config" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentProperty.model_config">model_config</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentSkill" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentSkill">UpgradeGuideAgentSkill</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAgentSkill.model_config" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAgentSkill.model_config">model_config</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAwakenInfo" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAwakenInfo">UpgradeGuideAwakenInfo</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAwakenInfo.current_level" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAwakenInfo.current_level">current_level</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAwakenInfo.has_potential" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAwakenInfo.has_potential">has_potential</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAwakenInfo.max_level" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAwakenInfo.max_level">max_level</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideAwakenInfo.model_config" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideAwakenInfo.model_config">model_config</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent">UpgradeGuideBaseAgent</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent.awaken_state" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent.awaken_state">awaken_state</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent.model_config" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent.square_icon" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent.square_icon">square_icon</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent.sub_element" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideBaseAgent.sub_element">sub_element</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideDisc" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideDisc">UpgradeGuideDisc</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideDisc.all_hit" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideDisc.all_hit">all_hit</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideDisc.invalid_property_cnt" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideDisc.invalid_property_cnt">invalid_property_cnt</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideDisc.main_properties" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideDisc.main_properties">main_properties</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideDisc.model_config" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideDisc.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideDisc.properties" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideDisc.properties">properties</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideDisc.set_effect" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideDisc.set_effect">set_effect</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideDiscSetEffect" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideDiscSetEffect">UpgradeGuideDiscSetEffect</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideDiscSetEffect.count" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideDiscSetEffect.count">count</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideDiscSetEffect.icon" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideDiscSetEffect.icon">icon</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideDiscSetEffect.model_config" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideDiscSetEffect.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideDiscSetEffect.rarity" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideDiscSetEffect.rarity">rarity</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideProperty" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideProperty">UpgradeGuideProperty</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideProperty.add" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideProperty.add">add</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideProperty.level" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideProperty.level">level</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideProperty.model_config" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideProperty.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideProperty.system_id" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideProperty.system_id">system_id</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideProperty.valid" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideProperty.valid">valid</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideSkillItem" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideSkillItem">UpgradeGuideSkillItem</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideSkillItem.awaken" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideSkillItem.awaken">awaken</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideSkillItem.model_config" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideSkillItem.model_config">model_config</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideUser" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideUser">UpgradeGuideUser</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideUser.aid" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideUser.aid">aid</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideUser.avatar" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideUser.avatar">avatar</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideUser.jump_url" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideUser.jump_url">jump_url</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideUser.level" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideUser.level">level</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideUser.model_config" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideUser.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideUser.name" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideUser.name">name</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideUser.uid" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideUser.uid">uid</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine">UpgradeGuideWEngine</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine.main_properties" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine.main_properties">main_properties</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine.model_config" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine.properties" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine.properties">properties</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine.refinement" href="#genshin.models.zzz.upgrade_guide.UpgradeGuideWEngine.refinement">refinement</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.WikiEntry" href="#genshin.models.zzz.upgrade_guide.WikiEntry">WikiEntry</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.WikiEntry.id" href="#genshin.models.zzz.upgrade_guide.WikiEntry.id">id</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.WikiEntry.model_config" href="#genshin.models.zzz.upgrade_guide.WikiEntry.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.WikiEntry.url" href="#genshin.models.zzz.upgrade_guide.WikiEntry.url">url</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide" href="#genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide">ZZZAgentUpgradeGuide</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.avatar" href="#genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.avatar">avatar</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.discs" href="#genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.discs">discs</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.from_my_plan" href="#genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.from_my_plan">from_my_plan</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.is_followed" href="#genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.is_followed">is_followed</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.level_caps" href="#genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.level_caps">level_caps</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.model_config" href="#genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.my_plan_id" href="#genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.my_plan_id">my_plan_id</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.my_plan_list" href="#genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.my_plan_list">my_plan_list</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.new_feed_plan_flag" href="#genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.new_feed_plan_flag">new_feed_plan_flag</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.next_level_caps" href="#genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.next_level_caps">next_level_caps</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.old_plan" href="#genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.old_plan">old_plan</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.plan" href="#genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.plan">plan</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.plan_changed" href="#genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.plan_changed">plan_changed</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.plan_deleted" href="#genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.plan_deleted">plan_deleted</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.plan_only_special_property" href="#genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.plan_only_special_property">plan_only_special_property</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.user" href="#genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.user">user</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.valid_property_cnt" href="#genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.valid_property_cnt">valid_property_cnt</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.weapon" href="#genshin.models.zzz.upgrade_guide.ZZZAgentUpgradeGuide.weapon">weapon</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent" href="#genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent">ZZZUpgradeGuideAgent</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent.is_teaser" href="#genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent.is_teaser">is_teaser</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent.is_top" href="#genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent.is_top">is_top</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent.is_up" href="#genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent.is_up">is_up</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent.model_config" href="#genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent.unlocked" href="#genshin.models.zzz.upgrade_guide.ZZZUpgradeGuideAgent.unlocked">unlocked</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

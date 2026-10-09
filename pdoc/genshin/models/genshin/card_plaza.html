@@ -1,0 +1,1069 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>genshin.models.genshin.card_plaza API documentation</title>
+<meta name="description" content="Genshin TCG card plaza models.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>genshin.models.genshin.card_plaza</code></h1>
+</header>
+<section id="section-intro">
+<p>Genshin TCG card plaza models.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck"><code class="flex name class">
+<span>class <span class="ident">TCGDeck</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TCGDeck(APIModel):
+    &#34;&#34;&#34;TCG card plaza deck.&#34;&#34;&#34;
+
+    id: str
+    title: str
+    description: str = Aliased(&#34;desc&#34;)
+    tags: typing.Sequence[str]
+    label_ids: typing.Sequence[int]
+    share_code: str = Aliased(&#34;card_code&#34;)
+    created_at: UnixDateTime
+
+    author_id: int = Aliased(&#34;account_uid&#34;)
+    author_nickname: str = Aliased(&#34;nickname&#34;)
+    author_icon: str = Aliased(&#34;avatar_url&#34;)
+
+    character_cards: typing.Sequence[TCGDeckCharacterCard] = Aliased(&#34;role_cards&#34;)
+    action_cards: typing.Sequence[TCGDeckActionCard]
+    &#34;&#34;&#34;Action cards in the deck, duplicates included.&#34;&#34;&#34;
+
+    video_url: str = Aliased(&#34;video_os_url&#34;)
+    video_cover_url: str
+
+    likes: int = Aliased(&#34;like_cnt&#34;)
+    comments: int = Aliased(&#34;comment_cnt&#34;)
+    favorites: int = Aliased(&#34;favour_cnt&#34;)
+    views: int = Aliased(&#34;view_cnt&#34;)</code></pre>
+</details>
+<div class="desc"><p>TCG card plaza deck.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck.action_cards"><code class="name">var <span class="ident">action_cards</span> : Sequence[<a title="genshin.models.genshin.card_plaza.TCGDeckActionCard" href="#genshin.models.genshin.card_plaza.TCGDeckActionCard">TCGDeckActionCard</a>]</code></dt>
+<dd>
+<div class="desc"><p>Action cards in the deck, duplicates included.</p></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck.author_icon"><code class="name">var <span class="ident">author_icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck.author_id"><code class="name">var <span class="ident">author_id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck.author_nickname"><code class="name">var <span class="ident">author_nickname</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck.character_cards"><code class="name">var <span class="ident">character_cards</span> : Sequence[<a title="genshin.models.genshin.card_plaza.TCGDeckCharacterCard" href="#genshin.models.genshin.card_plaza.TCGDeckCharacterCard">TCGDeckCharacterCard</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck.comments"><code class="name">var <span class="ident">comments</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck.created_at"><code class="name">var <span class="ident">created_at</span> : datetime.datetime</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck.description"><code class="name">var <span class="ident">description</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck.favorites"><code class="name">var <span class="ident">favorites</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck.id"><code class="name">var <span class="ident">id</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck.label_ids"><code class="name">var <span class="ident">label_ids</span> : Sequence[int]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck.likes"><code class="name">var <span class="ident">likes</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck.share_code"><code class="name">var <span class="ident">share_code</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck.tags"><code class="name">var <span class="ident">tags</span> : Sequence[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck.title"><code class="name">var <span class="ident">title</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck.video_cover_url"><code class="name">var <span class="ident">video_cover_url</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck.video_url"><code class="name">var <span class="ident">video_url</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeck.views"><code class="name">var <span class="ident">views</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckActionCard"><code class="flex name class">
+<span>class <span class="ident">TCGDeckActionCard</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TCGDeckActionCard(TCGDeckCard):
+    &#34;&#34;&#34;TCG card plaza action card.&#34;&#34;&#34;
+
+    type: typing.Union[TCGDeckCardType, int] = Aliased(&#34;card_type&#34;)
+    tags: typing.Sequence[int] = Aliased(&#34;card_tag&#34;)
+
+    cost_type: typing.Optional[typing.Union[TCGDiceType, int]] = Aliased(&#34;skill_element&#34;)
+    cost: int = Aliased(&#34;skill_value&#34;)
+    secondary_cost_type: typing.Optional[typing.Union[TCGDiceType, int]] = Aliased(&#34;skill_element2&#34;)
+    secondary_cost: int = Aliased(&#34;skill_value2&#34;)
+    energy_cost: int
+
+    @pydantic.field_validator(&#34;type&#34;, mode=&#34;before&#34;)
+    def __parse_type(cls, value: int) -&gt; typing.Union[TCGDeckCardType, int]:
+        return prevent_enum_error(value, TCGDeckCardType)
+
+    @pydantic.field_validator(&#34;tags&#34;, mode=&#34;before&#34;)
+    def __parse_tags(cls, value: typing.Sequence[str]) -&gt; typing.Sequence[int]:
+        return [int(tag) for tag in value if tag]
+
+    @pydantic.field_validator(&#34;cost_type&#34;, &#34;secondary_cost_type&#34;, mode=&#34;before&#34;)
+    def __parse_cost_type(cls, value: str) -&gt; typing.Optional[typing.Union[TCGDiceType, int]]:
+        return _parse_dice_type(value) if value else None</code></pre>
+</details>
+<div class="desc"><p>TCG card plaza action card.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.genshin.card_plaza.TCGDeckCard" href="#genshin.models.genshin.card_plaza.TCGDeckCard">TCGDeckCard</a></li>
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li><a title="genshin.models.model.Unique" href="../model.html#genshin.models.model.Unique">Unique</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckActionCard.cost"><code class="name">var <span class="ident">cost</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckActionCard.cost_type"><code class="name">var <span class="ident">cost_type</span> : <a title="genshin.models.genshin.card_plaza.TCGDiceType" href="#genshin.models.genshin.card_plaza.TCGDiceType">TCGDiceType</a> | int | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckActionCard.energy_cost"><code class="name">var <span class="ident">energy_cost</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckActionCard.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckActionCard.secondary_cost"><code class="name">var <span class="ident">secondary_cost</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckActionCard.secondary_cost_type"><code class="name">var <span class="ident">secondary_cost_type</span> : <a title="genshin.models.genshin.card_plaza.TCGDiceType" href="#genshin.models.genshin.card_plaza.TCGDiceType">TCGDiceType</a> | int | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckActionCard.tags"><code class="name">var <span class="ident">tags</span> : Sequence[int]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckActionCard.type"><code class="name">var <span class="ident">type</span> : <a title="genshin.models.genshin.card_plaza.TCGDeckCardType" href="#genshin.models.genshin.card_plaza.TCGDeckCardType">TCGDeckCardType</a> | int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckActionCardEffect"><code class="flex name class">
+<span>class <span class="ident">TCGDeckActionCardEffect</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TCGDeckActionCardEffect(APIModel):
+    &#34;&#34;&#34;TCG card plaza action card effect.&#34;&#34;&#34;
+
+    description: str = Aliased(&#34;desc&#34;)
+    &#34;&#34;&#34;Description with HTML tags.&#34;&#34;&#34;
+    access: str
+    &#34;&#34;&#34;How to obtain the card.&#34;&#34;&#34;
+
+    cost_type: typing.Optional[typing.Union[TCGDiceType, int]] = Aliased(&#34;cost1_type_raw&#34;)
+    cost: int = Aliased(&#34;cost1_raw&#34;)
+    secondary_cost_type: typing.Optional[typing.Union[TCGDiceType, int]] = Aliased(&#34;cost2_type_raw&#34;)
+    secondary_cost: int = Aliased(&#34;cost2_raw&#34;)
+
+    @pydantic.field_validator(&#34;cost_type&#34;, &#34;secondary_cost_type&#34;, mode=&#34;before&#34;)
+    def __parse_cost_type(cls, value: str) -&gt; typing.Optional[typing.Union[TCGDiceType, int]]:
+        return _parse_dice_type(value) if value else None</code></pre>
+</details>
+<div class="desc"><p>TCG card plaza action card effect.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.access"><code class="name">var <span class="ident">access</span> : str</code></dt>
+<dd>
+<div class="desc"><p>How to obtain the card.</p></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.cost"><code class="name">var <span class="ident">cost</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.cost_type"><code class="name">var <span class="ident">cost_type</span> : <a title="genshin.models.genshin.card_plaza.TCGDiceType" href="#genshin.models.genshin.card_plaza.TCGDiceType">TCGDiceType</a> | int | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.description"><code class="name">var <span class="ident">description</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Description with HTML tags.</p></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.secondary_cost"><code class="name">var <span class="ident">secondary_cost</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.secondary_cost_type"><code class="name">var <span class="ident">secondary_cost_type</span> : <a title="genshin.models.genshin.card_plaza.TCGDiceType" href="#genshin.models.genshin.card_plaza.TCGDiceType">TCGDiceType</a> | int | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckCard"><code class="flex name class">
+<span>class <span class="ident">TCGDeckCard</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TCGDeckCard(APIModel, Unique):
+    &#34;&#34;&#34;TCG card plaza card.&#34;&#34;&#34;
+
+    id: int = Aliased(&#34;item_id&#34;)
+    name: str
+    icon: str
+    small_icon: str = Aliased(&#34;icon_small&#34;)
+    wiki_url: str
+    max_count: int = Aliased(&#34;max_cnt&#34;)
+
+    @pydantic.model_validator(mode=&#34;before&#34;)
+    def __flatten_basic(cls, values: dict[str, typing.Any]) -&gt; dict[str, typing.Any]:
+        return {**values, **values.get(&#34;basic&#34;, {})}</code></pre>
+</details>
+<div class="desc"><p>TCG card plaza card.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li><a title="genshin.models.model.Unique" href="../model.html#genshin.models.model.Unique">Unique</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="genshin.models.genshin.card_plaza.TCGDeckActionCard" href="#genshin.models.genshin.card_plaza.TCGDeckActionCard">TCGDeckActionCard</a></li>
+<li><a title="genshin.models.genshin.card_plaza.TCGDeckCharacterCard" href="#genshin.models.genshin.card_plaza.TCGDeckCharacterCard">TCGDeckCharacterCard</a></li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckCard.icon"><code class="name">var <span class="ident">icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckCard.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckCard.max_count"><code class="name">var <span class="ident">max_count</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckCard.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckCard.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckCard.small_icon"><code class="name">var <span class="ident">small_icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckCard.wiki_url"><code class="name">var <span class="ident">wiki_url</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckCardType"><code class="flex name class">
+<span>class <span class="ident">TCGDeckCardType</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TCGDeckCardType(enum.IntEnum):
+    &#34;&#34;&#34;TCG card plaza card type.&#34;&#34;&#34;
+
+    CHARACTER = 0
+    &#34;&#34;&#34;Not returned by the API, character cards come from a separate endpoint.&#34;&#34;&#34;
+    EQUIPMENT = 2
+    EVENT = 5
+    SUPPORT = 6</code></pre>
+</details>
+<div class="desc"><p>TCG card plaza card type.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.IntEnum</li>
+<li>builtins.int</li>
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckCardType.CHARACTER"><code class="name">var <span class="ident">CHARACTER</span></code></dt>
+<dd>
+<div class="desc"><p>Not returned by the API, character cards come from a separate endpoint.</p></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckCardType.EQUIPMENT"><code class="name">var <span class="ident">EQUIPMENT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckCardType.EVENT"><code class="name">var <span class="ident">EVENT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckCardType.SUPPORT"><code class="name">var <span class="ident">SUPPORT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckCharacterCard"><code class="flex name class">
+<span>class <span class="ident">TCGDeckCharacterCard</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TCGDeckCharacterCard(TCGDeckCard):
+    &#34;&#34;&#34;TCG card plaza character card.&#34;&#34;&#34;
+
+    element: typing.Union[TCGDeckElement, int]
+    health: int = Aliased(&#34;hp&#34;)
+    burst_cost: int = Aliased(&#34;skill_cost&#34;)
+    &#34;&#34;&#34;Energy required to use the elemental burst.&#34;&#34;&#34;
+
+    @pydantic.field_validator(&#34;element&#34;, mode=&#34;before&#34;)
+    def __parse_element(cls, value: int) -&gt; typing.Union[TCGDeckElement, int]:
+        return prevent_enum_error(value, TCGDeckElement)</code></pre>
+</details>
+<div class="desc"><p>TCG card plaza character card.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.genshin.card_plaza.TCGDeckCard" href="#genshin.models.genshin.card_plaza.TCGDeckCard">TCGDeckCard</a></li>
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li><a title="genshin.models.model.Unique" href="../model.html#genshin.models.model.Unique">Unique</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckCharacterCard.burst_cost"><code class="name">var <span class="ident">burst_cost</span> : int</code></dt>
+<dd>
+<div class="desc"><p>Energy required to use the elemental burst.</p></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckCharacterCard.element"><code class="name">var <span class="ident">element</span> : <a title="genshin.models.genshin.card_plaza.TCGDeckElement" href="#genshin.models.genshin.card_plaza.TCGDeckElement">TCGDeckElement</a> | int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckCharacterCard.health"><code class="name">var <span class="ident">health</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckCharacterCard.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckComment"><code class="flex name class">
+<span>class <span class="ident">TCGDeckComment</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TCGDeckComment(APIModel):
+    &#34;&#34;&#34;Comment on a TCG card plaza deck.&#34;&#34;&#34;
+
+    id: int = Aliased(&#34;reply_id&#34;)
+    content: str
+    time: UnixDateTime = Aliased(&#34;reply_time&#34;)
+
+    author_id: int
+    author_nickname: str
+    author_icon: str
+
+    likes: int = Aliased(&#34;like_num&#34;)
+    replies: typing.Sequence[TCGDeckComment] = Aliased(&#34;sub_reply_list&#34;)
+    reply_count: int = Aliased(&#34;reply_num&#34;)
+
+    @pydantic.model_validator(mode=&#34;before&#34;)
+    def __flatten(cls, values: dict[str, typing.Any]) -&gt; dict[str, typing.Any]:
+        user = values.get(&#34;user&#34;, {})
+        content = values.get(&#34;content&#34;, {})
+        return {
+            **values,
+            &#34;author_id&#34;: user.get(&#34;account_uid&#34;),
+            &#34;author_nickname&#34;: user.get(&#34;nickname&#34;),
+            &#34;author_icon&#34;: user.get(&#34;avatar_path&#34;),
+            &#34;content&#34;: content.get(&#34;text&#34;),
+        }</code></pre>
+</details>
+<div class="desc"><p>Comment on a TCG card plaza deck.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckComment.author_icon"><code class="name">var <span class="ident">author_icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckComment.author_id"><code class="name">var <span class="ident">author_id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckComment.author_nickname"><code class="name">var <span class="ident">author_nickname</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckComment.content"><code class="name">var <span class="ident">content</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckComment.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckComment.likes"><code class="name">var <span class="ident">likes</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckComment.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckComment.replies"><code class="name">var <span class="ident">replies</span> : Sequence[<a title="genshin.models.genshin.card_plaza.TCGDeckComment" href="#genshin.models.genshin.card_plaza.TCGDeckComment">TCGDeckComment</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckComment.reply_count"><code class="name">var <span class="ident">reply_count</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckComment.time"><code class="name">var <span class="ident">time</span> : datetime.datetime</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckElement"><code class="flex name class">
+<span>class <span class="ident">TCGDeckElement</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TCGDeckElement(enum.IntEnum):
+    &#34;&#34;&#34;TCG card plaza character element.&#34;&#34;&#34;
+
+    CRYO = 301
+    HYDRO = 302
+    PYRO = 303
+    ELECTRO = 304
+    GEO = 305
+    DENDRO = 306
+    ANEMO = 307</code></pre>
+</details>
+<div class="desc"><p>TCG card plaza character element.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.IntEnum</li>
+<li>builtins.int</li>
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckElement.ANEMO"><code class="name">var <span class="ident">ANEMO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckElement.CRYO"><code class="name">var <span class="ident">CRYO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckElement.DENDRO"><code class="name">var <span class="ident">DENDRO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckElement.ELECTRO"><code class="name">var <span class="ident">ELECTRO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckElement.GEO"><code class="name">var <span class="ident">GEO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckElement.HYDRO"><code class="name">var <span class="ident">HYDRO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckElement.PYRO"><code class="name">var <span class="ident">PYRO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckLabel"><code class="flex name class">
+<span>class <span class="ident">TCGDeckLabel</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TCGDeckLabel(APIModel, Unique):
+    &#34;&#34;&#34;TCG card plaza label, such as a game mode or a boss challenge.&#34;&#34;&#34;
+
+    id: int
+    name: str
+    is_hot: bool
+    children: typing.Sequence[TCGDeckLabel]</code></pre>
+</details>
+<div class="desc"><p>TCG card plaza label, such as a game mode or a boss challenge.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li><a title="genshin.models.model.Unique" href="../model.html#genshin.models.model.Unique">Unique</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckLabel.children"><code class="name">var <span class="ident">children</span> : Sequence[<a title="genshin.models.genshin.card_plaza.TCGDeckLabel" href="#genshin.models.genshin.card_plaza.TCGDeckLabel">TCGDeckLabel</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckLabel.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckLabel.is_hot"><code class="name">var <span class="ident">is_hot</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckLabel.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckLabel.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckSkill"><code class="flex name class">
+<span>class <span class="ident">TCGDeckSkill</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TCGDeckSkill(APIModel, Unique):
+    &#34;&#34;&#34;TCG card plaza character skill.&#34;&#34;&#34;
+
+    id: int
+    name: str
+    icon: str
+    types: typing.Sequence[str] = Aliased(&#34;type&#34;)
+    description: str = Aliased(&#34;rich_desc&#34;)
+    &#34;&#34;&#34;Description with HTML tags.&#34;&#34;&#34;
+    costs: typing.Sequence[TCGDeckSkillCost] = Aliased(&#34;cost_types&#34;)</code></pre>
+</details>
+<div class="desc"><p>TCG card plaza character skill.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+<li><a title="genshin.models.model.Unique" href="../model.html#genshin.models.model.Unique">Unique</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckSkill.costs"><code class="name">var <span class="ident">costs</span> : Sequence[<a title="genshin.models.genshin.card_plaza.TCGDeckSkillCost" href="#genshin.models.genshin.card_plaza.TCGDeckSkillCost">TCGDeckSkillCost</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckSkill.description"><code class="name">var <span class="ident">description</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Description with HTML tags.</p></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckSkill.icon"><code class="name">var <span class="ident">icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckSkill.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckSkill.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckSkill.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckSkill.types"><code class="name">var <span class="ident">types</span> : Sequence[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckSkillCost"><code class="flex name class">
+<span>class <span class="ident">TCGDeckSkillCost</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TCGDeckSkillCost(APIModel):
+    &#34;&#34;&#34;TCG card plaza character skill cost.&#34;&#34;&#34;
+
+    type: typing.Union[TCGDiceType, int] = Aliased(&#34;cost_type&#34;)
+    icon: str
+    value: int = Aliased(&#34;cost_num&#34;)
+
+    @pydantic.field_validator(&#34;type&#34;, mode=&#34;before&#34;)
+    def __parse_type(cls, value: str) -&gt; typing.Union[TCGDiceType, int]:
+        return _parse_dice_type(value)</code></pre>
+</details>
+<div class="desc"><p>TCG card plaza character skill cost.</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.models.model.APIModel" href="../model.html#genshin.models.model.APIModel">APIModel</a></li>
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckSkillCost.icon"><code class="name">var <span class="ident">icon</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckSkillCost.model_config"><code class="name">var <span class="ident">model_config</span> : pydantic.config.ConfigDict</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckSkillCost.type"><code class="name">var <span class="ident">type</span> : <a title="genshin.models.genshin.card_plaza.TCGDiceType" href="#genshin.models.genshin.card_plaza.TCGDiceType">TCGDiceType</a> | int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDeckSkillCost.value"><code class="name">var <span class="ident">value</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDiceType"><code class="flex name class">
+<span>class <span class="ident">TCGDiceType</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TCGDiceType(enum.IntEnum):
+    &#34;&#34;&#34;TCG card plaza dice cost type.&#34;&#34;&#34;
+
+    ENERGY = 1
+    MATCHING = 3
+    ARCANE_LEGEND = 6
+    UNALIGNED = 10
+    CRYO = 11
+    HYDRO = 12
+    PYRO = 13
+    ELECTRO = 14
+    GEO = 15
+    DENDRO = 16
+    ANEMO = 17</code></pre>
+</details>
+<div class="desc"><p>TCG card plaza dice cost type.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.IntEnum</li>
+<li>builtins.int</li>
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="genshin.models.genshin.card_plaza.TCGDiceType.ANEMO"><code class="name">var <span class="ident">ANEMO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDiceType.ARCANE_LEGEND"><code class="name">var <span class="ident">ARCANE_LEGEND</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDiceType.CRYO"><code class="name">var <span class="ident">CRYO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDiceType.DENDRO"><code class="name">var <span class="ident">DENDRO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDiceType.ELECTRO"><code class="name">var <span class="ident">ELECTRO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDiceType.ENERGY"><code class="name">var <span class="ident">ENERGY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDiceType.GEO"><code class="name">var <span class="ident">GEO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDiceType.HYDRO"><code class="name">var <span class="ident">HYDRO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDiceType.MATCHING"><code class="name">var <span class="ident">MATCHING</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDiceType.PYRO"><code class="name">var <span class="ident">PYRO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="genshin.models.genshin.card_plaza.TCGDiceType.UNALIGNED"><code class="name">var <span class="ident">UNALIGNED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="genshin.models.genshin" href="index.html">genshin.models.genshin</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="genshin.models.genshin.card_plaza.TCGDeck" href="#genshin.models.genshin.card_plaza.TCGDeck">TCGDeck</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeck.action_cards" href="#genshin.models.genshin.card_plaza.TCGDeck.action_cards">action_cards</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeck.author_icon" href="#genshin.models.genshin.card_plaza.TCGDeck.author_icon">author_icon</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeck.author_id" href="#genshin.models.genshin.card_plaza.TCGDeck.author_id">author_id</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeck.author_nickname" href="#genshin.models.genshin.card_plaza.TCGDeck.author_nickname">author_nickname</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeck.character_cards" href="#genshin.models.genshin.card_plaza.TCGDeck.character_cards">character_cards</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeck.comments" href="#genshin.models.genshin.card_plaza.TCGDeck.comments">comments</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeck.created_at" href="#genshin.models.genshin.card_plaza.TCGDeck.created_at">created_at</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeck.description" href="#genshin.models.genshin.card_plaza.TCGDeck.description">description</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeck.favorites" href="#genshin.models.genshin.card_plaza.TCGDeck.favorites">favorites</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeck.id" href="#genshin.models.genshin.card_plaza.TCGDeck.id">id</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeck.label_ids" href="#genshin.models.genshin.card_plaza.TCGDeck.label_ids">label_ids</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeck.likes" href="#genshin.models.genshin.card_plaza.TCGDeck.likes">likes</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeck.model_config" href="#genshin.models.genshin.card_plaza.TCGDeck.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeck.share_code" href="#genshin.models.genshin.card_plaza.TCGDeck.share_code">share_code</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeck.tags" href="#genshin.models.genshin.card_plaza.TCGDeck.tags">tags</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeck.title" href="#genshin.models.genshin.card_plaza.TCGDeck.title">title</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeck.video_cover_url" href="#genshin.models.genshin.card_plaza.TCGDeck.video_cover_url">video_cover_url</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeck.video_url" href="#genshin.models.genshin.card_plaza.TCGDeck.video_url">video_url</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeck.views" href="#genshin.models.genshin.card_plaza.TCGDeck.views">views</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.genshin.card_plaza.TCGDeckActionCard" href="#genshin.models.genshin.card_plaza.TCGDeckActionCard">TCGDeckActionCard</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckActionCard.cost" href="#genshin.models.genshin.card_plaza.TCGDeckActionCard.cost">cost</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckActionCard.cost_type" href="#genshin.models.genshin.card_plaza.TCGDeckActionCard.cost_type">cost_type</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckActionCard.energy_cost" href="#genshin.models.genshin.card_plaza.TCGDeckActionCard.energy_cost">energy_cost</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckActionCard.model_config" href="#genshin.models.genshin.card_plaza.TCGDeckActionCard.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckActionCard.secondary_cost" href="#genshin.models.genshin.card_plaza.TCGDeckActionCard.secondary_cost">secondary_cost</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckActionCard.secondary_cost_type" href="#genshin.models.genshin.card_plaza.TCGDeckActionCard.secondary_cost_type">secondary_cost_type</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckActionCard.tags" href="#genshin.models.genshin.card_plaza.TCGDeckActionCard.tags">tags</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckActionCard.type" href="#genshin.models.genshin.card_plaza.TCGDeckActionCard.type">type</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.genshin.card_plaza.TCGDeckActionCardEffect" href="#genshin.models.genshin.card_plaza.TCGDeckActionCardEffect">TCGDeckActionCardEffect</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.access" href="#genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.access">access</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.cost" href="#genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.cost">cost</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.cost_type" href="#genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.cost_type">cost_type</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.description" href="#genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.description">description</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.model_config" href="#genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.secondary_cost" href="#genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.secondary_cost">secondary_cost</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.secondary_cost_type" href="#genshin.models.genshin.card_plaza.TCGDeckActionCardEffect.secondary_cost_type">secondary_cost_type</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.genshin.card_plaza.TCGDeckCard" href="#genshin.models.genshin.card_plaza.TCGDeckCard">TCGDeckCard</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckCard.icon" href="#genshin.models.genshin.card_plaza.TCGDeckCard.icon">icon</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckCard.id" href="#genshin.models.genshin.card_plaza.TCGDeckCard.id">id</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckCard.max_count" href="#genshin.models.genshin.card_plaza.TCGDeckCard.max_count">max_count</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckCard.model_config" href="#genshin.models.genshin.card_plaza.TCGDeckCard.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckCard.name" href="#genshin.models.genshin.card_plaza.TCGDeckCard.name">name</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckCard.small_icon" href="#genshin.models.genshin.card_plaza.TCGDeckCard.small_icon">small_icon</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckCard.wiki_url" href="#genshin.models.genshin.card_plaza.TCGDeckCard.wiki_url">wiki_url</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.genshin.card_plaza.TCGDeckCardType" href="#genshin.models.genshin.card_plaza.TCGDeckCardType">TCGDeckCardType</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckCardType.CHARACTER" href="#genshin.models.genshin.card_plaza.TCGDeckCardType.CHARACTER">CHARACTER</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckCardType.EQUIPMENT" href="#genshin.models.genshin.card_plaza.TCGDeckCardType.EQUIPMENT">EQUIPMENT</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckCardType.EVENT" href="#genshin.models.genshin.card_plaza.TCGDeckCardType.EVENT">EVENT</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckCardType.SUPPORT" href="#genshin.models.genshin.card_plaza.TCGDeckCardType.SUPPORT">SUPPORT</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.genshin.card_plaza.TCGDeckCharacterCard" href="#genshin.models.genshin.card_plaza.TCGDeckCharacterCard">TCGDeckCharacterCard</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckCharacterCard.burst_cost" href="#genshin.models.genshin.card_plaza.TCGDeckCharacterCard.burst_cost">burst_cost</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckCharacterCard.element" href="#genshin.models.genshin.card_plaza.TCGDeckCharacterCard.element">element</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckCharacterCard.health" href="#genshin.models.genshin.card_plaza.TCGDeckCharacterCard.health">health</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckCharacterCard.model_config" href="#genshin.models.genshin.card_plaza.TCGDeckCharacterCard.model_config">model_config</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.genshin.card_plaza.TCGDeckComment" href="#genshin.models.genshin.card_plaza.TCGDeckComment">TCGDeckComment</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckComment.author_icon" href="#genshin.models.genshin.card_plaza.TCGDeckComment.author_icon">author_icon</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckComment.author_id" href="#genshin.models.genshin.card_plaza.TCGDeckComment.author_id">author_id</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckComment.author_nickname" href="#genshin.models.genshin.card_plaza.TCGDeckComment.author_nickname">author_nickname</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckComment.content" href="#genshin.models.genshin.card_plaza.TCGDeckComment.content">content</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckComment.id" href="#genshin.models.genshin.card_plaza.TCGDeckComment.id">id</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckComment.likes" href="#genshin.models.genshin.card_plaza.TCGDeckComment.likes">likes</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckComment.model_config" href="#genshin.models.genshin.card_plaza.TCGDeckComment.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckComment.replies" href="#genshin.models.genshin.card_plaza.TCGDeckComment.replies">replies</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckComment.reply_count" href="#genshin.models.genshin.card_plaza.TCGDeckComment.reply_count">reply_count</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckComment.time" href="#genshin.models.genshin.card_plaza.TCGDeckComment.time">time</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.genshin.card_plaza.TCGDeckElement" href="#genshin.models.genshin.card_plaza.TCGDeckElement">TCGDeckElement</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckElement.ANEMO" href="#genshin.models.genshin.card_plaza.TCGDeckElement.ANEMO">ANEMO</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckElement.CRYO" href="#genshin.models.genshin.card_plaza.TCGDeckElement.CRYO">CRYO</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckElement.DENDRO" href="#genshin.models.genshin.card_plaza.TCGDeckElement.DENDRO">DENDRO</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckElement.ELECTRO" href="#genshin.models.genshin.card_plaza.TCGDeckElement.ELECTRO">ELECTRO</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckElement.GEO" href="#genshin.models.genshin.card_plaza.TCGDeckElement.GEO">GEO</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckElement.HYDRO" href="#genshin.models.genshin.card_plaza.TCGDeckElement.HYDRO">HYDRO</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckElement.PYRO" href="#genshin.models.genshin.card_plaza.TCGDeckElement.PYRO">PYRO</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.genshin.card_plaza.TCGDeckLabel" href="#genshin.models.genshin.card_plaza.TCGDeckLabel">TCGDeckLabel</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckLabel.children" href="#genshin.models.genshin.card_plaza.TCGDeckLabel.children">children</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckLabel.id" href="#genshin.models.genshin.card_plaza.TCGDeckLabel.id">id</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckLabel.is_hot" href="#genshin.models.genshin.card_plaza.TCGDeckLabel.is_hot">is_hot</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckLabel.model_config" href="#genshin.models.genshin.card_plaza.TCGDeckLabel.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckLabel.name" href="#genshin.models.genshin.card_plaza.TCGDeckLabel.name">name</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.genshin.card_plaza.TCGDeckSkill" href="#genshin.models.genshin.card_plaza.TCGDeckSkill">TCGDeckSkill</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckSkill.costs" href="#genshin.models.genshin.card_plaza.TCGDeckSkill.costs">costs</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckSkill.description" href="#genshin.models.genshin.card_plaza.TCGDeckSkill.description">description</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckSkill.icon" href="#genshin.models.genshin.card_plaza.TCGDeckSkill.icon">icon</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckSkill.id" href="#genshin.models.genshin.card_plaza.TCGDeckSkill.id">id</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckSkill.model_config" href="#genshin.models.genshin.card_plaza.TCGDeckSkill.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckSkill.name" href="#genshin.models.genshin.card_plaza.TCGDeckSkill.name">name</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckSkill.types" href="#genshin.models.genshin.card_plaza.TCGDeckSkill.types">types</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.genshin.card_plaza.TCGDeckSkillCost" href="#genshin.models.genshin.card_plaza.TCGDeckSkillCost">TCGDeckSkillCost</a></code></h4>
+<ul class="">
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckSkillCost.icon" href="#genshin.models.genshin.card_plaza.TCGDeckSkillCost.icon">icon</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckSkillCost.model_config" href="#genshin.models.genshin.card_plaza.TCGDeckSkillCost.model_config">model_config</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckSkillCost.type" href="#genshin.models.genshin.card_plaza.TCGDeckSkillCost.type">type</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDeckSkillCost.value" href="#genshin.models.genshin.card_plaza.TCGDeckSkillCost.value">value</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="genshin.models.genshin.card_plaza.TCGDiceType" href="#genshin.models.genshin.card_plaza.TCGDiceType">TCGDiceType</a></code></h4>
+<ul class="two-column">
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDiceType.ANEMO" href="#genshin.models.genshin.card_plaza.TCGDiceType.ANEMO">ANEMO</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDiceType.ARCANE_LEGEND" href="#genshin.models.genshin.card_plaza.TCGDiceType.ARCANE_LEGEND">ARCANE_LEGEND</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDiceType.CRYO" href="#genshin.models.genshin.card_plaza.TCGDiceType.CRYO">CRYO</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDiceType.DENDRO" href="#genshin.models.genshin.card_plaza.TCGDiceType.DENDRO">DENDRO</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDiceType.ELECTRO" href="#genshin.models.genshin.card_plaza.TCGDiceType.ELECTRO">ELECTRO</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDiceType.ENERGY" href="#genshin.models.genshin.card_plaza.TCGDiceType.ENERGY">ENERGY</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDiceType.GEO" href="#genshin.models.genshin.card_plaza.TCGDiceType.GEO">GEO</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDiceType.HYDRO" href="#genshin.models.genshin.card_plaza.TCGDiceType.HYDRO">HYDRO</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDiceType.MATCHING" href="#genshin.models.genshin.card_plaza.TCGDiceType.MATCHING">MATCHING</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDiceType.PYRO" href="#genshin.models.genshin.card_plaza.TCGDiceType.PYRO">PYRO</a></code></li>
+<li><code><a title="genshin.models.genshin.card_plaza.TCGDiceType.UNALIGNED" href="#genshin.models.genshin.card_plaza.TCGDiceType.UNALIGNED">UNALIGNED</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>
