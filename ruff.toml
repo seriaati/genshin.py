@@ -2,6 +2,7 @@ line-length = 120
 target-version = "py39"
 
 [lint]
+future-annotations = true
 select = [
     "A",
     "C4",

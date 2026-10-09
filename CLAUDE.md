@@ -43,7 +43,7 @@ After editing any `.py` file, run `ruff check --fix <files> && ruff format <file
 - **Datetime fields**: annotate with `TZDateTime`, `DateTime`, or `UnixDateTime` from `model.py` — these are `Annotated` types with validators baked in, not functions to call.
 - **Enums**: wrap unknown API enum values with `prevent_enum_error(value, EnumClass)` to avoid crashing on new game content.
 - **Routes**: define endpoints as `Route(...)` / `InternationalRoute(...)` in `client/routes.py`.
-- **`from __future__ import annotations`** must be the first import in every `.py` file (forward refs + 3.9 compat).
+- **`from __future__ import annotations`** only when a file needs it (e.g. forward references); not required in every `.py` file. When used, it must be the first import.
 - **`__all__`** declared in every module; `nox -s reformat` auto-sorts it.
 - **Python 3.9 typing**: use `typing.Optional[X]`, `typing.Union[X, Y]`, `typing.List`, `typing.Sequence` — NOT `X | Y` or `list[X]`. Import `typing` as a module and prefix (`typing.Optional`), prioritizing `typing` over `collections.abc`.
 - **Docstrings** required for all exported symbols (Google convention: `Args:` / `Returns:` / `Raises:` sections); `@property` exempt. Line length 120.
