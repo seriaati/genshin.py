@@ -4,8 +4,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Async API wrapper for HoYoLAB/Miyoushe APIs (Genshin Impact, Honkai Impact 3rd, Honkai: Star Rail, Zenless Zone Zero). Python 3.9+, asyncio, pydantic v2, aiohttp. Managed with `uv` and `nox`.
 
-> See also `AGENTS.md` (condensed agent guide) and `.roo/rules-code/AGENTS.md` (post-edit hook + coding rules). This file expands on the architecture.
-
 ## Commands
 
 ```bash
@@ -22,7 +20,7 @@ nox --no-install -s test                           # skip reinstalling deps (fas
 uv sync --all-groups --all-extras                  # install all dev deps
 ```
 
-After editing any `.py` file, run `ruff check --fix <files> && ruff format <files>` (per `.roo/rules-code` post-edit hook).
+After editing any `.py` file, run `ruff check --fix <files> && ruff format <files>`.
 
 ## Architecture
 
