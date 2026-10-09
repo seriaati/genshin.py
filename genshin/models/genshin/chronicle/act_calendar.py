@@ -11,11 +11,13 @@ __all__ = (
     "Banner",
     "BannerCharacter",
     "BannerWeapon",
+    "DisturbanceOutbreakDetail",
     "DoubleRewardDetail",
     "Event",
     "EventExplorationDetail",
     "EventReward",
     "GenshinEventCalendar",
+    "StygianOnslaughtDetail",
     "TheaterDetail",
 )
 
@@ -104,6 +106,25 @@ class TheaterDetail(APIModel):
     has_data: bool
 
 
+class DisturbanceOutbreakDetail(APIModel):
+    """Disturbance Outbreak detail, a time-limited sub-event of Stygian Onslaught."""
+
+    countdown_seconds: int = Aliased("seconds")
+    progress: int = Aliased("x")
+    max_progress: int = Aliased("y")
+
+
+class StygianOnslaughtDetail(APIModel):
+    """Stygian Onslaught detail."""
+
+    unlocked: bool = Aliased("is_unlock")
+    difficulty: int
+    time_used: int = Aliased("second")
+    """Best clear time in seconds."""
+    icon: str
+    disturbance_outbreak: typing.Optional[DisturbanceOutbreakDetail] = Aliased("sub", default=None)
+
+
 class Event(APIModel):
     """Event model."""
 
@@ -127,6 +148,7 @@ class Event(APIModel):
     double_reward_detail: typing.Optional[DoubleRewardDetail] = Aliased("double_detail", default=None)
     abyss_detail: typing.Optional[AbyssDetail] = Aliased("tower_detail", default=None)
     theater_detail: typing.Optional[TheaterDetail] = Aliased("role_combat_detail", default=None)
+    stygian_detail: typing.Optional[StygianOnslaughtDetail] = Aliased("hard_challenge_detail", default=None)
 
     @pydantic.field_validator("description", mode="after")
     def __format_description(cls, v: str) -> str:
