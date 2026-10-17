@@ -16,7 +16,7 @@ T = typing.TypeVar("T")
 async def flatten(iterable: typing.AsyncIterable[T]) -> typing.Sequence[T]:
     """Flatten an async iterable."""
     if isinstance(iterable, Paginator):
-        return await iterable.flatten()  # type: ignore
+        return await iterable.flatten()
 
     return [x async for x in iterable]
 
@@ -284,6 +284,6 @@ class MergedPaginator(typing.Generic[T], Paginator[T]):
             return [item async for item in self]
 
         coros = (flatten(i) for i in self.iterators)
-        lists: typing.Sequence[typing.Sequence[T]] = await asyncio.gather(*coros)  # pyright: ignore
+        lists: typing.Sequence[typing.Sequence[T]] = await asyncio.gather(*coros)
 
         return list(heapq.merge(*lists, key=self._key))[: self.limit]  # pyrefly: ignore[no-matching-overload]

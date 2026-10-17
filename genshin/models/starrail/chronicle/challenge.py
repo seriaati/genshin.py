@@ -53,7 +53,7 @@ class StarRailChallengeFloor(APIModel):
     has_starward_mode: bool = Aliased("is_tierce", default=False)
     starward_stars: int = Aliased("extra_star_num", default=0)
 
-    @pydantic.computed_field  # type: ignore[prop-decorator]
+    @pydantic.computed_field
     @property
     def stars(self) -> int:
         """Number of stars earned on the floor."""

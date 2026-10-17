@@ -148,7 +148,7 @@ class ShiyuDefenseV1(APIModel):
     ) -> typing.Mapping[typing.Literal["S", "A", "B"], int]:
         return {d["rating"]: d["times"] for d in v}
 
-    @pydantic.computed_field  # type: ignore[prop-decorator]
+    @pydantic.computed_field
     @property
     def total_clear_time(self) -> int:
         """Total clear time for all floors in seconds."""

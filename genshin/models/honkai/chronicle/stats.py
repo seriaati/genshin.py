@@ -67,7 +67,7 @@ class OldAbyssStats(APIModel):
 
         return 69 - ord(rank)
 
-    model_config: pydantic.ConfigDict = pydantic.ConfigDict(frozen=False)  # type: ignore
+    model_config: pydantic.ConfigDict = pydantic.ConfigDict(frozen=False)
 
 
 # flake8: noqa: E222

@@ -196,7 +196,7 @@ async def complete_cookies(
     cookies = managers.parse_cookie(cookies)
 
     if refresh:
-        cookies = await refresh_cookie_token(cookies, region=region)  # type: ignore[assignment]
+        cookies = await refresh_cookie_token(cookies, region=region)
 
     return cookies
 

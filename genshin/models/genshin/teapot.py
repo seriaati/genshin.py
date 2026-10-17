@@ -54,7 +54,7 @@ class TeapotReplica(APIModel):
     images: list[str] = Aliased("imgs")
     created_at: TZDateTime
     stats: TeapotReplicaStats
-    lang: str  # type: ignore
+    lang: str
 
     author: TeapotReplicaAuthor
 

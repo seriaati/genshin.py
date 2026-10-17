@@ -47,7 +47,7 @@ class PartialLineupCharacter(character.BaseCharacter):
         elif icons_amount >= 2 and "static" in data.get("icon", ""):
             data["standard_icon"] = data.pop("icon")
 
-        super().__init__(_frame=_frame + 3, **data)  # type: ignore
+        super().__init__(_frame=_frame + 3, **data)
 
     @pydantic.field_validator("element", mode="before")
     def __parse_element(cls, value: typing.Any) -> str:
@@ -115,7 +115,7 @@ class LineupArtifactStatFields(APIModel):
         if "reliquary_fst_attr" not in values:
             return values
 
-        artifact_ids = {  # type: ignore
+        artifact_ids = {
             field.json_schema_extra["artifact_id"]: name
             for name, field in LineupArtifactStatFields.model_fields.items()
             if isinstance(field.json_schema_extra, dict) and field.json_schema_extra.get("artifact_id")

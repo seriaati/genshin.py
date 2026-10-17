@@ -410,7 +410,7 @@ class RotatingCookieManager(BaseCookieManager):
 
     @cookies.setter
     def cookies(self, cookies: typing.Optional[typing.Sequence[CookieOrHeader]]) -> None:
-        self._cookies.cookies = cookies  # type: ignore # mypy does not understand property setters
+        self._cookies.cookies = cookies
 
     def __repr__(self) -> str:
         return f"<{self.__class__.__name__} len={len(self._cookies)}>"

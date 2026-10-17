@@ -30,19 +30,19 @@ def _get_browser_cookies(
 
     Available browsers: chrome, chromium, opera, edge, firefox.
     """
-    import browser_cookie3  # pyright: ignore
+    import browser_cookie3
 
     if browser is None:
         if cookie_file is not None:
             raise TypeError("Cannot use a cookie_file without a specified browser.")
 
-        loader = browser_cookie3.load  # pyright: ignore
+        loader = browser_cookie3.load
 
     else:
         if browser not in ("chrome", "chromium", "opera", "brave", "edge", "firefox"):
             raise ValueError(f"Unsupported browser: {browser}")
 
-        loader = getattr(browser_cookie3, browser)  # pyright: ignore
+        loader = getattr(browser_cookie3, browser)
         loader = functools.partial(loader, cookie_file=cookie_file)
 
     loader = typing.cast("typing.Callable[..., typing.Any]", loader)

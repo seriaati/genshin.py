@@ -35,7 +35,7 @@ def _separate(values: typing.Iterable[typing.Any], sep: str = ":") -> str:
             parts.append(str(enum_value))
         elif isinstance(value, tuple):
             if value:
-                parts.append(_separate(value))  # pyright: ignore[reportUnknownArgumentType]
+                parts.append(_separate(value))
         else:
             parts.append(str(value))
 
@@ -179,7 +179,7 @@ class RedisCache(BaseCache):
 
     async def get(self, key: typing.Any) -> typing.Optional[typing.Any]:
         """Get an object with a key."""
-        value = typing.cast("typing.Optional[bytes]", await self.redis.get(self.serialize_key(key)))  # pyright: ignore
+        value = typing.cast("typing.Optional[bytes]", await self.redis.get(self.serialize_key(key)))
         if value is None:
             return None
 
@@ -187,7 +187,7 @@ class RedisCache(BaseCache):
 
     async def set(self, key: typing.Any, value: typing.Any) -> None:
         """Save an object with a key."""
-        await self.redis.set(  # pyright: ignore
+        await self.redis.set(
             self.serialize_key(key),
             self.serialize_value(value),
             ex=self.ttl,
@@ -199,7 +199,7 @@ class RedisCache(BaseCache):
 
     async def set_static(self, key: typing.Any, value: typing.Any) -> None:
         """Save a static object with a key."""
-        await self.redis.set(  # pyright: ignore
+        await self.redis.set(
             self.serialize_key(key),
             self.serialize_value(value),
             ex=self.static_ttl,

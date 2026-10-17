@@ -58,7 +58,7 @@ def handle_proxy_errors(func: CallableT) -> CallableT:
     except ImportError:
         proxy_errors = (aiohttp.ClientHttpProxyError,)
 
-    @functools.wraps(func)  # type: ignore[arg-type]
+    @functools.wraps(func)
     async def wrapper(self: typing.Any, *args: typing.Any, **kwargs: typing.Any) -> typing.Any:
         try:
             return await func(self, *args, **kwargs)

@@ -322,7 +322,7 @@ class BaseClient(abc.ABC):
         """Create and set a new redis cache."""
         import aioredis
 
-        redis = aioredis.Redis.from_url(url, **redis_kwargs)  # pyright: ignore[reportUnknownMemberType]
+        redis = aioredis.Redis.from_url(url, **redis_kwargs)
         self.cache = client_cache.RedisCache(redis, ttl=ttl, static_ttl=static_ttl)
 
     @property
@@ -526,7 +526,7 @@ class BaseClient(abc.ABC):
 
         game_accounts: dict[types.Game, list[hoyolab_models.GenshinAccount]] = {}
         for account in mixed_accounts:
-            if not isinstance(account.game, types.Game):  # pyright: ignore[reportUnnecessaryIsInstance]
+            if not isinstance(account.game, types.Game):
                 continue
 
             game_accounts.setdefault(account.game, []).append(account)
@@ -559,7 +559,7 @@ class BaseClient(abc.ABC):
 
         game_accounts: dict[types.Game, list[hoyolab_models.GenshinAccount]] = {}
         for account in mixed_accounts:
-            if not isinstance(account.game, types.Game):  # pyright: ignore[reportUnnecessaryIsInstance]
+            if not isinstance(account.game, types.Game):
                 continue
 
             game_accounts.setdefault(account.game, []).append(account)
@@ -608,7 +608,7 @@ class BaseClient(abc.ABC):
         if uid is None:
             return None
 
-        server = recognize_server(uid, game=game)  # type: ignore[arg-type]
+        server = recognize_server(uid, game=game)
 
         for tz, servers in constants.SERVER_TIMEZONES.items():
             if server in servers:

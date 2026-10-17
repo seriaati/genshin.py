@@ -13,7 +13,7 @@ import genshin
 from genshin import types
 
 if os.name == "nt":
-    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())  # type: ignore
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 
 T = typing.TypeVar("T", bound=typing.Any)

@@ -50,8 +50,8 @@ class MethodDecorator:
         *,
         name: typing.Optional[str] = None,
     ) -> None:
-        self.method = method  # type: ignore # mypy doesn't understand methods
-        self.decorator = decorator  # type: ignore # mypy doesn't understand methods
+        self.method = method
+        self.decorator = decorator
         self.name = name or self.method.__name__
 
     def __set_name__(self, owner: type, name: str) -> None:
@@ -61,6 +61,6 @@ class MethodDecorator:
         if instance is None:
             return self.method
 
-        func = self.decorator(self.method).__get__(instance, type(instance))  # type: ignore # mypy doesn't understand methods
+        func = self.decorator(self.method).__get__(instance, type(instance))
         setattr(instance, self.name, func)
         return func

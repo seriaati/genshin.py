@@ -33,5 +33,5 @@ class Announcement(APIModel, Unique):
     tag_start_time: datetime.datetime
     tag_end_time: datetime.datetime
 
-    lang: str  # type: ignore
+    lang: str
     has_content: bool
