@@ -76,7 +76,7 @@ class WikiClient(base.BaseClient):
         lang: typing.Optional[str] = None,
     ) -> typing.Sequence[models.BaseWikiPreview]:
         """Get a list of wiki previews."""
-        payload = dict(filters=[], menu_id=int(menu), page_num=1, page_size=1000, use_es=True)
+        payload = dict(filters=[], menu_id=menu, page_num=1, page_size=1000, use_es=True)
         cache_key = cache.cache_key("wiki", endpoint="entry", menu=menu, lang=lang or self.lang)
         data = await self.request_wiki("get_entry_page_list", data=payload, lang=lang, static_cache=cache_key)
 

@@ -200,13 +200,15 @@ class BaseClient(abc.ABC):
     @property
     def uid(self) -> typing.Optional[int]:
         """UID of the default game."""
-        if self.default_game is None:
+        game = self.default_game
+        if game is None:
             if len(self.uids) != 1:
                 return None
 
-            (self.default_game,) = self.uids.keys()
+            (game,) = self.uids.keys()
+            self.default_game = game
 
-        return self.uids.get(self.default_game)
+        return self.uids.get(game)
 
     @uid.setter
     def uid(self, uid: typing.Optional[int]) -> None:

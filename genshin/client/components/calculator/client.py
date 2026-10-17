@@ -158,7 +158,7 @@ class CalculatorClient(base.BaseClient):
             if not data["list"] or len(items) >= data.get("total", 0):
                 return items
 
-            payload["page"] += 1
+            payload["page"] = payload["page"] + 1
 
     async def get_calculator_characters(
         self,

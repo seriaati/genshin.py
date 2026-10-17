@@ -175,7 +175,7 @@ class LineupScenario(APIModel, Unique):
 
     @staticmethod
     def _pre_flatten_scenarios(class_: typing.Any, values: dict[str, typing.Any]) -> dict[str, typing.Any]:
-        scenario_ids = {  # type: ignore
+        scenario_ids: dict[int, str] = {
             field.json_schema_extra["scenario_id"]: name
             for name, field in class_.model_fields.items()
             if isinstance(field.json_schema_extra, dict) and field.json_schema_extra.get("scenario_id")

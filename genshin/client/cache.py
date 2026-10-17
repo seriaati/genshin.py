@@ -31,7 +31,8 @@ def _separate(values: typing.Iterable[typing.Any], sep: str = ":") -> str:
         if value is None:
             parts.append("null")
         elif isinstance(value, enum.Enum):
-            parts.append(str(value.value))
+            enum_value: typing.Any = value.value
+            parts.append(str(enum_value))
         elif isinstance(value, tuple):
             if value:
                 parts.append(_separate(value))  # pyright: ignore[reportUnknownArgumentType]
