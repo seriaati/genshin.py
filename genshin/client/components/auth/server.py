@@ -96,45 +96,45 @@ HOYOLAB_GT_SERVER = "gcaptcha4.captchami.com"
 async def launch_webapp(
     mmt: RiskyCheckMMT,
     *,
-    lang: str = ...,
-    api_server: str = ...,
-    for_new_os_app: bool = ...,
+    lang: typing.Optional[str] = ...,
+    api_server: typing.Optional[str] = ...,
+    for_new_os_app: typing.Optional[bool] = ...,
     port: int = ...,
 ) -> RiskyCheckMMTResult: ...
 @typing.overload
 async def launch_webapp(
     mmt: SessionMMT,
     *,
-    lang: str = ...,
-    api_server: str = ...,
-    for_new_os_app: bool = ...,
+    lang: typing.Optional[str] = ...,
+    api_server: typing.Optional[str] = ...,
+    for_new_os_app: typing.Optional[bool] = ...,
     port: int = ...,
 ) -> SessionMMTResult: ...
 @typing.overload
 async def launch_webapp(
     mmt: SessionMMTv4,
     *,
-    lang: str = ...,
-    api_server: str = ...,
-    for_new_os_app: bool = ...,
+    lang: typing.Optional[str] = ...,
+    api_server: typing.Optional[str] = ...,
+    for_new_os_app: typing.Optional[bool] = ...,
     port: int = ...,
 ) -> SessionMMTv4Result: ...
 @typing.overload
 async def launch_webapp(
     mmt: MMT,
     *,
-    lang: str = ...,
-    api_server: str = ...,
-    for_new_os_app: bool = ...,
+    lang: typing.Optional[str] = ...,
+    api_server: typing.Optional[str] = ...,
+    for_new_os_app: typing.Optional[bool] = ...,
     port: int = ...,
 ) -> MMTResult: ...
 @typing.overload
 async def launch_webapp(
     mmt: MMTv4,
     *,
-    lang: str = ...,
-    api_server: str = ...,
-    for_new_os_app: bool = ...,
+    lang: typing.Optional[str] = ...,
+    api_server: typing.Optional[str] = ...,
+    for_new_os_app: typing.Optional[bool] = ...,
     port: int = ...,
 ) -> MMTv4Result: ...
 async def launch_webapp(
