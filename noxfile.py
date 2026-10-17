@@ -89,9 +89,8 @@ def test(session: nox.Session) -> None:
 
 @nox.session(name="type-check")
 def type_check(session: nox.Session) -> None:
-    """Statically analyse and veirfy this project using pyright and mypy."""
-    session.run(*UV_RUN_GROUP, "typecheck", "--extra", "all", "pyright", PACKAGE, *verbose_args(), env=PYRIGHT_ENV)
-    session.run(*UV_RUN_GROUP, "typecheck", "--extra", "all", "mypy", PACKAGE, *verbose_args())
+    """Statically analyse and veirfy this project using pyrefly."""
+    session.run(*UV_RUN_GROUP, "typecheck", "--extra", "all", "pyrefly", "check", *verbose_args(), *session.posargs)
 
 
 @nox.session(name="verify-types")

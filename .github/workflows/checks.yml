@@ -152,7 +152,7 @@ jobs:
 
       - name: Run type checker
         run: |
-          uv run nox -s type-check
+          uv run nox -s type-check -- --output-format full-text-with-github
 
   verify-types:
     runs-on: ubuntu-latest

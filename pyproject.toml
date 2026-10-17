@@ -66,7 +66,12 @@ pytest = [
     "pytest-dotenv>=0.5.2",
 ]
 reformat = ["black>=24.8.0", "ruff>=0.6.8"]
-typecheck = ["mypy>=1.11.2", "pyright>=1.1.382.post0", "types-click>=7.1.8"]
+typecheck = [
+ "pyrefly>=1.4.0",
+ "pyright>=1.1.382.post0",
+ "types-click>=7.1.8",
+ "types-qrcode>=8.2.0.20250914",
+]
 docs = [
     "mkdocs-material>=9.5.38",
     "pdoc3>=0.11.1",
@@ -94,31 +99,36 @@ line-length = 120
 asyncio_mode = "auto"
 testpaths = ["tests"]
 
-[tool.pyright]
-include = ["genshin"]
-exclude = ["**/__init__.py", "tests/**", "**/__pycache__", "**/.*", "**/node_modules", ".venv"]
+[tool.pyrefly]
+project-includes = ["genshin"]
+project-excludes = ["**/__init__.py", "tests/**", "**/__pycache__", "**/.*", "**/node_modules", ".venv"]
+infer-with-first-use = false
+enabled-ignores = ["type", "pyrefly"]
+treat-all-caps-as-final = true
 
-typeCheckingMode = "strict"
-reportMissingTypeStubs = "none"
-reportImportCycles = "none"
-reportIncompatibleMethodOverride = "none"   # This relies on ordering for keyword-only arguments
-reportUnusedFunction = "none"               # Makes usage of validators impossible
-reportPrivateUsage = "none"
-reportUnknownMemberType = "none"
-reportUntypedFunctionDecorator = "none"
-reportIncompatibleVariableOverride = "none"
-
-[tool.mypy]
-warn_unreachable = false
-
-disallow_untyped_defs = true
-ignore_missing_imports = true
-
-# pyright
-warn_unused_ignores = false
-warn_redundant_casts = false
-allow_redefinition = true
-disable_error_code = ["return-value"]
+[tool.pyrefly.errors]
+# strict mode
+implicit-any-lambda = "error"
+implicit-any-parameter = "error"
+implicit-any-type-argument = "error"
+incompatible-comparison = "error"
+non-exhaustive-match = "error"
+redundant-cast = "error"
+redundant-condition = "error"
+unannotated-return = "error"
+unknown-argument-type = "error"
+unknown-return-type = "error"
+unknown-variable-type = "error"
+unnecessary-comparison = "error"
+unsupported-dynamic-base = "error"
+untyped-class-decorator = "error"
+untyped-namedtuple = "error"
+# overrides
+bad-override = "error"
+bad-override-mutable-attribute = "ignore"  # Subclasses narrow pydantic field types
+unknown-attribute-access = "ignore"
+unknown-attribute-type = "ignore"
+untyped-function-decorator = "ignore"
 
 [tool.coverage.run]
 source = ["genshin"]

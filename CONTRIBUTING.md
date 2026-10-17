@@ -59,7 +59,7 @@ Run `nox -l` to see all available tasks. The default tasks (run with `nox -s`) a
 
 - `reformat` - Auto-format code with black and ruff
 - `lint` - Check code with ruff
-- `type-check` - Run pyright and mypy type checkers
+- `type-check` - Run the pyrefly type checker
 - `verify-types` - Verify type completeness
 - `test` - Run pytest test suite
 

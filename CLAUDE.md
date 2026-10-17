@@ -13,7 +13,7 @@ nox -s test -- tests/client/test_gacha.py::test_wish_history  # single test
 nox -s test -- -k "wish"                          # filter by keyword
 nox -s lint                                        # ruff check
 nox -s reformat                                    # black + ruff fix + sort __all__ (RUF022,I)
-nox -s type-check                                  # pyright (strict) + mypy
+nox -s type-check                                  # pyrefly (strict-equivalent rules)
 nox -s verify-types                                # pyright --verifytypes (type completeness)
 nox -s                                             # all default sessions
 nox --no-install -s test                           # skip reinstalling deps (faster)
@@ -45,7 +45,7 @@ After editing any `.py` file, run `ruff check --fix <files> && ruff format <file
 - **`__all__`** declared in every module; `nox -s reformat` auto-sorts it.
 - **Python 3.9 typing**: use `typing.Optional[X]`, `typing.Union[X, Y]`, `typing.List`, `typing.Sequence` — NOT `X | Y` or `list[X]`. Import `typing` as a module and prefix (`typing.Optional`), prioritizing `typing` over `collections.abc`.
 - **Docstrings** required for all exported symbols (Google convention: `Args:` / `Returns:` / `Raises:` sections); `@property` exempt. Line length 120.
-- pyright runs in **strict mode** over `genshin/` (excludes `**/__init__.py` and `tests/`).
+- pyrefly runs over `genshin/` with strict-equivalent rules set in `[tool.pyrefly.errors]` (excludes `**/__init__.py` and `tests/`). Suppress with `# pyrefly: ignore[<kind>]`.
 
 ## Testing
 

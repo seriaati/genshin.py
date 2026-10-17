@@ -286,4 +286,4 @@ class MergedPaginator(typing.Generic[T], Paginator[T]):
         coros = (flatten(i) for i in self.iterators)
         lists: typing.Sequence[typing.Sequence[T]] = await asyncio.gather(*coros)  # pyright: ignore
 
-        return list(heapq.merge(*lists, key=self._key))[: self.limit]  # pyright: ignore
+        return list(heapq.merge(*lists, key=self._key))[: self.limit]  # pyrefly: ignore[no-matching-overload]
