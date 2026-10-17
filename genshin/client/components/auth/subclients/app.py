@@ -85,7 +85,7 @@ class AppAuthClient(base.BaseClient):
         encrypted: bool = ...,
         mmt_result: None = ...,
         ticket: None = ...,
-    ) -> typing.Union[AppLoginResult, SessionMMT, ActionTicket]: ...
+    ) -> typing.Union[AppLoginResult, SessionMMT, SessionMMTv4, ActionTicket]: ...
 
     async def _app_login(
         self,
