@@ -178,7 +178,7 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
         """
         result = await self._send_mobile_otp(mobile, encrypted=encrypted)
 
-        if isinstance(result, SessionMMT):
+        if isinstance(result, SessionMMTv4):
             # Captcha triggered
             mmt_result = await server.solve_geetest(result, port=port)
             await self._send_mobile_otp(mobile, encrypted=encrypted, mmt_result=mmt_result)

@@ -11,7 +11,7 @@ from genshin import constants, errors, types
 from genshin.client import routes
 from genshin.client.components import base
 from genshin.models.auth.cookie import CNWebLoginResult, MobileLoginResult, WebLoginResult
-from genshin.models.auth.geetest import SessionMMT, SessionMMTResult, SessionMMTv4
+from genshin.models.auth.geetest import SessionMMT, SessionMMTResult, SessionMMTv4, SessionMMTv4Result
 from genshin.utility import auth as auth_utility
 from genshin.utility import ds as ds_utility
 
@@ -170,7 +170,7 @@ class WebAuthClient(base.BaseClient):
         mobile: str,
         *,
         encrypted: bool = False,
-        mmt_result: typing.Optional[SessionMMTResult] = None,
+        mmt_result: typing.Optional[SessionMMTv4Result] = None,
     ) -> typing.Union[None, SessionMMTv4]:
         """Attempt to send OTP to the provided mobile number.
 
