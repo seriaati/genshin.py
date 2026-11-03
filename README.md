@@ -8,6 +8,10 @@
 
 Modern API wrapper for HoYoLAB & Miyoushe(米游社) API built on asyncio and pydantic.
 
+## Sponsors
+
+- [VGTopup](https://vgtopup.com/)
+
 ## Project Transferred
 
 genshin.py was originally started by [ashleney](https://github.com/ashleney), due to lack of time to maintain, it has been transferred to [seriaati](https://github.com/seriaati).
