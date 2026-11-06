@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>genshin.client.components.badge API documentation</title>
+<meta name="description" content="HoYoLAB badge login component.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>genshin.client.components.badge</code></h1>
+</header>
+<section id="section-intro">
+<p>HoYoLAB badge login component.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="genshin.client.components.badge.BadgeLoginClient"><code class="flex name class">
+<span>class <span class="ident">BadgeLoginClient</span></span>
+<span>(</span><span>cookies: ForwardRef('http.cookies.BaseCookie[Any]') | Mapping[Any, Any] | str | Sequence[ForwardRef('http.cookies.BaseCookie[Any]') | Mapping[Any, Any] | str] | None = None,<br>*,<br>authkey: str | None = None,<br>lang: Literal['zh-cn', 'zh-tw', 'de-de', 'en-us', 'es-es', 'fr-fr', 'id-id', 'it-it', 'ja-jp', 'ko-kr', 'pt-pt', 'ru-ru', 'th-th', 'vi-vn', 'tr-tr'] = 'en-us',<br>region: <a title="genshin.types.Region" href="../../types.html#genshin.types.Region">Region</a> = Region.OVERSEAS,<br>proxy: str | None = None,<br>game: <a title="genshin.types.Game" href="../../types.html#genshin.types.Game">Game</a> | None = None,<br>uid: int | None = None,<br>hoyolab_id: int | None = None,<br>device_id: str | None = None,<br>device_fp: str | None = None,<br>headers: Mapping[str, str] | Mapping[multidict._multidict.istr, str] | multidict._multidict.CIMultiDict | multidict._multidict.CIMultiDictProxy | Iterable[Tuple[str | multidict._multidict.istr, str]] | None = None,<br>cache: <a title="genshin.client.cache.BaseCache" href="../cache.html#genshin.client.cache.BaseCache">BaseCache</a> | None = None,<br>debug: bool = False,<br>on_cookie_update: Callable[[Mapping[str, str]], Awaitable[None] | None] | None = None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class BadgeLoginClient(base.BaseClient):
+    &#34;&#34;&#34;Component for HoYoLAB event tools that authenticate through the badge login.
+
+    Tools such as the ZZZ agent upgrade guide and the HSR warp records require a
+    game-scoped ``e_&lt;game&gt;_token`` cookie minted by the badge login endpoint.
+    &#34;&#34;&#34;
+
+    _badge_login_lock: typing.Optional[asyncio.Lock] = None
+    &#34;&#34;&#34;Serializes badge token refreshes so concurrent recoveries don&#39;t race.&#34;&#34;&#34;
+    _badge_login_loop: typing.Optional[asyncio.AbstractEventLoop] = None
+    &#34;&#34;&#34;The event loop the login lock is bound to; the lock is recreated when it changes.&#34;&#34;&#34;
+    _device_id_suppressions: int = 0
+    &#34;&#34;&#34;Refcount of in-flight requests that have stripped ``x-rpc-device_id``.&#34;&#34;&#34;
+    _suppressed_device_id: typing.Optional[str] = None
+    &#34;&#34;&#34;The ``x-rpc-device_id`` removed while suppressed, restored once the refcount hits zero.&#34;&#34;&#34;
+
+    def _badge_headers(
+        self,
+        region: types.Region,
+        *,
+        lang: str,
+        data: typing.Any = None,
+        params: typing.Optional[typing.Mapping[str, typing.Any]] = None,
+    ) -&gt; typing.Dict[str, str]:
+        &#34;&#34;&#34;Build headers for a badge-authenticated request (DS is only required for China).&#34;&#34;&#34;
+        headers = {&#34;x-rpc-lang&#34;: lang, &#34;x-rpc-language&#34;: lang}
+        if region is types.Region.CHINESE:
+            headers.update(ds.get_ds_headers(region=region, data=data, params=params, lang=lang))
+        return headers
+
+    @contextlib.contextmanager
+    def _suppress_device_id(self) -&gt; typing.Generator[None, None, None]:
+        &#34;&#34;&#34;Temporarily remove the ``x-rpc-device_id`` header for the duration of the block.
+
+        The badge login rejects tokens minted with an ``x-rpc-device_id`` header, and some
+        tools (the ZZZ cultivate tool) reject data requests carrying it with a ``-100`` error,
+        so it must be omitted even when the client was constructed with a device id. The
+        removal is refcounted so that concurrent requests only restore the header once the
+        last of them has finished. ``__enter__`` and ``__exit__`` run without awaiting, so
+        the refcount stays consistent under asyncio concurrency.
+        &#34;&#34;&#34;
+        if self._device_id_suppressions == 0:
+            self._suppressed_device_id = self.custom_headers.pop(&#34;x-rpc-device_id&#34;, None)
+        self._device_id_suppressions += 1
+        try:
+            yield
+        finally:
+            self._device_id_suppressions -= 1
+            if self._device_id_suppressions == 0 and self._suppressed_device_id is not None:
+                self.custom_headers[&#34;x-rpc-device_id&#34;] = self._suppressed_device_id
+                self._suppressed_device_id = None
+
+    async def _badge_login(
+        self,
+        game: types.Game,
+        uid: int,
+        *,
+        lang: typing.Optional[str] = None,
+        stale_token: typing.Optional[str] = None,
+    ) -&gt; None:
+        &#34;&#34;&#34;Obtain the badge token cookie for a game.
+
+        The response sets a fresh token cookie which the cookie manager merges into the
+        session automatically. Concurrent callers are serialized by a lock; if
+        ``stale_token`` is given and another caller already refreshed the token while we
+        waited, the login is skipped.
+        &#34;&#34;&#34;
+        # Bind the lock to the running loop, recreating it if the loop changed. A single
+        # Client may be reused across event loops (e.g. successive asyncio.run calls), and
+        # an asyncio.Lock cannot be awaited from a loop other than the one that created it.
+        loop = asyncio.get_running_loop()
+        lock = self._badge_login_lock
+        if lock is None or self._badge_login_loop is not loop:
+            lock = self._badge_login_lock = asyncio.Lock()
+            self._badge_login_loop = loop
+
+        async with lock:
+            # Drop stale session cookies so the fresh ones from the response are stored. The
+            # cookie manager only merges cookie keys it doesn&#39;t already have, so the token,
+            # its paired risk-control token (e_lrsag), and the load-balancer affinity cookies
+            # must all be cleared to be refreshed together — a stale SERVERID otherwise routes
+            # the new token to the wrong backend.
+            cookies = getattr(self.cookie_manager, &#34;cookies&#34;, None)
+            if isinstance(cookies, dict):
+                # Re-check under the lock: another coroutine may have logged in while we
+                # waited. On the missing-token path (stale_token is None) any token will do;
+                # on the retry path, skip only once the rejected token has been replaced.
+                current_token = typing.cast(&#34;typing.Optional[str]&#34;, cookies.get(BADGE_TOKEN_COOKIES[game]))
+                if current_token and current_token != stale_token:
+                    return
+                for key in (BADGE_TOKEN_COOKIES[game], &#34;e_lrsag&#34;, &#34;SERVERID&#34;, &#34;SERVERCORSID&#34;):
+                    cookies.pop(key, None)
+
+            await self._do_badge_login(game, uid, lang=lang)
+
+    async def _do_badge_login(self, game: types.Game, uid: int, *, lang: typing.Optional[str] = None) -&gt; None:
+        &#34;&#34;&#34;Perform the badge login request (must be called while holding the login lock).
+
+        The badge login authenticates with the cookie token, which is invalidated whenever
+        a newer one is minted for the account elsewhere while the other cookies stay valid.
+        When the login is rejected and an stoken is available, a fresh cookie token is
+        minted from it and the login is retried once.
+        &#34;&#34;&#34;
+        lang = lang or self.lang
+        region = utility.recognize_region(uid, game=game) or types.Region.OVERSEAS
+        body = {
+            &#34;game_biz&#34;: utility.get_prod_game_biz(region, game),
+            &#34;lang&#34;: lang,
+            &#34;region&#34;: utility.recognize_server(uid, game),
+            &#34;uid&#34;: str(uid),
+        }
+        url = routes.BADGE_LOGIN_URL.get_url(region)
+        headers = self._badge_headers(region, lang=lang, data=body)
+        with self._suppress_device_id():
+            try:
+                await self.request(url, method=&#34;POST&#34;, data=body, headers=headers)
+            except errors.InvalidCookies:
+                if not isinstance(self.cookie_manager, managers.CookieManager):
+                    raise
+                cookies = dict(self.cookie_manager.cookies)
+                if not cookies.get(&#34;stoken&#34;):
+                    raise
+
+                new_cookies: typing.Mapping[str, str]
+                if region is types.Region.CHINESE:
+                    data = await cookie_utility.cn_fetch_cookie_token_with_stoken_v2(cookies)
+                    new_cookies = {&#34;account_id&#34;: data[&#34;uid&#34;], &#34;cookie_token&#34;: data[&#34;cookie_token&#34;]}
+                else:
+                    new_cookies = await cookie_utility.fetch_cookie_with_stoken_v2(cookies, token_types=[4])
+                await self.cookie_manager.update_cookies(new_cookies)
+
+                await self.request(url, method=&#34;POST&#34;, data=body, headers=headers)
+
+    async def _request_with_badge(
+        self,
+        game: types.Game,
+        url: aiohttp.typedefs.StrOrURL,
+        uid: int,
+        *,
+        lang: typing.Optional[str] = None,
+        method: typing.Optional[str] = None,
+        params: typing.Optional[typing.Mapping[str, typing.Any]] = None,
+        data: typing.Any = None,
+        suppress_device_id: bool = False,
+    ) -&gt; typing.Mapping[str, typing.Any]:
+        &#34;&#34;&#34;Make a request authenticated by a badge token.
+
+        The token cookie stays valid for a long time (~48 hours), so it is reused across
+        requests. A fresh login is only performed when the token is missing, or when the
+        server rejects it with an ``InvalidCookies`` (-100) error, after which the request
+        is retried once. ``suppress_device_id`` strips the ``x-rpc-device_id`` header for
+        tools that reject it.
+        &#34;&#34;&#34;
+        cookies = getattr(self.cookie_manager, &#34;cookies&#34;, None)
+        if not (isinstance(cookies, dict) and cookies.get(BADGE_TOKEN_COOKIES[game])):
+            await self._badge_login(game, uid, lang=lang)
+
+        lang = lang or self.lang
+        region = utility.recognize_region(uid, game=game) or types.Region.OVERSEAS
+        headers = self._badge_headers(region, lang=lang, data=data, params=params)
+        suppress = self._suppress_device_id if suppress_device_id else contextlib.nullcontext
+
+        try:
+            with suppress():
+                return await self.request(url, method=method, params=params, data=data, headers=headers)
+        except errors.InvalidCookies:
+            stale_token = (
+                typing.cast(&#34;typing.Optional[str]&#34;, cookies.get(BADGE_TOKEN_COOKIES[game]))
+                if isinstance(cookies, dict)
+                else None
+            )
+            await self._badge_login(game, uid, lang=lang, stale_token=stale_token)
+            with suppress():
+                return await self.request(url, method=method, params=params, data=data, headers=headers)</code></pre>
+</details>
+<div class="desc"><p>Component for HoYoLAB event tools that authenticate through the badge login.</p>
+<p>Tools such as the ZZZ agent upgrade guide and the HSR warp records require a
+game-scoped <code>e_&lt;game&gt;_token</code> cookie minted by the badge login endpoint.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="genshin.client.components.base.BaseClient" href="base.html#genshin.client.components.base.BaseClient">BaseClient</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="genshin.client.components.chronicle.zzz.ZZZBattleChronicleClient" href="chronicle/zzz.html#genshin.client.components.chronicle.zzz.ZZZBattleChronicleClient">ZZZBattleChronicleClient</a></li>
+<li><a title="genshin.client.components.hsr_warp_records.HSRWarpRecordsClient" href="hsr_warp_records.html#genshin.client.components.hsr_warp_records.HSRWarpRecordsClient">HSRWarpRecordsClient</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="genshin.client.components.base.BaseClient" href="base.html#genshin.client.components.base.BaseClient">BaseClient</a></b></code>:
+<ul class="hlist">
+<li><code><a title="genshin.client.components.base.BaseClient.authkey" href="base.html#genshin.client.components.base.BaseClient.authkey">authkey</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.debug" href="base.html#genshin.client.components.base.BaseClient.debug">debug</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.default_game" href="base.html#genshin.client.components.base.BaseClient.default_game">default_game</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.device_fp" href="base.html#genshin.client.components.base.BaseClient.device_fp">device_fp</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.device_id" href="base.html#genshin.client.components.base.BaseClient.device_id">device_id</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.game" href="base.html#genshin.client.components.base.BaseClient.game">game</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.genshin_accounts" href="base.html#genshin.client.components.base.BaseClient.genshin_accounts">genshin_accounts</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.get_account_timezone" href="base.html#genshin.client.components.base.BaseClient.get_account_timezone">get_account_timezone</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.get_game_accounts" href="base.html#genshin.client.components.base.BaseClient.get_game_accounts">get_game_accounts</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.hoyolab_id" href="base.html#genshin.client.components.base.BaseClient.hoyolab_id">hoyolab_id</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.lang" href="base.html#genshin.client.components.base.BaseClient.lang">lang</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.on_cookie_update" href="base.html#genshin.client.components.base.BaseClient.on_cookie_update">on_cookie_update</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.proxy" href="base.html#genshin.client.components.base.BaseClient.proxy">proxy</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.region" href="base.html#genshin.client.components.base.BaseClient.region">region</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.request" href="base.html#genshin.client.components.base.BaseClient.request">request</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.request_bbs" href="base.html#genshin.client.components.base.BaseClient.request_bbs">request_bbs</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.request_hoyolab" href="base.html#genshin.client.components.base.BaseClient.request_hoyolab">request_hoyolab</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.request_webstatic" href="base.html#genshin.client.components.base.BaseClient.request_webstatic">request_webstatic</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.set_authkey" href="base.html#genshin.client.components.base.BaseClient.set_authkey">set_authkey</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.set_browser_cookies" href="base.html#genshin.client.components.base.BaseClient.set_browser_cookies">set_browser_cookies</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.set_cache" href="base.html#genshin.client.components.base.BaseClient.set_cache">set_cache</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.set_cookies" href="base.html#genshin.client.components.base.BaseClient.set_cookies">set_cookies</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.set_redis_cache" href="base.html#genshin.client.components.base.BaseClient.set_redis_cache">set_redis_cache</a></code></li>
+<li><code><a title="genshin.client.components.base.BaseClient.uid" href="base.html#genshin.client.components.base.BaseClient.uid">uid</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="genshin.client.components" href="index.html">genshin.client.components</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="genshin.client.components.badge.BadgeLoginClient" href="#genshin.client.components.badge.BadgeLoginClient">BadgeLoginClient</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>
