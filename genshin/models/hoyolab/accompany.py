@@ -28,6 +28,7 @@ __all__ = (
     "AccompanyMomentPost",
     "AccompanyPendant",
     "AccompanyPopupDoc",
+    "AccompanyPostList",
     "AccompanyRecentPoster",
     "AccompanyResult",
     "AccompanyTitle",
@@ -185,7 +186,7 @@ class AccompanyWidget(APIModel):
 
 
 class AccompanyMomentPost(APIModel):
-    """Official post shown on an accompany character's page."""
+    """Post shown on an accompany character's page."""
 
     id: int = Aliased("post_id")
     game_id: int
@@ -193,6 +194,20 @@ class AccompanyMomentPost(APIModel):
     content: str
     lang: str
     created_at: UnixDateTime
+
+
+class AccompanyPostList(APIModel):
+    """Page of posts in an accompany character's topic."""
+
+    posts: Sequence[AccompanyMomentPost]
+    is_last: bool
+    last_id: str
+    client_param: str
+    session_param: str
+
+    @field_validator("posts", mode="before")
+    def __unnest_posts(cls, v: list[dict[str, Any]]) -> list[Any]:
+        return [post["post"] for post in v]
 
 
 class AccompanyPendant(APIModel):

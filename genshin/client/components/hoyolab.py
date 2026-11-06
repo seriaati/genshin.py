@@ -619,6 +619,50 @@ class HoyolabClient(base.BaseClient):
         return models.AccompanyCharacterDetails(**data["info"]["role_info"], stats=data["info"]["stat"])
 
     @base.region_specific(types.Region.OVERSEAS)
+    async def get_accompany_character_posts(
+        self,
+        *,
+        topic_id: int,
+        tab: typing.Literal["fan_works", "discussions"] = "fan_works",
+        sort: typing.Literal["hot", "new"] = "hot",
+        page_size: int = 15,
+        previous: typing.Optional[models.AccompanyPostList] = None,
+        lang: typing.Optional[str] = None,
+    ) -> models.AccompanyPostList:
+        """Get a page of posts in an accompany character's topic.
+
+        Pass the previously returned page as `previous` to get the next page.
+        """
+        data = await self.request_bbs(
+            "community/post/api/topic/post/list",
+            data=dict(
+                topic_id=str(topic_id),
+                scene="1" if tab == "fan_works" else "2",
+                list_type=sort,
+                page_size=page_size,
+                is_first_brush=previous is None,
+                last_id=previous.last_id if previous else "",
+                client_param=previous.client_param if previous else "",
+                session_param=previous.session_param if previous else "",
+            ),
+            method="POST",
+            lang=lang,
+        )
+        return models.AccompanyPostList(**data)
+
+    @base.region_specific(types.Region.OVERSEAS)
+    async def browse_accompany_character_post(self, *, post_id: int, topic_id: int) -> None:
+        """Browse a post from an accompany character's topic to earn accompany points.
+
+        Each post only counts once, see `get_accompany_character_posts` for getting posts.
+        """
+        await self._complete_stuid_cookie()
+        await self.request_bbs(
+            "community/post/api/getPostFull",
+            params=dict(post_id=post_id, source_topic_id=topic_id, source_type="SourceType_Role"),
+        )
+
+    @base.region_specific(types.Region.OVERSEAS)
     async def get_accompany_voice_setting(self, *, game_id: int, role_id: int) -> models.AccompanyVoiceSetting:
         """Get the voice and subtitle language setting of an accompany character."""
         data = await self.request_bbs(

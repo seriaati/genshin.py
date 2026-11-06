@@ -75,6 +75,19 @@ async def test_get_accompany_characters(client: genshin.Client):
     assert characters
 
 
+async def test_get_accompany_character_posts(client: genshin.Client):
+    page = await client.get_accompany_character_posts(topic_id=465967)
+    next_page = await client.get_accompany_character_posts(topic_id=465967, previous=page)
+
+    assert page.posts
+    assert not {post.id for post in page.posts} & {post.id for post in next_page.posts}
+
+
+async def test_browse_accompany_character_post(client: genshin.Client):
+    page = await client.get_accompany_character_posts(topic_id=465967, tab="discussions", sort="new")
+    await client.browse_accompany_character_post(post_id=page.posts[0].id, topic_id=465967)
+
+
 async def test_get_web_events(client: genshin.Client):
     events = await client.get_web_events()
 
