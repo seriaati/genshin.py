@@ -90,7 +90,7 @@ class BaseClient(abc.ABC):
     ) -> None:
         self.cookie_manager = managers.BaseCookieManager.from_cookies(cookies)
         self.on_cookie_update = on_cookie_update
-        self.cache = cache or client_cache.StaticCache()
+        self.cache = cache if cache is not None else client_cache.StaticCache()
 
         self.uids = {}
         self.authkeys = {}
