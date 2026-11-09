@@ -76,6 +76,7 @@ class Diary(BaseDiary):
 
     data: MonthDiaryData = Aliased("month_data")
     day_data: DayDiaryData
+    optional_month: typing.Sequence[int]
 
     @property
     def month_data(self) -> MonthDiaryData:
@@ -132,6 +133,7 @@ class StarRailDiary(BaseDiary):
 
     data: StarRailMonthDiaryData = Aliased("month_data")
     day_data: StarRailDayDiaryData
+    optional_month: typing.Sequence[str]
 
     @property
     def month_data(self) -> StarRailMonthDiaryData:
