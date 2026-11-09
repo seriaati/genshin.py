@@ -159,6 +159,7 @@ class DiaryClient(base.BaseClient):
         data = await self.request_ledger(uid, game=game, month=month, lang=lang, cache=cache_key)
         return models.Diary(**data)
 
+    @managers.requires_cookie_token
     async def get_starrail_diary(
         self,
         uid: typing.Optional[int] = None,
@@ -239,6 +240,7 @@ class DiaryClient(base.BaseClient):
             limit=limit,
         )
 
+    @managers.requires_cookie_token
     async def _get_starrail_diary_page(
         self,
         page: int,

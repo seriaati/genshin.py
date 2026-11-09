@@ -9,8 +9,6 @@ import aiohttp.typedefs
 from genshin import errors, types, utility
 from genshin.client import routes
 from genshin.client.components import base
-from genshin.client.manager import cookie as cookie_utility
-from genshin.client.manager import managers
 from genshin.utility import ds
 
 __all__ = ("BadgeLoginClient",)
@@ -135,23 +133,13 @@ class BadgeLoginClient(base.BaseClient):
         }
         url = routes.BADGE_LOGIN_URL.get_url(region)
         headers = self._badge_headers(region, lang=lang, data=body)
+        stale_tokens = self._get_cookie_tokens()
         with self._suppress_device_id():
             try:
                 await self.request(url, method="POST", data=body, headers=headers)
             except errors.InvalidCookies:
-                if not isinstance(self.cookie_manager, managers.CookieManager):
+                if not await self._refresh_cookie_token(stale_tokens, region=region):
                     raise
-                cookies = dict(self.cookie_manager.cookies)
-                if not cookies.get("stoken"):
-                    raise
-
-                new_cookies: typing.Mapping[str, str]
-                if region is types.Region.CHINESE:
-                    data = await cookie_utility.cn_fetch_cookie_token_with_stoken_v2(cookies)
-                    new_cookies = {"account_id": data["uid"], "cookie_token": data["cookie_token"]}
-                else:
-                    new_cookies = await cookie_utility.fetch_cookie_with_stoken_v2(cookies, token_types=[4])
-                await self.cookie_manager.update_cookies(new_cookies)
 
                 await self.request(url, method="POST", data=body, headers=headers)
 

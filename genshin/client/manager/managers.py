@@ -569,7 +569,11 @@ def no_multi(func: CallableT) -> CallableT:
 
 
 def requires_cookie_token(func: AsyncCallableT) -> AsyncCallableT:
-    """Prevent function to be ran without a cookie_token."""
+    """Prevent function to be ran without a cookie_token.
+
+    If the cookie token is missing or rejected and the cookies contain an stoken,
+    a fresh cookie token is minted from it and the function is retried once.
+    """
 
     @functools.wraps(func)
     async def wrapper(self: typing.Any, *args: typing.Any, **kwargs: typing.Any) -> typing.Any:
@@ -577,10 +581,21 @@ def requires_cookie_token(func: AsyncCallableT) -> AsyncCallableT:
             raise TypeError("Cannot use @requires_cookie_token on a plain function.")
         if self.cookie_manager.multi:
             raise RuntimeError(f"Cannot use {func.__name__} with multi-cookie managers - data is private.")
-        if isinstance(self.cookie_manager, CookieManager):
-            contained = set(self.cookie_manager.cookies.keys())
-            if "cookie_token" not in contained and "cookie_token_v2" not in contained:
-                raise errors.InvalidCookies(msg="Missing cookie_token or cookie_token_v2 in cookies.")
+
+        stale_tokens = self._get_cookie_tokens()
+        if (
+            isinstance(self.cookie_manager, CookieManager)
+            and stale_tokens == (None, None)
+            and not await self._refresh_cookie_token(stale_tokens)
+        ):
+            raise errors.InvalidCookies(msg="Missing cookie_token or cookie_token_v2 in cookies.")
+
+        stale_tokens = self._get_cookie_tokens()
+        try:
+            return await func(self, *args, **kwargs)
+        except errors.InvalidCookies:
+            if not await self._refresh_cookie_token(stale_tokens):
+                raise
 
         return await func(self, *args, **kwargs)
 

@@ -1,6 +1,7 @@
 """Base ABC Client."""
 
 import abc
+import asyncio
 import base64
 import functools
 import json
@@ -17,6 +18,7 @@ import yarl
 from genshin import constants, errors, types, utility
 from genshin.client import cache as client_cache
 from genshin.client import routes
+from genshin.client.manager import cookie as cookie_utility
 from genshin.client.manager import managers
 from genshin.models import hoyolab as hoyolab_models
 from genshin.utility import concurrency, deprecation, ds
@@ -52,6 +54,8 @@ class BaseClient(abc.ABC):
         "_hoyolab_id",
         "_accounts",
         "custom_headers",
+        "_cookie_token_lock",
+        "_cookie_token_loop",
     )
 
     USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"  # noqa: E501
@@ -69,6 +73,9 @@ class BaseClient(abc.ABC):
     _hoyolab_id: typing.Optional[int]
     _accounts: dict[types.Game, hoyolab_models.GenshinAccount]
     custom_headers: multidict.CIMultiDict[str]
+
+    _cookie_token_lock: typing.Optional[asyncio.Lock]
+    _cookie_token_loop: typing.Optional[asyncio.AbstractEventLoop]
 
     def __init__(
         self,
@@ -95,6 +102,8 @@ class BaseClient(abc.ABC):
         self.uids = {}
         self.authkeys = {}
         self._accounts = {}
+        self._cookie_token_lock = None
+        self._cookie_token_loop = None
 
         self.default_game = game
         self.lang = lang
@@ -291,6 +300,57 @@ class BaseClient(abc.ABC):
         hook = self.on_cookie_update
         self.cookie_manager = managers.BaseCookieManager.from_browser_cookies(browser)
         self.on_cookie_update = hook
+
+    def _get_cookie_tokens(self) -> typing.Tuple[typing.Optional[str], typing.Optional[str]]:
+        """Get the current cookie_token and cookie_token_v2."""
+        cookies = getattr(self.cookie_manager, "cookies", {})
+        return cookies.get("cookie_token"), cookies.get("cookie_token_v2")
+
+    async def _refresh_cookie_token(
+        self,
+        stale_tokens: typing.Tuple[typing.Optional[str], typing.Optional[str]],
+        *,
+        region: typing.Optional[types.Region] = None,
+    ) -> bool:
+        """Replace a rejected or missing cookie token with a fresh one minted from the stoken.
+
+        Args:
+            stale_tokens: The cookie tokens the failed request was made with, from `_get_cookie_tokens`.
+            region: The region to mint the cookie token for; defaults to the client's region.
+
+        Returns:
+            Whether the cookies now hold a cookie token different from `stale_tokens`.
+        """
+        if not isinstance(self.cookie_manager, managers.CookieManager):
+            return False
+        if not self.cookie_manager.cookies.get("stoken"):
+            return False
+
+        # An asyncio.Lock is bound to the loop it was first used on, and a client may be reused across loops.
+        loop = asyncio.get_running_loop()
+        if self._cookie_token_lock is None or self._cookie_token_loop is not loop:
+            self._cookie_token_lock = asyncio.Lock()
+            self._cookie_token_loop = loop
+
+        async with self._cookie_token_lock:
+            if self._get_cookie_tokens() != stale_tokens:
+                return True
+
+            cookies = self.cookie_manager.cookies
+            new_cookies: typing.Mapping[str, str]
+            try:
+                if (region or self.region) is types.Region.CHINESE:
+                    data = await cookie_utility.cn_fetch_cookie_token_with_stoken_v2(cookies)
+                    new_cookies = {"account_id": data["uid"], "cookie_token": data["cookie_token"]}
+                else:
+                    new_cookies = await cookie_utility.fetch_cookie_with_stoken_v2(cookies, token_types=[4])
+            except errors.GenshinException as e:
+                self.logger.debug("Failed to refresh cookie token with stoken: %r", e)
+                return False
+
+            await self.cookie_manager.update_cookies(new_cookies)
+            self.logger.debug("Refreshed cookie token with stoken")
+            return True
 
     def set_authkey(self, authkey: typing.Optional[str] = None, *, game: typing.Optional[types.Game] = None) -> None:
         """Set an authkey for wish & transaction logs.
