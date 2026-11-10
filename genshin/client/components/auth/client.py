@@ -262,14 +262,7 @@ class AuthClient(subclients.AppAuthClient, subclients.WebAuthClient, subclients.
             )
 
         if isinstance(result, ActionTicket):
-            # Email verification required
-            mmt = await self._send_verification_email(result)
-            if mmt:
-                if geetest_solver:
-                    mmt_result = await geetest_solver(mmt)
-                else:
-                    mmt_result = await server.solve_geetest(mmt, port=port)
-
+            # Email verification required, the server has already sent the code
             code = await server.enter_code()
             await self._verify_email(code, result)
 
