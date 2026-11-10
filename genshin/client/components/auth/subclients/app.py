@@ -180,11 +180,14 @@ class AppAuthClient(base.BaseClient):
         self,
         ticket: ActionTicket,
         *,
-        mmt_result: typing.Optional[SessionMMTResult] = None,
-    ) -> typing.Union[None, SessionMMT]:
-        """Send verification email.
+        mmt_result: typing.Optional[AppGeetestResult] = None,
+    ) -> typing.Union[None, AppGeetestSession]:
+        """Resend verification email.
 
-        Returns None if success, SessionMMT data if geetest triggered.
+        The first email is sent by the server when `_app_login` returns the action ticket,
+        so this is only needed to request another one.
+
+        Returns None if success, AppGeetestSession data if geetest triggered.
         """
         headers = {**auth_utility.EMAIL_SEND_HEADERS}
         if mmt_result:
@@ -203,6 +206,13 @@ class AppAuthClient(base.BaseClient):
         if resp.data["retcode"] == -3101:
             # Captcha triggered
             aigis = json.loads(resp.headers["x-rpc-aigis"])
+
+            if isinstance(aigis["data"], str):
+                aigis["data"] = json.loads(aigis["data"])
+
+            if aigis["data"].get("use_v4"):
+                return SessionMMTv4(**aigis["data"], session_id=aigis["session_id"])
+
             return SessionMMT(**aigis)
 
         if resp.data["retcode"] != 0:
