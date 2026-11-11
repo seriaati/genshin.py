@@ -278,6 +278,7 @@ class StarRailSimpleCharacter(StarRailPartialCharacter):
     relics: typing.Sequence[SimpleRelic]
     ornaments: typing.Sequence[SimpleRelic]
     ranks: typing.Sequence[Rank]
+    ex_ranks: typing.Sequence[Rank] = ()
     path: StarRailPath = Aliased("base_type")
     figure_path: str
 
