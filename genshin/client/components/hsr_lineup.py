@@ -117,7 +117,7 @@ class HSRLineupClient(base.BaseClient):
         params: dict[str, typing.Any] = {
             "tag_id": tag_id,
             "group_id": group_id,
-            "lineup_type": str(type),
+            "lineup_type": models.StarRailGameModeType(type).value,
             "game": "hkrpg",
         }
 

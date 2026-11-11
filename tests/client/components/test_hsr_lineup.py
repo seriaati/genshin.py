@@ -26,6 +26,13 @@ async def test_lineups_moc(hsr_client: genshin.Client):
     assert lineups.next_page_token is not None
 
 
+async def test_lineups_enum_type(hsr_client: genshin.Client):
+    lineups = await hsr_client.get_starrail_lineups(
+        tag_id=14, group_id=1023, type=genshin.models.StarRailGameModeType.MOC
+    )
+    assert len(lineups.lineups) > 0
+
+
 async def test_lineups_pf(hsr_client: genshin.Client):
     lineups = await hsr_client.get_starrail_lineups(tag_id=18, group_id=2014, type="Story")
     assert len(lineups.lineups) > 0
